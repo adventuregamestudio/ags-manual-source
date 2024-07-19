@@ -19,7 +19,7 @@ Example:
 ```ags
 // a custom MySay function with character-specific text color;
 // (assuming that gTextGui is assigned as a speech GUI)
-function MySay(this Character*, const string message) {
+void MySay(this Character*, const string message) {
     gTextGui.AsTextWindow.TextColor = this.SpeechColor;
     this.Say(message);
 }

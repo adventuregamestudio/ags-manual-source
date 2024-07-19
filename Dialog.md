@@ -426,7 +426,7 @@ This may be useful if you have a pointer to some dialog stored in your variable,
 Example:
 
 ```ags
-function CustomDialogStart(this Dialog*)
+void CustomDialogStart(this Dialog*)
 {
   this.Start();
   String dialogName = this.ScriptName;
@@ -591,7 +591,7 @@ You can use this function to end the conversation depending on whether the playe
 Example 1:
 
 ```ags
-function dialog_request (int dr) {
+void dialog_request (int dr) {
     if (dr==1) {
         cEgo.AddInventory(iPoster);
         StopDialog();

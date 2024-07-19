@@ -118,7 +118,7 @@ Example:
 #define PORTRAIT_YMAX 30
 int plast = -1;
 int pmove = 1;
-function repeatedly_execute_always() {
+void repeatedly_execute_always() {
     if (Speech.PortraitOverlay != null) {
         if (plast >= 0) Speech.PortraitOverlay.Y = plast;
         Speech.PortraitOverlay.Y += pmove;
@@ -341,7 +341,7 @@ Example:
 ```ags
 Overlay* lastSpeech;
 
-function late_repeatedly_execute_always() {
+void late_repeatedly_execute_always() {
     Overlay* curSpeech = Speech.TextOverlay;
     if (lastSpeech == null && curSpeech != null) {
         // speech has started

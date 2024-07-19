@@ -94,11 +94,11 @@ For example:
 ```ags
 int arrOfInts[]; // declare a dynamic array of ints
 
-function game_start() {
+void game_start() {
     arrOfInts = new int[100]; // create array of 100 ints
 }
 
-function resize_array() {
+void resize_array() {
     int tempArr[] = new int[200]; // create array of 200 ints and save it in a temp var
     for (i = 0; i < arrOfInts.Length && i < 200; i++) {
         tempArr[i] = arrOfInts[i]; // copy contents of the old array
@@ -123,7 +123,7 @@ arrOfInts = null; // now the second array is also lost and get deleted
 Note that if you store a dynamic array in a local function variable, that variable will get removed as soon as function ends, and if array was not reassigned to any global pointer, then it also gets deleted automatically.
 
 ```ags
-function func() {
+void func() {
     int arrOfInts[] = new int[100];
     // do something with this array
 } // as soon as function ends the array gets deleted

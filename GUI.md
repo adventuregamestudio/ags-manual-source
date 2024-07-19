@@ -110,7 +110,7 @@ Where GetByName() function may come useful is situation in which you a) do not k
 Example:
 
 ```ags
-function ReadGUIConfig() {
+void ReadGUIConfig() {
     File *file = File.Open("$SAVEGAMEDIR$/guiconfig.dat", eFileRead);
     if (file == null) {
         return;

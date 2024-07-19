@@ -23,7 +23,7 @@ continue, most common places for such call are
 Example:
 
 ```ags
-function dialog_options_key_press(DialogOptionsRenderingInfo *info, eKeyCode key)
+void dialog_options_key_press(DialogOptionsRenderingInfo *info, eKeyCode key)
 {
     if (keycode == eKeyReturn)
         info.RunActiveOption();
@@ -86,7 +86,7 @@ options in the dialog.
 Example:
 
 ```ags
-function dialog_options_get_active(DialogOptionsRenderingInfo *info)
+void dialog_options_get_active(DialogOptionsRenderingInfo *info)
 {
     info.ActiveOptionID = 1;
 }
@@ -137,7 +137,7 @@ options.
 Example:
 
 ```ags
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     info.Width = 300;
     info.Height = 150;
@@ -171,7 +171,7 @@ options.
 Example:
 
 ```ags
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     info.Width = 300;
     info.Height = 150;
@@ -203,7 +203,7 @@ function.
 Example:
 
 ```ags
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     info.Width = 300;
     info.Height = 150;
@@ -246,7 +246,7 @@ function.
 Example:
 
 ```ags
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     info.Width = 300;
     info.Height = 150;
@@ -288,7 +288,7 @@ function.
 Example:
 
 ```ags
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     info.Width = 300;
     info.Height = 150;
@@ -330,7 +330,7 @@ requested in the `dialog_options_get_dimensions` function.
 Example:
 
 ```ags
-function dialog_options_render(DialogOptionsRenderingInfo *info)
+void dialog_options_render(DialogOptionsRenderingInfo *info)
 {
     info.Surface.Clear(14);
 }
@@ -359,7 +359,7 @@ options.
 Example:
 
 ```ags
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     info.Width = 300;
     info.Height = 150;
@@ -391,7 +391,7 @@ options.
 Example:
 
 ```ags
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     info.X = 50;
     info.Y = 20;
@@ -425,7 +425,7 @@ options.
 Example:
 
 ```ags
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     info.X = 50;
     info.Y = 20;

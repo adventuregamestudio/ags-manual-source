@@ -58,7 +58,7 @@ First of all, the `on_key_press` function now supports a second optional argumen
 The extended function definition now is:
 
 ```ags
-function on_key_press(eKeyCode key, int mod)
+void on_key_press(eKeyCode key, int mod)
 ```
 
 The `mod` argument describes which key modifiers were enabled when this exact key was pressed. It's different from, for example, using `IsKeyPressed()` in `repeatedly_execute` callback, because the engine may receive several key-presses between two game frames, while `IsKeyPressed` only tells the last state of the key. Using `mod` argument is 100% reliable.
@@ -105,7 +105,7 @@ What is the difference between the two modes?
 In the new mode each key pressed triggers `on_key_press`, and when the pressed keys form a printable character an `on_text_input` function is called. This function must look simply like this:
 
 ```ags
-function on_text_input(int ch)
+void on_text_input(int ch)
 ```
 
 Its argument (`ch`) contains a Unicode character's code. It may be used, for example, to append to a String, or add to the text field or label.
@@ -113,13 +113,13 @@ Its argument (`ch`) contains a Unicode character's code. It may be used, for exa
 Similarly to the above, `dialog_options_key_press` had been expanded with the third `mod` argument:
 
 ```ags
-function dialog_options_key_press(DialogOptionsRenderingInfo *info, eKeyCode keycode, int mod)
+void dialog_options_key_press(DialogOptionsRenderingInfo *info, eKeyCode keycode, int mod)
 ```
 
 And there's now `dialog_options_text_input` callback for receiving unicode chars during the custom dialog options state:
 
 ```ags
-function dialog_options_text_input(DialogOptionsRenderingInfo *info, int ch)
+void dialog_options_text_input(DialogOptionsRenderingInfo *info, int ch)
 ```
 
 ### New game package options

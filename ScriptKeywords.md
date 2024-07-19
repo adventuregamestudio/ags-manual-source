@@ -568,7 +568,7 @@ an inventory item at the same time. You could write both commands each
 time, or you could define a custom function:
 
 ```ags
-function AddInvAndPlaySound(InventoryItem* item) {
+void AddInvAndPlaySound(InventoryItem* item) {
     player.AddInventory(item);
     aInventorySound.Play();
 }
@@ -593,7 +593,7 @@ the user doesn't need to supply. To do this, change the script header
 *import* declaration like this:
 
 ```ags
-import function TestFunction(int stuff, int things = 5);
+import void TestFunction(int stuff, int things = 5);
 ```
 
 that declares a function with a mandatory *stuff* parameter, and an
@@ -631,7 +631,7 @@ sometimes you may want to break out of current function before it ends
 naturally:
 
 ```ags
-function DoThisAndOptionallyThat(bool do_all) {
+void DoThisAndOptionallyThat(bool do_all) {
     // multiple statements here
 
     if (!do_all)
@@ -771,7 +771,7 @@ meaning both variables - `my_apple` and `apple2` - point to same object!
 You may write a function that take such pointer as parameter:
 
 ```ags
-function DisplayAppleDescription(Apple* apple) {
+void DisplayAppleDescription(Apple* apple) {
     String s = String.Format("Apple has color %d and freshness %d", apple.color, apple.freshness);
     Display(s);
 }
@@ -833,7 +833,7 @@ Apple* SomeApple;
 
 // At the game start we create a new dynamic object of Apple type
 // and assign its address to the pointer variable
-function game_start()
+void game_start()
 {
     SomeApple = new Apple;
 }
@@ -859,7 +859,7 @@ For example, if you have a script function, *doStuff*, that can perform
 3 different operations, you could do this:
 
 ```ags
-function doStuff(int param) {
+void doStuff(int param) {
     if (param == 1) {
         // do something
     }
@@ -880,7 +880,7 @@ enum DoStuffOption {
     DoLaundry
 };
 
-function doStuff(DoStuffOption param) {
+void doStuff(DoStuffOption param) {
     if (param == BakeCake) {
         // do something
     }
@@ -921,14 +921,14 @@ Suppose you had this in your script header:
 struct MyStruct {
     int myValue;
 
-    import function MyMethod();
+    import void MyMethod();
 };
 ```
 
 Then, in your main script, you could put this:
 
 ```ags
-function MyStruct::MyMethod()
+void MyStruct::MyMethod()
 {
     this.myValue = 5;
 }
@@ -960,7 +960,7 @@ For example:
 
 ```ags
 import int counter;
-import function add_numbers (int, int);
+import int add_numbers (int, int);
 ```
 
 This imports an integer variable `counter` and the function

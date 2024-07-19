@@ -3283,7 +3283,7 @@ late_repeatedly_execute_always handlers.
 Example:
 
 ```ags
-function repeatedly_execute_always()
+void repeatedly_execute_always()
 {
     if (cEgo.Thinking)
         cEgo.Transparency = 50;

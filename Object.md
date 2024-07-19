@@ -1137,7 +1137,7 @@ This may be useful if you have a pointer to some object stored in your variable,
 Example:
 
 ```ags
-function Touch(this Object*)
+void Touch(this Object*)
 {
   System.Log(eLogInfo, "You touched %s.", this.ScriptName);
   // Do things when object is touched

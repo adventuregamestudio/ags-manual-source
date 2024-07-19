@@ -32,13 +32,13 @@ in a module. You'd create a new script, then put this in its header file
 (.ASH):
 
 ```ags
-import function AddNumbers(int a, int b);
+import int AddNumbers(int a, int b);
 ```
 
 Then, in the script file (.ASC) you could put:
 
 ```ags
-function AddNumbers(int a, int b) {
+int AddNumbers(int a, int b) {
     return a + b;
 }
 ```
@@ -52,14 +52,14 @@ Can extra scripts use predefined functions like `game_start` and
 functions, and they will be called at the appropriate times just before
 the global script's function is:
 
--   function game_start()
--   function on_event(EventType event, int data)
--   function on_key_press(eKeyCode keycode, int mod)
--   function on_mouse_click(MouseButton button, int mx, int my)
--   function on_text_input(int ch)
--   function repeatedly_execute()
--   function repeatedly_execute_always()
--   function late_repeatedly_execute_always()
+-   void game_start()
+-   void on_event(EventType event, int data)
+-   void on_key_press(eKeyCode keycode, int mod)
+-   void on_mouse_click(MouseButton button, int mx, int my)
+-   void on_text_input(int ch)
+-   void repeatedly_execute()
+-   void repeatedly_execute_always()
+-   void late_repeatedly_execute_always()
 
 Few other special functions, such as `dialog_request`, will only be
 called in the Global Script, even if they exist in another script. If

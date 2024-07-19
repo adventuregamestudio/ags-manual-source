@@ -20,7 +20,7 @@ Where GetByName() function may come useful is situation in which you a) do not k
 Example:
 
 ```ags
-function PlayDefaultSound(Object *obj) {
+void PlayDefaultSound(Object *obj) {
     String soundName = obj.GetTextProperty("default-sound");
     AudioClip *clip = AudioClip.GetByName(soundName);
     if (clip != null) {
@@ -334,7 +334,7 @@ This may be useful if you have a pointer to some clip stored in your variable, a
 Example:
 
 ```ags
-function CustomPlay(this AudioClip*)
+void CustomPlay(this AudioClip*)
 {
   this.Play();
   System.Log(eLogInfo, "Playing audio clip: %s", this.ScriptName);

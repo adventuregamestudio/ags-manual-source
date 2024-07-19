@@ -72,7 +72,7 @@ In main game scripts, you create your *repeatedly_execute* script
 function by just pasting it into the script as follows:
 
 ```ags
-function repeatedly_execute()
+void repeatedly_execute()
 {
     // Put your script code here
 }
@@ -93,7 +93,7 @@ Therefore the following will work in any script, whether it be a room or
 a global script.
 
 ```ags
-function repeatedly_execute_always()
+void repeatedly_execute_always()
 {
     // Put your script code here
 }
@@ -109,7 +109,7 @@ Let's implement the two things we just talked about. Here's our hunger
 checking code:
 
 ```ags
-function repeatedly_execute()
+void repeatedly_execute()
 {
     // increment our timer variable (we would have created this
     // in the Global Variables editor)
@@ -129,7 +129,7 @@ and let's put the bird flying code in the room script, because we only
 want it to happen in that one room:
 
 ```ags
-function repeatedly_execute_always()
+void repeatedly_execute_always()
 {
     if (!cBird.Moving)
     {

@@ -61,7 +61,7 @@ in a similar way to using character names. For example, if a GUI is called
 example, to configure the visibility of GUI when the game starts:
 
 ```ags
-function game_start()
+void game_start()
 {
     gIconBar.Visible = true;
 }

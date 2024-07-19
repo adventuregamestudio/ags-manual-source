@@ -310,7 +310,7 @@ if (!System.HasInputFocus)
 skips the rest of the function if player has switched out from the game.
 
 ```ags
-function repeatedly_execute()
+void repeatedly_execute()
 {
     if (!System.HasInputFocus && IsGamePaused() == 0) {
         PauseGame();
@@ -436,7 +436,7 @@ modes of the game.
 Example:
 
 ```ags
-function on_key_press(eKeyCode keycode) {
+void on_key_press(eKeyCode keycode) {
     if (keycode == eKeyCtrlV) {
         Display(System.RuntimeInfo);
     }
@@ -691,7 +691,7 @@ will display a message if the game is running in a window
 Example:
 
 ```ags
-function on_key_press(eKeyCode keycode) {
+void on_key_press(eKeyCode keycode) {
     if (keycode == eKeyEscape) {
         System.Windowed = !System.Windowed;
     }

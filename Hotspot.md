@@ -74,7 +74,7 @@ Where GetByName() function may come useful is situation in which you a) do not k
 Example:
 
 ```ags
-function OpenDoor(Object *obj) {
+void OpenDoor(Object *obj) {
     obj.SetView(VDOORANIMATION);
     obj.Animate(1, 4, eOnce, eBlock);
     String exitName = obj.GetTextProperty("LinkedExit");
@@ -389,7 +389,7 @@ This may be useful if you have a pointer to some hotspot stored in your variable
 Example:
 
 ```
-function InteractHotspot(Hotspot *h) {
+void InteractHotspot(Hotspot *h) {
     System.Log(eLogInfo, "Interacted with hotspot %s", h.ScriptName);
     h.RunInteraction(eModeInteract);
 }

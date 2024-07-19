@@ -5,7 +5,7 @@ Extender functions allow you to "add" new functions to existing types, including
 Let's look at the following example:
 
 ```ags
-function Scream(Character *c)
+void Scream(Character *c)
 {
     c.Say("AAAAARRRRGGGGHHHHHH!!!!");
 }
@@ -20,7 +20,7 @@ Scream(cEgo); // pass cEgo character as a function parameter
 Now, the *extender function* would instead be declared like:
 
 ```ags
-function Scream(this Character*)
+void Scream(this Character*)
 {
     this.Say("AAAAARRRRGGGGHHHHHH!!!!");
 }
@@ -39,7 +39,7 @@ Extender functions exist purely for convenience (in programming this is called "
 The common use-case for extender functions is writing custom behavior for built-in types. Consider following, more sophisticated example:
 
 ```ags
-function SayAndAnimate(this Character*, String text, int view, int loop)
+void SayAndAnimate(this Character*, String text, int view, int loop)
 {
     this.LockView(view);
     this.Animate(loop, 4, eRepeat, eNoBlock);

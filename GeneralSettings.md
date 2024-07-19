@@ -233,8 +233,8 @@ accessible in future versions.
     during compilation. With the above setting you can provide *the name* of your custom function that you've defined in your script. Such function must have one of the following prototype forms:
 
     ```ags
-    function CustomNarrate1(const string text);
-    function CustomNarrate2(String text);
+    void CustomNarrate1(const string text);
+    void CustomNarrate2(String text);
     ```
 
     The return value is actually not essential and may be any type.<br>
@@ -254,10 +254,10 @@ accessible in future versions.
     during compilation. With the above setting you can provide *the name* of your custom function that you've defined in your script. Such function must have one of the following prototype forms:
 
     ```ags
-    function CustomSay1(Character *c, const string text);
-    function CustomSay2(Character *c, String text);
-    function CustomSay3(this Character*, const string text);
-    function CustomSay4(this Character*, String text);
+    void CustomSay1(Character *c, const string text);
+    void CustomSay2(Character *c, String text);
+    void CustomSay3(this Character*, const string text);
+    void CustomSay4(this Character*, String text);
     ```
 
     Last two variants are [extender functions](ExtenderFunctions) for Character struct.<br>

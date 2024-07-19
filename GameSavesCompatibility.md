@@ -85,7 +85,7 @@ Consider a simple dynamic array:
 ```ags
 int dyn_arr[];
 
-function game_start() {
+void game_start() {
     dyn_arr = new int[100];
 }
 ```
@@ -103,7 +103,7 @@ Unfortunately at the time of writing this AGS manual page, you can't access the 
 int dyn_arr[];
 int arr_size;
 
-function game_start() {
+void game_start() {
     dyn_arr = new int[100];
     arr_size = 100;
 }
@@ -125,7 +125,7 @@ managed struct MyStruct {
 
 MyStruct* var;
 
-function game_start() {
+void game_start() {
     var = new MyStruct;
 }
 ```
@@ -200,7 +200,7 @@ If you must change the content of a room but do not want to break saves at all c
 This is done like this, for example:
 
 ```ags
-function on_event(EventType evt, int data) {
+void on_event(EventType evt, int data) {
     if (evt == eEventRestoreGame) {
         if (player.Room == OLD_ROOM_NUMBER) {
             player.ChangeRoom(NEW_ROOM_NUMBER);
@@ -229,12 +229,12 @@ Consider following example:
 int GameVersion;
 int MyVariables[];
 
-function game_start() {
+void game_start() {
     GameVersion = 2;
     MyVariables = new int[GAME_VER_002_LENGTH];
 }
 
-function on_event(EventType evt, int data) {
+void on_event(EventType evt, int data) {
     if (evt == eEventRestoreGame) {
         // detect old save
         if (GameVersion == 1) {
@@ -271,12 +271,12 @@ managed struct MyStruct {
 int GameVersion;
 MyStruct MyObj;
 
-function game_start() {
+void game_start() {
     GameVersion = 2;
     MyObj = new MyStruct;
 }
 
-function on_event(EventType evt, int data) {
+void on_event(EventType evt, int data) {
     if (evt == eEventRestoreGame) {
         // detect old save
         if (GameVersion == 1) {

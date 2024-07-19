@@ -13,7 +13,7 @@ All script functions are exported automatically, so they only need an import dec
 For example, suppose you have the following function in script MyScript.asc:
 
 ```ags
-function ScriptAFunction(int param1, int param2)
+void ScriptAFunction(int param1, int param2)
 {
     // some actions here
 }
@@ -22,7 +22,7 @@ function ScriptAFunction(int param1, int param2)
 Then the import declaration in the MyScript's header (MyScript.ash) should looks like:
 
 ```ags
-import function ScriptAFunction(int param1, int param2);
+import void ScriptAFunction(int param1, int param2);
 ```
 
 The name, type and arguments of the function must be the same, otherwise there will be errors either during compilation or at runtime.

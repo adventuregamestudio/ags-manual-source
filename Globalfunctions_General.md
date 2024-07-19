@@ -22,7 +22,7 @@ game.
 Example:
 
 ```ags
-function MakeWider(int newWidth) {
+void MakeWider(int newWidth) {
     if (newWidth < 10)
         AbortGame("newWidth expects a width of at least 10!");
 }
@@ -57,7 +57,7 @@ button on Room Settings pane), similar to the way you do dialog_request
 in the global script:
 
 ```ags
-function on_call (int value) {
+void on_call(int value) {
     if (value == 1) {
         // Check text input
         if (Parser.Said("get apple"))
@@ -673,12 +673,12 @@ Example:
 ```ags
 #define TIMER_ID 1
 
-function room_AfterFadeIn()
+void room_AfterFadeIn()
 {
     SetTimer(TIMER_ID, 10);
 }
 
-function room_RepExec()
+void room_RepExec()
 {
     int timeLeft = GetTimerPos(TIMER_ID);
     if (timeLeft == 0)

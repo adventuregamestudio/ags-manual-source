@@ -135,7 +135,7 @@ int dlg_opt_color = 14;
 int dlg_opt_acolor = 13;
 int dlg_opt_ncolor = 4;
 
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     // Create a 200x200 dialog options area at (50,100)
     info.X = 50;
@@ -150,7 +150,7 @@ function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
     info.ParserTextBoxWidth = 180;
 }
 
-function dialog_options_render(DialogOptionsRenderingInfo *info)
+void dialog_options_render(DialogOptionsRenderingInfo *info)
 {
     info.Surface.Clear(dlg_opt_color);
     int ypos = 0;
@@ -171,7 +171,7 @@ function dialog_options_render(DialogOptionsRenderingInfo *info)
     }
 }
 
-function dialog_options_repexec(DialogOptionsRenderingInfo *info)
+void dialog_options_repexec(DialogOptionsRenderingInfo *info)
 {
     info.ActiveOptionID = 0;
     if (mouse.y < info.Y || mouse.y >= info.Y + info.Height ||
@@ -196,7 +196,7 @@ function dialog_options_repexec(DialogOptionsRenderingInfo *info)
     }
 }
 
-function dialog_options_mouse_click(DialogOptionsRenderingInfo *info, MouseButton button)
+void dialog_options_mouse_click(DialogOptionsRenderingInfo *info, MouseButton button)
 {
     if (info.ActiveOptionID > 0)
         info.RunActiveOption();
@@ -216,7 +216,7 @@ int dlg_opt_color = 14;
 int dlg_opt_acolor = 13;
 int dlg_opt_ncolor = 4;
 
-function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
 {
     // Create a 200x200 dialog options area at (50,100)
     info.X = 50;
@@ -226,7 +226,7 @@ function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
     info.ActiveOptionID = 1; // set to first option
 }
 
-function dialog_options_render(DialogOptionsRenderingInfo *info)
+void dialog_options_render(DialogOptionsRenderingInfo *info)
 {
     info.Surface.Clear(dlg_opt_color);
     int ypos = 0;
@@ -247,7 +247,7 @@ function dialog_options_render(DialogOptionsRenderingInfo *info)
     }
 }
 
-function dialog_options_key_press(DialogOptionsRenderingInfo *info, eKeyCode keycode, int mod)
+void dialog_options_key_press(DialogOptionsRenderingInfo *info, eKeyCode keycode, int mod)
 {
     if (keycode == eKeyUpArrow)
     {

@@ -122,7 +122,7 @@ on which event has occurred. The possible values of event are:
 
 For example:
 ```ags
-function on_event(int event, int data1, int data2)
+void on_event(int event, int data1, int data2)
 {
     if (event == eEventEnterRoomBeforeFadein)
     {

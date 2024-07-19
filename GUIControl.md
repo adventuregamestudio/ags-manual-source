@@ -55,7 +55,7 @@ Where GetByName() function may come useful is situation in which you a) do not k
 Example:
 
 ```ags
-function ReadAndUpdateGUIControl() {
+void ReadAndUpdateGUIControl() {
     File *input = File.Open("$SAVEGAMEDIR$/guicontrol_info.dat", eFileRead);
     if (input == null) {
         Display("Error opening file.");
@@ -571,7 +571,7 @@ This may be useful if you have a pointer to some dialog stored in your variable,
 Example:
 
 ```ags
-function ActivateControl(const string controlName)
+void ActivateControl(const string controlName)
 {
     GUIControl* control = GUIControl.GetByName(controlName);
     if (control != null) {

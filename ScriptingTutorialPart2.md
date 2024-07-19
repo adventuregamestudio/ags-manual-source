@@ -195,7 +195,7 @@ Remember in [Scripting Tutorial 1](ScriptingTutorialPart1#commands-explained), w
 like this:
 
 ```ags
-function dialog_request(int param)
+void dialog_request(int param)
 {
     // contents of function go here
 }
@@ -226,7 +226,7 @@ I think a couple of examples are in order. First of all, let's show a
 fixed function, `on_event`:
 
 ```ags
-function on_event (EventType event, int data)
+void on_event(EventType event, int data)
 {
     if (event == eEventGotScore)
     {
@@ -253,7 +253,7 @@ and we want to be able to play it from various points in the script. By
 far the easiest way to do this would be to put it in a function:
 
 ```ags
-function do_dance()
+void do_dance()
 {
     cEgo.LockView(10);
     cEgo.Animate(2, 5);
@@ -282,7 +282,7 @@ IsGamePaused, return a value to the script. You can do this from your
 own functions, using the `return` keyword. So:
 
 ```ags
-function add(int a, int b)
+int add(int a, int b)
 {
     int result;
     result = a + b;

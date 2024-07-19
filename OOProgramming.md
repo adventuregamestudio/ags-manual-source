@@ -62,7 +62,7 @@ To be consistent with Java and C#, the protection level is always specified
 first. For example:
 
 ```ags
-protected import static function my_function();
+protected import static void my_function();
 ```
 
 ### Defining attributes

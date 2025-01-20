@@ -551,10 +551,10 @@ StopDialog ()
 ```
 
 This command stop the current dialog, if any is running. But it's effect is not immediate.
-If called in dialog script, or in normal script function being called from a dialog script, then the dialog will stop after current option's script completes.
-If called in "dialog_request" function, then the dialog will stop right after "dialog_request" function finishes.
-If called from regular script while the dialog options are being displayed (i.e. from "repeatedly_execute_always"), then the dialog will stop after the game finishes updating.
-If called from any function which is a part of the [custom dialog options rendering](CustomDialogOptions), then the dialog will stop right after this script function ends.
+- If called in dialog script, or in normal script function being called from a dialog script, then the dialog will stop after current option's script completes.
+- If called in "dialog_request" function, then the dialog will stop right after "dialog_request" function finishes.
+- If called from regular script while the dialog options are being displayed (i.e. from "repeatedly_execute_always"), then the dialog will stop after the game finishes updating.
+- If called from any function which is a part of the [custom dialog options rendering](CustomDialogOptions), then the dialog will stop right after this script function ends.
 
 You can use this function to end the conversation depending on whether the player has/does a certain thing.
 

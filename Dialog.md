@@ -550,13 +550,15 @@ will start the conversation topic named dMerchant.
 StopDialog ()
 ```
 
-This command can only be used either in dialog script or from within the "dialog_request" function, and schedules end of a conversation.
-If called in dialog script it will make conversation stop after current option's script completes.
-If called in "dialog_request" function it will make conversation stop right after "dialog_request" function finishes.
+This command stop the current dialog, if any is running. But it's effect is not immediate.
+If called in dialog script, or in normal script function being called from a dialog script, then the dialog will stop after current option's script completes.
+If called in "dialog_request" function, then the dialog will stop right after "dialog_request" function finishes.
+If called from regular script while the dialog options are being displayed (i.e. from "repeatedly_execute_always"), then the dialog will stop after the game finishes updating.
+If called from any function which is a part of the [custom dialog options rendering](CustomDialogOptions), then the dialog will stop right after this script function ends.
 
 You can use this function to end the conversation depending on whether the player has/does a certain thing.
 
-Example:
+Example 1:
 
 ```ags
 function dialog_request (int dr) {
@@ -568,6 +570,22 @@ function dialog_request (int dr) {
 ```
 
 will give the player the inventory item iPoster and then end the conversation.
+
+Example 2:
+
+```ags
+function repeatedly_execute_always() {
+    if (Dialog.AreOptionsDisplayed && Dialog.CurrentDialog == dDialogThatMayBeInterrupted) {
+        if (IsKeyPressed(eKeyEscape)) {
+            StopDialog();
+        }
+    }
+}
+```
+
+will stop a certain dialog if player presses Escape while dialog options are displayed.
+
+*Compatibility:* Prior to **AGS 3.6.2** StopDialog could only work if called from "dialog_request" function.
 
 *See also:* [`Dialog.Start`](Dialog#dialogstart),
 [`Dialog.SetOptionState`](Dialog#dialogsetoptionstate),

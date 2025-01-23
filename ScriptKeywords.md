@@ -221,6 +221,12 @@ fix its scripts. To enable this mode find "Left-to-right operator precedence"
 option in "Backwards compatibility" section of the General Settings and set it
 to "false".
 
+**NOTE:** For signed types (`short` and `int`), the right shift `>>` is an 
+*arithmetic* right shift, which means that the most significant bit will be copied over
+to fill the shifted spaces (1 for negative values, and 0 for positive ones).<br>
+For the purpose of logical bitwise manipulation, bit masking will need to be applied, 
+eg: `(0xFE223344 >> 24) & 0xFF` to return `0xFE`.
+
 ---
 
 ### Version checking

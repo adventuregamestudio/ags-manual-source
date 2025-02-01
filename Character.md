@@ -1179,7 +1179,7 @@ eEventEnterRoomBeforeFadein to use whenever a player enters a room.
 
 **NOTE:** `PlaceOnWalkableArea` ignores any parts of the room beyond room Edges. This was done so, because Edges usually serve like an area boundaries and may trigger player leaving the room.
 
-**NOTE:** `PlaceOnWalkableArea` is searching for valid walkable areas not pixel by pixel, but in intervals of 5 pixels. This was originally done for performance reasons. Because of that it may fail if walkable areas are too thin.
+**NOTE:** historically, prior to **AGS 3.6.2**, if no walkable area was found within a very close range, then `PlaceOnWalkableArea` has been searching whole room in intervals of 5 pixels. This was originally done for performance reasons. Because of that it could fail if walkable areas are too thin. Starting with **3.6.2** it searches each pixel but does so in a more performant way, so should not miss even 1-pixel areas.
 
 Example:
 
@@ -1191,6 +1191,9 @@ cEgo.PlaceOnWalkableArea();
 
 will move character EGO to a random position but make sure that he is on
 a walkable area.
+
+*See also:*
+[`Room.NearestWalkableArea`](Room#roomnearestwalkablearea)
 
 ---
 

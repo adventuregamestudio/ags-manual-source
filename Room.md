@@ -131,6 +131,28 @@ will retrieve the room's "description" property then display it.
 
 ---
 
+### `Room.NearestWalkableArea`
+
+```ags
+static Point* Room.NearestWalkableArea(int x, int y);
+```
+
+Searches for the nearest position in the room that is on any walkable area, starting from the given room coordinates, and returns a Point struct, or null if no walkable area was found. If input position already lies in a walkable area, then returns same position.
+
+Example:
+
+```ags
+Point* room_pt = Screen.ScreenToRoomPoint(mouse.x, mouse.y);
+Point* walk_pt = Room.NearestWalkableArea(room_pt.x, room_pt.y);
+Display("Nearest walkable area is at %d,%d", walk_pt.x, walk_pt.y);
+```
+
+*Compatibility:* Supported by **AGS 3.6.2** and later versions.
+
+*See also:* [`Character.PlaceOnWalkableArea`](Character#characterplaceonwalkablearea)
+
+---
+
 ### `Room.SetProperty`
 
 ```ags

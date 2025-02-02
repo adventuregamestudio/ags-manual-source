@@ -367,8 +367,7 @@ Gets/sets the transparency of this overlay.
 readonly bool Overlay.Valid;
 ```
 
-Checks whether the overlay is a current overlay or not. Returns 1 if it
-is, 0 if it isn't.
+Returns whether the overlay is displaying on screen, or has already been removed. An overlay may be removed either by a script command, or by the engine when overlay's time have run out. When this happens, Overlay object remains in script, but overlay itself is gone. Overlay.Valid property allows to check its actual state. This is useful for overlays which are not controlled exclusively by your script, such as speech texts.
 
 Example:
 

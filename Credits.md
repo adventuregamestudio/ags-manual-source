@@ -2,7 +2,7 @@
 
 - Adventure Game Studio was originally developed by Chris Jones
 - The latter versions and engine ports to various platforms are
-  product of collaborative work of the following people (in alphabetic
+  product of collaborative work of the following contributors (in alphabetic
   order):
 
   Alan Van Drake  
@@ -19,6 +19,7 @@
   Ferdinand Thiessen  
   Francesco Ariis  
   Gilad Shaham  
+  HomeLight Games
   Ivan Mogilko  
   James Duong  
   Janet Gilbert  

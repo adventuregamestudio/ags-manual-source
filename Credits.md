@@ -19,7 +19,7 @@
   Ferdinand Thiessen  
   Francesco Ariis  
   Gilad Shaham  
-  HomeLight Games
+  HomeLight Games  
   Ivan Mogilko  
   James Duong  
   Janet Gilbert  

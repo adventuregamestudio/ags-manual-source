@@ -55,7 +55,8 @@
 
 - Windows editor original splash design by abstauber
 - Windows editor icons by Klaus
-- Sierra-style game template by Rui "Trovatore" Pires, and updated by Morgan Willcock,
+- Windows editor additional graphics by HomeLight Games
+- Sierra-style game template by Rui "Trovatore" Pires, and updated by Morgan Willcock
 - New BASS and Verb Coin game templates by Morgan Willcock,
   based on ideas by Bjorn Ludwig and Electroshokker respectively
 - Sierra-style, BASS and Verb Coin templates are sharing art by

@@ -2,7 +2,7 @@
 
 - Adventure Game Studio was originally developed by Chris Jones
 - The latter versions and engine ports to various platforms are
-  product of collaborative work of the following contributors (in alphabetic
+  product of collaborative work of the following contributors (in alphabetical
   order):
 
   Alan Van Drake  
@@ -50,15 +50,16 @@
   Thierry Crozat  
   Tobias Hansen  
   Tom Vandepoele  
-  Tzach Shabtay
-  Walter Agazzi
+  Tzach Shabtay  
+  Walter Agazzi  
+
 
 - Windows editor original splash design by abstauber
 - Windows editor icons by Klaus
 - Windows editor additional graphics by HomeLight Games
 - Sierra-style game template by Rui "Trovatore" Pires, and updated by Morgan Willcock
 - New BASS and Verb Coin game templates by Morgan Willcock,
-  based on ideas by Bjorn Ludwig and Electroshokker respectively
+  based on ideas by Bjorn Ludwig and Electroshokker, respectively
 - Sierra-style, BASS and Verb Coin templates are sharing art by
   ProgZmax, CaesarCub, Hobo, Selmiak and Jim Reed
 - Tumbleweed game template by abstauber

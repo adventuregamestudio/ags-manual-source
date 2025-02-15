@@ -67,8 +67,6 @@ new audio clip will not be played.
 This command returns the AudioChannel instance that the new sound is
 playing on, or *null* if it did not play for any reason.
 
-**NOTE:** AGS can only play one MIDI file at a time.
-
 Example 1:
 
 ```ags

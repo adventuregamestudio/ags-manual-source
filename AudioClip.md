@@ -52,7 +52,7 @@ AudioChannel* AudioClip.Play(optional AudioPriority, optional RepeatStyle)
 
 Plays the audio clip.
 
-Optionally you can supply a priority and Repeat setting; if you do not
+Optionally you can supply a [AudioPriority](StandardEnums#audiopriority) and [RepeatStyle](StandardEnums#repeatstyle) setting; if you do not
 supply these, the defaults set for the audio clip in the editor will be
 used.
 
@@ -69,20 +69,38 @@ playing on, or *null* if it did not play for any reason.
 
 **NOTE:** AGS can only play one MIDI file at a time.
 
-Example:
+Example 1:
 
 ```ags
 aExplosion.Play();
 ```
 
-plays the *aExplosion* audio clip.
+plays the *aExplosion* audio clip once using default priority.
+
+Example 2:
+
+```ags
+aExplosion.Play(eAudioPriorityHigh);
+```
+
+plays the *aExplosion* audio clip once using "High" priority. This will replace any currently playing sound with lower priority, if a spare channel was not found.
+
+Example 3:
+
+```ags
+aIntroMusic.Play(eAudioPriorityNormal, eRepeat);
+```
+
+plays *aIntroMusic* audio clip repeatedly using default priority.
 
 *Compatibility:* Supported by **AGS 3.2.0** and later versions.
 
 *See also:* [`AudioClip.PlayFrom`](AudioClip#audioclipplayfrom),
 [`AudioClip.PlayQueued`](AudioClip#audioclipplayqueued),
 [`AudioClip.Stop`](AudioClip#audioclipstop),
-[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio),
+[`AudioPriority`](StandardEnums#audiopriority),
+[`RepeatStyle`](StandardEnums#repeatstyle)
 
 ---
 

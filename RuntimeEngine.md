@@ -21,6 +21,8 @@ This search order means, if you are shipping a game, make sure that only one gam
 
 ### Game saves
 
+AGS game save files are by default named "agssave.NNN" where NNN is a 3-digit number in a range from 000 to 999. Some games may have an added custom save extension, in which case the file name has a form "agssave.NNN.customext".
+
 Depending on a OS, game saves default location will differ:
 * **Linux**, **FreeBSD**:
     * `$XDG_DATA_HOME/ags/GAMENAME/`

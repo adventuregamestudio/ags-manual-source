@@ -17,8 +17,8 @@ when the function ends. If you want to keep the sprite, then you should store it
 You may also call [`Delete`](DynamicSprite#dynamicspritedelete) function anytime to explicitly remove the sprite's image from memory.
 
 **IMPORTANT:** Assigning DynamicSprite's ID to another object (such as `Button.NormalGraphic`, for example)
-does not count as a reference. If DynamicSprite is deleted while its ID is assigned to another object's property,
-that property will be reset to 0 for safety reasons.
+does not count as a reference. If DynamicSprite is deleted while its ID is assigned to a object's property,
+that object's property will retain the invalid sprite's number, but the object will be displayed using placeholder sprite 0 for safety reasons.
 
 
 ### `DynamicSprite.Create`

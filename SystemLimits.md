@@ -19,7 +19,7 @@ similar, chances are this section will answer it.
 | Fonts | unlimited | unlimited | unlimited |
 | GUI | unlimited | unlimited | unlimited |
 | GUI Controls per GUI | unlimited | unlimited | unlimited |
-| Hotspots per room | 49 | 49 | 49 |
+| Hotspots per room | 50 | 50 | 50 |
 | Inventory items | 300 | 300 | 300 |
 | Overlays (at runtime) | 20 | 20 | **unlimited** |
 | Regions per room | 15 | 15 | 15 |

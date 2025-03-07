@@ -1508,13 +1508,12 @@ SetGameSpeed (int new_speed)
 Sets the maximum game frame rate to NEW_SPEED frames per second, or as
 near as possible to that speed. The default frame rate is 40 fps, but
 you can speed up or slow down the game by using this function. Note that
-this speed is also the rate at which the Repeatedly_Execute functions
+this speed is also the rate at which the [repeatedly_execute](RepExec) functions
 are triggered.
 
 The NEW_SPEED must lie between 10 and 1000. If it does not, it will be
 rounded to 10 or 1000. Note that if you set a speed which the player's
-computer cannot handle (for example, a 486 will not be able to manage 80
-fps), then it will go as fast as possible.
+computer cannot handle, then it will go as fast as possible.
 
 NOTE: Because the mouse cursor is repainted at the game frame rate, at
 very low speeds, like 10 to 20 fps, the mouse will appear to be jumpy
@@ -1528,10 +1527,10 @@ player's screen refresh).
 Example:
 
 ```ags
-SetGameSpeed(80);
+SetGameSpeed(60);
 ```
 
-will set the game speed to 80.
+will set the game speed to 60 fps.
 
 *See also:* [`GetGameSpeed`](Globalfunctions_General#getgamespeed)
 

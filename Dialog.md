@@ -29,6 +29,36 @@ Retrieves a dialog name from the character's custom property, and gets a pointer
 
 ---
 
+### `Dialog.Stop`
+
+```ags
+static void Dialog.Stop()
+```
+
+This command stops the current dialog, if any is running. Note that its effect is not immediate, and engine will wait until the end of the current script before closing the dialog.
+
+This function is a newer OO-style alias of an older [StopDialog()](Dialog#stopdialog) function. For more detailed information on how it works, please refer to that function's description.
+
+Example:
+
+```
+function repeatedly_execute_always() {
+    if (Dialog.CurrentDialog != null) {
+        if (IsKeyPressed(eKeyEscape)) {
+            Dialog.Stop();
+        }
+    }
+}
+```
+
+Stops running dialog when player presses Escape key.
+
+*Compatibility:* Supported by **AGS 3.6.2** and later versions.
+
+*See also:* [`Dialog.Start`](Dialog#dialogstart), [`StopDialog`](Dialog#stopdialog)
+
+---
+
 ### `Dialog.AreOptionsDisplayed`
 
 ```ags
@@ -550,7 +580,7 @@ will start the conversation topic named dMerchant.
 StopDialog ()
 ```
 
-This command stop the current dialog, if any is running. But it's effect is not immediate.
+This command stops the current dialog, if any is running. But it's effect is not immediate.
 - If called in dialog script, or in normal script function being called from a dialog script, then the dialog will stop after current option's script completes.
 - If called in "dialog_request" function, then the dialog will stop right after "dialog_request" function finishes.
 - If called from regular script while the dialog options are being displayed (i.e. from "repeatedly_execute_always"), then the dialog will stop after the game finishes updating.
@@ -587,6 +617,6 @@ will stop a certain dialog if player presses Escape while dialog options are dis
 
 *Compatibility:* Prior to **AGS 3.6.2** StopDialog could only work if called from "dialog_request" function.
 
-*See also:* [`Dialog.Start`](Dialog#dialogstart),
+*See also:* [`Dialog.Start`](Dialog#dialogstart), [`Dialog.Stop`](Dialog#dialogstop),
 [`Dialog.SetOptionState`](Dialog#dialogsetoptionstate),
 [`dialog_request`](Globalfunctions_Event#dialog_request)

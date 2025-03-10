@@ -1635,11 +1635,11 @@ Display("The game has %d views.", Game.ViewCount);
 readonly static int Game.BlockingWaitSkipped
 ```
 
-Gets the code which describes how was the last blocking state skipped by a user (or autotimer).
+Gets the code which describes how was the last blocking state skipped by a user (or autotimer). The possible code values are explained on the [Wait functions](Globalfunctions_Wait#global-functions-wait) page, but note that BlockingWaitSkipped also returns this code for any other skippable actions, such as speech.
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
-*See also:*
+*See also:* [`Game.InBlockingWait`](Game#gameinblockingwait), 
 [`WaitKey`](Globalfunctions_Wait#waitkey),
 [`WaitMouseKey`](Globalfunctions_Wait#waitmousekey),
 [`SkipWait`](Globalfunctions_Wait#skipwait)

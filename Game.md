@@ -1150,6 +1150,41 @@ text is automatically removed from the screen.
 
 ---
 
+### `Game.InBlockingWait`
+
+```ags
+static bool Game.InBlockingWait
+```
+
+Returns whether the game is currently in a blocking wait state, which is a state during any blocking action or a [Wait](Globalfunctions_Wait) call. The blocking actions are ones performed by a call to a function like Walk, Move or Animate with eBlock argument, but also regular Say command, and anything else that halts current script's execution until the action finishes.
+
+The only script events that run during blocking state are "repeatedly_execute_always" and "late_repeatedly_execute_always", so that's these are the only functions where this property may actually be used.
+
+Example:
+
+```ags
+bool WasInBlockingState;
+
+function repeatedly_execute_always()
+{
+    if (WasInBlockingState != Game.InBlockingWait)
+    {
+         if (Game.InBlockingWait)
+             btnSignalButton.NormalGraphic = 100;
+         else
+             btnSignalButton.NormalGraphic = 200;
+         WasInBlockingState = Game.InBlockingWait;
+    }
+}
+```
+This will change the GUI button's graphic depending on whether the game is in blocking wait state or not.
+
+*Compatibility:* Supported by **AGS 3.6.2** and later versions.
+
+*See also:* [`Game.BlockingWaitSkipped`](Game#gameblockingwaitskipped)
+
+---
+
 ### `Game.InSkippableCutscene`
 
 *(Formerly known as `game.in_cutscene`, which is now obsolete)*

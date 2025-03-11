@@ -99,4 +99,6 @@ See Also: [Character.SetIdleView](Character#charactersetidleview)
 
 Each character in the game has inventory, which is a collection of items that the character possesses. The items may be added and removed from character's inventory at any time using script functions [AddInventory](Character#characteraddinventory) and [LoseInventory](Character#loseinventory). The way inventory items work in AGS, an item is not a unique entity, and when it is given to a character, what is given is an "instance" (a copy) of an item. A character may hold multiple instances of the same item, and multiple characters may hold an instance of same item. This has to be kept in mind when you want to transfer an item from one character to another: just adding that item to the second character won't remove it from the first. You must do 2 operations: remove from one and add to another (order of these actions does not matter).
 
+Each character may have a "selected item", in script this is depicted by [ActiveInventory](Character#characteractiveinventory) property. When this property is set for the player character the cursor mode "use item" displays that item's graphic. This property does not have much meaning for the NPCs though.
+
 See Also: [Feature: Inventory](_Feature_InventoryItems)

@@ -1,6 +1,6 @@
 ## Characters
 
-Characters are meant to represent personalities in your game. But they might as well be used for other purposes, such as a replacement for [Room Objects](Feature_Rooms#room-objects) when you need them to do more than Room Object can do.
+Characters are meant to represent personalities in your game. But they might as well be used for other purposes, such as a replacement for [Room Objects](_Feature_Rooms#room-objects) when you need them to do more than Room Object can do.
 
 Characters are global entities, which may freely travel between rooms. When in room they have position in their current room's coordinate system, visual image and properties. They may be moved around, have their looks changed, and may be interacted with by the player. Besides the above, they have several additional behaviors: walking, speaking, idling and inventory. We'll discuss these below.
 

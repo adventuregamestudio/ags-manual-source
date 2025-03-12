@@ -72,7 +72,7 @@ See Also: [Room events](EventTypes#room-events)
 
 ### Room Objects
 
-Room Objects are things in room that have their own position, image, and few other visual properties, and may be interacted with by the player. They may be moved, change their graphic and animate, be turned on and off. They are suitable to represent both static and dynamic things in the room, from decorations to simple characters (although Objects are more limited in what they can do if compared to actual [Characters](Feature_Character)).
+Room Objects are things in room that have their own position, image, and few other visual properties, and may be interacted with by the player. They may be moved, change their graphic and animate, be turned on and off. They are suitable to represent both static and dynamic things in the room, from decorations to simple characters (although Objects are more limited in what they can do if compared to actual [Characters](Feature_Characters)).
 
 Room Objects cannot change the owning room, they will always stay in one they are created in.
 

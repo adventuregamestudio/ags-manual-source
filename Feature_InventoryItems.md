@@ -32,6 +32,6 @@ Inventory item has a optional separate "cursor graphic" property, which is used 
 
 When the inventory item is selected as "active item" and cursor is set to "use item" mode, then interacting other game object with the cursor will trigger that object's "Use Inventory On" event. Types of objects that have this event are: characters, room objects, hotspots and inventory items themselves.
 
-If you attach a script function to that event, that function will run on this event. You should write this function so that it checks which is the player's active item, and reacts accordingly.
+If you attach a script function to such event, that function will run when the event triggers. Typically you would write this function so that it checks which is the player's active item, and reacts accordingly.
 
-Above is the built-in behavior, but you may script your custom one, if you require a non-standard way of using items. The contents of character's inventory may be accessed using [Character.InventoryQuantity](Character#characterinventoryquantity) indexed property, the presence of particular item tested using [Character.HasInventory](Character#characterhasinventory) function.
+Everything said above describes the built-in behavior, but you may script your custom one, if you require a non-standard way of using items. The contents of character's inventory may be accessed using [Character.InventoryQuantity](Character#characterinventoryquantity) indexed property, the presence of particular item tested using [Character.HasInventory](Character#characterhasinventory) function.

@@ -38,7 +38,7 @@
 
 - [Game](Feature_Game)
 - [Rooms](Feature_Rooms)
-- [Characters](Feature_Character)
+- [Characters](Feature_Characters)
 - [Inventory Items](Feature_InventoryItems)
 
 ## Engine

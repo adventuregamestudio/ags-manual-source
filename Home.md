@@ -34,6 +34,13 @@
 - [Plugins](Plugins)
 - [Other Features](OtherFeatures)
 
+## Game Features
+
+- [Game](Feature_Game)
+- [Rooms](Feature_Rooms)
+- [Characters](Feature_Character)
+- [Inventory Items](Feature_InventoryItems)
+
 ## Engine
 
 - [The run-time engine](RuntimeEngine)

@@ -4,7 +4,7 @@ Characters are meant to represent personalities in your game. But they might as 
 
 Characters are global entities, which may freely travel between rooms. When in room they have position in their current room's coordinate system, visual image and properties. They may be moved around, have their looks changed, and may be interacted with by the player. Besides the above, they have several additional behaviors: walking, speaking, idling and inventory. We'll discuss these below.
 
-See Also: [Character Editor](CharacterEditor), [Character functions and properties](Character)
+See Also: [Character Editor](EditorCharacter), [Character functions and properties](Character)
 
 ### Player Character
 
@@ -46,7 +46,7 @@ Besides the standard set of Views, Character may be assigned any view for perfor
 
 The common use for this is to animate any character actions not covered by default views, such as: picking items up, opening doors, jumping, performing gestures, and so forth. But you may also use custom animate function as a substitute for standard views as well (walking, speech, etc), if their default behavior is not suiting you.
 
-See Also: [Character.LockView](Character#characterlockview), [Character.Animate](Character#characteranimate), [Character.UnlockView](Character#characterunlockview), [View Editor](ViewEditor)
+See Also: [Character.LockView](Character#characterlockview), [Character.Animate](Character#characteranimate), [Character.UnlockView](Character#characterunlockview), [View Editor](EditorView)
 
 ### Moving and Walking
 

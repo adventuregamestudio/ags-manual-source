@@ -1,4 +1,4 @@
-## Game
+## Feature: Game
 
 In Adventure Game Studio the game consists of multiple pieces. Not all of them are required for the game to run, most are optional, and should be used only when you need them. But it's a good thing to learn about them all, so to have an idea of what you can do.
 

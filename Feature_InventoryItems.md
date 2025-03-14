@@ -1,4 +1,4 @@
-## Inventory Items
+## Feature: Inventory Items
 
 Inventory items represent things that a character may acquire, hold and use: a physical object, an idea, an usable skill, and so forth, depending on game mechanics that you want to have. Each character in the game has their own "inventory" which is the set of items they are carrying.
 

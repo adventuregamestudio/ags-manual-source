@@ -1,4 +1,4 @@
-## Characters
+## Feature: Characters
 
 Characters are meant to represent personalities in your game. But they might as well be used for other purposes, such as a replacement for [Room Objects](Feature_Rooms#room-objects) when you need them to do more than Room Object can do.
 

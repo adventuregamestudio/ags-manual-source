@@ -1,4 +1,4 @@
-## Rooms
+## Feature: Rooms
 
 In AGS Rooms are logical parts of the game. A Room may play various roles depending on the game's genre and your needs: it may represent a physical location in a game's world, a world's map or a closeup of an object, a mini game scene, just a placeholder for displaying something else on screen (such as a title screen, main menu or end credits).
 

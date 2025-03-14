@@ -38,7 +38,7 @@ Speech, Blink and Think Views only use directional loops if the game has "Lucas-
 
 **NOTE:** Views are not *owned* by a character. A single View may be assigned to multiple characters at once (and few other types of objects), and even to multiple "slots" in a character (e.g. as both Speech View and Think View).
 
-See Also: [Character Editor](CharacterEditor), [View Editor](ViewEditor)
+See Also: [Character Editor](EditorCharacter), [View Editor](EditorView)
 
 ### Custom Views and Animating
 
@@ -46,7 +46,7 @@ Besides the standard set of Views, Character may be assigned any view for perfor
 
 The common use for this is to animate any character actions not covered by default views, such as: picking items up, opening doors, jumping, performing gestures, and so forth. But you may also use custom animate function as a substitute for standard views as well (walking, speech, etc), if their default behavior is not suiting you.
 
-See Also: [Character.LockView](Character#characterlockview), [Character.Animate](Character#animate), [Character.UnlockView](Character#characterunlockview), [View Editor](ViewEditor)
+See Also: [Character.LockView](Character#characterlockview), [Character.Animate](Character#characteranimate), [Character.UnlockView](Character#characterunlockview), [View Editor](ViewEditor)
 
 ### Moving and Walking
 
@@ -66,7 +66,7 @@ There are couple of additional settings related to how the walking is performed.
 
 **NOTE:** the character does not have to be visible to move or walk. You may turn character invisible by e.g. setting its [Transparency](Character#charactertransparency) property to 100%, and any moving command will still work. Such trick may be used to create an invisible "reference point" that something else, such as another character, should follow.
 
-See Also: [Character.Move](Character#charactermove), [Character.Walk](Character#characterwalk), [Feature: Walkable Areas](Feature_Room#walkableareas)
+See Also: [Character.Move](Character#charactermove), [Character.Walk](Character#characterwalk), [Feature: Walkable Areas](Feature_Rooms#walkable-areas)
 
 ### Speaking
 
@@ -97,7 +97,7 @@ See Also: [Character.SetIdleView](Character#charactersetidleview)
 
 ### Inventory
 
-Each character in the game has inventory, which is a collection of items that the character possesses. The items may be added and removed from character's inventory at any time using script functions [AddInventory](Character#characteraddinventory) and [LoseInventory](Character#loseinventory). The way inventory items work in AGS - an item is not a unique entity and when it is given to a character what is given is an "instance" (a copy) of an item. A character may hold multiple instances of the same item, and multiple characters may hold an instance of same item. This has to be kept in mind when you want to transfer an item from one character to another: just adding that item to the second character won't remove it from the first. You must do 2 operations: remove from one and add to another (order of these actions does not matter).
+Each character in the game has inventory, which is a collection of items that the character possesses. The items may be added and removed from character's inventory at any time using script functions [AddInventory](Character#characteraddinventory) and [LoseInventory](Character#characterloseinventory). The way inventory items work in AGS - an item is not a unique entity and when it is given to a character what is given is an "instance" (a copy) of an item. A character may hold multiple instances of the same item, and multiple characters may hold an instance of same item. This has to be kept in mind when you want to transfer an item from one character to another: just adding that item to the second character won't remove it from the first. You must do 2 operations: remove from one and add to another (order of these actions does not matter).
 
 Each character may have a "selected item", in script this is depicted by [ActiveInventory](Character#characteractiveinventory) property. When this property is set for the player character the cursor mode "use item" displays that item's graphic. This property does not have much meaning for the NPCs though.
 

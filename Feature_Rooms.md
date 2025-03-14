@@ -76,7 +76,7 @@ Room Objects are things in room that have their own position, image, and few oth
 
 Room Objects cannot change the owning room, they will always stay in one they are created in.
 
-Room Objects may be commanded to move using pathfinding (see also [Walkable areas](Feature_Room#walkable-areas)), or freely. You may also just set the new position directly using their X and Y properties. Objects may be marked as "solid", in which case they will prevent moving characters from passing through the location which they occupy (see [Object.Solid](Object#objectsolid) property).
+Room Objects may be commanded to move using pathfinding (see also [Walkable areas](Feature_Rooms#walkable-areas)), or freely. You may also just set the new position directly using their X and Y properties. Objects may be marked as "solid", in which case they will prevent moving characters from passing through the location which they occupy (see [Object.Solid](Object#objectsolid) property).
 
 They may be [assigned a View](Object#objectsetview) and animated by a [script command](Object#objectanimate). Unlike Characters, Room Objects do not have a concept of "action animation", nor "facing direction", therefore they never animate automatically, only by your command, and the animation loop does not change on its own either if they, for example, change moving direction. You may achieve similar effects with scripting though, if you want to.
 

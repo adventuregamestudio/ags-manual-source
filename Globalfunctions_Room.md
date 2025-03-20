@@ -297,6 +297,20 @@ if (GetWalkableAreaAtScreen(mouse.x, mouse.y) == 0)
 
 ---
 
+### `GetWalkBehindBase`
+
+```ags
+int GetWalkBehindBase(int area)
+```
+
+Returns the baseline of the requested walk-behind area. If return value is 0 - that means that the walk-behind is disabled.
+
+*Compatibility:* Supported by **AGS 3.6.2** and later versions.
+
+*See also:* [`SetWalkBehindBase`(Globalfunctions_Room#setwalkbehindbase)], [`Object.Baseline`](Object#objectbaseline)
+
+---
+
 ### `HasPlayerBeenInRoom`
 
 ```ags
@@ -529,4 +543,4 @@ SetWalkBehindBase (3,0);
 
 will disable the walkbehind area number 3.
 
-*See also:* [`Object.Baseline`](Object#objectbaseline)
+*See also:* [`GetWalkBehindBase`(Globalfunctions_Room#getwalkbehindbase)], [`Object.Baseline`](Object#objectbaseline)

@@ -123,12 +123,16 @@ Example:
 ```ags
 if (invMain.ItemCount > (invMain.ItemsPerRow * invMain.RowCount)) {
     btnInvUp.Enabled = true;
+    btnInvDown.Enabled = true;
+}
+else {
+    btnInvUp.Enabled = false;
     btnInvDown.Enabled = false;
 }
 ```
 
 will enable the GUI buttons *btnInvUp* and *btnInvDown* if there are
-more inventory items than will fit in the inventory window.
+more inventory items than will fit in the inventory window, and disable them otherwise.
 
 *See also:* [`InvWindow.ItemAtIndex`](InvWindow#invwindowitematindex),
 [`InvWindow.ItemsPerRow`](InvWindow#invwindowitemsperrow),

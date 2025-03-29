@@ -250,6 +250,27 @@ will simulate a click in the Look mode on screen co-ordinates (100, 50).
 
 ---
 
+### `Room.BackgroundCount`
+
+```ags
+readonly static int Room.BackgroundCount
+```
+
+Returns the number of background frames in the room.
+
+Example:
+
+```ags
+if (Room.BackgroundFrames > 0)
+{
+    SetBackgroundFrame(1);
+}
+```
+
+*Compatibility:* Supported by **AGS 3.6.2** and later versions.
+
+---
+
 ### `Room.BottomEdge`
 
 ```ags

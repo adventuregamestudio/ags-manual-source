@@ -29,9 +29,6 @@ SetGameOption.
 -   **Maximum possible score** - the maximum score your game has, if you
     are using score mechanics, such as [`GiveScore`](Globalfunctions_General#givescore)
     script function.
--   **Put sound and sprite files in source control** - whether game
-    resources, such as sprites and audio, are put under source control.
-    For more information see [Source Control integration](SourceControl).
 -   **Render sprites at screen resolution** - whether characters and
     objects should be scaled in screen pixels rather than game pixels.
     What this means is that when low-resolution game is run in larger

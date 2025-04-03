@@ -82,7 +82,6 @@
   - [Lip sync](Lipsync)
   - [Debugging features](Debuggingfeatures)
   - [Auto-number speech files](AutonumberSpeechFiles)
-  - [Source Control integration](SourceControl)
   - [Game saves compatibility](GameSavesCompatibility)
   - [Editor Command Line Options](EditorCommandLineOptions)
 

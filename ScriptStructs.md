@@ -48,7 +48,7 @@ MyStruct lotsOfMyStructs[100];
 
 ### Member functions
 
-Struct's functions must be declared with an `import` keyword, but the actual function code cannot be put inside the struct. Instead they have to be written outside the struct, below the struct's declaration. Note that if the struct is declared in a script header (*.ash file), then normally their functions are written in a script's body (*.asc file): that is a common practice for functions declared in headers (see [Exporting and importing a function](ImportingFunctionsAndVariables#exporting-and-importing-a-function)).
+Struct's functions must be declared with an `import` keyword, but the actual function code cannot be put inside the struct. Instead they have to be written outside the struct, below the struct's declaration. Note that if the struct is declared in a script header (`*.ash` file), then normally their functions are written in a script's body (`*.asc` file): that is a common practice for functions declared in headers (see [Exporting and importing a function](ImportingFunctionsAndVariables#exporting-and-importing-a-function)).
 
 When writing a function's body, you have to use special syntax for its name, which includes both struct's name and function's name separated with a double colon symbol (`::`), like this:
 
@@ -131,7 +131,9 @@ The script syntax allows to call a static function using the object too, but tha
 
 "This" reference cannot be used inside static function's code, as such function is not called from particular instance so it cannot refer to one.
 
-Since static functions cannot access normal struct's data, you way wonder how these may be useful. First of all, you may have a struct that groups functions but no variables at all. This is the case when the functions are working only with input parameters and produce result without needing struct's data. A good example is Math struct.
+Since static functions cannot access normal struct's data, you way wonder how these may be useful.
+
+First of all, there may be a case when the function is working only with the input parameters and produces result without needing any persistent struct's data. A good example is Math struct, which groups various math algorithms, which only calculate the result based on input values.
 
 Another example is when you have a struct as a "facade" for functionality hidden inside the script. In such case struct's functions may still access variables declared inside the script.
 
@@ -148,7 +150,7 @@ These modifiers may be used in any combinations, except `protected` and `writepr
 
 ### Examples
 
-Let's imagine that you need to describe a rectangle, a shape which has a position and size, and store a number of rectangles in your game script. That's a good case for declaring a struct:
+Let's imagine that you need to describe a rectangle: a shape which has a position and a size, - and then store a number of rectangles in your game script. That's a good case for declaring a struct:
 
 ```ags
 struct Rectangle
@@ -304,7 +306,7 @@ if (rect.IsEmpty())
 }
 ```
 
-But maybe we also want to have a way to check if input arguments are valid before initializing Rectangle. This operation does not need actual rectangle object, so it would be good idea to make such function "static":
+But maybe we also want to have a way to check if input arguments are valid before initializing Rectangle. This operation does not need actual rectangle object, so it will be suitable to make such function "static":
 
 ```ags
 struct Rectangle
@@ -336,7 +338,7 @@ int x = xstr.AsInt;
 int y = ystr.AsInt;
 int w = wstr.AsInt;
 int h = hstr.AsInt;
-if (Rectangle.AreParamsValid(x, y, w, h))
+if (!Rectangle.AreParamsValid(x, y, w, h))
 {
     Display("Invalid parameters!");
 }

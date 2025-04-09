@@ -12,7 +12,7 @@ struct MyStruct
     int SecondVariable;
 
     // function import declarations
-    import void FunctionInsideStruct();
+    import void MemberFunction();
     import int  AnotherFunction(int param1, int param2);
 
     // attribute import declarations
@@ -53,7 +53,7 @@ Struct's functions must be declared with an `import` keyword, but the actual fun
 When writing a function's body, you have to use special syntax for its name, which includes both struct's name and function's name separated with a double colon symbol (`::`), like this:
 
 ```ags
-void MyStruct::FunctionInsideStruct()
+void MyStruct::MemberFunction()
 {
     // function's code here
 }
@@ -69,7 +69,7 @@ Struct's functions can have and do everything that regular functions can. They m
 Besides that, member functions can access struct's own members using "this" keyword. "This" is a reference to the struct instance which this function was called for. For example:
 
 ```ags
-void MyStruct::FunctionInsideStruct()
+void MyStruct::MemberFunction()
 {
     this.Variable += 2; // increase variable by 2
     Display("My Variable is now: %d", this.Variable);
@@ -82,8 +82,8 @@ Now, let's say you have 2 variables of type MyStruct, and you call this function
 MyStruct s1;
 MyStruct s2;
 
-s1.FunctionInsideStruct();
-s2.FunctionInsideStruct();
+s1.MemberFunction();
+s2.MemberFunction();
 ```
 
 First time this function is called for variable s1, and so its code will have "this" reference pointing to "s1" object, and will therefore modify and display s1.Variable. The second time its called for variable s2, in which case "this" in its code will reference "s2" object, and s2.Variable will be modified.
@@ -91,7 +91,7 @@ First time this function is called for variable s1, and so its code will have "t
 Similarly you can call another struct's function from this function:
 
 ```ags
-void MyStruct::FunctionInsideStruct()
+void MyStruct::MemberFunction()
 {
     this.AnotherFunction(10, 20); // call another function with some parameters
 }
@@ -147,6 +147,14 @@ There are additional modifiers that you may apply to struct's members:
 * `readonly` - this modifier is applied to attributes, and makes them only return a value, but not set one. The use case is when the struct should have a property that can only tell something about it, but does not let change anything. Technically, "readonly" may be applied to variables too, but that makes them useless as there will be no way to set their values.
 
 These modifiers may be used in any combinations, except `protected` and `writeprotected` cannot be used together. So you may have, for example, a "static protected readonly attribute".
+
+Following is a quick chart that shows modifiers' effect on the member access:
+
+| Keyword | Get | Set |
+| --- | --- | --- |
+| `readonly` | Yes | No |
+| `writeprotected` | Yes | Using `this` |
+| `protected` | Using `this`| Using `this` |
 
 ### Extending structs
 
@@ -393,4 +401,4 @@ if (!Rectangle.AreParamsValid(x, y, w, h))
 }
 ```
 
-See Also: [Object Oriented Programming](OOProgramming)
+See Also: [Object Oriented Programming](OOProgramming), [Attributes](ScriptAttributes)

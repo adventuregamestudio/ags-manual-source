@@ -1,8 +1,8 @@
 ## Attributes
 
-In [structs](ScriptStructs) *variables* store data and *functions* provide functionality. *Attributes* are the third kind of struct members that *look like variables but act like functions*. An attribute itself is a pseudo-variable, that is connected to a pair of "getter" and "setter" functions. A "getter" function is called automatically whenever someone is trying to read attribute's value, and a "setter" function is called whenever a new value is assigned to an attribute. Each attribute has its own "getter"/"setter" pair, these are exclusive and cannot be shared among multiple attributes.
+In [structs](ScriptStructs) *variables* store data and *functions* provide functionality. *Attributes* are the third kind of struct members that *look like variables but act like functions*. An attribute is a pseudo-variable that does not store any data itself, but is connected to a pair of "getter" and "setter" functions. A "getter" function is called automatically whenever someone is trying to read attribute's value, and a "setter" function is called whenever a new value is assigned to an attribute. Each attribute has its own "getter"/"setter" pair, these are exclusive and cannot be shared among multiple attributes.
 
-Attribute are declared in structs and must have `import` and `attribute` keywords before them:
+An attribute is declared using `import` and `attribute` keywords:
 
 ```ags
 struct MyStruct
@@ -130,7 +130,7 @@ String StoreItem::get_Name()
 
 void StoreItem::set_Name(String value)
 {
-    if (String.IsNullOrEmpty(value))
+    if (!String.IsNullOrEmpty(value))
         this.name = value;
     else
         this.name = "Unknown Item";

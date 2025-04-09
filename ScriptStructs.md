@@ -142,8 +142,8 @@ Another example is when you have a struct as a "facade" for functionality hidden
 There are additional modifiers that you may apply to struct's members:
 
 * `static` - we covered this modifier in detail in a section above. This modifier is applied to functions and attributes, and tells that they are called "from the type" itself rather than "from struct instance". Note that in AGS variables cannot be static, that's not supported by the script compiler at the moment.
-* `protected` - this modifier is be applied to variables, attributes or functions, which makes them unusable from any external code. Only this struct's member functions can read, modify or call such members.
-* `writeprotected` - this modifier is be applied to variables and attributes, and lets *read* them from outside of the struct, but not modify their values. Member functions can still read and modify them normally.
+* `protected` - this modifier is applied to variables, attributes or functions, which makes them unusable from any external code. Only this struct's member functions can read, modify or call such members.
+* `writeprotected` - this modifier is applied to variables and attributes, and lets *read* them from outside of the struct, but not modify their values. Member functions can still read and modify them normally.
 * `readonly` - this modifier is applied to attributes, and makes them only return a value, but not set one. The use case is when the struct should have a property that can only tell something about it, but does not let change anything. Technically, "readonly" may be applied to variables too, but that makes them useless as there will be no way to set their values.
 
 These modifiers may be used in any combinations, except `protected` and `writeprotected` cannot be used together. So you may have, for example, a "static protected readonly attribute".

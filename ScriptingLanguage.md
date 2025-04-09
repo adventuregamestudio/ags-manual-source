@@ -6,6 +6,7 @@ This section provides an extensive reference for AGS script capabilities and com
 - [Preprocessor](Preprocessor)
 - [The script header](TheScriptHeader)
 - [Importing functions and variables in other scripts](ImportingFunctionsAndVariables)
+- [Structs](ScriptStructs)
 - [Pointers in AGS](Pointers)
 - [Dynamic Arrays](DynamicArrays)
 - [Extender functions](ExtenderFunctions)

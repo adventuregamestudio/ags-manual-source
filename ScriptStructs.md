@@ -148,6 +148,55 @@ There are additional modifiers that you may apply to struct's members:
 
 These modifiers may be used in any combinations, except `protected` and `writeprotected` cannot be used together. So you may have, for example, a "static protected readonly attribute".
 
+### Extending structs
+
+One struct can extend another, creating a parent-child relationship between them. This is also known as "inheritance" in OOP programming. When declaring a struct extending another, you should use `extend` keyword, like this:
+
+```ags
+struct Parent
+{
+    int a;
+    int b;
+    
+    import int GetSumOfAB();
+};
+
+struct Child extends Parent
+{
+    int c;
+    
+    import int GetSumOfABC();
+}
+```
+
+Here struct Child extends struct Parent. This means that struct Child will have everything that struct Parent has, in addition to what it has itself. Struct Parent will have variables "a" and "b", and struct Child will have variables "a", "b" and "c". Same principle applies to the functions and attributes declared within these structs. Naturally, when you have an instance of Child then you may access all the variables and functions from structs Child and Parent combined:
+
+```ags
+Child ch;
+ch.a = 10;
+ch.b = 20;
+ch.c = 30;
+int sum_of_ab = ch.GetSumOfAB();
+int sum_of_abc = ch.GetSumOfABC();
+```
+
+A "child" struct may only extend one "parent" struct. But a "parent" struct may be extended by multiple different "child" structs:
+
+```ags
+struct Sibling extends Parent
+{
+    int d;
+    
+    import int GetSumOfABD();
+};
+```
+
+Here struct Sibling will also have all the contents from struct Parent. But, while both Child and Sibling inherit same Parent, they do not share their own members, only Parent's members.
+
+There's no limit to how long the "chain" of extending structs can be. That is, you may have a struct GrandChild extending Child, a struct Descendant extending GrandChild, and so forth.
+
+Extending structs is useful when you need common data and functionality be shared among multiple subtypes.
+
 ### Examples
 
 Let's imagine that you need to describe a rectangle: a shape which has a position and a size, - and then store a number of rectangles in your game script. That's a good case for declaring a struct:

@@ -320,7 +320,7 @@ struct Rectangle
 static bool Rectangle::AreParamsValid(int x, int y, int w, int h)
 {
     // x and y are always valid in this example, so only test the size
-    if (this.width < 0 || this.height < 0)
+    if (w < 0 || h < 0)
         return false;
     else
         return true;

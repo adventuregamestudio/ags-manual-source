@@ -1327,15 +1327,12 @@ invalid file extension was provided.
 
 **NOTE:** The screenshot will be saved to the Saved Games folder.
 
-**NOTE:** This command can be slow when using the Direct3D graphics
-driver.
-
 Example:
 
 ```ags
 String input = Game.InputBox("Type the filename:");
-input = input.Append(".pcx");
-SaveScreenShot(input);
+String filename = String.Format("%s.pcx", input);
+SaveScreenShot(filename);
 ```
 
 will prompt the player for a filename and then save the screenshot with

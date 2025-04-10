@@ -675,7 +675,7 @@ only two file types that the engine supports.
 
 Returns 1 if the sprite was saved successfully, or 0 if it failed.
 
-**NOTE:** Since AGS 3.4.1 you can use location tokens in filename, like
+**NOTE:** Since AGS 3.4.1 you can (and should!) use location tokens in filename, like
 with [`File.Open`](File#fileopen) and similar commands.
 
 Example:
@@ -683,12 +683,14 @@ Example:
 ```ags
 DynamicSprite* sprite = DynamicSprite.CreateFromFile("CustomAvatar.bmp");
 sprite.Rotate(90);
-sprite.SaveToFile("RotatedAvatar.bmp");
+sprite.SaveToFile("$SAVEGAMEDIR$/RotatedAvatar.bmp");
 sprite.Delete();
 ```
 
 will load the CustomAvatar.bmp image, rotate it 90 degrees clockwise,
-then save the result back to the disk.
+then save the result back to the disk to the game saves folder.
+
+*Compatibility:* location tokens in path are supported since AGS 3.4.1.
 
 *See also:*
 [`DynamicSprite.CreateFromFile`](DynamicSprite#dynamicspritecreatefromfile),

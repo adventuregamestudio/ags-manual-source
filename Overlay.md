@@ -127,6 +127,8 @@ will be written. WIDTH is the width, in pixels, of the text area. FONT
 is the font number from the editor to use (0 is the normal font, 1 is
 the speech font). COLOR is the text color. Finally, TEXT is obviously the text that gets displayed.
 
+If a *negative* value is passed as either X or Y coordinate, then the text will be instead centered on screen along the respective axis.
+
 The function returns the Overlay, which you use later to reposition and
 remove the overlay.
 

@@ -50,6 +50,8 @@ position and size of the window where the text is displayed. The X and Y
 variables define the co-ordinates of the upper-left corner of the
 window.
 
+If a *negative* value is passed as either X or Y coordinate, then the text will be instead centered on the respective axis.
+
 The WIDTH variable defines the maximum width of the window. The height
 is then automatically calculated so that the message fits into the
 window.

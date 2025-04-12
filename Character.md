@@ -1340,7 +1340,15 @@ SayAt(int x, int y, int width, string message, ...)
 ```
 
 Similar to [`Say`](Character#charactersay), except that the text is
-displayed with its top left corner at (X,Y), in an area WIDTH wide.
+displayed with at the provided position (X,Y), in an area WIDTH wide.
+
+The way the text is aligned to the given position depends on the speech style:
+* Lucas-Arts style speech aligns by the left-bottom corner (upwards from the passed Y coordinate);
+* Sierra style speech aligns by the left-top corner.
+
+If a *negative* value is passed as either X or Y coordinate, the text will be instead set at the default position for the respective axis:
+* Lucas-Arts style speech by default is positioned above the speaking character's head;
+* Sierra style speech by default is positioned at the top of the screen, centered horizontally.
 
 You can use this function to write the character's speech text anywhere
 you like, and AGS will still play the character's talking animation and

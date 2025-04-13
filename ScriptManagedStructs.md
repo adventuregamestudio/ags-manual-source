@@ -269,12 +269,13 @@ f.Close();
 ```
 ```ags
 Rectangle* rect_array[]; // dynamic array of rectangles
+int rect_array_size = 0; // will store array length here
 File* f = File.Open("$SAVEGAMEDIR$/rectangles.dat", eFileRead);
 if (f != null)
 {
-    int number = f.ReadInt();
+    rect_array_size = f.ReadInt();
     // create array to store N pointers
-    rect_array = new Rectangle[number];
+    rect_array = new Rectangle[rect_array_size];
     for (int i = 0; i < number; i++)
     {
         // create rectangle for each loaded entry in file,

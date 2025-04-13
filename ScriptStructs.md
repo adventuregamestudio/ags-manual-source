@@ -401,4 +401,4 @@ if (!Rectangle.AreParamsValid(x, y, w, h))
 }
 ```
 
-See Also: [Object Oriented Programming](OOProgramming), [Attributes](ScriptAttributes)
+See also: [Object Oriented Programming](OOProgramming), [Attributes](ScriptAttributes)

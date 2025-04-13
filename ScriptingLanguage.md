@@ -7,6 +7,7 @@ This section provides an extensive reference for AGS script capabilities and com
 - [The script header](TheScriptHeader)
 - [Importing functions and variables in other scripts](ImportingFunctionsAndVariables)
 - [Structs](ScriptStructs)
+- [Managed Structs](ScriptManagedStructs)
 - [Attributes](ScriptAttributes)
 - [Pointers in AGS](Pointers)
 - [Dynamic Arrays](DynamicArrays)

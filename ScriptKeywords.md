@@ -697,6 +697,8 @@ weapons[1].name = "Poison dagger";
 structs are essential if you have complex data that you need to store in
 your scripts.
 
+*See also:* [Structs](ScriptStructs)
+
 ---
 
 ### managed
@@ -806,7 +808,7 @@ function variable, and function ended), or is assigned another object,
 or simply assigned `null`, then the dynamic object is removed from your
 game forever.
 
-*See also:* [`new`](ScriptKeywords#new), [Pointers in AGS](Pointers)
+*See also:* [`new`](ScriptKeywords#new), [Managed Structs](ScriptManagedStructs), [Pointers in AGS](Pointers)
 
 ---
 

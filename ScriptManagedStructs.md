@@ -8,11 +8,11 @@ Managed objects are created in the dynamic memory pool, where they stay as long 
 
 As managed objects are stored in the dynamic memory, they cannot be at the same time stored in regular variables. Instead you are using a ["pointer" type variable](Pointers) to access them. In simple words, "pointer" is a variable that stores not the object itself, but a reference to an object. You may think of it as a "link" to an object. The interesting part here is that a pointer is not a exclusive reference to the object: same managed object may be referenced by multiple pointer variables, and the same pointer variable may be assigned a different object's reference over time. That's like switching a link from one object to another. Pointers may be assigned special value called "null", in which case they point "nowhere". Assigning a pointer to another pointer will copy the reference, making both pointers share a link to the same object.
 
-Engine has to take precaution against deleting a managed object while there are any pointer variables which have it assigned. Would an object get deleted while there are still pointers referencing to it, these pointers will point to an invalid space in memory. This problem is solved by a internal system called "reference counting". "Reference count" is a number of active references to a managed object. Whenever you assign an object to a pointer variable, a reference count increases by 1. Whenever you remove such reference, by either replacing with different object, or assigning a "null", a reference count decreases by 1. When reference count becomes 0 the object gets deleted automatically.
+Engine has to take precaution against deleting a managed object while there are any pointer variables which have it assigned. Would an object get deleted while there are still pointers referencing it, these pointers will point to an invalid space in memory. This problem is solved by a internal system called "reference counting". "Reference count" is a number of active references to a managed object. Whenever you assign an object to a pointer variable, a reference count increases by 1. Whenever you remove such reference, by either replacing with different object, or assigning a "null", a reference count decreases by 1. When reference count becomes 0 the object gets deleted automatically.
 
 There are couple of logical consequences of reference counting.
-One is that you must remove all references in order to delete the object. If you have multiple pointers refering to the same object, you must set them all to "null" before it gets deleted. If at least one pointer keeps this reference, the object will be staying in memory.
-Another is that if you assign the managed object to the only pointer variable, and that is a local variable inside a function, then such variable will get removed when the function ends, and managed object will get deleted automatically. This is handy when you need it to stay only for the duration of a function, but if you want it to stay afterwards, then you will have to either return the pointer from function (if it's called from another function), or copy the reference to a global pointer variable.
+One is that you must remove all references in order to delete the object. If you have multiple pointers referring the same object, then you must set them all to "null" before it gets deleted. If at least one pointer keeps this reference, the object will be staying in memory.
+Another thing is that if you assign the managed object to the only pointer variable, and that is a local variable inside a function, then such variable will get removed when the function ends, and managed object will get deleted automatically. This is handy when you need it to stay only for the duration of a function, but if you want it to stay afterwards, then you will have to either return the pointer from function (if it's called from another function), or copy the reference to a global pointer variable.
 
 Speaking of copying pointers, pointers are one of the few types in AGS script that may be copied (other being trivial types such as `int`, `float`, `char` and `bool`). This makes it possible to use them as function parameters, and function's return values. Which in turn lets pass or return a reference to a managed object, which is a very convenient ability.
 
@@ -43,7 +43,7 @@ Unlike regular structs, you do not declare a variable of a managed struct though
 ManagedStruct* ms;
 ```
 
-Above does not create an instance of a struct though, only a pointer! No object exists yet, and a new pointer is assigned "null".
+Above does not create an instance of a struct, only a pointer! No object exists yet, and a new pointer is assigned "null".
 An instance of a managed struct is created using a [`new` keyword](ScriptKeywords#new), like this:
 
 ```ags
@@ -51,7 +51,7 @@ ManagedStruct* ms;
 ms = new ManagedStruct;
 ```
 
-This instructs the engine to create an object of type ManagedStruct and assign its reference to the pointer variable `ms`. If `ms` is a local function variable, you may combine declaration and object creation:
+This instructs the engine to create an object of type ManagedStruct and assign its reference to the pointer variable `ms`. If `ms` is a local function variable, you may then combine declaration and object creation:
 
 ```ags
 ManagedStruct* ms = new ManagedStruct;
@@ -59,7 +59,7 @@ ManagedStruct* ms = new ManagedStruct;
 
 But that won't work for global pointers, because AGS script cannot execute a `new` command outside of a function.
 
-In any case, after the object was created, and assigned to a pointer, you may access it using a pointer. This looks quite similar to the regular struct variables:
+In any case, after the object was created, and assigned to a pointer, you may access it using that pointer. This looks quite similar to using the regular struct variables:
 
 ```ags
 ManagedStruct* ms = new ManagedStruct;
@@ -73,7 +73,7 @@ Finally, when you no longer need an object, you need to "nullify" all pointers t
 ms = null;
 ```
 
-**NOTE:** usually you don't have to nullify a pointer declared inside a function, because it will get removed when the function exits. But you may assign "null" by hand if you need to destroy the object earlier for some reasons.
+**NOTE:** usually you don't have to nullify a pointer declared inside a function, because it will get removed when the function exits. But you may assign "null" by hand if you need to destroy the object earlier for some reason.
 
 ### Passing object's reference
 
@@ -92,7 +92,7 @@ another_pointer = new ManagedStruct;
 Pointers may be passed as function parameters, for example:
 
 ```ags
-function GiveMePointer(ManagedStruct* ms1, ManagedStruct* ms2)
+function GiveMePointers(ManagedStruct* ms1, ManagedStruct* ms2)
 {
 }
 ```
@@ -118,7 +118,7 @@ ManagedStruct* obj = MakeObject(50);
 
 ### Arrays of managed objects
 
-It is possible to store *pointers* to managed objects in an array, both regular (fixed-size) and dynamic array. You only have to remember that array's elements are *pointers*, not objects themselves, and so when you create an array, that will be an array of pointers initialized with "null". Creating objects for this array will require extra steps.
+It is possible to store *pointers* to managed objects in an array, both regular (fixed-size) and dynamic array. You only have to remember that in such case array's elements will be *pointers*, not objects themselves, and so when you create an array - that will be an array of pointers, each of them initialized with "null". Creating objects for this array will require extra steps.
 
 An example with fixed-size array:
 
@@ -129,8 +129,8 @@ ManagedStruct* fixed_arr[10];
 // Here we created a new object and assigned to array element 0
 fixed_arr[0] = new ManagedStruct;
 
-// Let's use a loop to make things optimal,
-// and fill array with valid objects
+// Let's use a loop to make things faster,
+// and fill array with objects
 for (int i = 0; i < 10; i++)
 {
     fixed_arr[i] = new ManagedStruct;
@@ -147,8 +147,7 @@ ManagedStruct* fixed_arr[];
 // it's full of null-pointers! no actual ManagedStruct objects created yet
 fixed_arr = new ManagedStruct[10];
 
-// Let's use a loop to make things optimal,
-// and fill array with valid objects
+// Let's use a loop to fill array with objects
 for (int i = 0; i < 10; i++)
 {
     fixed_arr[i] = new ManagedStruct;
@@ -159,9 +158,9 @@ See also: [Dynamic Arrays](DynamicArrays)
 
 ### Built-in managed structs
 
-Besides the managed structs that you may write in your game script, there is a collection of structs declared by the engine itself. Majority of them are declared using another special keyword: `builtin`. This keyword prevents creating struct's object using `new`. This is done because these structs have internal parts hidden from script, and only engine is allowed to create these, either at game's startup, or when you call certain functions (for example: [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical) creates and returns `Overlay` managed object).
+Besides the managed structs that you may write in your game script, there is a collection of structs declared by the engine itself. Majority of them are declared using another special keyword: `builtin`. This keyword prevents creating struct's object using `new` command. This is done because these structs have internal parts hidden from script, and only engine is allowed to create these, either at game's startup, or when you call certain functions (for example: [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical) creates a `Overlay` managed object and returns a pointer to it).
 
-You should not be using `builtin` keyword yourself. That's not forbidden, but will do no good, as you won't be able to work with your own managed struct.
+You should not be using `builtin` keyword yourself. That's not forbidden, but will do no good, as it will prevent you from working with your own managed struct.
 
 ### Examples
 
@@ -188,7 +187,7 @@ Rectangle* rect = new Rectangle;
 rect.Init(10, 20, 100, 50);
 ```
 
-Because functions can return a pointer, could not we make a function that returns already initialized rectangle? We can! but the function has to be [**static**](ScriptStructs#static-functions), because it's not going to be called for an existing object:
+Because functions can return a pointer, could not we make a function that returns already initialized rectangle? We can! but the function has to be [**static**](ScriptStructs#static-functions), because it's not going to be called from an existing object:
 
 ```ags
 managed struct Rectangle
@@ -222,7 +221,8 @@ Now, since we have pointers, we may pass them into other functions as well. Let'
 ```ags
 void PrintRectangle(Rectangle* rect)
 {
-    Display("Rectangle:\n  x = %d\n  y = %d\n  width = %d\n  height = %d", rect.x, rect.y, rect.width, rect.height);
+    Display("Rectangle:\n  x = %d\n  y = %d\n  width = %d\n  height = %d",
+             rect.x, rect.y, rect.width, rect.height);
 }
 ```
 
@@ -261,7 +261,7 @@ Here's an example of how these could be used:
 
 ```ags
 File* f = File.Open("$SAVEGAMEDIR$/rectangles.dat", eFileWrite);
-f.WriteInt(3); // number of rectangles
+f.WriteInt(3); // write number of rectangles which are going to be saved
 SaveRectangle(f, rect);
 SaveRectangle(f, rect2);
 SaveRectangle(f, rect3);

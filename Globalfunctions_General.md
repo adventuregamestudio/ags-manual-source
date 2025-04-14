@@ -743,12 +743,11 @@ unchanged, so it is always safe to use this function.
 GiveScore (int score)
 ```
 
-Adds SCORE to the player's score. This is preferable to directly
-modifying the variable since it will play the score sound, update any
-status lines and call the GOT_SCORE on_event function.
+Adds SCORE to the player's score. The accumulated score is stored in `game.score` variable, from which it may be read to know current score.
+Using GiveScore function is preferable to directly modifying the variable since it will play the score sound, update any
+status lines and call the [on_event](Globalfunctions_Event#on_event) script callback with eEventGotScore event parameter.
 
-Note that SCORE can be negative, in which case the score sound is NOT
-played.
+Note that SCORE can be negative, in which case the score sound is NOT played.
 
 Example:
 
@@ -756,9 +755,9 @@ Example:
 GiveScore(5);
 ```
 
-will give 5 points to the player.
+will give 5 points to the player's score.
 
-*See also:* [`Game.DoOnceOnly`](Game#gamedoonceonly)
+*See also:* [Game variables](Gamevariables#game-variables), [`Game.DoOnceOnly`](Game#gamedoonceonly)
 
 ---
 

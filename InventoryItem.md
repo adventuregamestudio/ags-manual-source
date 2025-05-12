@@ -297,9 +297,10 @@ this with the Object.Graphic property as a means of the player
 'dropping' an inventory item, or it may be useful if you want to do a
 Raw Drawn inventory window.
 
-**NOTE:** For backwards compatibility, if you change this property and
-the CursorGraphic currently has the same sprite as the main Graphic,
-then the CursorGraphic will be changed too.
+**NOTE:** Prior to **AGS 3.6.2**, if you change this property and
+the CursorGraphic was assigned the same sprite as the main Graphic,
+then the CursorGraphic will be changed too automatically.
+Since 3.6.2 this is no longer done, and you have to change both yourself if you need to.
 
 Example:
 

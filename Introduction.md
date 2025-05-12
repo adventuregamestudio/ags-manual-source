@@ -25,7 +25,7 @@ Making a game has never been so productive!
 
 *Run AGS*. Double-click on `AGSEditor.exe` on the extracted or the installed folder.  If you used the installer, it should have also provided a shortcut on the start menu.
 
-To help you proceed further you should check the manual provided with AGS, which is also [available online here](https://github.com/adventuregamestudio/ags-manual). It's also recommended to participate in [the forums](https://www.adventuregamestudio.co.uk/forums/)  to get additional help when developing your game.
+To help you proceed further you should check the manual provided with AGS, which is also [available online here](https://adventuregamestudio.github.io/ags-manual). It's also recommended to participate in [the forums](https://www.adventuregamestudio.co.uk/forums/)  to get additional help when developing your game.
 
 To get started, [read the tutorial](StartingOff).
 

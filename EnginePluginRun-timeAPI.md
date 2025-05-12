@@ -1539,7 +1539,7 @@ void *CreateArrayForScript()
 {
     // create a dynamic array for 100 integers
     void *dyn_arr = engine->CreateDynamicArray(100, sizeof(int), false);
-    // fill it with random integer values
+    // fill it with sequential integer values
     int *p_int_arr = static_cast<int*>(dyn_arr);
     for (int i = 0; i < 100; ++i) { p_int_arr[i] = i; }
     return dyn_arr;

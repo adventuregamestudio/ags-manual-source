@@ -19,4 +19,6 @@ the player character during the game is possible by using the script function
 
 The properties panel shown will allow you to configure the initial properties of
 the character. The lighting bolt icon will switch to displaying the character's
-events, which may be mapped to functions within the game's Global Script.
+events, which may be mapped to functions within the game's script.
+
+By default event functions are created into the Global Script. Starting with **AGS v3.6.2** you may decide where they are created yourself by selecting any available script module in ScriptModule property's dropdown list. That is also where the engine will look for these functions when running your game. Each Character may have its own selection. (Please note that when you change ScriptModule property any existing functions are not moved to the new script automatically, you have to cut and paste them yourself.)

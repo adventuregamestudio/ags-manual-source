@@ -5,11 +5,11 @@ script can quickly become rather large and unwieldy. AGS allows you to
 create extra scripts (also known as Script Modules) in order to
 split up your code and easily import scripts written by other people.
 
-The main global script still has to contain all the event functions
+The main global script was historically used to contain all the event functions
 (Look At Character scripts, Interact With Inventory scripts and so
-forth) and all the GUI handlers (btnSave_Click, etc).
+forth) and all the GUI handlers (btnSave_Click, etc). Starting with **AGS v3.6.2** you may have these functions in any script module chosen individually for each game object (except for rooms and room objects that must have their functions in the respective room script).
 
-But if you have any custom functions then you can put them in a separate
+In addition, if you have any custom functions then you can put them in a separate
 script in order to divide up your code. Scripts have the added advantage
 that they can be easily exported and imported, if you want to share some
 of your code with other people, or even just move it from one game to
@@ -45,22 +45,23 @@ function AddNumbers(int a, int b) {
 
 That's the basic principle behind using multiple scripts!
 
-**Special functions**
+**Predefined functions**
 
-Can extra scripts use special functions like `game_start` and
-`repeatedly_execute`? Well, yes and no. They can contain the following
+Can extra scripts use predefined functions like `game_start` and
+`repeatedly_execute`? Yes, they can use most of these. They can contain the following
 functions, and they will be called at the appropriate times just before
 the global script's function is:
 
 -   function game_start()
 -   function on_event(EventType event, int data)
--   function on_key_press(eKeyCode keycode)
--   function on_mouse_click(MouseButton button)
+-   function on_key_press(eKeyCode keycode, int mod)
+-   function on_mouse_click(MouseButton button, int mx, int my)
+-   function on_text_input(int ch)
 -   function repeatedly_execute()
 -   function repeatedly_execute_always()
 -   function late_repeatedly_execute_always()
 
-All other special functions, such as `dialog_request`, will only be
+Few other special functions, such as `dialog_request`, will only be
 called in the Global Script, even if they exist in another script. If
 you need other scripts to handle any of this functionality, you can
 simply create a custom function in the script and then call it from the
@@ -70,4 +71,5 @@ The [`ClaimEvent`](Globalfunctions_General#claimevent) command is supported for
 on_key_press, on_mouse_click and on_event. Calling it prevents the
 rest of the scripts (including the global script) from being called.
 
-*See also:* [Importing functions and variables in other scripts](ImportingFunctionsAndVariables)
+*See also:* [Importing functions and variables in other scripts](ImportingFunctionsAndVariables),
+[Global event handlers](Globalfunctions_Event)

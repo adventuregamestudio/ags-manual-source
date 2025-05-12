@@ -582,8 +582,8 @@ AddInvAndPlaySound(iKey);
 
 to add inventory item *iKey* and play the sound.
 
-Generally, you place your functions in your global script. You then need
-to add an [`import`](ScriptKeywords#import) line to your script header to allow the
+Generally, you place your functions in your global script or other script modules. You then need
+to add an [`import`](ScriptKeywords#import) line to the respective script header to allow the
 function to be called from room scripts.
 
 **Optional parameters**

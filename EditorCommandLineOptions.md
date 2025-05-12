@@ -9,31 +9,40 @@ We will use `cmd.exe` here, but you can call AGS Editor from other command lines
 
 ### Opening the Editor
 
-You can open the Editor in the command line by simply calling its executable and passing the path to it.
+You can open the Editor from the command line by simply calling its executable and passing the path to it, for example:
 
 ```cmd
-C:\path\to\AGSEditor.exe
+C:\Program Files (x86)\Adventure Game Studio 3.6.0\AGSEditor.exe
 ```
 
-We won't use the full path in the rest of the text, but you still need to either pass it, put your AGS Editor folder in your system PATH, or change the directory to it before.
+We won't use the full path in the rest of the text, but you still need to either pass it, put your AGS Editor folder in your system PATH, or change the directory to it before running.
 
-You can also open the editor in a specific project by passing your project's `Game.agf` location.
+You can also open a specific project in the editor by passing your project's `Game.agf` location.
 
 ```cmd
 AGSEditor.exe path\to\Game.agf
 ```
 
-As an example, in Windows, you can create a shortcut for the AGS Editor and edit its properties to put your `Game.agf` there so you can create a shortcut that opens AGS Editor in your project.
-
+As an example, in Windows, you can create a shortcut for the AGS Editor and edit its properties to put your `Game.agf` path there, and then use this shortcut that opens your project in the AGS Editor.
 
 ### Compile Flag
 
-This flag will load the AGS Editor in your project, compile it, and exit.
+This flag will load your project into AGS Editor, compile it, and exit.
 
 ```cmd
 AGSEditor.exe /compile path\to\Game.agf
 ```
 
-Outputs that would normally be a message box or in the output panel will instead be printed in the command line. A successful compilation will have exit code 0, and any error will give a non-zero exit code.
+Outputs that would normally be displayed in a message box or in the output panel will instead be printed into the console. A successful compilation will have exit code 0, and any error will give a non-zero exit code.
 
 This option can be used for automation purposes, you could use it to build your AGS Game in a Continuous Integration pipeline.
+
+### Make template flag
+
+This flag will load your project into AGS Editor, package it as a template, and exit.
+
+```cmd
+AGSEditor.exe /maketemplate path\to\Game.agf
+```
+
+The template will have a filename "gamename.agt", where "gamename" is a name of your project, and be placed in the current working directory.

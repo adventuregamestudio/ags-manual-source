@@ -146,8 +146,9 @@ accessible in future versions.
     either handle the additional 'mod' parameter or rely on `on_text_input`
     function for properly handled characters when building text input
     interfaces.
+-   **Use old-style voice clip naming rule** - switch to using pre-AGS 3.6.2 rule for naming voice-over files. See [Voice Speech](VoiceSpeech) section for more details on this.
 
-### Character movement
+### Character behavior
 
 -   **Automatically move the player in Walk mode** - normally, when you
     click the mouse in the Walk mode, the main character will move to

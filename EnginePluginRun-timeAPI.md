@@ -895,9 +895,7 @@ _Added in version: 11_
 void PrintDebugConsole (const char *message);
 ```
 
-Prints `message` to the in-game debug console (which the user can pop up with the ~ key).
-
-The debug console is designed to help the user find problems by tracing through what's happening in the game - so do not pump messages out to this debug console too quickly or they will scroll past too fast for the user to read. Use the console to say one-off events like "Requested move character to X,Y" and so forth.
+This function used to prints `message` to the in-game debug console (which the user can pop up with the ~ key). But that console was poorly designed and removed in **AGS 3.6.1**. Instead this function prints directly to the engine log now. Prefer to use [IAGSEngine.Log](EnginePluginRun-timeAPI#iagsenginelog).
 
 _Added in version: 11_
 
@@ -1503,6 +1501,72 @@ Returns IAGSStream object identified by the given stream handle, or NULL if hand
 **IMPORTANT:**: A stream received from GetFileStreamByHandle() should NOT be closed or disposed, doing so will lead to errors in the engine.
 
 _Added in version: 28_
+
+#### IAGSEngine.Log
+
+```cpp
+void Log(int level, const char *fmt, ...);
+```
+
+Prints a formatted message to the engine's log, using told message level. Message level can be:
+* AGSLOG_LEVEL_ALERT
+* AGSLOG_LEVEL_FATAL
+* AGSLOG_LEVEL_ERROR
+* AGSLOG_LEVEL_WARN 
+* AGSLOG_LEVEL_INFO 
+* AGSLOG_LEVEL_DEBUG
+
+The formatting is done identical to the standard C "printf" function formatting, also used by a script functions such as String.Format and few others. See [String formatting](StringFormats).
+
+_Added in version: 29_
+
+#### IAGSEngine.CreateDynamicArray
+
+```cpp
+void* CreateDynamicArray(size_t elem_count, size_t elem_size, bool is_managed_type);
+```
+
+Creates a new dynamic array, allocating space for the given number of elements of the given size. Optionally instructs to create an array for managed handles, in which case the element size must be sizeof(int32). Returns a pointer to the beginning of array's data (or the first element), which may be used to fill array or passed into the game script. Returns a null pointer in case creation failed, or the input arguments were incorrect.
+
+You should be using this function when creating dynamic arrays for plugin's script API, because when the engine creates dynamic arrays for the script it adds certain meta data to it, and expects its presence when working with such arrays. For that reason you cannot just allocate a generic C array and return it into the script.
+
+**IMPORTANT:** If you are planning to use this array to store managed object handles, then you MUST correctly pass 'is_managed_type = true', because otherwise engine won't know that it must release their references, which may lead to memory leaks. When writing handles into this array, you MUST increment reference count for each one of them (see [IncrementManagedObjectRefCount](EnginePluginRun-timeAPI#iagsengineincrementmanagedobjectrefcount)), otherwise these objects may get disposed before the array itself, making these handles invalid!
+
+Example:
+
+```cpp
+void *CreateArrayForScript()
+{
+    // create a dynamic array for 100 integers
+    void *dyn_arr = engine->CreateDynamicArray(100, sizeof(int), false);
+    // fill it with random integer values
+    int *p_int_arr = static_cast<int*>(dyn_arr);
+    for (int i = 0; i < 100; ++i) { p_int_arr[i] = i; }
+    return dyn_arr;
+}
+```
+
+_Added in version: 30_
+
+#### IAGSEngine.GetDynamicArrayLength
+
+```cpp
+size_t GetDynamicArrayLength(const void *arr);
+```
+
+Retrieves dynamic array's length, which is a number of elements. You should pass a dynamic array object either received from the engine in your registered script function, or created by you with [CreateDynamicArray](EnginePluginRun-timeAPI#iagsenginecreatedynamicarray).
+
+_Added in version: 30_
+
+#### IAGSEngine.GetDynamicArraySize
+
+```cpp
+size_t GetDynamicArraySize(const void *arr);
+```
+
+Retrieves dynamic array's size, which is a total capacity *in bytes*. You should pass a dynamic array object either received from the engine in your registered script function, or created by you with [CreateDynamicArray](EnginePluginRun-timeAPI#iagsenginecreatedynamicarray).
+
+_Added in version: 30_
 
 ### IAGSScriptManagedObject interface
 

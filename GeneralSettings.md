@@ -332,15 +332,14 @@ accessible in future versions.
 -   **Inventory item cursor hotspot marker crosshair color** - the primary color of the item cursor hotspot marker.
 -   **Inventory item cursor hotspot marker dot color** - the secondary color of the item cursor hotspot marker.
 -   **Inventory item cursor hotspot marker sprite** - the sprite number to use for the item cursor hotspot marker.
--   **Override built-in inventory window click handling** - AGS has some
-    built-in processing of Inventory Window GUI controls, whereby a
+-   **Handle inventory window clicks in script** - AGS has a
+    default built-in processing of Inventory Window GUI controls mimicking old Sierra point'n'click games, whereby a
     right-click will Look at the item, and a left click will select it
     if the cursor mode is Interact. However, if you enable this option,
     then clicking on an inventory item in an Inventory Window will call
     your `on_mouse_click` function with eMouseLeftInv, eMouseMiddleInv
     or eMouseRightInv, and you then need to process it yourself. You can
-    use the `game.inv_activated` variable to find out what they
-    clicked on.
+    use the `game.inv_activated` variable to find out the ID of an item the player clicked on.
 -   **Use selected inventory graphics for cursors** - normally, when you
     select an inventory item the mouse cursor is changed into that item.
     However, if you want to create a LucasArts-style game (where the

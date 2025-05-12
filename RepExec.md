@@ -69,8 +69,7 @@ right after game state has changed, use
 **How do I create them?**
 
 In main game scripts, you create your *repeatedly_execute* script
-function by just pasting it into the script as follows. In the
-GlobalScript.asc it is already created for you:
+function by just pasting it into the script as follows:
 
 ```ags
 function repeatedly_execute()

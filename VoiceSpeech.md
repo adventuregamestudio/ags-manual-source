@@ -13,10 +13,14 @@ Normally this would display the words in the speech text above the
 characters heads. However, you can add the special character '&' to
 symbolize that a voice file should be played along with the displayed text.
 
-The file name has the format XXXXY.EXT, where XXXX comes from the **first
-four letters** of the character's script name (except the leading 'c'),
+The file name must follow a certain format, this format depends on the version of AGS that you are using, and an option called "Use old-style voice clip naming rule" which is found in [General Settings](GeneralSettings#backwards-compatibility).
+
+Historically, the name had to be XXXXY.EXT, where XXXX comes from the **first
+four letters** of the character's script name (except the leading 'c'), case insensitive,
 the Y is the speech file number (with no leading or trailing zeroes or
 padding of any kind), and EXT is the file extension.
+
+Starting with **AGS v3.6.2** the format is slightly different, it's CHARNAME.NUMBER.EXT, where CHARNAME is a full character's script name (but still except the leading 'c'), case insensitive, NUMBER is the speech file number (with no leading or trailing zeroes), and EXT is the file extension.
 
 For example, if you have dialog script:
 
@@ -32,8 +36,11 @@ cEgo.Say("&10 Hi! How are you?");
 cMichael.Say("&7 I'm fine.");
 ```
 
-Both of those examples plays EGO10.WAV with the first line, and
-MICH7.WAV with the second. When a line of text has a voice linked to it,
+If the old file naming format is used by your project, then both of those examples play Ego10.ogg and Mich7.ogg respectively.
+
+If the new file naming format is used, then they play Ego.10.ogg and Michael.7.ogg files respectively.
+
+When a line of text has a voice linked to it,
 the text on the screen will not be removed until the voice file has
 finished playing. If the player interrupts it by clicking the mouse or
 pressing a key, the text and voice will be stopped. Voice files must be

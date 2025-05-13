@@ -47,6 +47,7 @@ Following OPTIONS are supported when running from the command line:
 * `--clear-cache-on-room-change` - clears sprite cache on every room change
 * `--conf <FILEPATH>` - specify an explicit config file to read on startup.
 * `--console-attach` - write the output to the parent process's console (Windows only).
+* `--display <NUMBER>` - start the game on the selected display (1-based index, 0 means "use system default").
 * `--fps` - display fps counter.
 * `--fullscreen` - run in fullscreen mode.
 * `--gfxdriver <name>` - use specified graphics driver:
@@ -81,7 +82,9 @@ Following OPTIONS are supported when running from the command line:
     * `--log-file=main:warn,game:all`
     * `--log-stdout=+mg:debug`
 * `--log-file-path=PATH` - define a custom path for the log file.
-* `--no-message-box` - disable alerts as modal message boxes (Windows only).
+* `--no-message-box` - disable alerts as modal message boxes (on systems where applicable).
+* `--no-plugins` - don't load external plugin libraries (may still use plugin stubs or built-in replacements if they are present in the engine).
+* `--no-translation` - use default game language on start.
 * `--noiface` - don't draw game GUI (for test purposes).
 * `--noscript` - don't run room scripts (for test purposes); *WARNING:* unreliable.
 * `--nospr` - don't draw room objects and characters (for test purposes).
@@ -102,6 +105,7 @@ Following OPTIONS are supported when running from the command line:
   * `--tell-graphicdriver` - print a list of supported graphic drivers.
 * `--test` - run the game in the test mode, unlocking test key combinations and console.
 * `--translation` - select the given translation on start.
+* `--version` - print engine's version and stop.
 * `--user-data-dir <DIR>` - set the save game directory. Corresponds to "user_data_dir" config option.
 * `--windowed` - run in windowed mode.
 

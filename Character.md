@@ -138,6 +138,27 @@ Optional *volume* parameter is supported only by **AGS 3.6.0** and later version
 
 ---
 
+### `Character.BlendMode`
+
+```ags
+BlendMode Character.BlendMode
+```
+
+Gets/sets the character's current blend mode.
+
+Example:
+
+```ags
+player.BlendMode = eBlendModeAdd;
+```
+
+will set the player BlenMode to additive blending.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`BlendMode`](StandardEnums#blendmode)
+---
+
 ### `Character.ChangeRoom`
 
 *(Formerly known as `NewRoom`, which is now obsolete)*<br>
@@ -261,6 +282,23 @@ will make the EGO character use view number 5 as his walking view.
 
 ---
 
+### `Character.Enabled`
+
+*(Formerly known as `Character.on`, which is now obsolete)*
+
+```ags
+bool Character.Enabled
+```
+
+Gets/sets whether the character is enabled and visible. This lets you disable any character anytime, including player character. When disabled a character will not be drawn on screen and not updated (not animating, not moving, etc). Disabled characters may still be modified and have their coordinates changed by setting their corresponding properties directly, and also moved to another room with [ChangeRoom](Character#characterchangeroom) function.
+
+Rooms have a property called "ShowPlayerCharacter", which is enabled by default. If this property is disabled, then player character will have their `on` property set to 0 when such room is loaded, and restored it to 1 when leaving that room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.Visible`](Character#charactervisible)
+---
+
 ### `Character.FaceCharacter`
 
 *(Formerly known as global function `FaceCharacter`, which is now
@@ -345,6 +383,21 @@ will make the character EGO face up-right.
 [`Character.FaceLocation`](Character#characterfacelocation),
 [`Character.FaceObject`](Character#characterfaceobject),
 [`Character.Walk`](Character#characterwalk)
+
+---
+
+### `Character.FaceDirectionRatio`
+
+```ags
+float Character.FaceDirectionRatio
+```
+
+Gets/sets the optional y/x ratio of character's facing directions, determining
+directional loop selection while Character moves and turns.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Game.FaceDirectionRatio`](Game#gamefacedirectionratio)
 
 ---
 
@@ -712,6 +765,26 @@ will change EGO's "description" property.
 *Compatibility:* Supported by **AGS 3.4.0** and later versions.
 
 *See also:* [`Character.SetProperty`](Character#charactersetproperty)
+
+---
+
+### `Character.GraphicRotation`
+
+```ags
+float Character.GraphicRotation
+```
+
+Gets/sets the character's sprite rotation in degrees.
+
+Example:
+
+```ags
+player.GraphicRotation = 180.0;
+```
+
+will rotate the player character sprite by 180 degrees.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -1129,6 +1202,20 @@ his destination.
 [`MoveCharacterToObject`](Globalfunctions_General#movecharactertoobject),
 [`Object.Move`](Object#objectmove),
 [`Character.StopMoving`](Character#characterstopmoving)
+
+---
+
+### `Character.MovePath`
+
+```ags
+void MovePath(Point*[], optional BlockingStyle, optional RepeatStyle, optional Direction)
+```
+
+Moves the character along the path, ignoring walkable areas, without playing his walking animation.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.WalkPath`](Character#characterwalkpath),
 
 ---
 
@@ -1845,6 +1932,29 @@ only by **AGS 3.4.1** and later versions.
 
 ---
 
+### `Character.UseRegionTint`
+
+```ags
+bool UseRegionTint
+```
+
+Gets/sets whether the character uses region tinting.
+
+Example:
+
+```ags
+cEgo.UseRegionTint = false;
+```
+
+will make the character look the same no matter if he stands on regions
+with different tinting.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.IgnoreLighting`](Character#characterignorelighting)
+
+---
+
 ### `Character.Walk`
 
 *(Formerly known as `MoveCharacter`, which is now obsolete)*<br>
@@ -1897,6 +2007,20 @@ until the character has reached his destination.
 [`MoveCharacterToObject`](Globalfunctions_General#movecharactertoobject),
 [`Object.Move`](Object#objectmove),
 [`Character.StopMoving`](Character#characterstopmoving)
+
+---
+
+### `Character.WalkPath`
+
+```ags
+void WalkPath(Point*[], optional BlockingStyle, optional RepeatStyle, optional Direction)
+```
+
+Moves the character along the path, ignoring walkable areas, automatically playing his walking animation.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.MovePath`](Character#charactermovepath),
 
 ---
 
@@ -2406,7 +2530,8 @@ removes the player's tint if it currently has one.
 *Compatibility:* Supported by **AGS 3.1.0** and later versions.
 
 *See also:* [`Character.Tint`](Character#charactertint),
-[`Character.RemoveTint`](Character#characterremovetint)
+[`Character.RemoveTint`](Character#characterremovetint),
+[`Character.UseRegionTint`](Character#characteruseregiontint)
 
 ---
 
@@ -2489,6 +2614,8 @@ cEgo.IgnoreLighting = 1;
 
 will make the character look the same no matter if he stands on regions
 with different light levels.
+
+*See also:* [`Character.UseRegionTint`](Character#characteruseregiontint)
 
 ---
 
@@ -2683,6 +2810,24 @@ there.
 
 ---
 
+### `Character.MotionPath`
+
+```ags
+readonly MotionPath* MotionPath
+```
+
+Gets this character's current MotionPath, or null if it's not moving.
+
+This property is readonly; to manually assign a character walking path, use
+[`WalkPath`](Character#characterwalkpath) and [`MovePath`](Character#charactermovepath)
+commands.
+
+*See also:* [`MotionPath`](MotionPath),
+[`WalkPath`](Character#characterwalkpath),
+[`MovePath`](Character#charactermovepath)
+
+---
+
 ### `Character.Name`
 
 *(Formerly known as `character[].name`, which is now obsolete)*
@@ -2736,18 +2881,6 @@ view.
 
 *See also:* [`Character.ChangeView`](Character#characterchangeview),
 [`Character.View`](Character#characterview)
-
----
-
-### `Character.on`
-
-```ags
-int Character.on
-```
-
-Gets/sets whether the character is enabled and visible. This lets you disable any character anytime, including player character. When disabled a character will not be drawn on screen and not updated (not animating, not moving, etc). Disabled characters may still be modified and have their coordinates changed by setting their corresponding properties directly, and also moved to another room with [ChangeRoom](Character#characterchangeroom) function.
-
-Rooms have a property called "ShowPlayerCharacter", which is enabled by default. If this property is disabled, then player character will have their `on` property set to 0 when such room is loaded, and restored it to 1 when leaving that room.
 
 ---
 
@@ -2911,6 +3044,25 @@ This may be useful if you have a pointer to some character stored in your variab
 
 *See also:* [`Character.Name`](Character#charactername),
 [`Character.GetByName`](Character#charactergetbyname)
+
+---
+
+### `Character.Shader`
+
+```ags
+ShaderInstance* Character.Shader
+```
+
+Gets/sets the shader of this character.
+
+Example:
+
+```ags
+ShaderProgram wave = ShaderProgram.CreateFromFile("$DATA$/Shaders/wave.glsl");
+cEgo.Shader = wave.Default; // assign the default instance for the shader
+```
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -3313,7 +3465,7 @@ will tell EGO to turn to face left, and then turn again until they face right.
 
 *Compatibility*: Supported by **AGS 3.6.2** and later versions.
 
-*See also:* [`Character.TurnBeforeWalking`](Character#characterturnbeforewalking)
+*See also:* [`Game.TurnBeforeWalking`](Character#characterturnbeforewalking)
 
 ---
 
@@ -3342,6 +3494,19 @@ will display EGO's current view number.
 [`Character.Loop`](Character#characterloop),
 [`Character.NormalView`](Character#characternormalview)
 
+---
+
+### `Character.Visible`
+
+```ags
+bool Character.Visible
+```
+
+Gets/sets whether the character is currently visible.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.Enabled`](Character#characterenabled)
 ---
 
 ### `Character.WalkSpeedX`

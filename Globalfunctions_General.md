@@ -1316,7 +1316,7 @@ will save the current game position to slot 30 with the description
 ### `SaveScreenShot`
 
 ```ags
-SaveScreenShot (string filename)
+int SaveScreenShot(string filename, optional int width, optional int height, optional RenderLayer layer)
 ```
 
 Takes a screen capture and saves it to disk. The FILENAME must end in
@@ -1336,6 +1336,10 @@ SaveScreenShot(filename);
 
 will prompt the player for a filename and then save the screenshot with
 the filename the player typed.
+
+Since **AGS 3.6.2**, the filename can accept standard file tokens (`$SAVEGAMEDIR$`, etc).
+
+*Compatibility:* Optional *width*, *height*, and *layer* parameters are supported only by **AGS 3.6.2** and later versions.
 
 *See also:*
 [`DynamicSprite.SaveToFile`](DynamicSprite#dynamicspritesavetofile)

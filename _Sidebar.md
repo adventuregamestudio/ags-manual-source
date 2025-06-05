@@ -1,4 +1,4 @@
-***Getting Started in AGS***
+#### Getting Started in AGS
 
 - [Introduction](Introduction)
   - [SystemRequirements](SystemRequirements)
@@ -31,7 +31,7 @@
   - [UpgradeTo361](UpgradeTo361)
   - [UpgradeTo362](UpgradeTo362)
 
-***Editor***
+#### Editor
 
 - [New Game templates](Templates)
   - [Tumbleweed](Tumbleweed)
@@ -85,7 +85,7 @@
   - [Game saves compatibility](GameSavesCompatibility)
   - [Editor Command Line Options](EditorCommandLineOptions)
 
-***Engine***
+#### Engine
 
 - [The run-time engine](RuntimeEngine)
 - [Engine Config File](EngineConfigFile)
@@ -93,7 +93,7 @@
 - [Graphics driver selection](GraphicsDriver)
 - [MIDI playback](MIDI-playback)
 
-***Scripting***
+#### Scripting
 
 - [Scripting Tutorial](ScriptingTutorial)
   - [ScriptingTutorialPart1](ScriptingTutorialPart1)
@@ -171,15 +171,15 @@
 - [Key code table](Keycodes)
 - [Audio in script](AudioInScript)
 
-***Legal Notice***
+#### Legal Notice
 
 - [Copyright and terms of use](Copyright)
 - [Credits](Credits)
 
-***Getting in touch***
+#### Getting in touch
 
 - [Contacting the developers](ContactingTheDevelopers)
 
-***Misc***
+#### Misc
 
 - [AnonymousUsageInfo](AnonymousUsageInfo)

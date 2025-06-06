@@ -157,6 +157,7 @@ will set the player BlenMode to additive blending.
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`BlendMode`](StandardEnums#blendmode)
+
 ---
 
 ### `Character.ChangeRoom`

@@ -297,6 +297,7 @@ Rooms have a property called "ShowPlayerCharacter", which is enabled by default.
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Character.Visible`](Character#charactervisible)
+
 ---
 
 ### `Character.FaceCharacter`
@@ -3507,6 +3508,7 @@ Gets/sets whether the character is currently visible.
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Character.Enabled`](Character#characterenabled)
+
 ---
 
 ### `Character.WalkSpeedX`

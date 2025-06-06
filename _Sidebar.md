@@ -85,6 +85,13 @@
   - [Game saves compatibility](GameSavesCompatibility)
   - [Editor Command Line Options](EditorCommandLineOptions)
 
+#### Game Features
+
+- [Game](Feature_Game)
+- [Rooms](Feature_Rooms)
+- [Characters](Feature_Characters)
+- [Inventory Items](Feature_InventoryItems)
+
 #### Engine
 
 - [The run-time engine](RuntimeEngine)

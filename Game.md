@@ -989,6 +989,21 @@ Display("The game has %d dialogs.", Game.DialogCount);
 
 ---
 
+### `Game.FaceDirectionRatio`
+
+```ags
+static float Game.FaceDirectionRatio
+```
+
+Gets/sets the optional y/x ratio of character's facing directions, determining
+directional loop selection while Character moves and turns.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.FaceDirectionRatio`](Character#characterfacedirectionratio)
+
+---
+
 ### `Game.FileName`
 
 ```ags

@@ -81,6 +81,28 @@ enum AudioPriority {
 
 ---
 
+### `BlendMode`
+
+```ags
+enum BlendMode {
+    eBlendNormal = 0,
+    eBlendAdd,
+    eBlendDarken,
+    eBlendLighten,
+    eBlendMultiply,
+    eBlendScreen,
+    eBlendBurn,
+    eBlendSubtract,
+    eBlendExclusion,
+    eBlendDodge,
+    eBlendCopy,
+    eBlendCopyRGB,
+    eBlendCopyAlpha
+};
+```
+
+---
+
 ### `BlockingStyle`
 
 ```ags

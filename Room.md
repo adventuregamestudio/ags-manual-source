@@ -417,34 +417,6 @@ Display("The current room's left edge is at %d.", Room.LeftEdge);
 
 ---
 
-### `Room.Messages`
-
-*(Formerly known as global function `GetMessageText`, which is now
-obsolete)*
-
-```ags
-readonly static String Room.Messages[int message]
-```
-
-Gets the text of the specified room message. This is useful if you want
-to store, for example, a room description in Message 1 in each room --
-this property allows you to retrieve the text for that message from the
-current room.
-
-If an invalid message number is supplied, *null* will be returned.
-Otherwise, the message contents will be returned.
-
-Example:
-
-```ags
-String message1 = Room.Messages[1];
-Display("Message 1 says: %s", message1);
-```
-
-will print the contents of room message 1.
-
----
-
 ### `Room.MusicOnLoad`
 
 ```ags

@@ -1953,8 +1953,6 @@ with different tinting.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
-*See also:* [`Character.IgnoreLighting`](Character#characterignorelighting)
-
 ---
 
 ### `Character.Walk`
@@ -2596,6 +2594,8 @@ will display EGO's current idle view number.
 ---
 
 ### `Character.IgnoreLighting`
+
+**This property is obsolete since AGS 4.0.0 and not recommended for use at all.**
 
 *(Formerly known as `SetCharacterIgnoreLight`, which is now obsolete)*
 

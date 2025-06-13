@@ -13,7 +13,6 @@ you can easily see what file is what when recording the speech.
 The following types of message are auto-numbered. If one of the messages
 already has a speech number, it will be overwritten:
 
--   room messages set to be displayed as speech
 -   dialog script messages
 -   dialog options (if "Say" is selected for the option)
 -   Say commands in scripts

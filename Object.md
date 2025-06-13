@@ -350,32 +350,6 @@ if (oDoor.IsInteractionAvailable(eModeInteract) == 0)
 
 ---
 
-### `Object.MergeIntoBackground`
-
-*(Formerly known as `MergeObject`, which is now obsolete)*
-
-```ags
-Object.MergeIntoBackground()
-```
-
-Merges the object into the background scene for this room. This means that the object's image will be painted onto the room background and then object is turned off **permanently** (will no longer be displayed and may not be interacted with). This is a 1-way operation - once the object has been merged,
-it cannot be changed back. Therefore you should only use this function if a game event has occurred that means the room is permanently changed.
-
-**NOTE:** this is an old function that was meant primarily for optimizing the game on ancient computers. Today it is not necessary. If you desire to make object not-interactable, the good solution is to make it not-clickable by setting [`Object.Clickable`](Object#objectclickable) property to `false`. Similar effect may be achieved by painting [object's graphic](Object#objectgraphic) onto the room background using its [DrawingSurface](Room#roomgetdrawingsurfaceforbackground), and then setting [`Object.Visible`](Object#objectvisible) to `false`.
-
-**NOTE:** objects can only be merged if the object graphic was imported at the same color depth as the background graphic.
-
-Example:
-
-```ags
-object[3].MergeIntoBackground();
-```
-
-will merge the object's image into the room's background image and make
-the object unusable.
-
----
-
 ### `Object.Move`
 
 *(Formerly known as `MoveObject`, which is now obsolete)*<br>

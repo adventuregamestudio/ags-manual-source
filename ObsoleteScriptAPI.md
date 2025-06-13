@@ -15,12 +15,13 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `AreObjectsColliding` | [`Object.IsCollidingWithObject`](Object#objectiscollidingwithobject) | |
 | `Button.GetText` | [`Button.Text`](Button#buttontext) | |
 | `Button.SetText` | [`Button.Text`](Button#buttontext) | |
-| `CDAudio` | [`Use AudioClips`](AudioClip#audioclipplay) | |
+| `CDAudio` | [`Use AudioClips`](AudioClip#audioclipplay) | 4.0.0 |
 | `CentreGUI` | [`GUI.Centre`](GUI#guicentre) | |
 | `ChangeCharacterView` | [`Character.ChangeView`](Character#characterchangeview) | |
 | `ChangeCursorGraphic` | [`Mouse.ChangeModeGraphic`](Mouse#mousechangemodegraphic) | |
 | `ChangeCursorHotspot` | [`Mouse.ChangeModeHotspot`](Mouse#mousechangemodehotspot) | |
 | `Character.GetPropertyText` | [`Character.GetTextProperty`](Character#charactergettextproperty) | |
+| `Character.IgnoreLighting` | [`Character.UseRegionTint`](Character#characteruseregiontint) | 4.0.0 |
 | [`Character.IgnoreWalkbehinds`](Character#characterignorewalkbehinds) | design your rooms without it and rely on [`Character.Baseline`](Character#characterbaseline) instead | 3.5.0 |
 | `Character.IgnoreScaling` | [`Character.ManualScaling`](Character#charactermanualscaling)  | |
 | `character[].activeinv` | [`Character.ActiveInventory`](Character#characteractiveinventory) | |
@@ -31,7 +32,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `character[].inv` | [`Character.InventoryQuantity[]`](Character#characterinventoryquantity) | |
 | `character[].loop` | [`Character.Loop`](Character#characterloop) | |
 | `character[].name` | [`Character.Name`](Character#charactername) | |
-| `character[].on` | [`Character.Enabled`](Character#characterenabled) | |
+| `character[].on` | [`Character.Enabled`](Character#characterenabled) | 4.0.0 |
 | `character[].prevroom` | [`Character.PreviousRoom`](Character#characterpreviousroom) | |
 | `character[].room` | [`Character.Room`](Character#characterroom) | |
 | `character[].talkview` | [`Character.SpeechView`](Character#characterspeechview) | |
@@ -75,8 +76,8 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `game.num_inv_items` | [`InvWindow.ItemCount`](InvWindow#invwindowitemcount) | |
 | `game.room_height` | [`Room.Height`](Room#roomheight) | |
 | `game.room_width` | [`Room.Width`](Room#roomwidth) | |
-| `game.score` | use a global variable | |
-| `game.score_sound` | can be handled by script | |
+| `game.score` | use a global variable | 4.0.0 |
+| `game.score_sound` | can be handled by script | 4.0.0 |
 | `game.skip_speech_specific_key` | [`Speech.SkipKey`](Speech#speechskipkey) | |
 | `game.skipping_cutscene` | [`Game.SkippingCutscene`](Game#gameskippingcutscene) | |
 | `game.speech_music_drop` | [`Game.SetAudioTypeSpeechVolumeDrop`](Game#gamesetaudiotypespeechvolumedrop) | |
@@ -85,7 +86,8 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `game.talkanim_speed` | [`Speech.GlobalSpeechAnimationDelay`](Speech#speechglobalspeechanimationdelay) | |
 | `game.text_speed` | [`Game.TextReadingSpeed`](Game#gametextreadingspeed) | |
 | `game.top_inv_item` | [`InvWindow.TopItem`](InvWindow#invwindowtopitem) | |
-| [`Game.GlobalMessage`](Game#gameglobalmessages) | Create a [global](ScriptKeywords#export) [array](ScriptKeywords#arrays) of [strings](String). | 3.X |
+| `Game.GlobalMessage` | Create a [global](ScriptKeywords#export) [array](ScriptKeywords#arrays) of [strings](String). | 3.X |
+| `Game.GlobalStrings` | Create a [global](ScriptKeywords#export) [array](ScriptKeywords#arrays) of [strings](String). | 4.0.0 |
 | `GetButtonPic` | [`Button.Graphic`](Button#buttongraphic) | |
 | `GetCharacterAt` | [`Character.GetAtScreenXY`](Character#charactergetatscreenxy) | |
 | `GetCharacterProperty` | [`Character.GetProperty`](Character#charactergetproperty) | |
@@ -120,7 +122,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `GetInvProperty` | [`InventoryItem.GetProperty`](InventoryItem#inventoryitemgetproperty) | |
 | `GetInvPropertyText` | [`InventoryItem.GetTextProperty`](InventoryItem#inventoryitemgettextproperty) | |
 | `GetLocationName` | [`Game.GetLocationName`](Game#gamegetlocationname) | |
-| [`GetMessageText`](Game#gameglobalmessages) | Create a [global](ScriptKeywords#export) [array](ScriptKeywords#arrays) of [strings](String). | 3.X |
+| `GetMessageText` | Create a [global](ScriptKeywords#export) [array](ScriptKeywords#arrays) of [strings](String). | 3.X |
 | `GetMIDIPosition` | [`AudioChannel.Position`](AudioChannel#audiochannelposition) | |
 | `GetMODPattern` | [`AudioChannel.Position`](AudioChannel#audiochannelposition) | |
 | `GetMP3PosMillis` | [`AudioChannel.Position`](AudioChannel#audiochannelposition) | |
@@ -186,7 +188,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `LoadSaveSlotScreenshot` | [`DynamicSprite.CreateFromSaveGame`](DynamicSprite#dynamicspritecreatefromsavegame) | |
 | `LoseInventory` | [`Character.LoseInventory`](Character#characterloseinventory) | |
 | `LoseInventoryFromCharacter` | [`Character.LoseInventory`](Character#characterloseinventory) | |
-| `MergeObject` | [`Object.MergeIntoBackground`](Object#objectmergeintobackground) | |
+| `MergeObject` | use [`DynamicSprite.CreateFromBackground`](DynamicSprite#dynamicspritecreatefrombackground) to draw on the room background | |
 | `MoveCharacter` | [`Character.Walk`](Character#characterwalk) | |
 | `MoveCharacterBlocking` | [`Character.Walk`](Character#characterwalk) | |
 | `MoveCharacterDirect` | [`Character.Walk`](Character#characterwalk) | |
@@ -204,6 +206,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `Object.GetName` | [`Object.Name`](Object#objectname) | |
 | `Object.GetPropertyText` | [`Object.GetTextProperty`](Object#objectgettextproperty) | |
 | [`Object.IgnoreWalkbehinds`](Object#objectignorewalkbehinds) | design your rooms without it and rely on [`Object.Baseline`](Object#objectbaseline) instead | 3.5.0 |
+| `Object.MergeIntoBackground` | use [`DynamicSprite.CreateFromBackground`](DynamicSprite#dynamicspritecreatefrombackground) to draw on the room background | 4.0.0 |
 | `ObjectOff` | [`Object.Visible`](Object#objectvisible) | |
 | `ObjectOn` | [`Object.Visible`](Object#objectvisible) | |
 | `PlayAmbientSound` | [`AudioChannel.SetRoomLocation`](AudioChannel#audiochannelsetroomlocation) | |
@@ -235,6 +238,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `ReleaseViewport` | [`Game.Camera.AutoTracking`](Camera#cameraautotracking) | |
 | `RemoveObjectTint` | [`Object.RemoveTint`](Object#objectremovetint) | |
 | `RemoveOverlay` | [`Overlay.Remove`](Overlay#overlayremove) | |
+| `Room.Messages`] | Create a [global](ScriptKeywords#export) [array](ScriptKeywords#arrays) of [strings](String). | 4.0.0 |
 | [`Room.MusicOnLoad`](Room#roommusiconload) | Use [`AudioClip.Play`](AudioClip#audioclipplay) on the room Load event | |
 | `RunCharacterInteraction` | [`Character.RunInteraction`](Character#characterruninteraction) | |
 | `RunDialog` | [`Dialog.Start`](Dialog#dialogstart) | |
@@ -258,7 +262,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `SetCharacterClickable` | [`Character.Clickable`](Character#characterclickable) | |
 | `SetCharacterFrame` | [`Character.LockViewFrame`](Character#characterlockviewframe) | |
 | `SetCharacterIdle` | [`Character.SetIdleView`](Character#charactersetidleview) | |
-| `SetCharacterIgnoreLight` | [`Character.IgnoreLighting`](Character#characterignorelighting) | |
+| `SetCharacterIgnoreLight` | [`Character.UseRegionTint`](Character#characteruseregiontint) | |
 | [`SetCharacterIgnoreWalkbehinds`](Character#characterignorewalkbehinds) | design your rooms without it and rely on [`Character.Baseline`](Character#characterbaseline) instead | 3.5.0  |
 | `SetCharacterProperty` | [`Character.ManualScaling`](Character#charactermanualscaling)  | |
 | `SetCharacterProperty` | [`Character.DiagonalLoops`](Character#characterdiagonalloops) | |

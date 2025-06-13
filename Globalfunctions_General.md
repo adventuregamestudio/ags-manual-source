@@ -492,9 +492,7 @@ if (GetGlobalInt(20) == 1) {
 
 will execute the code only if Global Integer 20 is 1.
 
-*See also:* [Global variables](GlobalVariables),
-[`SetGlobalInt`](Globalfunctions_General#setglobalint),
-[`Game.GlobalStrings`](Game#gameglobalstrings)
+*See also:* [Global variables](GlobalVariables)
 
 ---
 
@@ -525,8 +523,7 @@ will execute the code only if interaction variable \"climbed rock\" is
 1.
 
 *See also:* [Global variables](GlobalVariables),
-[`GetGlobalInt`](Globalfunctions_General#getglobalint),
-[`SetGraphicalVariable`](Globalfunctions_General#setgraphicalvariable)
+[`GetGlobalInt`](Globalfunctions_General#getglobalint)
 
 ---
 
@@ -1509,61 +1506,6 @@ SetGameSpeed(60);
 will set the game speed to 60 fps.
 
 *See also:* [`GetGameSpeed`](Globalfunctions_General#getgamespeed)
-
----
-
-### `SetGlobalInt`
-
-```ags
-SetGlobalInt (int index, int value)
-```
-
-Sets the global int INDEX to VALUE. You can then retrieve this value
-from any other script using GetGlobalInt.
-
-There are 500 available global variables, from index 0 to 499.
-
-**NOTE:** GlobalInts are now considered obsolete. Consider using
-[global variables](GlobalVariables) instead, which allow you to
-name the variables.
-
-Example:
-
-```ags
-SetGlobalInt(10,1);
-```
-
-will set the Global Integer 10 to 1.
-
-*See also:* [Global variables](GlobalVariables),
-[`GetGlobalInt`](Globalfunctions_General#getglobalint)
-
----
-
-### `SetGraphicalVariable`
-
-```ags
-SetGraphicalVariable(string variable_name, int value);
-```
-
-Sets the interaction editor VARIABLE_NAME variable to VALUE. This
-allows your script to change the values of variables set in the
-interaction editor.
-
-**NOTE:** This command is obsolete, and is only provided for backwards
-compatibility with AGS 2.x. When writing new code, use
-[global variables](GlobalVariables) instead.
-
-Example:
-
-```ags
-SetGraphicalVariable("climbed rock", 1);
-```
-
-will set the interaction editor \"climbed rock\" variable to 1.
-
-*See also:* [Global variables](GlobalVariables),
-[`GetGraphicalVariable`](Globalfunctions_General#getgraphicalvariable)
 
 ---
 

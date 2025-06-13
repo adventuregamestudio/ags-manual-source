@@ -25,17 +25,12 @@ Gets/sets the blending mode for this overlay.
 *(Formerly known as `CreateGraphicOverlay`, which is now obsolete)*
 
 ```ags
-static Overlay* Overlay.CreateGraphical(int x, int y, int slot, optional bool transparent, optional bool clone)
+static Overlay* Overlay.CreateGraphical(int x, int y, int slot, optional bool clone)
 ```
 
 Creates a *screen overlay* using an image from SLOT sprite. The image is placed at (X,Y) in the screen coordinates.
 
 The screen overlays are positioned in the screen graphic layer, and are visually sorted among other screen overlays and GUI using overlay's [ZOrder](Overlay#overlayzorder) property.
-
-If *transparent* is true then the overlay will be drawn in the same way
-as characters/objects, if it is false then a black rectangle will be
-painted behind the sprite. Default value is "true".
-**NOTE:** for "historical reasons", *transparent* parameter works only in 8-bit games, and does not work in 16-bit and 32-bit games at all, so it's currently useless there.
 
 If *clone* is true then the overlay will make a copy of the SLOT image, otherwise it will create a shared reference, similar to how room objects or characters do. Default value is "false". In practice this only makes a difference if you are creating an overlay from the [DynamicSprite](DynamicSprite): if you make a copy then the original dynamic sprite is safe to discard; also any changes to dynamic sprite will be applied to overlay only if it uses shared reference (no copy). If you create alot of overlays, sharing (non copying) may improve game's perfomance and decrease the memory requirements. For the same perfomance reasons regular sprites are never copied, regardless of this parameter's value (because they cannot be deleted or edited at runtime).
 
@@ -68,7 +63,7 @@ will create an overlay using sprite number 300, at the coordinates 100,100. It w
 ### `Overlay.CreateRoomGraphical`
 
 ```ags
-static Overlay* Overlay.CreateRoomGraphical(int x, int y, int slot, optional bool transparent, optional bool clone)
+static Overlay* Overlay.CreateRoomGraphical(int x, int y, int slot, optional bool clone)
 ```
 
 Creates a *room overlay* using an image from SLOT sprite. The image is placed at (X,Y) in the screen coordinates.
@@ -186,6 +181,18 @@ Following [game variables](Gamevariables) affect the textual overlay's look:
 
 ---
 
+### `Overlay.Flip`
+
+```ags
+eFlipDirection Overlay.Flip
+```
+
+Gets/sets the flip direction of this overlay.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Overlay.Remove`
 
 *(Formerly known as `RemoveOverlay`, which is now obsolete)*
@@ -209,6 +216,18 @@ will create a text overlay , wait for 200 game cycles (about 5 seconds)
 and then remove the overlay from the screen.
 
 *See also:* [`Overlay.CreateTextual`](Overlay#overlaycreatetextual)
+
+---
+
+### `Overlay.Rotation`
+
+```ags
+float Overlay.Rotation
+```
+
+Gets/sets the overlay's image rotation in degrees.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -356,6 +375,158 @@ Tells whether current overlay is a room (returns "true") or screen (if "false") 
 [`Overlay.CreateTextual`](Overlay#overlaycreatetextual),
 [`Overlay.CreateRoomGraphical`](Overlay#overlaycreateroomgraphical),
 [`Overlay.CreateRoomTextual`](Overlay#overlaycreateroomtextual)
+
+---
+
+### `Overlay.LightLevel`
+
+```ags
+readonly int Overlay.LightLevel
+```
+
+Gets the individual light level for this character.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.SetLightLevel`
+
+```ags
+Overlay.SetLightLevel(int light_level)
+```
+
+Sets the light level for this overlay, from -100 to 100 (negative values darken the sprite, positive brighten the sprite).
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.HasLightLevel`
+
+```ags
+readonly bool Overlay.HasLightLevel
+```
+
+Gets whether the overlay has a light level set.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.Tint`
+
+```ags
+Overlay.Tint(int red, int green, int blue, int saturation, int luminance)
+```
+
+Tints the overlay to the specified colour. RGB values must be in 0-255 range, saturation and luminance in 0-100 range.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+
+### `Overlay.TintBlue`
+
+```ags
+readonly int Overlay.TintBlue
+```
+
+Gets the Blue component of this overlay's colour tint.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.TintGreen`
+
+```ags
+readonly int Overlay.TintGreen
+```
+
+Gets the Green component of this overlay's colour tint.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.TintRed`
+
+```ags
+readonly int Overlay.TintRed
+```
+
+Gets the Red component of this overlay's colour tint.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.TintSaturation`
+
+```ags
+readonly int Overlay.TintSaturation
+```
+
+Gets the Saturation of this overlay's colour tint.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.TintLuminance`
+
+```ags
+readonly int Overlay.TintLuminance
+```
+
+Gets the Luminance of this overlay's colour tint.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.HasTint`
+
+```ags
+readonly bool Overlay.HasTint
+```
+
+Gets whether the overlay has a tint set.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.RemoveTint`
+
+```ags
+Overlay.RemoveTint()
+```
+
+Removes an existing colour tint or light level from this overlay.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.Shader`
+
+```ags
+ShaderInstance* Overlay.Shader
+```
+
+Gets/sets the shader of this overlay.
+
+Example:
+
+```ags
+ShaderProgram wave = ShaderProgram.CreateFromFile("$DATA$/Shaders/wave.glsl");
+myOverlay.Shader = wave.Default; // assign the default instance for the shader
+```
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

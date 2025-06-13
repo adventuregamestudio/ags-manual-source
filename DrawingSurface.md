@@ -16,6 +16,52 @@ copies of the image and upload it to video memory if appropriate.
 
 ---
 
+### `DrawingSurface.BlendImage`
+
+```ags
+DrawingSurface.BlendImage(int x, int y, int spriteSlot, BlendMode mode, optional int transparency, optional int width, optional int height, optional int part_x, optional int part_y, optional int part_width, optional int part_height)
+```
+
+Blends a sprite onto the surface with its top-left corner at (x,y).
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:*
+[`DrawingSurface.BlendSurface`](DrawingSurface#drawingsurfaceblendsurface),
+[`BlendMode`](StandardEnums#blendmode)
+
+---
+
+### `DrawingSurface.BlendMode`
+
+```ags
+BlendMode DrawingSurface.BlendMode
+```
+
+Gets/sets the current BlendMode that will be used for drawing onto this surface.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`BlendMode`](StandardEnums#blendmode)
+
+---
+
+### `DrawingSurface.BlendSurface`
+
+```ags
+DrawingSurface.BlendSurface(DrawingSurface *surfaceToDraw, BlendMode mode, optional int transparency, optional int x, optional int y, optional int width, optional int height, optional int part_x, optional int part_y, optional int part_width, optional int part_height)
+```
+
+Blends the specified surface onto this surface.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:*
+[`DrawingSurface.BlendImage`](DrawingSurface#drawingsurfaceblendimage),
+[`BlendMode`](StandardEnums#blendmode)
+
+---
+
 ### `DrawingSurface.Clear`
 
 *(Formerly known as `RawClearScreen`, which is now obsolete)*
@@ -46,6 +92,18 @@ in the middle of it.
 
 *See also:*
 [`DrawingSurface.DrawingColor`](DrawingSurface#drawingsurfacedrawingcolor)
+
+---
+
+### `DrawingSurface.ColorDepth`
+
+```ags
+readonly int DrawingSurface.ColorDepth
+```
+
+Gets the colour depth of this surface.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -260,9 +318,6 @@ DrawingSurface.DrawPixel(int x, int y)
 ```
 
 Draws a single pixel onto the surface at (X,Y) in the current color.
-The pixel thickness respects the
-[`UseHighResCoordinates`](DrawingSurface#drawingsurfaceusehighrescoordinates)
-property.
 
 **NOTE:** This command is not fast enough to use repeatedly to build up
 an image. Only use it for single pixel adjustments.
@@ -282,7 +337,7 @@ draws a yellow pixel in the top left of the room background
 [`DrawingSurface.DrawingColor`](DrawingSurface#drawingsurfacedrawingcolor),
 [`DrawingSurface.DrawLine`](DrawingSurface#drawingsurfacedrawline),
 [`DrawingSurface.GetPixel`](DrawingSurface#drawingsurfacegetpixel),
-[`DrawingSurface.UseHighResCoordinates`](DrawingSurface#drawingsurfaceusehighrescoordinates)
+[`DrawingSurface.SetPixel`](DrawingSurface#drawingsurfacesetpixel)
 
 ---
 
@@ -570,7 +625,24 @@ displays the pixel color of the center pixel on the screen.
 *See also:*
 [`DrawingSurface.DrawingColor`](DrawingSurface#drawingsurfacedrawingcolor),
 [`DrawingSurface.DrawPixel`](DrawingSurface#drawingsurfacedrawpixel),
-[`DrawingSurface.UseHighResCoordinates`](DrawingSurface#drawingsurfaceusehighrescoordinates)
+[`DrawingSurface.SetPixel`](DrawingSurface#drawingsurfacesetpixel)
+
+---
+
+### `DrawingSurface.SetPixel`
+
+```ags
+DrawingSurface.SetPixel(int x, int y, int color)
+```
+
+Changes the colour of a single pixel on the surface. This operation ignores drawing settings, and simply sets the color value.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:*
+[`DrawingSurface.DrawingColor`](DrawingSurface#drawingsurfacedrawingcolor),
+[`DrawingSurface.DrawPixel`](DrawingSurface#drawingsurfacedrawpixel),
+[`DrawingSurface.GetPixel`](DrawingSurface#drawingsurfacegetpixel)
 
 ---
 
@@ -593,35 +665,7 @@ surface.Release();
 displays the size of the surface to the player
 
 *See also:*
-[`DrawingSurface.UseHighResCoordinates`](DrawingSurface#drawingsurfaceusehighrescoordinates),
 [`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
-
----
-
-### `DrawingSurface.UseHighResCoordinates`
-
-**This property is obsolete since AGS 3.5.0 and not recommended for use at all.**
-
-```ags
-bool DrawingSurface.UseHighResCoordinates
-```
-
-Gets/sets whether you want to use high-resolution co-ordinates with this
-surface.
-
-By default, this property will be set such that drawing surface
-co-ordinates use the same co-ordinate system as the rest of the game, as
-per the "Use low-res co-ordinates in script" game setting. However, if
-your game is 640x400 or higher you can customize whether this drawing
-surface uses native co-ordinates or the low-res 320x200 co-ordinates by
-changing this property.
-
-Setting this property affects **ALL** other commands performed on this
-drawing surface, including the [`Width`](DrawingSurface#drawingsurfacewidth)
-and [`Height`](DrawingSurface#drawingsurfaceheight) properties.
-
-**IMPORTANT:** This property is a remnant of the old and since deprecated feature in AGS which allowed to treat all coordinates in high-resolution games as if they were for low-resolution. For example: have 640x400 game but use 320x200 measurements in script, which would make each drawing operation to be performed x2 thicker on screen.<br>
-Since AGS 3.5.0 this property is ignored unless you have backwards-compatible "Allow relative asset resolutions" option enabled in General Settings.
 
 ---
 
@@ -643,6 +687,5 @@ surface.Release();
 
 displays the size of the surface to the player
 
-*See also:* [`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight),
-[`DrawingSurface.UseHighResCoordinates`](DrawingSurface#drawingsurfaceusehighrescoordinates)
+*See also:* [`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight)
 

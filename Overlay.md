@@ -6,6 +6,20 @@ Overlays may be created as *screen overlays* and *room overlays*. This defines t
 
 ---
 
+### `Overlay.BlendMode`
+
+```ags
+BlendMode Overlay.BlendMode
+```
+
+Gets/sets the blending mode for this overlay.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`BlendMode`](StandardEnums#blendmode)
+
+---
+
 ### `Overlay.CreateGraphical`
 
 *(Formerly known as `CreateGraphicOverlay`, which is now obsolete)*

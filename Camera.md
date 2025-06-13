@@ -263,3 +263,34 @@ while (Game.Camera.Y < (Room.Height - Game.Camera.Height))
 ```
 
 *See also:* [`Camera.SetAt`](Camera#camerasetat), [`Camera.SetSize`](Camera#camerasetsize), [`Camera.AutoTracking`](Camera#cameraautotracking), [`Camera.X`](Camera#camerax), [`Camera.Width`](Camera#camerawidth), [`Camera.Height`](Camera#cameraheight)
+
+---
+
+### `Camera.Rotation`
+
+```ags
+float Camera.Rotation;
+```
+
+Gets/sets the camera rotation in degrees.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Camera.Shader`
+
+```ags
+ShaderInstance* Camera.Shader
+```
+
+Gets/sets the shader of this camera.
+
+Example:
+
+```ags
+ShaderProgram wave = ShaderProgram.CreateFromFile("$DATA$/Shaders/wave.glsl");
+Game.Camera.Shader = wave.Default; // assign the default instance for the shader
+```
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.

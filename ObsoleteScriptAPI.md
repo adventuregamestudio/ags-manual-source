@@ -15,7 +15,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `AreObjectsColliding` | [`Object.IsCollidingWithObject`](Object#objectiscollidingwithobject) | |
 | `Button.GetText` | [`Button.Text`](Button#buttontext) | |
 | `Button.SetText` | [`Button.Text`](Button#buttontext) | |
-| `CDAudio` | [`Use AudioClips`](Multimedia#cdaudio) | |
+| `CDAudio` | [`Use AudioClips`](AudioClip#audioclipplay) | |
 | `CentreGUI` | [`GUI.Centre`](GUI#guicentre) | |
 | `ChangeCharacterView` | [`Character.ChangeView`](Character#characterchangeview) | |
 | `ChangeCursorGraphic` | [`Mouse.ChangeModeGraphic`](Mouse#mousechangemodegraphic) | |
@@ -31,6 +31,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `character[].inv` | [`Character.InventoryQuantity[]`](Character#characterinventoryquantity) | |
 | `character[].loop` | [`Character.Loop`](Character#characterloop) | |
 | `character[].name` | [`Character.Name`](Character#charactername) | |
+| `character[].on` | [`Character.Enabled`](Character#characterenabled) | |
 | `character[].prevroom` | [`Character.PreviousRoom`](Character#characterpreviousroom) | |
 | `character[].room` | [`Character.Room`](Character#characterroom) | |
 | `character[].talkview` | [`Character.SpeechView`](Character#characterspeechview) | |
@@ -39,6 +40,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `CreateGraphicOverlay` | [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical) | |
 | `CreateTextOverlay` | [`Overlay.CreateTextual`](Overlay#overlaycreatetextual) | |
 | `DeleteSprite` | [`DynamicSprite.Delete`](DynamicSprite#dynamicspritedelete) | |
+| `DialogOptionsRenderingInfo.HasAlphaChannel` | All surfaces have alpha now | 4.0.0 |
 | `DisableCursorMode` | [`Mouse.DisableMode`](Mouse#mousedisablemode) | |
 | `DisableHotspot` | [`Hotspot.Enabled`](Hotspot#hotspotenabled) | |
 | `DisableRegion` | [`Region.Enabled`](Region#regionenabled) | |
@@ -46,7 +48,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `DisplaySpeechAt` | [`Character.SayAt`](Character#charactersayat) | |
 | `DisplaySpeechBackground` | [`Character.SayBackground`](Character#charactersaybackground) | |
 | `DisplayThought` | [`Character.Think`](Character#characterstopmoving) | |
-| [`DrawingSurface.UseHighResCoordinates`](DrawingSurface#drawingsurfaceusehighrescoordinates) | This property was used to multiply the coordinates by 2 in 640x400/480 resolution games. | 3.5.0 |
+| `DrawingSurface.UseHighResCoordinates` | This property was used to multiply the coordinates by 2 in 640x400/480 resolution games. | 3.5.0 |
 | `EnableCursorMode` | [`Mouse.EnableMode`](Mouse#mouseenablemode) | |
 | `EnableHotspot` | [`Hotspot.Enabled`](Hotspot#hotspotenabled) | |
 | `EnableRegion` | [`Region.Enabled`](Region#regionenabled) | |

@@ -65,6 +65,20 @@ Optional *volume* parameter is supported only by **AGS 3.6.0** and later version
 
 ---
 
+### `Object.BlendMode`
+
+```ags
+BlendMode Object.BlendMode
+```
+
+Gets/sets the blending mode for this object.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`BlendMode`](StandardEnums#blendmode)
+
+---
+
 ### `Object.GetAtRoomXY`
 
 ```ags

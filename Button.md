@@ -263,6 +263,26 @@ will display btnPlay's current sprite number.
 
 ---
 
+### `Button.GraphicFlip`
+
+```ags
+eFlipDirection Button.GraphicFlip;
+```
+
+Gets/sets the flip direction of the button's graphic.
+
+Example:
+
+```ags
+btnPlay.GraphicFlip = eFlipLeftToRight;
+```
+
+will mirror btnPlay's sprite horizontally.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Button.MouseOverGraphic`
 
 *(Formerly part of `GetButtonPic`, which is now obsolete)*<br>

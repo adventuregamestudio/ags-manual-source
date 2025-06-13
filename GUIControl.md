@@ -7,6 +7,18 @@ has its own specific section.
 
 ---
 
+### `GUIControl.BlendMode`
+
+```ags
+BlendMode GUIControl.BlendMode
+```
+
+Gets an integer custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `GUIControl.GetAtScreenXY`
 
 *(Formerly known as `GetGUIObjectAt`, which is now obsolete)*

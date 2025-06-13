@@ -1,5 +1,19 @@
 ## `GUI` functions and properties
 
+### `GUI.BlendMode`
+
+```ags
+BlendMode GUI.BlendMode
+```
+
+Gets/sets the blending mode for this GUI.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`BlendMode`](StandardEnums#blendmode)
+
+---
+
 ### `GUI.Centre`
 
 *(Formerly known as `CentreGUI`, which is now obsolete)*

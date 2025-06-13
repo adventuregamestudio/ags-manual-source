@@ -207,7 +207,7 @@ obsolete)*<br>
 *(Formerly known as `String.Contains`, which is now obsolete)*
 
 ```ags
-String.IndexOf(string needle)
+String.IndexOf(string needle, optional StringCompareStyle style, optional int index, optional int count)
 ```
 
 Checks to see if NEEDLE is contained within the specified string.
@@ -231,8 +231,11 @@ else {
 }
 ```
 
+*Compatiblity:* Optional `style`, `index`, and `count` parameteres are supportet by **AGS 4.0.0** and later.
+
 *See also:* [`String.EndsWith`](String#stringendswith),
-[`String.StartsWith`](String#stringstartswith)
+[`String.StartsWith`](String#stringstartswith),
+[`StringCompareStyle`](StandardEnums#stringcomparestyle)
 
 ---
 
@@ -270,6 +273,21 @@ will set the myString variable to "Some text" if it is null or empty
 (which it is).
 
 *Compatibility:* Supported by **AGS 3.0.1** and later versions.
+
+---
+
+### `String.Join`
+
+```ags
+static String.Join(String[], String separator)
+```
+
+Joins a dynamic array of strings using the separator in a single string
+
+**NOTE:** This function is static, which means you do not call it on an
+existing string variable, but use `String.Join()` instead. 
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -368,6 +386,20 @@ will display "Old: Hello, new: Hemlo".
 
 ---
 
+### `String.Split`
+
+```ags
+String[] String.Split(String separator, optional StringSplitOptions options);
+```
+
+Creates a dynamic array made of substrings of the string each time the separator occurred.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`StringSplitOptions`](StandardEnums#stringsplitoptions)
+
+---
+
 ### `String.StartsWith`
 
 ```ags
@@ -424,6 +456,18 @@ will display "Original: Hello World!, Substring: lo Wo".
 
 *See also:* [`String.Append`](String#stringappend),
 [`String.Chars`](String#stringchars)
+
+---
+
+### `String.Trim`
+
+```ags
+String.Trim()
+```
+
+Returns a new string without any leading or trailing whitespace.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

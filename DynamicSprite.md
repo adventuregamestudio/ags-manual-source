@@ -25,7 +25,7 @@ that object's property will retain the invalid sprite's number, but the object w
 
 ```ags
 static DynamicSprite* DynamicSprite.Create(int width, int height,
-                                           optional bool hasAlphaChannel)
+                                           optional ColorFormat color_format)
 ```
 
 Creates a new blank dynamic sprite of the specified size. It will
@@ -57,6 +57,8 @@ globalSprite = sprite; // keep the sprite in a global variable
 ```
 
 creates a 50x30 sprite, draws a white dot in the middle, then assigns to a global variable to keep the sprite, and sets this sprite's ID to an Object.
+
+*Compatibility:* Optional `color_format` parameter is supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`DynamicSprite.Delete`](DynamicSprite#dynamicspritedelete),
 [`DynamicSprite.Graphic`](DynamicSprite#dynamicspritegraphic),
@@ -113,18 +115,12 @@ onto the top left corner of the background image. Then disposes the temporary sp
 ```ags
 static DynamicSprite* DynamicSprite.CreateFromDrawingSurface(
     DrawingSurface* surface, int x, int y,
-    int width, int height)
+    int width, int height),
 ```
 
 Creates a new dynamic sprite containing a copy of the specified portion
 of the drawing surface. This allows you to easily create new sprites
 from portions of other sprites.
-
-**NOTE:** The *x*, *y*, *width* and *height* parameters respect the
-DrawingSurface's
-[`UseHighResCoordinates`](DrawingSurface#drawingsurfaceusehighrescoordinates)
-setting, so make sure that the type of co-ordinates that you are using
-match up with what the drawing surface expects.
 
 Use the [`Graphic`](DynamicSprite#dynamicspritegraphic) property of the
 DynamicSprite to interface with other commands and to use the new sprite
@@ -158,7 +154,7 @@ changes object's image to be just the top-left corner of what it previously was.
 
 ```ags
 static DynamicSprite* DynamicSprite.CreateFromExistingSprite(
-    int slot, optional bool preserveAlphaChannel)
+    int slot, optional ColorFormat format)
 ```
 
 Creates a new dynamic sprite containing a copy of the specified sprite
@@ -198,6 +194,8 @@ globalSprite = newSprite; // keep the sprite in a global variable
 ```
 
 creates a copy of object's current sprite, draws a line across, and assigns back to the same object.
+
+*Compatibility:* Optional `color_format` parameter is supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`DynamicSprite.Delete`](DynamicSprite#dynamicspritedelete),
 [`DynamicSprite.Resize`](DynamicSprite#dynamicspriteresize)

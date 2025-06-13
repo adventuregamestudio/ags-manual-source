@@ -230,6 +230,70 @@ again.
 
 ---
 
+### `AudioClip.GetProperty`
+
+```ags
+int AudioClip.GetProperty(const string property)
+```
+
+Gets an integer custom property for this item.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`AudioClip.SetProperty`](AudioClip#audioclipsetproperty),
+[`AudioClip.GetTextProperty`](AudioClip#audioclipgettextproperty),
+[`AudioClip.SetTextProperty`](AudioClip#audioclipsettextproperty)
+
+---
+
+### `AudioClip.GetTextProperty`
+
+```ags
+int AudioClip.GetTextProperty(const string property)
+```
+
+Gets a text custom property for this item.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`AudioClip.GetProperty`](AudioClip#audioclipgetproperty),
+[`AudioClip.SetProperty`](AudioClip#audioclipsetproperty),
+[`AudioClip.SetTextProperty`](AudioClip#audioclipsettextproperty)
+
+---
+
+### `AudioClip.SetProperty`
+
+```ags
+bool AudioClip.SetProperty(const string property, int value)
+```
+
+Sets an integer custom property for this item.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`AudioClip.GetProperty`](AudioClip#audioclipgetproperty),
+[`AudioClip.GetTextProperty`](AudioClip#audioclipgettextproperty),
+[`AudioClip.SetTextProperty`](AudioClip#audioclipsettextproperty)
+
+---
+
+### `AudioClip.SetTextProperty`
+
+```ags
+bool AudioClip.SetTextProperty(const string property, const string value)
+```
+
+Sets a text custom property for this item.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`AudioClip.GetProperty`](AudioClip#audioclipgetproperty),
+[`AudioClip.SetProperty`](AudioClip#audioclipsetproperty),
+[`AudioClip.GetTextProperty`](AudioClip#audioclipgettextproperty)
+
+---
+
 ### `AudioClip.ID`
 
 ```ags

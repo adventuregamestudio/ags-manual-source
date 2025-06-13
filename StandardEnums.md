@@ -101,6 +101,17 @@ enum BlendMode {
 };
 ```
 
+*Compatibility:* supported by **AGS 4.0.0** and higher.
+
+*Used by:* [`Character.BlendMode`](Character#characterblendmode),
+[`DrawingSurface.BlendImage`](DrawingSurface#drawingsurfaceblendimage),
+[`DrawingSurface.BlendSurface`](DrawingSurface#drawingsurfaceblendsurface),
+[`DrawingSurface.BlendMode`](DrawingSurface#drawingsurfaceblendmode),
+[`GUI.BlendMode`](GUI#guiblendmode),
+[`GUIControl.BlendMode`](GUIControl#guicontrolblendmode),
+[`Object.BlendMode`](Object#objectblendmode),
+[`Overlay.BlendMode`](Overlay#overlayblendmode)
+
 ---
 
 ### `BlockingStyle`
@@ -124,27 +135,6 @@ enum BlockingStyle {
 
 ---
 
-### `eCDAudioFunction`
-
-```ags
-enum eCDAudioFunction {
-    eCDIsDriverPresent,
-    eCDGetPlayingStatus,
-    eCDPlayTrack,
-    eCDPausePlayback,
-    eCDResumePlayback,
-    eCDGetNumTracks,
-    eCDEject,
-    eCDCloseTray,
-    eCDGetCDDriveCount,
-    eCDSelectActiveCDDrive
-};
-```
-
-*Used by:* [`CDAudio`](Multimedia#cdaudio)
-
----
-
 ### `CharacterDirection`
 
 ```ags
@@ -163,6 +153,23 @@ enum CharacterDirection {
 
 *Used by:* [`Character.ChangeRoom`](Character#characterchangeroom),
 [`Character.FaceDirection`](Character#characterfacedirection)
+
+---
+
+### `ColorFormat`
+
+```ags
+enum ColorFormat
+{
+  eColorFmt_Default = 0,
+  eColorFmt_8bit    = 8
+};
+```
+
+*Compatibility:* supported by **AGS 4.0.0** and higher.
+
+*Used by:* [`DynamicSprite.Create`](DynamicSprite#dynamicspritecreate),
+[`DynamicSprite.CreateFromExistingSprite`](DynamicSprite#dynamicspritecreatefromexistingsprite)
 
 ---
 
@@ -318,7 +325,7 @@ enum EventType {
 ```
 
 *Compatibility:* the `eEventEnterRoomAfterFadein` is supported by **AGS 3.6.0** and later versions.
-The `eEventLeaveRoomAfterFadeout` and `eEventGameSaved` is supported by **AGS 3.6.1** and later versions.
+The `eEventLeaveRoomAfterFadeout` and `eEventGameSaved` are supported by **AGS 3.6.1** and later versions.
 
 *Passed into:* on_event
 
@@ -420,6 +427,59 @@ and instead will draw no text, and return 0 size for the text.
 
 ---
 
+### `eGamepad_Axis`
+
+```ags
+enum eGamepad_Axis
+{
+    eGamepad_AxisInvalid=0,
+    eGamepad_AxisLeftX,
+    eGamepad_AxisLeftY,
+    eGamepad_AxisRightX,
+    eGamepad_AxisRightY,
+    eGamepad_AxisTriggerLeft,
+    eGamepad_AxisTriggerRight,
+    eGamepad_AxisCount
+};
+```
+
+*Compatibility:* supported by **AGS 4..0** and higher.
+
+*Used by:* [`Joystick.GetGamepadAxis`](Joystick#joystickgetgamepadaxis)
+
+---
+
+### `eGamepad_Button`
+
+```ags
+enum eGamepad_Button
+{
+    eGamepad_ButtonInvalid=0,
+    eGamepad_ButtonA,
+    eGamepad_ButtonB,
+    eGamepad_ButtonX,
+    eGamepad_ButtonY,
+    eGamepad_ButtonBack,
+    eGamepad_ButtonGuide,
+    eGamepad_ButtonStart,
+    eGamepad_ButtonLeftStick,
+    eGamepad_ButtonRightStick,
+    eGamepad_ButtonLeftShoulder,
+    eGamepad_ButtonRightShoulder,
+    eGamepad_ButtonDpadUp,
+    eGamepad_ButtonDpadDown,
+    eGamepad_ButtonDpadLeft,
+    eGamepad_ButtonDpadRight,
+    eGamepad_ButtonCount
+};
+```
+
+*Compatibility:* supported by **AGS 4..0** and higher.
+
+*Used by:* [`Joystick.IsGamepadButtonDown`](Joystick#joystickisgamepadbuttondown)
+
+---
+
 ### `GUIPopupStyle`
 
 ```ags
@@ -461,10 +521,12 @@ Note that HorizontalAlignment's values match the first values of Alignment enume
 ```ags
 enum InputType
 {
-    eInputNone     = 0x00000000,
-    eInputKeyboard = 0x02000000,
-    eInputMouse    = 0x04000000,
-    eInputAny      = 0xFF000000
+  eInputNone     = 0x00000000,
+  eInputKeyboard = 0x02000000,
+  eInputMouse    = 0x04000000,
+  eInputGamepad  = 0x08000000,
+  eInputTouch    = 0x10000000,
+  eInputAny      = 0xFF000000
 };
 ```
 
@@ -478,8 +540,33 @@ if (type & eInputKeyboard)
 will execute some code if *type* variable contains *at least* "eInputKeyboard".
 
 *Compatibility:* supported by **AGS 3.6.0** and higher.
+The `eInputGamepad` and `eInputTouch` are supported by **AGS 4.0.0** and higher.
 
 *Used by:* [Wait functions](Globalfunctions_Wait)
+
+---
+
+### `eJoystick_Hat`
+
+```ags
+enum eJoystick_Hat
+{
+    eJoystick_HatInvalid = -1,
+    eJoystick_HatCentered = 0,
+    eJoystick_HatUp = 0x01,
+    eJoystick_HatRight = 0x02,
+    eJoystick_HatDown = 0x04,
+    eJoystick_HatLeft = 0x08,
+    eJoystick_HatRightUp = 0x03,
+    eJoystick_HatRightDown = 0x06,
+    eJoystick_HatLeftUp = 0x09,
+    eJoystick_HatLeftDown = 0x0C,
+};
+```
+
+*Compatibility:* supported by **AGS 4.0.0** and higher.
+
+*Used by:* [Joystick.GetHat](Joystick#joystickgethat)
 
 ---
 
@@ -560,6 +647,22 @@ enum eOperatingSystem {
 
 ---
 
+### `PlaybackState`
+
+```ags
+enum PlaybackState {
+  ePlaybackOn = 2,
+  ePlaybackPaused = 3,
+  ePlaybackStopped = 4
+};
+```
+
+*Compatibility:* supported by **AGS 4.0.0** and higher.
+
+*Used by:* [`VideoPlayer.State`](VideoPlayer#videoplayerstate)
+
+---
+
 ### `RenderLayer`
 
 ```ags
@@ -627,11 +730,15 @@ The `RestoredSaveResult` enum can be combined like flags, using bitwise operator
 
 ```ags
 enum RoundDirection {
-    eRoundDown,
-    eRoundNearest,
-    eRoundUp
+  eRoundDown,
+  eRoundNearest,
+  eRoundUp,
+  eRoundTowardsZero,
+  eRoundAwayFromZero4
 };
 ```
+
+*Compatibility:* The `eRoundTowardsZero` and `eRoundAwayFromZero4` are supported by **AGS 4.0.0** and higher.
 
 *Used by:* [`FloatToInt`](Maths#floattoint)
 
@@ -786,7 +893,24 @@ enum StringCompareStyle {
 [`String.CompareTo`](String#stringcompareto),
 [`String.EndsWith`](String#stringendswith),
 [`String.Replace`](String#stringreplace),
-[`String.StartsWith`](String#stringstartswith)
+[`String.StartsWith`](String#stringstartswith),
+[`String.IndexOf`](String#stringindexof)
+
+---
+
+### `StringSplitOptions`
+
+```ags
+enum StringSplitOptions {
+    eStrSplit_None = 0,
+    eStrSplit_RemoveEmpty = 0x0001,
+    eStrSplit_Trim = 0x0002
+};
+```
+
+*Compatibility:* supported by **AGS 4.0.0** and higher.
+
+*Used by:* [`String.Split`](String#stringsplit)
 
 ---
 

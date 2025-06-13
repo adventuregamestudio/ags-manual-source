@@ -27,14 +27,6 @@ values. You may consider setting them to "Proper alpha blending", but
 that may alter the appearance of your game. New projects will have
 "proper blending" mode set by default.
 
-To support alpha blending a new
-[`HasAlphaChannel`](DialogOptionsRenderingInfo#dialogoptionsrenderinginfohasalphachannel)
-property has been added to DialogOptionsRenderingInfo class. This
-property must be set it in
-[`dialog_options_get_dimensions`](CustomDialogOptions)
-function, the one where you normally define size and position of the
-drawing surface.
-
 **System limits update**
 
 The maximal number of Fonts has been increased from 15 to 30.

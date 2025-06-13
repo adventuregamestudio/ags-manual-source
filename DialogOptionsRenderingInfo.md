@@ -121,41 +121,6 @@ Example: For an example please see the
 
 ---
 
-### `DialogOptionsRenderingInfo.HasAlphaChannel`
-
-```ags
-int DialogOptionsRenderingInfo.HasAlphaChannel;
-```
-
-Gets/sets whether the dialog options's drawing surface will have alpha
-channel.
-
-This can only be set within the `dialog_options_get_dimensions`
-function, but can be read in other functions in order to render the
-options.
-
-Example:
-
-```ags
-void dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
-{
-    info.Width = 300;
-    info.Height = 150;
-    info.HasAlphaChannel = true;
-}
-```
-
-creates a 300x150 size area with alpha channel to draw the dialog
-options in.
-
-*Compatibility:* Supported by **AGS 3.3.0** and later versions.
-
-*See also:*
-[`DialogOptionsRenderingInfo.Height`](DialogOptionsRenderingInfo#dialogoptionsrenderinginfoheight),
-[`DialogOptionsRenderingInfo.Width`](DialogOptionsRenderingInfo#dialogoptionsrenderinginfowidth)
-
----
-
 ### `DialogOptionsRenderingInfo.Height`
 
 ```ags

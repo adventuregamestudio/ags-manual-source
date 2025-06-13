@@ -279,7 +279,7 @@ will set the myString variable to "Some text" if it is null or empty
 ### `String.Join`
 
 ```ags
-static String.Join(String[], String separator)
+static String.Join(String[], string separator)
 ```
 
 Joins a dynamic array of strings using the separator in a single string
@@ -389,7 +389,7 @@ will display "Old: Hello, new: Hemlo".
 ### `String.Split`
 
 ```ags
-String[] String.Split(String separator, optional StringSplitOptions options);
+String[] String.Split(string separator, optional StringSplitOptions options);
 ```
 
 Creates a dynamic array made of substrings of the string each time the separator occurred.

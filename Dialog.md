@@ -62,7 +62,7 @@ Stops running dialog when player presses Escape key.
 ### `Dialog.AreOptionsDisplayed`
 
 ```ags
-static readonly attribute bool Dialog.AreOptionsDisplayed
+static readonly bool Dialog.AreOptionsDisplayed
 ```
 
 Returns `true` if dialog options are currently displayed on the screen, or `false` otherwise.
@@ -109,7 +109,7 @@ In this example the player character will be locked to a view VIEW_IDLE_WHILE_DI
 ### `Dialog.CurrentDialog`
 
 ```ags
-static readonly attribute Dialog* Dialog.CurrentDialog
+static readonly Dialog* Dialog.CurrentDialog
 ```
 
 Gets the currently running dialog. Returns `null` if no dialog is currently active.
@@ -171,7 +171,7 @@ In this example, the script starts a timer whenever the dShopkeeper dialog start
 ### `Dialog.ExecutedOption`
 
 ```ags
-static readonly attribute int Dialog.ExecutedOption
+static readonly int Dialog.ExecutedOption
 ```
 
 Gets the currently executed dialog option, or `-1` if none is being executed.

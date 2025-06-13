@@ -537,7 +537,8 @@ it onto the room background at (100,100).
 
 *See also:* [`DynamicSprite.Crop`](DynamicSprite#dynamicspritecrop),
 [`DynamicSprite.Resize`](DynamicSprite#dynamicspriteresize),
-[`DynamicSprite.Rotate`](DynamicSprite#dynamicspriterotate)
+[`DynamicSprite.Rotate`](DynamicSprite#dynamicspriterotate),
+[`eFlipDirection`](StandardEnums#eflipdirection)
 
 ---
 

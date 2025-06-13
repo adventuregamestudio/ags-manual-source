@@ -381,9 +381,10 @@ enum FileSortStyle
 
 ```ags
 enum eFlipDirection {
-    eFlipLeftToRight,
-    eFlipUpsideDown,
-    eFlipBoth
+    eFlipNone = 0,
+    eFlipLeftToRight = 1,
+    eFlipUpsideDown = 2,
+    eFlipBoth = 3
 };
 ```
 

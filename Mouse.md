@@ -115,6 +115,18 @@ This will simulate user click at (100,100).
 
 ---
 
+### `Mouse.CursorShader`
+
+```ags
+static ShaderInstance* Mouse.CursorShader
+```
+
+Gets/sets the shader applied to the mouse cursor.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Mouse.DisableMode`
 
 *(Formerly known as `DisableCursorMode`, which is now obsolete)*

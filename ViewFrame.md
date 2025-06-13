@@ -5,10 +5,10 @@
 *(Formerly part of `GetGameParameter`, which is now obsolete)*
 
 ```ags
-readonly bool ViewFrame.Flipped
+eFlipDirection ViewFrame.Flipped
 ```
 
-Gets whether the frame was set to Flipped in the editor.
+Gets/sets whether this frame is flipped.
 
 Example:
 
@@ -22,8 +22,11 @@ else {
 }
 ```
 
+*Compatibility:* Since **AGS 4.0.0** it now accepts an `eFlipDirection` value instead of `bool`.
+
 *See also:* [`Game.GetViewFrame`](Game#gamegetviewframe),
-[`ViewFrame.Graphic`](ViewFrame#viewframegraphic)
+[`ViewFrame.Graphic`](ViewFrame#viewframegraphic),
+[`eFlipDirection`](StandardEnums#eflipdirection)
 
 ---
 
@@ -139,10 +142,10 @@ Display("This ViewFrame is view %d, loop %d, frame %d",
 *(Formerly part of `GetGameParameter`, which is now obsolete)*
 
 ```ags
-readonly int ViewFrame.Speed
+int ViewFrame.Speed
 ```
 
-Gets the speed setting of the view frame. This is 0 by default but may
+Gets/sets the speed setting of the view frame. This is 0 by default but may
 have been changed in the AGS Editor.
 
 Example:
@@ -151,6 +154,8 @@ Example:
 ViewFrame *frame = Game.GetViewFrame(WALKING, 2, 4);
 Display("This frame has speed %d.", frame.Speed);
 ```
+
+*Compatibility:* the value can be set since **AGS 4.0.0** and later versions.
 
 *See also:* [`Game.GetViewFrame`](Game#gamegetviewframe)
 
@@ -178,3 +183,26 @@ Display("This ViewFrame is view %d, loop %d, frame %d",
 [`ViewFrame.Loop`](ViewFrame#viewframeloop),
 [`ViewFrame.Frame`](ViewFrame#viewframeframe)
 
+---
+
+### `ViewFrame.XOffset`
+
+```ags
+int ViewFrame.XOffset
+```
+
+- [ ] Gets/sets the relative x offset applied to this frame.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `ViewFrame.YOffset`
+
+```ags
+int ViewFrame.YOffset
+```
+
+- [ ] Gets/sets the relative y offset applied to this frame.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.

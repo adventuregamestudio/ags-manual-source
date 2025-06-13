@@ -146,6 +146,18 @@ will draw a bright green line onto the room background
 
 ---
 
+### `Game.GetColorFromRGBA`
+
+```ags
+static int Game.GetColorFromRGBA(int red, int green, int blue, int alpha)
+```
+
+ Gets the AGS Colour Number for the specified RGBA colour.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Game.GetFrameCountForLoop`
 
 *(Formerly part of `GetGameParameter`, which is now obsolete)*
@@ -576,6 +588,42 @@ This function is similar to [PrecacheSprite](Game#gameprecachesprite), but simpl
 
 ---
 
+### `Game.RoomCount`
+
+```ags
+readonly static int Game.RoomCount
+```
+
+Gets the total number of the rooms in game.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Game.RoomNumbers`
+
+```ags
+readonly static int Game.RoomNumbers[]
+```
+
+Gets the existing room numbers by a sequential index (from 0 to RoomCount - 1); returns -1 if index is not valid.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Game.RoomNames`
+
+```ags
+readonly static String Game.RoomNames[]
+```
+
+Gets the room's name (description) by the room's number; returns null if such room does not exist.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Game.ResetDoOnceOnly`
 
 ```ags
@@ -812,6 +860,18 @@ This simulates a "space" key press.
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
 *See also:* [`Mouse.Click`](Mouse#mouseclick), [List of supported key codes](Keycodes#key-code-table)
+
+---
+
+### `Game.SpriteColorDepth`
+
+```ags
+readonly static int Game.SpriteColorDepth[]
+```
+
+Gets/sets the default y/x ratio of character's facing directions, determining directional loop selection for all Characters in game.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

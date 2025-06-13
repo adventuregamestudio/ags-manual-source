@@ -191,6 +191,8 @@ Gets/sets the flip direction of this overlay.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
+*See also:* [`eFlipDirection`](StandardEnums#eflipdirection)
+
 ---
 
 ### `Overlay.Remove`

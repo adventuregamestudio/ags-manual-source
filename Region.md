@@ -84,6 +84,54 @@ will paint a rectangle for the region 4.
 
 ---
 
+### `Region.GetProperty`
+
+```ags
+int  Region.GetProperty(const string property)
+```
+
+Gets an integer custom property for this region.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Region.GetTextProperty`
+
+```ags
+String Region.GetTextProperty(const string property)
+```
+
+Gets a text custom property for this region.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Region.SetProperty`
+
+```ags
+bool Region.SetProperty(const string property, int value)
+```
+
+Sets an integer custom property for this region.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Region.SetTextProperty`
+
+```ags
+bool Region.SetTextProperty(const string property, const string value)
+```
+
+Sets a text custom property for this region.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Region.RunInteraction`
 
 *(Formerly known as `RunRegionInteraction`, which is now obsolete)*

@@ -87,6 +87,18 @@ Gets the native height of the game screen in pixels, which matches game resoluti
 
 ---
 
+### `Screen.Shader`
+
+```ags
+static ShaderInstance* Screen.Shader
+```
+
+Gets/sets the shader applied to the whole game screen.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Screen.Width`
 
 *(Replaces System.ScreenWidth, which is now obsolete)*<br>

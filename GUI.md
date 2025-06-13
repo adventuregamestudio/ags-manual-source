@@ -405,6 +405,78 @@ Makes a random control on gMyGUI invisible.
 
 ---
 
+### `GUI.GetProperty`
+
+```ags
+int  GUI.GetProperty(const string property)
+```
+
+Gets an integer custom property for this GUI.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUI.GetTextProperty`
+
+```ags
+String GUI.GetTextProperty(const string property)
+```
+
+Gets a text custom property for this GUI.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUI.SetProperty`
+
+```ags
+bool GUI.SetProperty(const string property, int value)
+```
+
+Sets an integer custom property for this GUI.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUI.SetTextProperty`
+
+```ags
+bool GUI.SetTextProperty(const string property, const string value)
+```
+
+Sets a text custom property for this GUI.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUI.GUIToScreenPoint`
+
+```ags
+Point \*GUI.GUIToScreenPoint(int guix, int guiy, bool clipToGUI = true)
+```
+
+Returns the point on screen corresponding to the given GUI coordinates.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUI.ScreenToGUIPoint`
+
+```ags
+Point \*GUI.ScreenToGUIPoint(int screenx, int screeny, bool clipToGUI = true)
+```
+
+Returns the point on GUI corresponding to the given screen coordinates.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `GUI.Height`
 
 ```ags
@@ -454,6 +526,18 @@ clickable.
 
 ---
 
+### `GUI.Rotation`
+
+```ags
+float GUI.Rotation
+```
+
+Gets/sets the GUI's image rotation in degrees.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `GUI.PopupStyle`
 
 ```ags
@@ -496,6 +580,54 @@ This property is ignored if GUI has a different style.
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
 *See also:* [`GUI.PopupStyle`](GUI#guipopupstyle), [`GUI.Shown`](GUI#guishown), [`GUI.Visible`](GUI#guivisible)
+
+---
+
+### `GUI.ScaleX`
+
+```ags
+float GUI.ScaleX
+```
+
+Gets/sets this GUI horizontal scaling.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUI.ScaleY`
+
+```ags
+float GUI.ScaleY
+```
+
+Gets/sets this GUI vertical scaling.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUI.SetScale`
+
+```ags
+GUI.SetScale(float x, float y)
+```
+
+Sets this GUI horizontal and vertical scaling
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUI.Shader`
+
+```ags
+ShaderInstance* GUI.Shader
+```
+
+Gets/sets the shader of this GUI.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

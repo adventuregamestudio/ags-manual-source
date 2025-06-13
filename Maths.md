@@ -381,6 +381,42 @@ calculates 4 to the power 3 (which is 64).
 
 ---
 
+### `Maths.Random`
+
+```ags
+static int Maths.Random(int limit)
+```
+
+Returns a random number in the range of 0 to LIMIT-1.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Maths.RandomFloat`
+
+```ags
+static float Maths.RandomFloat()
+```
+
+Returns a random float in the range of [0.0, 1.0) (including 0 but excluding 1).
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Maths.Round`
+
+```ags
+static float Maths.Round(float value, RoundDirection)
+```
+
+Rounds the given float towards chosen direction, and returns a result as a new float.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Maths.Sin`
 
 ```ags

@@ -867,6 +867,18 @@ will make object 2 ignore clicks from the player.
 
 ---
 
+### `Object.Enabled`
+
+```ags
+bool Object.Enabled
+```
+
+Gets/sets whether the object will be drawn and updated during the game update.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Object.Frame`
 
 ```ags
@@ -918,6 +930,18 @@ will change the object 2's image to the image stored in the sprite
 manager's slot 100.
 
 *See also:* [`Object.SetView`](Object#objectsetview)
+
+---
+
+### `Object.GraphicRotation`
+
+```ags
+float Object.GraphicRotation
+```
+
+Gets/sets the object's sprite rotation in degrees.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -1084,6 +1108,30 @@ will display the oDoor object's current loop number
 
 ---
 
+### `Object.MotionPath`
+
+```ags
+readonly MotionPath\* Object.MotionPath
+```
+
+Gets this object's current MotionPath, or null if it's not moving.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Object.MovePath`
+
+```ags
+Object.MovePath(Point\*[], int speed, optional BlockingStyle, optional RepeatStyle, optional Direction)
+```
+
+Moves the object along the path, ignoring walkable areas.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Object.Moving`
 
 *(Formerly known as `IsObjectMoving`, which is now obsolete)*
@@ -1184,6 +1232,18 @@ This property returns the actual current scaling at any given moment, whether it
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
 *See also:* [`Object.ManualScaling`](Object#objectmanualscaling)
+
+---
+
+### `Object.Shader`
+
+```ags
+ShaderInstance\* Object.Shader
+```
+
+Gets/sets the shader of this object.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -1384,6 +1444,18 @@ to being fully invisible.
 
 *See also:* [`Character.Transparency`](Character#charactertransparency),
 [`GUI.Transparency`](GUI#guitransparency)
+
+---
+
+### `Object.UseRegionTint`
+
+```ags
+bool Object.UseRegionTint
+```
+
+Gets/sets whether the object uses region tinting.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

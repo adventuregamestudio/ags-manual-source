@@ -242,6 +242,54 @@ will disable the *btnSaveGame* button.
 
 ---
 
+### `GUIControl.GetProperty`
+
+```ags
+int  GUIControl.GetProperty(const string property)
+```
+
+Gets an integer custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUIControl.GetTextProperty`
+
+```ags
+String GUIControl.GetTextProperty(const string property)
+```
+
+Gets a text custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUIControl.SetProperty`
+
+```ags
+bool GUIControl.SetProperty(const string property, int value)
+```
+
+Sets an integer custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUIControl.SetTextProperty`
+
+```ags
+bool GUIControl.SetTextProperty(const string property, const string value)
+```
+
+Sets a text custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `GUIControl.Height`
 
 ```ags
@@ -330,6 +378,18 @@ again using the niftier full pathing approach.
 
 ---
 
+### `GUIControl.Rotation`
+
+```ags
+float GUIControl.Rotation
+```
+
+Gets/sets the control's rotation in degrees.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `GUIControl.SendToBack`
 
 ```ags
@@ -391,6 +451,42 @@ GUI.
 [`GUIControl.SetSize`](GUIControl#guicontrolsetsize),
 [`GUIControl.X`](GUIControl#guicontrolx),
 [`GUIControl.Y`](GUIControl#guicontroly)
+
+---
+
+### `GUIControl.ScaleX`
+
+```ags
+float GUIControl.ScaleX
+```
+
+Gets/sets this control's horizontal scaling.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUIControl.ScaleY`
+
+```ags
+float GUIControl.ScaleY
+```
+
+Gets/sets this control's vertical scaling.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUIControl.SetScale`
+
+```ags
+GUIControl.SetScale(float x, float y)
+```
+
+Sets this control's horizontal and vertical scaling
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -598,6 +694,18 @@ Activating a control by calling `ActivateControl("btnOptions")` will log its scr
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
 *See also:* [`GUIControl.GetByName`](GUIControl#guicontrolgetbyname), [`GUIControl.Visible`](GUIControl#guicontrolvisible)
+
+---
+
+### `GUIControl.Shader`
+
+```ags
+ShaderInstance\* GUIControl.Shader
+```
+
+Gets/sets the shader of this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

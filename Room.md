@@ -21,6 +21,20 @@ If room 10 is valid, go to that room.
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
+---
+
+### `Room.FaceDirectionRatio`
+
+```ags
+static float Room.FaceDirectionRatio
+```
+
+Gets/sets the optional y/x ratio of character's facing directions, determining directional loop selection for each Character in the current room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Room.GetDrawingSurfaceForBackground`
 
 ```ags
@@ -131,6 +145,18 @@ will retrieve the room's "description" property then display it.
 
 ---
 
+### `Room.Name`
+
+```ags
+static readonly String Room.Name
+```
+
+Gets the current Room's name (description)
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Room.NearestWalkableArea`
 
 ```ags
@@ -150,6 +176,19 @@ Display("Nearest walkable area is at %d,%d", walk_pt.x, walk_pt.y);
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
 *See also:* [`Character.PlaceOnWalkableArea`](Character#characterplaceonwalkablearea)
+
+---
+
+
+### `Room.Number`
+
+```ags
+static readonly int Room.Number
+```
+
+Gets the current Room's number
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -271,6 +310,18 @@ if (Room.BackgroundFrames > 0)
 
 ---
 
+### `Room.BackgroundShader`
+
+```ags
+static ShaderInstance* Room.BackgroundShader
+```
+
+Gets/sets the current Room's background shader.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Room.BottomEdge`
 
 ```ags
@@ -330,6 +381,18 @@ Display("The current room size is %d x %d.", Room.Width, Room.Height);
 ```
 
 *See also:* [`Room.Width`](Room#roomwidth)
+
+---
+
+### `Room.Hotspots`
+
+```ags
+static readonly Hotspot *Room.Hotspots[]
+```
+
+Accesses the Hotspots in the current room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -421,6 +484,42 @@ Display("The current room contains %d objects.", Room.ObjectCount);
 
 ---
 
+### `Room.Objects`
+
+```ags
+static readonly Object *Room.Objects[]
+```
+
+Accesses the Objects in the current room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Room.PathFinder`
+
+```ags
+static readonly Pathfinder *Room.PathFinder
+```
+
+Gets the current Room's Pathfinder object that lets find route around walkable areas.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Room.Regions`
+
+```ags
+static readonly Region *Room.Regions[]
+```
+
+Accesses the Regions in the current room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Room.RightEdge`
 
 ```ags
@@ -460,6 +559,30 @@ Display("The current room's top edge is at %d.", Room.TopEdge);
 *See also:* [`Room.BottomEdge`](Room#roombottomedge),
 [`Room.LeftEdge`](Room#roomleftedge),
 [`Room.RightEdge`](Room#roomrightedge)
+
+---
+
+### `Room.WalkableAreas`
+
+```ags
+static readonly WalkableArea *Room.WalkableAreas[]
+```
+
+Accesses the Walkable areas in the current room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Room.Walkbehinds`
+
+```ags
+static readonly Walkbehind *Room.Walkbehinds[]
+```
+
+Accesses the Walk-behinds in the current room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

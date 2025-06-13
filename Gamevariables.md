@@ -33,8 +33,6 @@ game.narrator_speech | Which character ID to use for voice speech within Display
 game.no_textbg_when_voice | Normally 0. If 1, and the Sierra-style With Background speech style is in use, will change to the Sierra-style (no background) if a voice speech line is present.
 game.read_dialog_option_color | By default, -1. You can set this to a color number, in which case dialog options that the player has selected before will be displayed in this color.
 game.roomscript_finished | The on_call function has completed executing. (See [`CallRoomScript`](Globalfunctions_General#callroomscript))
-**game.score** | The player's score. To modify the score, use the [`GiveScore`](Globalfunctions_General#givescore) script function.
-game.score_sound | Sound effect to play when the player gets points, originally set in the editor.
 game.screenshot_height | The height of screenshot images when saved into save games. The largest you can have is the full screen size (game's native resolution), which gives the highest quality but the largest size for save game files. The default size for Screenshots is 160x100, so the default value for game.screenshot_height is 100. The minimal supported value for screenshot size is 16x16.
 game.screenshot_width | The width of screenshot images when saved into save games. As mentioned above, the default size for Screenshots is 160x100, so the default value for game.screenshot_width is 160.
 game.show_single_dialog_option | If only a single dialog option is available, show it anyway (default=0)
@@ -47,7 +45,6 @@ game.speech_text_gui | The textwindow GUI number used for sierra-style speech.
 game.text_align | Sets how text in message boxes and Sierra-style speech is aligned:<br>eAlignLeft: text aligned to left within message box (default)<br>eAlignCentre: text is centered within the message box<br>eAlignRight: text is right-aligned within the message box<br>These options do not affect LucasArts-style speech, which is always centered.
 game.text_shadow_color | Color used for speech text shadow (default 16).
 game.top_bar_XXXX | Customizations for [`DisplayTopBar`](Globalfunctions_Message#displaytopbar), see link for details
-game.total_score | Maximum possible score, initially set in the editor.
 game.used_mode | Cursor mode used with last click (use with "any click" events to find out which mode was used)
 **mouse.x** | Mouse X co-ordinate when the last game loop was run
 **mouse.y** | Mouse Y co-ordinate when the last game loop was run

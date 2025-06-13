@@ -73,9 +73,6 @@ on which event has occurred. The possible values of event are:
     eEventLeaveRoomAfterFadeout
             called when leaving a room, right after fade-out, but while room is still in memory
             DATA1 = room number they are leaving
-    eEventGotScore
-            called whenever the player's score changes
-            DATA1 = number of points they've received
     eEventGUIMouseDown
             called when a mouse button is pressed down over a GUI
             DATA1 = GUI number

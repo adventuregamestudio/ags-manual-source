@@ -102,13 +102,13 @@ Example:
 
 ```ags
 if (Game.DoOnceOnly("open cupboard")) {
-    GiveScore(5);
+    player.AddInventory(iBlueCup);
 }
 ```
 
 will give the player 5 points the first time this script is run.
 
-*See also:* [`Game.ResetDoOnceOnly`](Game#gameresetdoonceonly), [`GiveScore`](Globalfunctions_General#givescore)
+*See also:* [`Game.ResetDoOnceOnly`](Game#gameresetdoonceonly)
 
 ---
 

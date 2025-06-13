@@ -26,9 +26,6 @@ SetGameOption.
 -   **Game name** - your game's title. This string will be displayed at
     the window title, and also added to the game's
     executable properties.
--   **Maximum possible score** - the maximum score your game has, if you
-    are using score mechanics, such as [`GiveScore`](Globalfunctions_General#givescore)
-    script function.
 -   **Render sprites at screen resolution** - whether characters and
     objects should be scaled in screen pixels rather than game pixels.
     What this means is that when low-resolution game is run in larger
@@ -369,12 +366,6 @@ accessible in future versions.
 There used to be an option for Save Game integration with Windows Vista, it
 was called **Enhanced save games**. Since this feature support was removed in modern versions of
 Windows, this option has been removed since AGS 3.6.0 as well.
-
-### Sound
-
--   **Play sound when the player gets points** - controls whether a
-    sound effect is played when the player scores points. If so, you can
-    select an audio clip here (but you have to have some imported in your game before doing this).
 
 ### Text output
 

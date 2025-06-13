@@ -72,14 +72,11 @@ Token | Description
 --- | ---
 `@GAMENAME@` | The game's name, from General Settings or Game.Name property
 `@OVERHOTSPOT@` | The name of the location (hotspot, object, etc) which the cursor is over
-`@SCORE@` | The player's current score
-`@SCORETEXT@` | The text "Score: X of XX" with the relevant numbers filled in
-`@TOTALSCORE@` | The maximum possible score, specified on the General Settings pane
 
 Example:
 
 ```ags
-lblStatus.Text = "You have @SCORE@ out of @TOTALSCORE@ points.";
+lblStatus.Text = "Your cursor is over @OVERHOTSPOT@.";
 ```
 
 *See also:* [`Button.NormalGraphic`](Button#buttonnormalgraphic),

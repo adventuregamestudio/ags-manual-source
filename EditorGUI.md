@@ -110,11 +110,8 @@ Token | Description
 --- | ---
 `@GAMENAME@` | The game's name, specified on the Game Settings pane
 `@OVERHOTSPOT@` | The name of the hotspot which the cursor is over
-`@SCORE@` | The player's current score
-`@SCORETEXT@` | The text "Score: X of XX" with the relevant numbers filled in
-`@TOTALSCORE@` | The maximum possible score, specified on the Game Settings pane
 
-Example: `"You have @SCORE@ out of @TOTALSCORE@ points."`
+Example: `"Your cursor is over @OVERHOTSPOT@."`
 
 The Properties window also allows you to align the text to the left, to the
 right or center it, as well as change its font and color.

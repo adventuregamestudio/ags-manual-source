@@ -312,7 +312,6 @@ The `EngineValueID` follows the pattern `ENGINE_VALUE_<I,II,S,SI>_NAME`, where
 enum EventType {
     eEventLeaveRoom,
     eEventEnterRoomBeforeFadein,
-    eEventGotScore,
     eEventGUIMouseDown,
     eEventGUIMouseUp,
     eEventAddInventory,

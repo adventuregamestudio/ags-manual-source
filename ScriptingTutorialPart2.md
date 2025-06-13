@@ -228,20 +228,20 @@ fixed function, `on_event`:
 ```ags
 void on_event(EventType event, int data)
 {
-    if (event == eEventGotScore)
+    if (event == eEventAddInventory)
     {
         if (data == 5)
         {
-            aSpecialScoreSound.Play();
+            aSpecialItemSound.Play();
         }
-        Display("You just got %d points!", data);
+        Display("You just got an item!", data);
     }
 }
 ```
 
-With this script, whenever the player scores points, they will get a
-message telling them so. Also, if they happen to get 5 points at once,
-it will play audio clip *aSpecialScoreSound*.
+With this script, whenever the player adds an inventory item, they will get a
+message telling them so. Also, if they happen to get an inventory item of id 5,
+it will play audio clip *aSpecialItemSound*.
 
 As you can see, you use the function parameters just like any other
 script variables.

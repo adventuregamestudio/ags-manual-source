@@ -75,6 +75,8 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `game.num_inv_items` | [`InvWindow.ItemCount`](InvWindow#invwindowitemcount) | |
 | `game.room_height` | [`Room.Height`](Room#roomheight) | |
 | `game.room_width` | [`Room.Width`](Room#roomwidth) | |
+| `game.score` | use a global variable | |
+| `game.score_sound` | can be handled by script | |
 | `game.skip_speech_specific_key` | [`Speech.SkipKey`](Speech#speechskipkey) | |
 | `game.skipping_cutscene` | [`Game.SkippingCutscene`](Game#gameskippingcutscene) | |
 | `game.speech_music_drop` | [`Game.SetAudioTypeSpeechVolumeDrop`](Game#gamesetaudiotypespeechvolumedrop) | |

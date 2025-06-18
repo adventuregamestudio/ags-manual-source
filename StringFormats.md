@@ -22,9 +22,12 @@ Code | Description
 %f | Float (displays a float variable)
 %.Xf | Float to X decimal places
 %% | Display the percent character (i.e. no variable)
-[ | Inserts a new line into the message
+\n | Inserts a new line into the message
 
 **NOTE:** Since AGS 3.6.0 the `%c` format code may display Unicode characters.
+
+**NOTE:** Since AGS 4.0.0 the `[` character for new line has been removed, and no
+longer needs to be escaped to be displayed.
 
 Some examples:
 

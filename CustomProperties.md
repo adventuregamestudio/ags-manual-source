@@ -56,10 +56,22 @@ appear in the properties window for characters, objects, and so on.
 To access the properties from the script, there are various script
 functions. See their descriptions for how they work:
 
+[`AudioClip.GetProperty`](AudioClip#audioclipgetproperty)<br>
+[`AudioClip.GetTextProperty`](AudioClip#audioclipgettextproperty)<br>
+[`AudioClip.SetProperty`](AudioClip#audioclipsetproperty)<br>
+[`AudioClip.SetTextProperty`](AudioClip#audioclipsettextproperty)<br>
 [`Character.GetProperty`](Character#charactergetproperty)<br>
 [`Character.GetTextProperty`](Character#charactergettextproperty)<br>
 [`Character.SetProperty`](Character#charactersetproperty)<br>
 [`Character.SetTextProperty`](Character#charactersettextproperty)<br>
+[`GUI.GetProperty`](GUI#guigetproperty)<br>
+[`GUI.GetTextProperty`](GUI#guigettextproperty)<br>
+[`GUI.SetProperty`](GUI#guisetproperty)<br>
+[`GUI.SetTextProperty`](GUI#guisettextproperty)<br>
+[`GUIControl.GetProperty`](GUIControl#guicontrolgetproperty)<br>
+[`GUIControl.GetTextProperty`](GUIControl#guicontrolgettextproperty)<br>
+[`GUIControl.SetProperty`](GUIControl#guicontrolsetproperty)<br>
+[`GUIControl.SetTextProperty`](GUIControl#guicontrolsettextproperty)<br>
 [`Hotspot.GetProperty`](Hotspot#hotspotgetproperty)<br>
 [`Hotspot.GetTextProperty`](Hotspot#hotspotgettextproperty)<br>
 [`Hotspot.SetProperty`](Hotspot#hotspotsetproperty)<br>
@@ -72,10 +84,18 @@ functions. See their descriptions for how they work:
 [`Object.GetTextProperty`](Object#objectgettextproperty)<br>
 [`Object.SetProperty`](Object#objectsetproperty)<br>
 [`Object.SetTextProperty`](Object#objectsettextproperty)<br>
+[`Region.GetProperty`](Region#regiongetproperty)<br>
+[`Region.GetTextProperty`](Region#regiongettextproperty)<br>
+[`Region.SetProperty`](Region#regionsetproperty)<br>
+[`Region.SetTextProperty`](Region#regionsettextproperty)<br>
 [`Room.GetProperty`](Room#roomgetproperty)<br>
 [`Room.GetTextProperty`](Room#roomgettextproperty)<br>
 [`Room.SetProperty`](Room#roomsetproperty)<br>
-[`Room.SetTextProperty`](Room#roomsettextproperty)
+[`Room.SetTextProperty`](Room#roomsettextproperty)<br>
+[`WalkableArea.GetProperty`](WalkableArea#walkableareagetproperty)<br>
+[`WalkableArea.GetTextProperty`](WalkableArea#walkableareagettextproperty)<br>
+[`WalkableArea.SetProperty`](WalkableArea#walkableareasetproperty)<br>
+[`WalkableArea.SetTextProperty`](WalkableArea#walkableareasettextproperty)
 
 **NOTE:** Calling [`ResetRoom`](Globalfunctions_Room#resetroom) will reset that
 room's properties to default values, as well as that room's hotspot and

@@ -599,14 +599,6 @@ int DrawingSurface.GetPixel(int x, int y)
 
 Returns the AGS Color Number of the pixel at (X,Y) on the surface.
 
-**NOTE:** In high-color games, the first 32 color numbers have a
-special meaning due to an AGS feature which maintains compatibility with
-8-bit games. Therefore, if you draw onto the surface using a blue color
-number 0-31 you will get a different number when you GetPixel -- and in
-fact the color drawn may not be what you expect. To get around this,
-add 1 Red or Green component to adjust the color number out of this
-range.
-
 **NOTE:** This command is relatively slow. Don't use it to try and
 process an entire image.
 
@@ -621,6 +613,7 @@ surface.Release();
 displays the pixel color of the center pixel on the screen.
 
 *Compatibility:* Supported by **AGS 3.0.1** and later versions.
+Since **AGS 4.0.0** 32-bit colors are in the format `0xAARRGGBB`.
 
 *See also:*
 [`DrawingSurface.DrawingColor`](DrawingSurface#drawingsurfacedrawingcolor),

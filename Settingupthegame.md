@@ -10,15 +10,15 @@ palette setup and other things which do not depend on individual rooms.
 ### Palette setup
 
 The first thing you need to do when you create a new game is to decide
-whether you want to use 8-bit (palette-based) color or 32/16-bit
-(true-color / hi-color). If you want to use 32/16-bit color, you can
+whether you want to use 8-bit (palette-based) color or 32-bit
+(true-color). If you want to use 32-bit color, you can
 still use 256-color backgrounds and sprites if you want to, but the
 engine will only run in a 32-bit color resolution, thus slowing it
 down.
 
 If you want to use 8-bit, you need to set up the palette. This is
 because all sprite and background scene imports rely on the palette
-setup to be the same. You **CANNOT** use hi-color nor true-color
+setup to be the same. You **CANNOT** use true-color
 sprites or backgrounds in a 256-color game.
 
 All this means, use 8-bit color only when you know what you are doing or when
@@ -112,10 +112,10 @@ To overwrite an existing sprite, right-click the sprite and select
 background to the window and choose "Import new sprite".
 
 The graphic you choose to import must be at the same color depth as
-your game (i.e. if you are using hi-color backgrounds, your sprites must
-be hi-color, and vice versa). AGS will attempt to convert the image if
+your game (i.e. if you are using true-color backgrounds, your sprites must
+be true-color, and vice versa). AGS will attempt to convert the image if
 possible, but if your game is 256-color then the results of downgrading
-a hi-color image can be poor.
+a true-color image can be poor.
 
 Then, the Import Sprite window will appear. Here, you need to decide
 which portion of the image will be imported. You do this by

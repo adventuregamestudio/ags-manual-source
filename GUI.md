@@ -679,7 +679,7 @@ Setting this to 100 means the GUI is totally invisible, and lower values
 represent varying levels of translucency. Set it to 0 to stop the GUI
 being translucent.
 
-**NOTE:** Transparency only works in 16-bit and 32-bit color games.
+**NOTE:** Transparency only works in 32-bit color games.
 
 Some rounding is done internally when the transparency is stored --
 therefore, if you get the transparency after setting it, the value you

@@ -99,7 +99,7 @@ change these options again later.
 ### Color choices
 
 Now, at this stage we really need to decide whether we want to create a
-palette-based (8-bit, 256-color) game, or a hi-color (16-bit or 32-bit)
+palette-based (8-bit, 256-color) game, or a true-color (32-bit)
 game.
 
 256-color games are much more complicated to make due to having to deal
@@ -110,13 +110,13 @@ palette-cycling effects it's recommended that you stay away from making
 new 256-color games.
 
 - It's **highly recommended** that you go with 32-bit color since many modern
-computers don't support 8 or 16 bit screen modes. Also 32-bit color is required
+computers don't support 8 bit screen modes. Also 32-bit color is required
 for the use of alpha transparency.
 - Imported graphics are set to the chosen color depth. Should you change your mind
 later, you would have to re-import all the graphics.
 - If you are following this tutorial, then you need to stay with the 32-bit color choice.
 
-#### Creating a 16-bit or 32-bit color game
+#### Creating a 32-bit color game
 
 - **Setting the Color Depth:** Back on the **General Settings** pane, check out the very top option in the
 list. It's called "Color depth", and all you have to do is change it to

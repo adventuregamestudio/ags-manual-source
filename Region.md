@@ -185,7 +185,7 @@ For the meaning of all the parameters, see
 **NOTE:** The tint will be reset when the player leaves the room, so you
 need to use it in Player Enters Room if you want a permanent change.
 
-**NOTE:** This function only works in hi-color games.
+**NOTE:** This function only works in true-color games.
 
 **NOTE:** To remove the region tint, set the LightLevel property to 0.
 

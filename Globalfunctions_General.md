@@ -1389,7 +1389,7 @@ accordingly, right down to 0 which will draw everything black.
 The tint applied by this function is global. To turn it off, call this
 command again but pass the saturation as 0.
 
-**NOTE:** This function only works in hi-color games and with hi-color
+**NOTE:** This function only works in true-color games and with true-color
 sprites.
 
 **NOTE:** This function overrides any specific region light levels or

@@ -14,9 +14,7 @@ SetGameOption.
 
 -   **Color Depth** - the number of colors your game will use. Default
     is 32-bit, which lets you use all the range of colors contemporary
-    devices support. 16-bit is rather a compatibility setting, that will
-    reduce the size of your game resources at the cost of color
-    precision. 8-bit color mode is a special feature for making
+    devices support. 8-bit color mode is a special feature for making
     palette-based games. See also: [Palette setup](Settingupthegame#palette-setup),
     [Palette functions](Globalfunctions_Palette)
 -   **Developer name** - this will add the provided string to the game's
@@ -380,7 +378,7 @@ Windows, this option has been removed since AGS 3.6.0 as well.
     them look a lot better, but it has two drawbacks - firstly,
     anti-aliasing is significantly slower than normal rendering, so you
     might want an option to allow the player to turn it off. Second,
-    anti-aliasing only works in hi-color games (in 256-color games, the
+    anti-aliasing only works in true-color games (in 256-color games, the
     output will look blurred and unreadable).
 -   **Custom text-windows GUI** - allows you to customize the standard
     text window appearance in the game, using the specified interface

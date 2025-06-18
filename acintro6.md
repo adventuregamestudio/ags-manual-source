@@ -20,7 +20,7 @@ cursors, views, objects, etc.), you select an image to use from here.
 
 There are three ways to import your graphics; all by right-clicking within the Sprite Preview Window and choosing a context menu choice:
 1. **Import a new sprite** -  right-click on the background of the Sprite Preview Window and choose *"Import new sprite from file"*.
-2. **Paste new sprite from Clipboard** - If your game is hi-color, you'll have an option to paste from your clipboard memory.
+2. **Paste new sprite from Clipboard** - If your game is true-color, you'll have an option to paste from your clipboard memory.
 3. **Replace Sprite From File** - Allows you to overwrite an existing sprite with a new one. Perhaps you have finalized graphics to replace a temporary graphic.
 
 **NOTE:** The sprite graphics you import should not exceed the maximum

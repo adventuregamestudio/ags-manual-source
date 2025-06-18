@@ -712,7 +712,7 @@ after the tint has been set, it is not possible to remove it. If you
 call Tint again with different parameters, it will apply the new tint to
 the already tinted sprite from the first call.
 
-**NOTE:** This function only works with hi-color sprites.
+**NOTE:** This function only works with true-color sprites.
 
 Example:
 

@@ -186,7 +186,7 @@ readonly static int System.ColorDepth;
 
 Returns the **native** game's color depth. This is the overall game color depth setting, and it is possible for individual sprites or backgrounds to be different (although not recommended).
 
-**NOTE:** Be aware that for historical reasons, and similar to [`System.ScreenHeight`](System#systemscreenheight) and [`System.ScreenWidth`](System#systemscreenwidth), this is NOT the final color depth of a display mode, but the internal color depth of a game. For instance, a game may have a 8-bit or 16-bit native color depth, but be displayed in a 32-bit mode.
+**NOTE:** Be aware that for historical reasons, and similar to [`System.ScreenHeight`](System#systemscreenheight) and [`System.ScreenWidth`](System#systemscreenwidth), this is NOT the final color depth of a display mode, but the internal color depth of a game. For instance, a game may have a 8-bit native color depth, but be displayed in a 32-bit mode.
 
 The native color depth may be useful to know, for example, when you are writing a script module performing raw drawing: then you'd know which ranges of colors will work.
 

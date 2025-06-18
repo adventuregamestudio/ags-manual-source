@@ -459,7 +459,7 @@ void GetScreenDimensions (int *width, int *height, int *coldepth);
 
 Fills in the supplied variables with the game's **native** screen resolution. You can pass any of the parameters as NULL if you don't want to know them. Color depth is reported in bits (8, 16 or 32).
 
-**NOTE:** this is native resolution of the game, NOTE the final display mode. For example, 320x200 games may be run scaled up to 1920x1080, and 8-bit and 16-bit games may be displayed in 32-bit display mode. This function only tells the game's internal parameters, and therefore is mostly useful if your plugin is doing drawing over a "virtual screen" bitmap (see [GetVirtualScreen()](EnginePluginRun-timeAPI#iagsenginegetvirtualscreen)).
+**NOTE:** this is native resolution of the game, NOTE the final display mode. For example, 320x200 games may be run scaled up to 1920x1080, and 8-bit games may be displayed in 32-bit display mode. This function only tells the game's internal parameters, and therefore is mostly useful if your plugin is doing drawing over a "virtual screen" bitmap (see [GetVirtualScreen()](EnginePluginRun-timeAPI#iagsenginegetvirtualscreen)).
 
 _Added in version: 3_
 
@@ -490,7 +490,7 @@ void GetBitmapDimensions (BITMAP *bmp, int *width, int *height, int *coldepth);
 
 Fills in the supplied integer variables with the properties of the specified bitmap. You can pass any of the last three parameters as NULL if you don't want to know them.
 
-`width` is the width of the bitmap, in pixels. `height` is the height of the bitmap, in pixels. `coldepth` is the color depth of the bitmap. Note that this is not necessarily the same as the game color depth, since it is possible to use 256-color backgrounds in a hi-color game. Before doing any direct bitmap drawing, you should check this to make sure that you cast the pointer correctly.
+`width` is the width of the bitmap, in pixels. `height` is the height of the bitmap, in pixels. `coldepth` is the color depth of the bitmap. Note that this is not necessarily the same as the game color depth, since it is possible to use 256-color backgrounds in a true-color game. Before doing any direct bitmap drawing, you should check this to make sure that you cast the pointer correctly.
 
 _Added in version: 4_
 
@@ -851,9 +851,7 @@ Converts `color`, as specified in the AGS Editor, to the appropriate raw pixel c
 
 If the user is running 8-bit color, the value is returned unchanged.
 
-If the user is running 16-bit color, the value is returned unchanged _unless_ it is less than 32, in which case it is converted to be the appropriate locked color from the editor.
-
-If the user is running 15-bit color, the value is converted to an appropriate 15-bit RGB pixel value.
+If the user is running 32-bit color, the value is returned unchanged.
 
 _Added in version: 10_
 

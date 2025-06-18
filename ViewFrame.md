@@ -191,7 +191,7 @@ Display("This ViewFrame is view %d, loop %d, frame %d",
 int ViewFrame.XOffset
 ```
 
-- [ ] Gets/sets the relative x offset applied to this frame.
+Gets/sets the relative x offset applied to this frame.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -203,6 +203,6 @@ int ViewFrame.XOffset
 int ViewFrame.YOffset
 ```
 
-- [ ] Gets/sets the relative y offset applied to this frame.
+Gets/sets the relative y offset applied to this frame.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.

@@ -17,3 +17,4 @@ tutorial.
 - [Auto-number speech files](AutonumberSpeechFiles)
 - [Game saves compatibility](GameSavesCompatibility)
 - [Editor Command Line Options](EditorCommandLineOptions)
+- [AnonymousUsageInfo](AnonymousUsageInfo)

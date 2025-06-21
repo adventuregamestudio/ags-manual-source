@@ -85,6 +85,7 @@
   - [Auto-number speech files](AutonumberSpeechFiles)
   - [Game saves compatibility](GameSavesCompatibility)
   - [Editor Command Line Options](EditorCommandLineOptions)
+  - [AnonymousUsageInfo](AnonymousUsageInfo)
 
 #### Game Features
 
@@ -204,6 +205,3 @@
 
 - [Contacting the developers](ContactingTheDevelopers)
 
-#### Misc
-
-- [AnonymousUsageInfo](AnonymousUsageInfo)

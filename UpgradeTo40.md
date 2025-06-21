@@ -1,0 +1,28 @@
+## Upgrading to AGS 4.0
+
+AGS version 4.0 is a big change to AGS.
+The editor and the engine look like you remember from 3.6 versions, but it comes with many changes so it is advised to read this section carefully.
+For the past two decades there has been a lot of effort ensuring full backwards compatibility with previous versions, and now for the first time we have dropped some compatibility with versions of AGS before 3.6, which helped speed up development of some long asked features. [See Obsolete Script API](ObsoleteScriptAPI) for more details.
+
+### New Visual Effects
+
+AGS elements now feature Blend Modes, Rotations, and Shaders. Additionally, GUIs can now be scaled arbitrarily.
+
+### 32-bit colors everywhere
+
+When refering to colors in script and properties, AGS previously used its own 16-bit color format, but this now has changed to support 32-bit `AARRGGBB` colors everywhere.
+
+### New Script Compiler and RTTI
+
+While the legacy script compiler is still present for now, a new compiler is available (and it is default in newly created games). This compiler unlocks many long asked features like multidimentional arrays, list initialization, and a multitude of script warnings to help you catch some common issues at compile time.
+
+Beyond this, Run-Time Type Information (RTTI) is added now when using either compilers, which unlocks managed structs in managed structs and other complex declarations that weren't previous allowed. A new variable watch pane is added when debugging, and RTTI will also enable better type information during debugging.
+
+### New Room Format
+
+Rooms are now stored in the project in XML format and with its images in separate png files, which can be tracked in source control. The room `.crm` files are now built from these project files and no longer are required to be added to source control. 
+
+### New Video Player API
+
+Do you want a TV in your room with a video playing while the player walks around? Well this is now possible, beyond many possibilities, as a new video player API can unlock new ways to use videos in AGS. Before, only a single video could be played and it blocked the entire game, so if you used videos in your game be sure to check this out.
+ 

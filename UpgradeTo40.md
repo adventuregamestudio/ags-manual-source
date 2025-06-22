@@ -33,3 +33,7 @@ Until now you could only use AGS Pathfinder when ordering a character to walk. T
 ### Joystick and Touch API
 
 New input methods are added to the engine. The engine will now find connected joysticks and make them available through a new struct. Previously touch devices could only be used with AGS through mouse emulation, but now the touch input can be directly handled, allowing multiple touch points to be supported through scripting.
+
+### Fonts and Font Files
+
+Before in AGS, each font was directly connected to a font file, and having multiple versions of a font would require reimporting and packaging multiple copies of the font in the game. AGS now handles these separately, where a font contain description, size and outline information, and can be connected to any imported font file. Fonts are also now stored in a Fonts directory in the project root.

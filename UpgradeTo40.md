@@ -14,9 +14,9 @@ When refering to colors in script and properties, AGS previously used its own 16
 
 ### New Script Compiler and RTTI
 
-While the legacy script compiler is still present for now, a new compiler is available (and it is default in newly created games). This compiler unlocks many long asked features like multidimentional arrays, list initialization, and a multitude of script warnings to help you catch some common issues at compile time.
+While the legacy script compiler is still present for now, a new compiler is available (and it is default in newly created games). This compiler unlocks many long asked features like multidimentional arrays, nested structs, list initialization, and a multitude of script warnings to help you catch some common issues at compile time.
 
-Beyond this, Run-Time Type Information (RTTI) is added now when using either compilers, which unlocks managed structs in managed structs and other complex declarations that weren't previous allowed. A new variable watch pane is added when debugging, and RTTI will also enable better type information during debugging.
+Beyond this, Run-Time Type Information (RTTI) is added now when using either compilers, which unlocks managed pointers in managed structs and other complex declarations that weren't previous allowed. A new variable watch pane is added when debugging, and RTTI will also enable better type information during debugging.
 
 ### New Room Format
 
@@ -25,4 +25,11 @@ Rooms are now stored in the project in XML format and with its images in separat
 ### New Video Player API
 
 Do you want a TV in your room with a video playing while the player walks around? Well this is now possible, beyond many possibilities, as a new video player API can unlock new ways to use videos in AGS. Before, only a single video could be played and it blocked the entire game, so if you used videos in your game be sure to check this out.
- 
+
+### Pathfinder and Path API
+
+Until now you could only use AGS pathfinder when ordering a character to walk. Two new APIs lets you both search walkable paths in two-dimentional space and also pass an arbitrary path as array of points to a room element to have it follow a path. You can also create a pathfinder from 8-bit sprites as a navigation mask.
+
+### Joystick and Touch API
+
+New input methods are added in the engine. The engine will now find connected joysticks and make them available through a new struct. Previously touch devices could only be used with AGS through mouse emulation, but now the touch input can be directly handled, allowing multiple touch points to be supported through scripting.

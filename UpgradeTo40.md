@@ -2,7 +2,8 @@
 
 AGS version 4.0 is a big change to AGS.
 The editor and the engine look like you remember from 3.6 versions, but it comes with many changes so it is advised to read this section carefully.
-For the past two decades, there has been a lot of effort ensuring full backward compatibility with previous versions, and now for the first time, we have dropped some compatibility with versions of AGS before 3.6, which helped speed up the development of some long-asked features. [See Obsolete Script API](ObsoleteScriptAPI) for more details.
+
+For the past two decades, AGS maintained strong backward compatibility. However, with 4.0, compatibility with versions earlier than 3.6 has been intentionally dropped. This has allowed long-requested features to be implemented. See [Obsolete Script API](ObsoleteScriptAPI) for more details.
 
 ### New Visual Effects
 

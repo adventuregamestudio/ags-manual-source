@@ -3,11 +3,13 @@
 AGS version 4.0 is a big change to AGS.
 The editor and the engine look like you remember from 3.6 versions, but it comes with many changes so it is advised to read this section carefully.
 
-For the past two decades, AGS maintained strong backward compatibility. However, with 4.0, compatibility with versions earlier than 3.6 has been intentionally dropped. This has allowed long-requested features to be implemented. See [Obsolete Script API](ObsoleteScriptAPI) for more details.
+For the past two decades, AGS maintained strong backward compatibility. However, with 4.0, compatibility with versions earlier than 3.6 has been intentionally dropped. This has allowed long-requested features to be implemented. See [Obsolete Script API](ObsoleteScriptAPI) for more details. Additionally 16-bit games are no longer supported, at game creation time you can select 32-bit or 8-bit (with palettes) games.
 
 ### New Visual Effects
 
 AGS elements now feature Blend Modes, Rotations, and Shaders. Additionally, GUIs can now be scaled arbitrarily.
+
+Read more about shaders in [`ShaderProgram` functions and properties](ShaderProgram), and [`ShaderInstance` function and propeties](ShaderInstance) pages.
 
 ### 32-bit colors everywhere
 
@@ -25,7 +27,7 @@ Rooms are now stored in the project in XML format and with images in separate pn
 
 ### New Video Player API
 
-Do you want a TV in your room with a video playing while the player walks around? Well, this is now possible, beyond many possibilities, as a new video player API can unlock new ways to use videos in AGS. Before, only a single video could be played and it blocked the entire game, so if you used videos in your game be sure to check this out.
+Do you want a TV in your room with a video playing while the player walks around? Well, this is now possible, beyond many possibilities, as a new video player API can unlock new ways to use videos in AGS. Before, only a single video could be played and it blocked the entire game, so if you used videos in your game be sure to check this out. The new API is documented in [`VideoPlayer` functions and properties](VideoPlayer) page.
 
 ### Pathfinder and Path API
 
@@ -33,7 +35,7 @@ Until now you could only use AGS Pathfinder when ordering a character to walk. T
 
 ### Joystick and Touch API
 
-New input methods are added to the engine. The engine will now find connected joysticks and make them available through a new struct. Previously touch devices could only be used with AGS through mouse emulation, but now the touch input can be directly handled, allowing multiple touch points to be supported through scripting.
+New input methods are added to the engine. The engine will now find connected joysticks and make them available through a new struct. Previously touch devices could only be used with AGS through mouse emulation, but now the touch input can be directly handled, allowing multiple touch points to be supported through scripting. These are documented in [`Joystick` functions and properties](Joystick) and [`Touch` functions and properties](Touch) pages.
 
 ### Fonts and Font Files
 

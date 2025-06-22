@@ -2,7 +2,7 @@
 
 AGS version 4.0 is a big change to AGS.
 The editor and the engine look like you remember from 3.6 versions, but it comes with many changes so it is advised to read this section carefully.
-For the past two decades there has been a lot of effort ensuring full backwards compatibility with previous versions, and now for the first time we have dropped some compatibility with versions of AGS before 3.6, which helped speed up development of some long asked features. [See Obsolete Script API](ObsoleteScriptAPI) for more details.
+For the past two decades, there has been a lot of effort ensuring full backward compatibility with previous versions, and now for the first time, we have dropped some compatibility with versions of AGS before 3.6, which helped speed up the development of some long-asked features. [See Obsolete Script API](ObsoleteScriptAPI) for more details.
 
 ### New Visual Effects
 
@@ -10,26 +10,26 @@ AGS elements now feature Blend Modes, Rotations, and Shaders. Additionally, GUIs
 
 ### 32-bit colors everywhere
 
-When refering to colors in script and properties, AGS previously used its own 16-bit color format, but this now has changed to support 32-bit `AARRGGBB` colors everywhere.
+When referring to colors in script and properties, AGS previously used its own 16-bit color format, but this now has changed to support 32-bit `AARRGGBB` colors everywhere.
 
 ### New Script Compiler and RTTI
 
-While the legacy script compiler is still present for now, a new compiler is available (and it is default in newly created games). This compiler unlocks many long asked features like multidimentional arrays, nested structs, list initialization, and a multitude of script warnings to help you catch some common issues at compile time.
+While the legacy script compiler is still present for now, a new compiler is available (and it is default in newly created games). This compiler packs new features like multidimensional arrays, nested structs, list initialization, and a multitude of script warnings to help you catch some common issues at compile time.
 
-Beyond this, Run-Time Type Information (RTTI) is added now when using either compilers, which unlocks managed pointers in managed structs and other complex declarations that weren't previous allowed. A new variable watch pane is added when debugging, and RTTI will also enable better type information during debugging.
+Beyond this, Run-Time Type Information (RTTI) is added now when using either compilers, which unlocks managed pointers in managed structs and other complex declarations that weren't previously allowed. A new variable watch pane is added when debugging, and RTTI will also enable better type information during debugging.
 
 ### New Room Format
 
-Rooms are now stored in the project in XML format and with its images in separate png files, which can be tracked in source control. The room `.crm` files are now built from these project files and no longer are required to be added to source control. 
+Rooms are now stored in the project in XML format and with images in separate png files, which can be tracked in source control. The room `.crm` files are now built from these project files and are no longer required to be added to source control. 
 
 ### New Video Player API
 
-Do you want a TV in your room with a video playing while the player walks around? Well this is now possible, beyond many possibilities, as a new video player API can unlock new ways to use videos in AGS. Before, only a single video could be played and it blocked the entire game, so if you used videos in your game be sure to check this out.
+Do you want a TV in your room with a video playing while the player walks around? Well, this is now possible, beyond many possibilities, as a new video player API can unlock new ways to use videos in AGS. Before, only a single video could be played and it blocked the entire game, so if you used videos in your game be sure to check this out.
 
 ### Pathfinder and Path API
 
-Until now you could only use AGS pathfinder when ordering a character to walk. Two new APIs lets you both search walkable paths in two-dimentional space and also pass an arbitrary path as array of points to a room element to have it follow a path. You can also create a pathfinder from 8-bit sprites as a navigation mask.
+Until now you could only use AGS Pathfinder when ordering a character to walk. Two new APIs let you both search walkable paths in two-dimensional space and also pass an arbitrary path as an array of points to a room element to have it follow a path. You can also create a pathfinder from 8-bit sprites as a navigation mask.
 
 ### Joystick and Touch API
 
-New input methods are added in the engine. The engine will now find connected joysticks and make them available through a new struct. Previously touch devices could only be used with AGS through mouse emulation, but now the touch input can be directly handled, allowing multiple touch points to be supported through scripting.
+New input methods are added to the engine. The engine will now find connected joysticks and make them available through a new struct. Previously touch devices could only be used with AGS through mouse emulation, but now the touch input can be directly handled, allowing multiple touch points to be supported through scripting.

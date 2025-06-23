@@ -13,7 +13,7 @@ Read more about shaders in [`ShaderProgram` functions and properties](ShaderProg
 
 ### 32-bit colors everywhere
 
-When referring to colors in script and properties, AGS previously used its own 16-bit color format, but this now has changed to support 32-bit `AARRGGBB` colors everywhere.
+When referring to colors in script and properties, AGS had its own 16-bit color format, but this now has changed to support 32-bit `AARRGGBB` colors everywhere.
 
 ### New Script Compiler and RTTI
 
@@ -35,8 +35,8 @@ Until now you could only use AGS Pathfinder when ordering a character to walk. T
 
 ### Joystick and Touch API
 
-New input methods are added to the engine. The engine will now find connected joysticks and make them available through a new struct. Previously touch devices could only be used with AGS through mouse emulation, but now the touch input can be directly handled, allowing multiple touch points to be supported through scripting. These are documented in [`Joystick` functions and properties](Joystick) and [`Touch` functions and properties](Touch) pages.
+New input methods are added to the engine. The engine will now find connected joysticks and make them available through a new struct. In AGS 3, touch devices could only be used with AGS through mouse emulation, but now the touch input can be directly handled, allowing multiple touch points to be supported through scripting. These are documented in [`Joystick` functions and properties](Joystick) and [`Touch` functions and properties](Touch) pages.
 
 ### Fonts and Font Files
 
-Before in AGS, each font was directly connected to a font file, and having multiple versions of a font would require reimporting and packaging multiple copies of the font in the game. AGS now handles these separately, where a font contain description, size and outline information, and can be connected to any imported font file. Fonts are also now stored in a Fonts directory in the project root.
+In AGS 3, each font was directly connected to a font file, so having different sizes or outlines of the same font would require reimporting and packaging multiple copies of the font in the game. AGS now handles these separately, where a font contains description, size and outline information, and can be connected to any imported font file. Font files are now also stored in a Fonts directory within the project root.

@@ -3,13 +3,13 @@
 AGS version 4.0 is a big change to AGS.
 The editor and the engine look like you remember from 3.6 versions, but it comes with many changes so it is advised to read this section carefully.
 
-For the past two decades, AGS maintained strong backward compatibility. However, with 4.0, compatibility with versions earlier than 3.6 has been intentionally dropped. This has allowed long-requested features to be implemented. See [Obsolete Script API](ObsoleteScriptAPI) for more details. Additionally 16-bit games are no longer supported, at game creation time you can select 32-bit or 8-bit (with palettes) games.
+For the past two decades, AGS maintained strong backward compatibility. However, with 4.0, compatibility with versions earlier than 3.6 has been intentionally dropped. This has allowed long-requested features to be implemented. See [Obsolete Script API](ObsoleteScriptAPI) for more details. Additionally, 16-bit games are no longer supported, at game creation time you can select 32-bit or 8-bit (with palettes) games.
 
 ### New Visual Effects
 
 AGS elements now feature Blend Modes, Rotations, and Shaders. Additionally, GUIs can now be scaled arbitrarily.
 
-Read more about shaders in [`ShaderProgram` functions and properties](ShaderProgram), and [`ShaderInstance` function and propeties](ShaderInstance) pages.
+Read more about shaders in [`ShaderProgram` functions and properties](ShaderProgram), and [`ShaderInstance` function and properties](ShaderInstance) pages.
 
 ### 32-bit colors everywhere
 

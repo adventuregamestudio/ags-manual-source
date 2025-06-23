@@ -3,7 +3,9 @@
 AGS version 4.0 is a big change to AGS.
 The editor and the engine look like you remember from 3.6 versions, but it comes with many changes so it is advised to read this section carefully.
 
-For the past two decades, AGS maintained strong backward compatibility. However, with 4.0, compatibility with versions earlier than 3.6 has been intentionally dropped. This has allowed long-requested features to be implemented. See [Obsolete Script API](ObsoleteScriptAPI) for more details. Additionally, 16-bit games are no longer supported, at game creation time you can select 32-bit or 8-bit (with palettes) games.
+For the past two decades, AGS maintained strong backward compatibility. However, with 4.0, compatibility with versions earlier than 3.6 has been intentionally dropped. This has allowed long-requested features to be implemented. See [Obsolete Script API](ObsoleteScriptAPI) for more details.
+
+Also note that 16-bit games are no longer supported. When creating a new game, you can select either 32-bit or 8-bit (palette-based) games.
 
 ### New Visual Effects
 
@@ -15,11 +17,28 @@ Read more about shaders in [`ShaderProgram` functions and properties](ShaderProg
 
 When referring to colors in script and properties, AGS had its own 16-bit color format, but this now has changed to support 32-bit `AARRGGBB` colors everywhere.
 
-### New Script Compiler and RTTI
+### New Script Compiler
 
 While the legacy script compiler is still present for now, a new compiler is available (and it is default in newly created games). This compiler packs new features like multidimensional arrays, nested structs, list initialization, and a multitude of script warnings to help you catch some common issues at compile time.
 
-Beyond this, Run-Time Type Information (RTTI) is added now when using either compilers, which unlocks managed pointers in managed structs and other complex declarations that weren't previously allowed. A new variable watch pane is added when debugging, and RTTI will also enable better type information during debugging.
+### Managed pointers in managed structs and RTTI
+
+This feature finally opens full potential of structs referencing each other with pointers, and allow you to create virtually any kind of data storage in script.
+
+To give an example:
+```ags
+managed struct Item; // pre-declaration
+
+managed struct Person {
+    Item* items[];
+};
+
+managed struct Item {
+    Person* owner;
+};
+```
+
+This is possible through the addition of Run-Time Type Information (RTTI) that is now added to the compiled scripts when using either compilers. This also allows watching variables through the newly added watch pane which should be helpful when debugging.
 
 ### New Room Format
 

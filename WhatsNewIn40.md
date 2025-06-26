@@ -5,9 +5,9 @@ The editor and the engine look like you remember from 3.6 versions, but it comes
 
 For the past two decades, AGS maintained strong backward compatibility. However, with 4.0, compatibility with versions earlier than 3.6 has been intentionally dropped. This has allowed long-requested features to be implemented. See [Obsolete Script API](ObsoleteScriptAPI) for more details.
 
-Also note that 16-bit games are no longer supported. When creating a new game, you can select either 32-bit or 8-bit (palette-based) games.
+Also, note that 16-bit games are no longer supported. When creating a new game, you can select either 32-bit or 8-bit (palette-based) games.
 
-**WARNING:** If you are upgrading an existing game to AGS 4.0, you should first upgrade to the latest AGS 3.6.2 available, and make sure that in General Settings, under backward compatibility, you have set _Script API Level_ and _Script compatibility level_ both to Latest version. Only after your game is properly upgraded in AGS 3.6.2 and script adjust should an AGS 4.0 upgrade be attempted. Make sure you backup your project before proceeding. See [Upgrading to AGS 4.0](UpgradingTo40) for more details.
+**WARNING:** If you are upgrading an existing game to AGS 4.0, you should first upgrade to the latest AGS 3.6.2 available, and make sure that in General Settings, under backward compatibility, you have set _Script API Level_ and _Script compatibility level_ both to Latest version. Only after your game is properly upgraded in AGS 3.6.2 and script adjusted should an AGS 4.0 upgrade be attempted. Make sure you backup your project before proceeding. See [Upgrading to AGS 4.0](UpgradingTo40) for more details.
 
 ### 32-bit colors everywhere
 
@@ -25,7 +25,7 @@ While the legacy script compiler is still present for now, a new compiler is ava
 
 ### Managed pointers in managed structs and RTTI
 
-This feature finally opens full potential of structs referencing each other with pointers, and allow you to create virtually any kind of data storage in script.
+This feature finally opens the full potential of structs referencing each other with pointers, and allows you to create virtually any kind of data storage in script.
 
 To give an example:
 ```ags
@@ -40,7 +40,7 @@ managed struct Item {
 };
 ```
 
-This is possible through the addition of Run-Time Type Information (RTTI) that is now added to the compiled scripts when using either compilers. This also allows watching variables through the newly added watch pane which should be helpful when debugging.
+This is possible through the addition of Run-Time Type Information (RTTI) that is now added to the compiled scripts when using either compiler. This also allows watching variables through the newly added watch pane which should be helpful when debugging.
 
 ### New Room Format
 

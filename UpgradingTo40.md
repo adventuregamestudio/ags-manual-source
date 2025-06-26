@@ -1,6 +1,6 @@
 ## Upgrading to AGS 4.0
 
-This is a small guide on how to upgrade your existing game project to AGS 4.
+This is a small guide on how to upgrade your existing game project to AGS 4. If you are interested in what are the new features of AGS 4, see [What's new in AGS 4.0](WhatsNewIn40) page.
 
 **WARNING:** Please backup your project and read below before proceeding.
 

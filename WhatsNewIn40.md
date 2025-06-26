@@ -1,4 +1,4 @@
-## Upgrading to AGS 4.0
+## What's new in AGS 4.0
 
 AGS version 4.0 is a big change to AGS.
 The editor and the engine look like you remember from 3.6 versions, but it comes with many changes so it is advised to read this section carefully.

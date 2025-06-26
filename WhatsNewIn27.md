@@ -1,4 +1,4 @@
-## Upgrading to AGS 2.7
+## What's new in AGS 2.7
 
 The script language in AGS 2.7 has changed quite significantly from
 previous versions. Many of the script commands have become

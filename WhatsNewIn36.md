@@ -1,4 +1,4 @@
-## Upgrading to AGS 3.6
+## What's new in AGS 3.6
 
 AGS version 3.6 is another big change to AGS.
 First of all, this release presents a SDL2-based engine. For about 2 decades the AGS engine was based on the Allegro 4 graphic library, which was discontinued somewhere in the early 2010s, so this is overdue.

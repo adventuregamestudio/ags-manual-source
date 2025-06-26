@@ -1,4 +1,4 @@
-## Upgrading to AGS 3.4
+## What's new in AGS 3.4
 
 AGS 3.4 introduces a number of significant enhancements to game creation
 process.

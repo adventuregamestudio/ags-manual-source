@@ -1,4 +1,4 @@
-## Upgrading to AGS 3.5
+## What's new in AGS 3.5
 
 AGS version 3.5 is another big update and it has few serious changes to both editor UI and scripting.
 

@@ -1,4 +1,4 @@
-## Upgrading to AGS 2.71
+## What's new in AGS 2.71
 
 AGS 2.71 adds new simple string support to the scripting language.
 Strings have long been a pain to use in AGS, but this is finally

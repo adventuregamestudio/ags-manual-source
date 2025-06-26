@@ -1,4 +1,4 @@
-## Upgrading to AGS 3.2
+## What's new in AGS 3.2
 
 AGS 3.2 contains some major changes, the main one being a completely new
 way of scripting the game audio.

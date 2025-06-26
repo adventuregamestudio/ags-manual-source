@@ -1,4 +1,4 @@
-## Upgrading to AGS 3.6.1
+## What's new in AGS 3.6.1
 
 3.6.1 is a *relatively* minor update, focusing on performance and convenience of existing features. There are no breaking changes to the game settings or script, but there are few things that should be mentioned.
 

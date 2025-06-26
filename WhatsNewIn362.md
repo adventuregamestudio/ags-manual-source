@@ -1,4 +1,4 @@
-## Upgrading to AGS 3.6.2
+## What's new in AGS 3.6.2
 
 3.6.2 is a second update for the 3.6 version, this time it focuses on convenience of user interface and filling certain gaps in the existing scripting API. There are no breaking changes to the game settings or script.
 

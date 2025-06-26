@@ -151,7 +151,7 @@ A. Default Setup affects only default configuration. If you ran game's own setup
 
 **Q: I loaded my old game in a newer version of AGS, and now I get errors about some AGS functions are "undefined".**
 
-A: These functions were probably deprecated. Check the ["Upgrading from a previous version"](UpgradingFromPreviousVersion) topics in the manual to learn about possible breaking changes and how can you adjust your script to the new standard.<br>
+A: These functions were probably deprecated. Check the ["What's in new versions and upgrading"](WhatsInNewVersionsAndUpgrading) topic in the manual to learn about possible breaking changes and how can you adjust your script to the new standard.<br>
 There's also a [big table of outdated functions and properties](ObsoleteScriptAPI) where you may find suggested replacements.<br>
 But if you're in a real hurry, go to game's General Settings and set "Script compatibility level" to the version you were making game in previously (that usually works).
 

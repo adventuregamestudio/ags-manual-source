@@ -1,8 +1,12 @@
-## What's New
+## What's in new versions and upgrading
 
 What's new in each version of AGS.
 
 -   [What's new in AGS 4.0](WhatsNewIn40)
+-   [Upgrading to AGS 4.0](UpgradingTo40)
+
+### Older versions
+
 -   [What's new in AGS 3.6.2](WhatsNewIn362)
 -   [What's new in AGS 3.6.1](WhatsNewIn361)
 -   [What's new in AGS 3.6](WhatsNewIn36)

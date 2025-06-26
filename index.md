@@ -9,7 +9,7 @@
 - [Frequently Asked Questions](FAQ)
 - [What's New in AGS 4.0](WhatsNewIn40)
 - [Upgrading To AGS 4.0](UpgradingTo40)
-- [What's new in previous versions](WhatsNewInPreviousVersions)
+- [What's in new versions and upgrading](WhatsInNewVersionsAndUpgrading)
 
 ## Editor
 

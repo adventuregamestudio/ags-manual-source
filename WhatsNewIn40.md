@@ -7,7 +7,7 @@ For the past two decades, AGS maintained strong backward compatibility. However,
 
 Also note that 16-bit games are no longer supported. When creating a new game, you can select either 32-bit or 8-bit (palette-based) games.
 
-**WARNING:** If you are upgrading an existing game to AGS 4.0, you should first upgrade to the latest AGS 3.6.2 available, and make sure that in General Settings, under backward compatibility, you have set _Script API Level_ and _Script compatibility level_ both to Latest version, and also with new-style options set to true and old-style options set to false. Only after your game is properly upgraded in AGS 3.6.2 and script adjust should an AGS 4.0 upgrade be attempted. Make sure you backup your project before proceeding.
+**WARNING:** If you are upgrading an existing game to AGS 4.0, you should first upgrade to the latest AGS 3.6.2 available, and make sure that in General Settings, under backward compatibility, you have set _Script API Level_ and _Script compatibility level_ both to Latest version. Only after your game is properly upgraded in AGS 3.6.2 and script adjust should an AGS 4.0 upgrade be attempted. Make sure you backup your project before proceeding. See [Upgrading to AGS 4.0](UpgradingTo40) for more details.
 
 ### 32-bit colors everywhere
 

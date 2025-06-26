@@ -1,4 +1,4 @@
-# Upgrading to AGS 4.0
+## Upgrading to AGS 4.0
 
 This is a small guide on how to upgrade your existing game project to AGS 4.
 

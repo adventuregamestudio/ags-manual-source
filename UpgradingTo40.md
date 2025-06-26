@@ -5,7 +5,7 @@ This is a small guide on how to upgrade your existing game project to AGS 4.
 **WARNING:** Please backup your project and read below before proceeding.
 
 
-### Upgrade to latest AGS 3
+### Upgrade to the latest AGS 3
 
 Firstly, it is recommended that you upgrade your game to the latest AGS 3 available - currently, this would be the latest AGS 3.6.2 version, and fix any issues reported by the game build process.
 
@@ -30,7 +30,7 @@ After these adjustments, in General Settings, once you can build and run your ga
 
 There are a few things that cannot be upgraded at the current time, so we need to warn you about it.
 
-1. **AGSJoy plugin:** Attempts to build your game with this plugin active will not compile with AGS 4 because its Joystick struct will conflict with the AGS own Joystick struct. The new API is relatively simple, so manually rewriting to be compatible with it should not be a huge problem. The plugin is no longer needed after that.
+1. **AGSJoy plugin:** Attempts to build your game with this plugin active will not compile with AGS 4 because its Joystick struct will conflict with the AGS own Joystick struct. The new API is relatively simple, so manually rewriting it to be compatible with it should not be a huge problem. The plugin is no longer needed after that.
 
 2. **Speech Center and Translations:** Speech Center with translations will stop working with this AGS 4 update. It won't crash, but it won't see translated strings. This is because Translation storage had changed in the Editor. The plugin will have to be updated to work with AGS 4.
 

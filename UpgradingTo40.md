@@ -44,7 +44,6 @@ Open AGS 4.0 and load your existing game into it. AGS will do some automatic upd
 
 ### Adjustment of functions with fewer arguments
 
-
 There are a couple of functions that now have *fewer* arguments compared to previous versions of AGS.
 
 These functions are:

@@ -134,7 +134,7 @@ accessible in future versions.
     where such setting was a norm.
 -   **Use old-style custom dialog options API** - switch to using
     pre-AGS 3.4.0 custom dialog options callbacks. The differences
-    between old and new APIs [are explained in this topic](UpgradeTo34).
+    between old and new APIs [are explained in this topic](WhatsNewIn34).
 -   **Use old-style keyboard handling** - Uses pre-unicode mode key codes in
     `on_key_press` function, where regular keys were merged with Ctrl and Alt
     modifiers. In newer games, it's recommended to leave this as false, and

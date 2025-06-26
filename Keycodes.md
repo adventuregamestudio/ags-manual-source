@@ -5,7 +5,7 @@ In AGS script you have a `eKeyCode` enumeration that defines key codes. These ke
 
 Historically AGS has Ctrl+X key combinations have their own distinct keycodes. At the same time, keycodes corresponding to the modifier keys (Shift, Ctrl and Alt) were never passed to the [`on_key_press`](Globalfunctions_Event#on_key_press) alone and were only allowed with [`IsKeyPressed`](Globalfunctions_General#iskeypressed).
 
-Starting from version **3.6.0** AGS supports two ["key handling modes"](UpgradeTo36#changes-to-key-input-handling). The old mode works as described above, according to the historical behavior. The new mode actually allows modifier keycodes in `on_key_press`, and disables combined keycodes like Ctrl+X: instead these are passed as two separate keycodes.
+Starting from version **3.6.0** AGS supports two ["key handling modes"](WhatsNewIn36#changes-to-key-input-handling). The old mode works as described above, according to the historical behavior. The new mode actually allows modifier keycodes in `on_key_press`, and disables combined keycodes like Ctrl+X: instead these are passed as two separate keycodes.
 
 Following section lists the members of this enum, and which keys they represent.
 

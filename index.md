@@ -7,8 +7,8 @@
 - [Introduction](Introduction)
 - [Tutorial](Tutorial)
 - [Frequently Asked Questions](FAQ)
-- [Upgrading to AGS 4.0](UpgradeTo40)
-- [Upgrading from a previous version](UpgradingFromPreviousVersion)
+- [What's New in AGS 4.0](WhatsNewIn40)
+- [What's new in previous versions](WhatsNewInPreviousVersions)
 
 ## Editor
 

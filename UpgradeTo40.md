@@ -7,15 +7,17 @@ For the past two decades, AGS maintained strong backward compatibility. However,
 
 Also note that 16-bit games are no longer supported. When creating a new game, you can select either 32-bit or 8-bit (palette-based) games.
 
+**WARNING:** If you are upgrading an existing game to AGS 4.0, you should first upgrade to the latest AGS 3.6.2 available, and make sure that in General Settings, under backward compatibility, you have set _Script API Level_ and _Script compatibility level_ both to Latest version, and also with new-style options set to true and old-style options set to false. Only after your game is properly upgraded in AGS 3.6.2 and script adjust should an AGS 4.0 upgrade be attempted. Make sure you backup your project before proceeding.
+
+### 32-bit colors everywhere
+
+When referring to colors in script and properties, AGS had its own 16-bit color format, but this now has changed to support 32-bit `AARRGGBB` colors everywhere. If you are upgrading an AGS 3 game, it should readjust the colors set in GUIs and other game elements that were set through the editor automatically; but for colors you may have set through script you will have to manually convert - the color pane packs a converter that can help you.
+
 ### New Visual Effects
 
 AGS elements now feature Blend Modes, Rotations, and Shaders. Additionally, GUIs can now be scaled arbitrarily.
 
-Read more about shaders in [`ShaderProgram` functions and properties](ShaderProgram), and [`ShaderInstance` function and properties](ShaderInstance) pages.
-
-### 32-bit colors everywhere
-
-When referring to colors in script and properties, AGS had its own 16-bit color format, but this now has changed to support 32-bit `AARRGGBB` colors everywhere.
+If you're interested in advanced effects, check out the [`ShaderProgram` functions and properties](ShaderProgram), and [`ShaderInstance` function and properties](ShaderInstance) documentation for how to use shaders in your game.
 
 ### New Script Compiler
 

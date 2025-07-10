@@ -41,21 +41,29 @@ directory.
 
 A game template is basically just an archive containing all of the game
 source files, which are then extracted into the new folder when the user
-creates a new game. It is similar to you just zipping up your game
-folder and sending it to a friend - except that this way looks far more
-professional.
+creates a new game.
 
 To create a template, first of all you create a game as normal in the
 editor. Once you have everything set up how you want it, select "_Make_
-_template from this game_" on the File menu. This will prompt you for a
-name for the template (this is what will appear under its icon in the
-"_Start New Game_" dialog box), and then it will go away and compile the
-template for you.
+_template from this game_" on the File menu. This will bring a regular "Save file as" dialog where you select a file name and location where you'd wish to save the template to, and then the Editor will compile the template for you.
 
-The template game takes the following files from your game folder: Core
-game files (`GAME.AGF`, `ACSPRSET.SPR`), all script and room files, all
-sound and music files, all fonts, game icons, and all `.TXT` files (to
-allow you to include a `README.TXT` or whatever).
+The Editor has two ways of gathering the game files into the template.
+
+By default it takes following files from your game's folder:
+
+1. Core game files (`Game.agf`, `acsprset.spr`);
+2. All script files (`*.ash`, `*.asc`);
+3. Room files (`*.crm`);
+4. Font files (`agsfnt*.ttf`, `agsfnt*.wfn`);
+5. AudioCache directory with imported sound and music files;
+6. Speech directory with voice-over files and lipsync files (if these are present);
+7. Supported video files (`*.ogv`, `flic*.flc` and `flic*.fli`);
+8. Translations (`*.trs`);
+9. Text files, in case you'd like to include a `README.TXT` or whatever (`*.txt`, `*.pdf`);
+10. Icons (`*.ico`);
+11. Preload image file (`preload.pcx`).
+
+The second way is to use "template.files" file, as explained in [the section below](Templates#creating-template-with-the-use-of-the-patterns-file).
 
 If you include a **template.ico** file in your game folder when you make
 the template, then it will be used as the icon in the Start New Game
@@ -77,5 +85,36 @@ semi-completed game when they use your template. Rather, game templates
 are about different types of game controls, gameplay mechanics you want
 to share.
 
+### Creating template with the use of the patterns file
+
+Starting with 3.6.2 Patch 2 release of the AGS Editor, you may optionally go second way and write a pattern file for your template. This file must be called `template.files`, be located in the project folder, and contain any number of filepath patterns with wildcards. Following is the example of what a `template.files` contants may look like:
+
+```
+# Include the files that match the patterns:
+Game.agf
+*.asc
+*.ash
+*.crm
+*.ttf
+*.txt
+*.wfn
+acsprset.spr
+Speech/
+AudioCache/
+template.ico
+template.txt
+template.files
+
+# Exclude any files that match the patterns:
+!_Debug/
+!Compiled/
+!*.bak
+!*.user
+!*.lock
+```
+
+On one hand this method requires writing an explicit list of files or patterns which you like to include, but on another it allows to include any custom files or subfolders and their contents.
+
+*Compatibility:* The `template.files` is supported by **AGS 3.6.2 Patch 2** and later versions.
 
 *See also*: [Setting up the Game](Settingupthegame), [Tutorials Index](StartingOff)

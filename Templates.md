@@ -115,6 +115,14 @@ template.files
 
 On one hand this method requires writing an explicit list of files or patterns which you like to include, but on another it allows to include any custom files or subfolders and their contents.
 
+In a pattern file, each line can be either a pattern, empty, or a comment (which is preceded by the character `#`). A pattern is of include type by default. If has `!` (an exclamation mark) as first character  it is an exclude pattern.
+
+The patterns of the file are matched from top to bottom, to each file, recursively, found in the project directory as follows
+
+- If there is no include pattern that matches a file, it is not included;
+- If there is a included pattern that matches a file, it is included, unless a pattern of exclude type is listed below that also matches it;
+- If a pattern of exclude type exists but a later pattern causes a file to be included, it should be included.
+
 *Compatibility:* The `template.files` is supported by **AGS 3.6.2 Patch 2** and later versions.
 
 *See also*: [Setting up the Game](Settingupthegame), [Tutorials Index](StartingOff)

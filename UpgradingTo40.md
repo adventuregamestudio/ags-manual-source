@@ -87,6 +87,7 @@ You can use the **color pane** in the Editor to help convert between the old col
 
 Color values in GUI properties and other AGS game elements adjusted through the editor panes should have been **automatically converted** during the upgrade process.
 
+A change that has been done due to colors now carrying alpha is that by default, `DrawingSurface` drawing operations that use a color will default for blending of that color on top of whatever color was before where drawn. If this is not desired, the `DrawingSurface.BlendMode` property can be changed to `eBlendCopy` to instead replace the color, which can be used if one wants to "cut" by drawing with a transparent color.
 
 ### WalkableArea and Walkbehind script API
 

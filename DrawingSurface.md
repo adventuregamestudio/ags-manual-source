@@ -40,6 +40,8 @@ BlendMode DrawingSurface.BlendMode
 
 Gets/sets the current BlendMode that will be used for drawing onto this surface.
 
+By default, a DrawingSurface uses the `eBlendNormal` mode, if you want to draw replacing the color, like when erasing, use `eBlendCopy` instead.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`BlendMode`](StandardEnums#blendmode)

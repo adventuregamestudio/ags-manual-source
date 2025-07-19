@@ -17,14 +17,14 @@ When you declare an attribute, script compiler will implicitly expect 2 function
 struct MyStruct
 {
     import attribute int Attribute;
-    import int get_Attribute(); // Attribute's getter
-    import void set_Attribute(int value); // Attribute's setter
+    import protected int get_Attribute(); // Attribute's getter
+    import protected void set_Attribute(int value); // Attribute's setter
 };
 ```
 
-Like we said above, normally you should not be declaring these in the struct yourself, as that will defeat the purpose of the attribute. The idea is that the external code should access the attribute but don't use the "get_" and "set_" functions. So there's no point in having them mentioned in the struct.
+If you do, a good idea will be to declare them `protected`, so that they won't be called directly, as that will defeat the purpose of the attribute. Notice how we used a `protected` keyword in their declarations above. The idea is that the external code accesses the attribute but don't use the "get_" and "set_" functions.
 
-But in any case you must write the functions themselves in the script body. These are written just like regular struct's [member functions](ScriptStructs#member-functions):
+In any case you must write the functions themselves in the script body. If you have declared them inside a struct, then these are written just like regular struct's [member functions](ScriptStructs#member-functions):
 
 ```ags
 int MyStruct::get_Attribute()
@@ -38,7 +38,23 @@ void MyStruct::set_Attribute(int value)
 }
 ```
 
-Attribute's getter and setter are treated as regular struct's functions in all regards.
+There's an alternative, which utilizes the [extender function syntax](ExtenderFunctions). In this case you do not have to declare getter and setter in the struct at all. Then, inside the script body you write two extenders, like this:
+
+```ags
+int get_Attribute(this MyStruct*)
+{
+    // getter code here
+}
+
+void set_Attribute(this MyStruct*, int value)
+{
+    // setter code here
+}
+```
+
+(We are going to use this latter syntax in code examples below, because it turns out shorter. But you are free to use either in your game.)
+
+Regardless of the chosen style, attribute's getter and setter are treated as regular struct's functions in all regards.
 
 In the script attributes are used similar to struct's variables, where they may be read or set:
 
@@ -64,7 +80,7 @@ struct MyStruct
 };
 ```
 ```ags
-int MyStruct::get_ReadMeOnly()
+int get_ReadMeOnly(this MyStruct*)
 {
     // return something here
 }
@@ -97,6 +113,23 @@ then we will access it like shown in script:
 MyStruct.StaticAttribute = 50;
 ```
 
+When you write getters and setters for the static attributes you must use `static` keyword as well. In the case when you have these declared as member functions in struct:
+
+```ags
+static int MyStruct::get_StaticAttribute()
+{
+    // return something
+}
+```
+
+And in the case where you are using extender functions:
+```ags
+int get_StaticAttribute(static MyStruct)
+{
+    // return something
+}
+```
+
 See also: [Struct's static functions](ScriptStructs#static-functions)
 
 ### Protection modifiers
@@ -123,12 +156,12 @@ struct StoreItem
 };
 ```
 ```ags
-String StoreItem::get_Name()
+String get_Name(this StoreItem*)
 {
     return this.name;
 }
 
-void StoreItem::set_Name(String value)
+void set_Name(this StoreItem*, String value)
 {
     if (!String.IsNullOrEmpty(value))
         this.name = value;
@@ -136,12 +169,12 @@ void StoreItem::set_Name(String value)
         this.name = "Unknown Item";
 }
 
-int StoreItem::get_Price()
+int get_Price(this StoreItem*)
 {
     return this.price;
 }
 
-void StoreItem::set_Price(int value)
+void set_Price(this StoreItem*, int value)
 {
     if (value >= 0)
         this.price = value;
@@ -175,12 +208,12 @@ struct StoreItem
 ```
 
 ```ags
-int StoreItem::get_WeightInGramms()
+int get_WeightInGramms(this StoreItem*)
 {
     return FloatToInt(IntToFloat(this.weight) * 28.34952);
 }
 
-void StoreItem::set_WeightInGramms(int value)
+void set_WeightInGramms(this StoreItem*, int value)
 {
     if (value < 0)
         value = 0;
@@ -188,12 +221,12 @@ void StoreItem::set_WeightInGramms(int value)
     this.weight = FloatToInt(IntToFloat(value) / 28.34952);
 }
 
-int StoreItem::get_WeightInOunces()
+int get_WeightInOunces(this StoreItem*)
 {
     return this.weight;
 }
 
-void StoreItem::set_WeightInOunces(int value)
+void set_WeightInOunces(this StoreItem*, int value)
 {
     if (value >= 0)
         this.weight = value;
@@ -215,7 +248,7 @@ struct StoreItem
 }
 ```
 ```ags
-int StoreItem::get_IsWorthless()
+int get_IsWorthless(this StoreItem*)
 {
     return (this.price == 0);
 }
@@ -236,15 +269,39 @@ struct MyStruct
 
 Notice that they have a `[]` part which tells that this attribute is accessed using a index, but there's no "size" number between the brackets. That's because indexed attributes do not have a fixed "size" or "number of elements". Usually they should be paired with another attribute that specifies their valid range.
 
-For an indexed attribute their getter and setter functions have a slightly different name: "geti_Attribute" and "seti_Attribute" (notice extra letter 'i'). These functions must have an extra "index" argument in their parameter lists:
+For an indexed attribute their getter and setter functions have a slightly different name: "geti_Attribute" and "seti_Attribute" (notice extra letter 'i'). These functions must have an extra "index" argument in their parameter lists.
+
+The variant with getter and setter declared as struct members:
 
 ```ags
-int MyStruct::geti_IndexedAttr(int index)
+struct MyStruct
+{
+    import attribute int IndexedAttr[];
+    import protected int  get_IndexedAttr(int index);
+    import protected void set_IndexedAttr(int index, int value);
+};
+```
+```ags
+int StoreItem::geti_IndexedAttr(int index)
 {
     // return something for the given "index"
 }
 
-void MyStruct::seti_IndexedAttr(int index, int value)
+void StoreItem::seti_IndexedAttr(int index, int value)
+{
+    // do something for the given "index"
+}
+```
+
+And the variant with getter and setter defined as extender functions:
+
+```ags
+int geti_IndexedAttr(this StoreItem*, int index)
+{
+    // return something for the given "index"
+}
+
+void seti_IndexedAttr(this StoreItem*, int index, int value)
 {
     // do something for the given "index"
 }
@@ -264,18 +321,18 @@ struct Team
 };
 ```
 ```ags
-void Team::AllocateTeamSize(int count)
+void AllocateTeamSize(this Team*, int count)
 {
     this.names = new String[count];
     this.count = count;
 }
 
-int Team::get_PeopleCount()
+int get_PeopleCount(this Team*)
 {
     return this.count;
 }
 
-String Team::geti_PeopleNames(int index)
+String geti_PeopleNames(this Team*, int index)
 {
     if (index < 0 || index >= count)
         return null; // invalid index
@@ -283,7 +340,7 @@ String Team::geti_PeopleNames(int index)
     return this.names[index];
 }
 
-void Team::seti_PeopleNames(int index, String value)
+void seti_PeopleNames(this Team*, int index, String value)
 {
     if (index < 0 || index >= count)
         return; // invalid index
@@ -306,7 +363,7 @@ struct Color
 };
 ```
 ```ags
-int Color::geti_Component(int index)
+int geti_Component(this Color*, int index)
 {
     switch (index)
     {
@@ -318,7 +375,7 @@ int Color::geti_Component(int index)
     }
 }
 
-void Color::seti_Component(int index, int value)
+void seti_Component(this Color*, int index, int value)
 {
     switch (index)
     {

@@ -347,6 +347,8 @@ gets an array of save slots from Game.GetSaveSlots and then inserts them into th
 Note that you if you do that, you don't have to provide sorting style for FillSaveGameSlots, as the slots will already be sorted
 by GetSaveSlots.
 
+*Compatibility:* Supported by **AGS 3.6.2** and later versions.
+
 *See also:* [`Game.ScanSaveSlots`](Game#gamescansaveslots),
 [`File.GetFiles`](File#filegetfiles),
 [`ListBox.FillSaveGameList`](ListBox#listboxfillsavegamelist),

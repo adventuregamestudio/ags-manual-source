@@ -329,6 +329,8 @@ DrawingSurface.DrawString(int x, int y, FontType font, string text, ...)
 Draws the *text* onto the surface at (x, y), using the supplied font
 number. The text will be drawn in the current drawing color.
 
+This function draws text as a single line, treating any linebreak characters as regular characters. If you need to draw a multi-line text, use [`DrawStringWrapped`](DrawingSurface#drawingsurfacedrawstringwrapped) instead.
+
 You can insert the value of variables into the message. For more
 information, see the [string formatting](StringFormats)
 section.
@@ -366,7 +368,9 @@ parameter to determine how the text is horizontally aligned.
 
 The text will be printed using the current drawing color.
 
-As of **AGS 3.6.1**, you can insert the value of variables into the message. 
+You may use linebreak characters - `[` or `\n`, - for breaking the line of text at arbitrary position.
+
+As of **AGS 3.6.1**, you can insert the value of variables into the text. 
 For more information, see the [string formatting](StringFormats) section.
 
 Example:

@@ -1479,7 +1479,8 @@ OPT_PORTRAITPOSITION | Speech portrait side (0=left, 1=right, 2=alternate, 3=xpo
 OPT_RUNGAMEINDLGOPTS | Run game loops while dialog options are displayed  (0 or 1)
 OPT_WALKSPEEDABSOLUTE | Whether character and object moving speeds depend on relative walkable mask's resolution (0=scale with mask resolution, 1=always in room resolution).
 OPT_SCALECHAROFFSETS | Character's offset properties (such as [`Character.z`](Character#characterz)) are scaled with the character's Scaling (0 or 1).
-OPT_SAVEGAMESCREENSHOTLAYER | The layer to select when savingsave screenshots into save game ([`RenderLayer`](StandardEnums#renderlayer)).
+OPT_SAVEGAMESCREENSHOTLAYER | The layer to select when savingsave screenshots into game's save ([`RenderLayer`](StandardEnums#renderlayer)).
+OPT_SAVECOMPONENTSIGNORE | Types of data which to *skip* when writing or restoring game saves ([`SaveComponentSelection`](StandardEnums#savecomponentselection)).
 
 The game settings which are not listed here either are read-only, deprecated and have a separate
 command to change them (such as Speech.Style), or unusable in the contemporary engine.

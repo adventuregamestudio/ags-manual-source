@@ -16,5 +16,6 @@ tutorial.
 - [Debugging features](Debuggingfeatures)
 - [Auto-number speech files](AutonumberSpeechFiles)
 - [Game saves compatibility](GameSavesCompatibility)
+- [Handling incompatible saves](HandlingIncompatibleSaves)
 - [Editor Command Line Options](EditorCommandLineOptions)
 - [AnonymousUsageInfo](AnonymousUsageInfo)

@@ -1102,12 +1102,14 @@ result.
 RestartGame ()
 ```
 
-Restarts the game from the beginning.
+Restores game to the restart point, if one was previously set by [`SetRestartPoint`](Globalfunctions_General#setrestartpoint).
+"Restart point" is actually a save slot 999, so this command is equivalent of calling [`RestoreGameSlot`](Globalfunctions_General#restoregameslot) with argument "999".
 
 Example:
 
 ```ags
-if (IsKeyPressed(365)) RestartGame();
+if (IsKeyPressed(eKeyF7))
+    RestartGame();
 ```
 
 will restart the game if the player presses the F7 key.
@@ -1134,7 +1136,8 @@ when the script function finishes executing.
 Example:
 
 ```ags
-if (IsKeyPressed(363)) RestoreGameDialog();
+if (IsKeyPressed(eKeyF5))
+    RestoreGameDialog();
 ```
 
 will bring up the restore game dialog if the player presses the F5 key.
@@ -1449,7 +1452,8 @@ OPT_PORTRAITPOSITION | Speech portrait side (0=left, 1=right, 2=alternate, 3=xpo
 OPT_RUNGAMEINDLGOPTS | Run game loops while dialog options are displayed  (0 or 1)
 OPT_WALKSPEEDABSOLUTE | Whether character and object moving speeds depend on relative walkable mask's resolution (0=scale with mask resolution, 1=always in room resolution).
 OPT_SCALECHAROFFSETS | Character's offset properties (such as [`Character.z`](Character#characterz)) are scaled with the character's Scaling (0 or 1).
-OPT_SAVEGAMESCREENSHOTLAYER | The layer to select when savingsave screenshots into save game ([`RenderLayer`](StandardEnums#renderlayer)).
+OPT_SAVEGAMESCREENSHOTLAYER | The layer to select when savingsave screenshots into game's save ([`RenderLayer`](StandardEnums#renderlayer)).
+OPT_SAVECOMPONENTSIGNORE | Types of data which to *skip* when writing or restoring game saves ([`SaveComponentSelection`](StandardEnums#savecomponentselection)).
 
 The game settings which are not listed here either are read-only, deprecated and have a separate
 command to change them (such as Speech.Style), or unusable in the contemporary engine.
@@ -1552,12 +1556,13 @@ will mean that the game continues to run in the background.
 SetRestartPoint ()
 ```
 
-Changes the game restart point to the current position. This means that
-from now on, if the player chooses the Restart Game option, it will
-return here.
+Sets the game restart point to the current position. This means that
+from now on a call to [`RestartGame`](Globalfunctions_General#restartgame) will
+return the game to this moment.
 
-This function is useful if the default restart point doesn't work
-properly in your game - just use this function to move it.
+The "restart point" is actually a save slot 999, and SetRestartPoint is equivalent to calling [`SaveGameSlot`](Globalfunctions_General#savegameslot) with argument "999".
+
+**NOTE:** historically engine made a hidden call to SetRestartPoint right after the game_start function was run. Since AGS 3.6.2 there's no longer any automatic restart point made, and you have to set one yourself if you need one. This behavior was changed because not every game requires a restart point, and some games may not be using AGS save slots at all, therefore having the engine make one unconditionally would lead to a redundant save file. If you like to keep this classic behavior simply call SetRestartPoint in game_start function.
 
 **NOTE:** The restart point cannot be set while a script is running \--
 therefore, when you call this it will actually set the restart point at

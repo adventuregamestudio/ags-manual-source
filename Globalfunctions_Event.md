@@ -59,7 +59,11 @@ on_event (EventType event, int data1, int data2, int data3, int data4)
 ```
 
 Called whenever certain game events occur. The values of DATA1 to DATA4 arguments depend
-on which event has occurred. The possible values of event are:
+on which event has occurred (see below).
+
+**IMPORTANT:** DATA2 to DATA4 parameters are supported since **AGS 3.6.2**. If you are using **AGS 3.6.1** or lower, then only one `event` and a single `data` (or `data1`) arguments should be declared.
+
+The possible values of event are:
 
     eEventEnterRoomBeforeFadein
             called just before the room's 'Enter Before Fade-in' event occurs
@@ -150,10 +154,12 @@ void on_event(int event, int data1, int data2)
 ### `on_key_press`
 
 ```ags
-on_key_press (eKeyCode keycode, optional int mod)
+on_key_press (eKeyCode keycode, int mod)
 ```
 
 Called whenever a key is pressed on the keyboard. `keycode` holds the value of the key, while `mod` holds a combination of modifiers pressed alongside with that key. A list of these values is [available here](Keycodes).
+
+**IMPORTANT:** `mod` argument is supported since **AGS 3.6.0**. If you are using **AGS 3.5.1** or lower, then only `keycode` argument should be declared.
 
 The `mod` argument is optional and may be omited. The `mod` contains *set of flags*, and is slightly more complicated than keycode: as you should not use regular comparison (`==`, `!=`) with it, but a bitwise operator (`&`):
 
@@ -196,6 +202,8 @@ on_mouse_click (MouseButton button, int mx, int my)
 Called when the player clicks a mouse button. BUTTON is either
 `eMouseLeft`, `eMouseRight`, or `eMouseMiddle`, depending on which
 button was clicked. The `mx` and `my` parameters contain the mouse's position at the time of a click.
+
+**IMPORTANT:** `mx` and `my` arguments are supported since **AGS 3.6.2**. If you are using **AGS 3.6.1** or lower, then only `button` argument should be declared.
 
 **NOTE:** it is an old tradition to use global variables `mouse.x` and `mouse.y` in this function to get the mouse's position. But that method is not  entirely reliable, as `on_mouse_click` may be called with certain delay, when the mouse cursor has already moved a bit. Starting with AGS 3.6.2 we advise to use this function's arguments `mx` and `my` instead.
 

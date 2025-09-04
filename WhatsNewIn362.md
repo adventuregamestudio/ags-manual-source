@@ -87,7 +87,7 @@ Since the early days of AGS there have been this problem that if you change some
 
 The new 3.6.2 engine introduces a number of options that let solve, or at least partially compensate this problem.
 
-### Support for loading saves with *less* content for any given type of data.
+### Support for loading saves with *less* content for any given type of data
 
 This means that the engine can load saves if they have equal or less count of Characters, Dialogs, GUI, controls on each given GUI, variables in script, and so forth, compared to the current game. Please be aware that *only quantity* of data is compared. Engine still cannot distinguish the order in which the items were saved. This means that if you change their order (such as order of IDs of items, or order of variables in a script), then engine won't be able to detect that, and will apply loaded items from the save into wrong positions.
 
@@ -99,7 +99,7 @@ An extra note should be made for those of the recently added objects that are *n
 
 Please remember that the engine can do only that much: load what is available from the save. It's up to you to fixup anything after save is restored, such as correcting restored objects or initializing objects that were not restored. The good place to do this is, for example, an ["on_event" function](Globalfunctions_Event#on_event) which receives eEventRestoreGame event.
 
-### Validating restored saves.
+### Validating restored saves
 
 In order to "validate" an "incompatible" save either when restoring one or when prescanning one (see explanation of prescanning below) you must add a function called "validate_restored_save" into one of your game scripts. The function is defined as:
 
@@ -117,7 +117,7 @@ The purpose of this function is to let you decide whether save may still be allo
 
 For more detailed explanation, please see ["validate_restored_save"](ValidateRestoredSave).
 
-### Prescanning save slots.
+### Prescanning save slots
 
 If engine is told to load an incompatible save and fails it then will usually just stop the game. This is quite frustrating for the players.
 In version 3.6.2 there's a new script command called [`Game.ScanSaveSlots()`](Game#gamescansaveslots). This function lets you *test* a range of saves and return only validated ones. When checking the saves it will also try calling "validate_restored_save" for saves with fewer data in them.

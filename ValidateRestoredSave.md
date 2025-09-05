@@ -41,7 +41,7 @@ function validate_restored_save(RestoredSaveInfo* info)
     }
 
     // If there's no missing data, then simply accept it and return.
-    if (info.HasMissingData)
+    if (!info.HasMissingData)
     {
         info.Cancel = false;
         return;

@@ -142,11 +142,11 @@ Use the equivalent GetTextProperty function to get a text property.
 Example:
 
 ```ags
-if (hotspot[1].GetProperty("Value") > 200)
-    Display("Hotspot 1's value is over 200!");
+if (hDoorway.GetProperty("Value") > 200)
+    Display("Hotspot %s's value is over 200!", hDoorway.ScriptName);
 ```
 
-will print the message if hotspot 1 has its "Value" property set to more
+will print the message if hotspot hDoorway has its "Value" property set to more
 than 200.
 
 *See also:* [`Hotspot.GetTextProperty`](Hotspot#hotspotgettextproperty)
@@ -172,11 +172,11 @@ Use the equivalent GetProperty function to get a non-text property.
 Example:
 
 ```ags
-String description = hotspot[2].GetTextProperty("Description");
-Display("Hotspot 2's description: %s", description);
+String description = hDoorway.GetTextProperty("Description");
+Display("Hotspot %s's description: %s", hDoorway.ScriptName, description);
 ```
 
-will retrieve hotspot 2's "description" property and display it.
+will retrieve hotspot hDoorway's "description" property and display it.
 
 *See also:* [`Hotspot.GetProperty`](Hotspot#hotspotgetproperty)
 
@@ -360,14 +360,14 @@ displays hDoor's hotspot number, and then displays hotspot 3's number
 String Hotspot.Name;
 ```
 
-Gets/sets the name of the hotspot.
+Gets/sets the name of the hotspot. This is a human-readable name (description), not a script name.
 
 **NOTE:** This property may be changed only in AGS versions 3.6.0 or higher. It is read-only in earlier versions.
 
 Example:
 
 ```ags
-Display("Hotspot 3's name is %s.", hotspot[3].Name);
+Display("Hotspot %s's name is %s.", hDoorway.ScriptName, hDoorway.Name);
 ```
 
 will retrieve and then display hotspot 3's name.

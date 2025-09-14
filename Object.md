@@ -1085,7 +1085,7 @@ will display the oDoor object's current loop number
 ### `Object.MotionPath`
 
 ```ags
-readonly MotionPath\* Object.MotionPath
+readonly MotionPath* Object.MotionPath
 ```
 
 Gets this object's current MotionPath, or null if it's not moving.
@@ -1097,7 +1097,7 @@ Gets this object's current MotionPath, or null if it's not moving.
 ### `Object.MovePath`
 
 ```ags
-Object.MovePath(Point\*[], int speed, optional BlockingStyle, optional RepeatStyle, optional Direction)
+Object.MovePath(Point*[], int speed, optional BlockingStyle, optional RepeatStyle, optional Direction)
 ```
 
 Moves the object along the path, ignoring walkable areas.
@@ -1212,7 +1212,7 @@ This property returns the actual current scaling at any given moment, whether it
 ### `Object.Shader`
 
 ```ags
-ShaderInstance\* Object.Shader
+ShaderInstance* Object.Shader
 ```
 
 Gets/sets the shader of this object.

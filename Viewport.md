@@ -235,7 +235,7 @@ Gets/sets the viewport's height in screen coordinates.
 ### `Viewport.Shader`
 
 ```ags
-ShaderInstance\* Viewport.Shader
+ShaderInstance* Viewport.Shader
 ```
 
 Gets/sets the shader of this viewport.

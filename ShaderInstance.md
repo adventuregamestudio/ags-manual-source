@@ -63,7 +63,7 @@ Sets a secondary shader's input texture, using a sprite number. Only indexes 1-3
 ### `ShaderInstance.Shader`
 
 ```ags
-readonly ShaderProgram\* ShaderInstance.Shader
+readonly ShaderProgram* ShaderInstance.Shader
 ```
 
 Gets a shader's ShaderProgram.

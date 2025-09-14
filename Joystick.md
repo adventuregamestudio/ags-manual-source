@@ -15,7 +15,7 @@ Gets number of connected joysticks.
 ### `Joystick.Joysticks`
 
 ```ags
-static readonly Joystick\* Joystick.Joysticks[]
+static readonly Joystick* Joystick.Joysticks[]
 ```
 
 Gets a connected joystick by index or null on invalid index.

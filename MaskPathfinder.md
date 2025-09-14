@@ -3,7 +3,7 @@
 ### `MaskPathfinder.Create`
 
 ```ags
-static MaskPathfinder\* MaskPathfinder.Create(int mask_sprite)
+static MaskPathfinder* MaskPathfinder.Create(int mask_sprite)
 ```
 
 Creates a new MaskPathfinder, initialized with the given 8-bit mask sprite

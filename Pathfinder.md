@@ -3,7 +3,7 @@
 ### `Pathfinder.FindPath`
 
 ```ags
-Point\*[] Pathfinder.FindPath(int srcx, int srcy, int dstx, int dsty)
+Point*[] Pathfinder.FindPath(int srcx, int srcy, int dstx, int dsty)
 ```
 
 Tries to find a move path from source to destination, returns an array of navigation points.
@@ -15,7 +15,7 @@ Tries to find a move path from source to destination, returns an array of naviga
 ### `Pathfinder.Trace`
 
 ```ags
-Point\* Pathfinder.Trace(int srcx, int srcy, int dstx, int dsty)
+Point* Pathfinder.Trace(int srcx, int srcy, int dstx, int dsty)
 ```
 
 Traces a straight path from source to destination, returns the furthermost point reached.
@@ -39,7 +39,7 @@ Gets whether given coordinates can be walked on.
 ### `Pathfinder.NearestWalkablePoint`
 
 ```ags
-Point\* Pathfinder.NearestWalkablePoint(int x, int y)
+Point* Pathfinder.NearestWalkablePoint(int x, int y)
 ```
 
 Finds the nearest walkable position, close to the given coordinates. Returns null if no walkable position is found.

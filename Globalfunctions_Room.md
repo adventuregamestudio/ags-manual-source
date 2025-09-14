@@ -113,10 +113,10 @@ Example:
 
 ```ags
 if (GetBackgroundFrame()==4)
-    object[2].Visible = true;
+    oMoon.Visible = true;
 ```
 
-will turn on object 2 if the background frame of the room is frame 4.
+will turn on object oMoon if the background frame of the room is frame 4.
 
 *See also:* [`SetBackgroundFrame`](Globalfunctions_Room#setbackgroundframe)
 

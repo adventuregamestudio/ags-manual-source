@@ -1469,8 +1469,8 @@ If an invalid sprite slot is supplied, 0 will be returned.
 Example:
 
 ```ags
-Display("Object 0's sprite is sized %d x %d.", Game.SpriteWidth[object[0].Graphic],
-        Game.SpriteHeight[object[0].Graphic]);
+Display("Object %s's sprite is sized %d x %d.", oObject.ScriptName, Game.SpriteWidth[oObject.Graphic],
+        Game.SpriteHeight[oObject.Graphic]);
 ```
 
 *See also:* [`Game.SpriteWidth`](Game#gamespritewidth)
@@ -1493,8 +1493,8 @@ If an invalid sprite slot is supplied, 0 will be returned.
 Example:
 
 ```ags
-Display("Object 0's sprite is sized %d x %d.", Game.SpriteWidth[object[0].Graphic],
-        Game.SpriteHeight[object[0].Graphic]);
+Display("Object %s's sprite is sized %d x %d.", oObject.ScriptName, Game.SpriteWidth[oObject.Graphic],
+        Game.SpriteHeight[oObject.Graphic]);
 ```
 
 *See also:* [`Game.SpriteHeight`](Game#gamespriteheight)

@@ -421,10 +421,10 @@ Wait(1);
 Example:
 
 ```ags
-player.FaceObject(object[2]);
+player.FaceObject(oTable);
 ```
 
-will make the player character face object 2.
+will make the player character face object oTable.
 
 *See also:*
 [`Character.FaceCharacter`](Character#characterfacecharacter),
@@ -816,13 +816,12 @@ Returns 1 if they are, and 0 if they are not.
 Example:
 
 ```ags
-if (cEgo.IsCollidingWithObject(object[3]) == 1) {
+if (cEgo.IsCollidingWithObject(oPressurePlate) == 1) {
     // colliding code here
 }
 ```
 
-will execute the colliding code only if the character EGO and the object
-number 3 are colliding.
+will execute the colliding code only if the character cEgo and the object oPressurePlate are colliding.
 
 *See also:*
 [`Character.IsCollidingWithChar`](Character#characteriscollidingwithchar),

@@ -424,13 +424,13 @@ Example:
 ```ags
 DynamicSprite* sprite = DynamicSprite.CreateFromExistingSprite(10);
 sprite.CopyTransparencyMask(11);
-object[0].Graphic = sprite.Graphic;
+oObject.Graphic = sprite.Graphic;
 Wait(80);
 sprite.Delete();
 ```
 
 creates a dynamic sprite as a copy of sprite 10, changes its
-transparency mask to use that of sprite 11, and displays it on object 0.
+transparency mask to use that of sprite 11, and displays it on object oObject.
 
 *See also:*
 [`DynamicSprite.CreateFromExistingSprite`](DynamicSprite#dynamicspritecreatefromexistingsprite)
@@ -495,14 +495,14 @@ Example:
 
 ```ags
 DynamicSprite* sprite = DynamicSprite.CreateFromFile("CustomAvatar.bmp");
-object[1].Graphic = sprite.Graphic;
+oObject.Graphic = sprite.Graphic;
 Wait(200);
-object[1].Graphic = 22;
+oObject.Graphic = 22;
 sprite.Delete();
 ```
 
-will load the file "CustomAvatar.bmp", change Object 1 to display this
-graphic, wait 5 seconds, then change object 1 back to its old sprite 22
+will load the file "CustomAvatar.bmp", change oObject to display this
+graphic, wait 5 seconds, then change oObject back to its old sprite 22
 and free the new image.
 
 *See also:*
@@ -559,17 +559,17 @@ call Release on the surface when you are finished.
 Example:
 
 ```ags
-DynamicSprite *sprite = DynamicSprite.CreateFromExistingSprite(object[0].Graphic);
+DynamicSprite *sprite = DynamicSprite.CreateFromExistingSprite(oObject.Graphic);
 DrawingSurface *surface = sprite.GetDrawingSurface();
 surface.DrawingColor = 13;
 surface.DrawLine(0, 0, 20, 20);
 surface.Release();
-object[0].Graphic = sprite.Graphic;
+oObject.Graphic = sprite.Graphic;
 Wait(40);
 sprite.Delete();
 ```
 
-this creates a dynamic sprite as a copy of Object 0's existing sprite,
+this creates a dynamic sprite as a copy of oObject's existing sprite,
 draws a pink diagonal line across it, sets this new sprite onto the
 object for 1 second and then removes it.
 
@@ -718,7 +718,7 @@ the already tinted sprite from the first call.
 Example:
 
 ```ags
-DynamicSprite* sprite = DynamicSprite.CreateFromExistingSprite(object[0].Graphic);
+DynamicSprite* sprite = DynamicSprite.CreateFromExistingSprite(oObject.Graphic);
 sprite.Tint(255, 0, 0, 100, 100);
 DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
 surface.DrawImage(100, 80, sprite.Graphic);
@@ -726,7 +726,7 @@ surface.Release();
 sprite.Delete();
 ```
 
-creates a copy of object 0's sprite, tints it red, and draws it onto the
+creates a copy of oObject's sprite, tints it red, and draws it onto the
 room background.
 
 *See also:* [`DynamicSprite.Flip`](DynamicSprite#dynamicspriteflip),

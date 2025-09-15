@@ -8,7 +8,7 @@ MaskPathfinder is a sub-type of a [Pathfinder](Pathfinder) struct, and inherits 
 
 *See also:*
 [Pathfinder](Pathfinder),
-[MaskPathfinder](Room#roompathfinder)
+[Room.PathFinder](Room#roompathfinder)
 
 ### `MaskPathfinder.Create`
 

@@ -10,7 +10,7 @@ You cannot create an instance of the parent Pathfinder type directly. Rooms prov
 
 *See also:*
 [MaskPathfinder](MaskPathfinder),
-[MaskPathfinder](Room#roompathfinder)
+[Room.PathFinder](Room#roompathfinder)
 
 ### `Pathfinder.FindPath`
 

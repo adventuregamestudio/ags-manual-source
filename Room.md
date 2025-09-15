@@ -478,6 +478,10 @@ Gets the current Room's Pathfinder object that lets find route around walkable a
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
+*See also:*
+[Pathfinder function and properties](Pathfinder),
+[MaskPathfinder function and properties](MaskPathfinder)
+
 ---
 
 ### `Room.Regions`

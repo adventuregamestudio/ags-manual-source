@@ -799,6 +799,23 @@ enum TransitionStyle {
 
 ---
 
+### `VideoPlayStyle`
+
+```ags
+enum VideoPlayStyle {
+    eVideoPlayDefault = 0,
+    eVideoPlayStretchToScreen = 1,
+    eVideoPlayNoAudio = 10,
+    eVideoPlayAudioAndDontMuteGame = 20
+};
+```
+
+*Compatibility:* supported by **AGS 3.6.3** and later versions.
+
+*Used by:* [`PlayVideo`](Multimedia#playvideo)
+
+---
+
 ### `VideoSkipStyle`
 
 ```ags

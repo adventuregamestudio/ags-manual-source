@@ -142,7 +142,7 @@ simulate this effect.
 ### `PlayVideo`
 
 ```ags
-PlayVideo (string filename, VideoSkipStyle, int flags)
+PlayVideo(const string filename, VideoSkipStyle, VideoPlayStyle style)
 ```
 
 Plays a supported video file. The game is paused while the video plays.
@@ -156,12 +156,14 @@ Plays a supported video file. The game is paused while the video plays.
     eVideoSkipAnyKey         player can press any key to skip video
     eVideoSkipAnyKeyOrMouse  player can press any key or click mouse to skip
 
-*Flags* has these meanings:
+*VideoPlayStyle* flags have these meanings:
 
-    0: default mode; the video is be played at original size, with its own audio; game's audio is muted.
-    +1: the video will be stretched to full screen, with appropriate black borders to maintain its aspect ratio.
-    +10 (i.e. 10, 11): video's own audio will be muted, and game audio will continuing playing.
-    +20 (i.e. 20, 21): both game's and video's audio will be playing.
+    (0) eVideoPlayDefault: default mode; the video is be played at original size, with its own audio; game's audio is muted.
+    (+1) eVideoPlayStretchToScreen: the video will be stretched to full screen, with appropriate black borders to maintain its aspect ratio.
+    (+10) eVideoPlayNoAudio (i.e. 10, 11): video's own audio will be muted, and game audio will continue playing.
+    (+20) eVideoPlayAudioAndDontMuteGame (i.e. 20, 21): both game's and video's audio will be playing.
+
+**As of 3.6.3** AGS provides a VideoPlayStyle enum. **Prior to 3.6.3** it used a simple `int flags` in its place.
 
 **NOTE:** In 256-color games, PlayVideo is not supported. Please use a
 FLC/FLI video with the [`PlayFlic`](Multimedia#playflic) command instead.
@@ -200,7 +202,9 @@ OGG Theora supported by **AGS 3.1.1** and later versions.<br>
 AVI / MPG support was discontinued in **AGS 3.6.0** and not supported until further notice.<br>
 Flag +20 (play both game and video's audio) is supported by **AGS 3.6.0** and later versions.
 
-*See also:* [`PlayFlic`](Multimedia#playflic)
+*See also:* [`PlayFlic`](Multimedia#playflic),
+[`VideoSkipStyle`](StandardEnums#videoskipstyle)
+[`VideoPlayStyle`](StandardEnums#videoplaystyle)
 
 ---
 

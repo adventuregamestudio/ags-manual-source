@@ -413,6 +413,186 @@ will display the number of options in the dFisherman dialog.
 
 ---
 
+### `Dialog.OptionsBulletGraphic`
+
+```ags
+static attribute int Dialog.OptionsBulletGraphic
+```
+
+Gets/sets the sprite to use as a bullet point before each dialog option (0 for none).
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsFont`
+
+```ags
+static attribute int Dialog.OptionsFont
+```
+
+Gets/sets the font to use when displaying dialog options.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsGap`
+
+```ags
+static attribute int Dialog.OptionsGap
+```
+
+Gets/sets the vertical gap between dialog options (in pixels).
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsGUI`
+
+```ags
+static attribute GUI* Dialog.OptionsGUI
+```
+
+Gets/sets the GUI that will be used to display dialog options; set null to use default options look.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsGUIX`
+
+```ags
+static attribute int Dialog.OptionsGUIX
+```
+
+Gets/sets on-screen X position of dialog options GUI; set to -1 if it should use default placement.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsGUIY`
+
+```ags
+static attribute int Dialog.OptionsGUIY
+```
+
+Gets/sets on-screen Y position of dialog options GUI; set to -1 if it should use default placement.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsHighlightColor`
+
+```ags
+static attribute int Dialog.OptionsHighlightColor
+```
+
+Gets/sets the color used to draw the active (selected) dialog option.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsMaxGUIWidth`
+
+```ags
+static attribute int Dialog.OptionsMaxGUIWidth
+```
+
+Get/sets the maximal width of the auto-resizing GUI on which dialog options are drawn.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsMinGUIWidth`
+
+```ags
+static attribute int Dialog.OptionsMinGUIWidth
+```
+
+Get/sets the minimal width of the auto-resizing GUI on which dialog options are drawn.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsNumbering`
+
+```ags
+static attribute DialogOptionsNumbering Dialog.OptionsNumbering
+```
+
+Gets/sets whether dialog options have numbers before them, and the numeric keys can be used to select them.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsPaddingX`
+
+```ags
+static attribute int Dialog.OptionsPaddingX
+```
+
+Gets/sets the horizontal offset at which options are drawn on a standard GUI.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsPaddingY`
+
+```ags
+static attribute int Dialog.OptionsPaddingY
+```
+
+Gets/sets the vertical offset at which options are drawn on a standard GUI.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsReadColor`
+
+```ags
+static attribute int Dialog.OptionsReadColor
+```
+
+Gets/sets the color used to draw the dialog options that have already been selected once; set to -1 for no distinct color.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsTextAlignment`
+
+```ags
+static attribute HorizontalAlignment Dialog.OptionsTextAlignment
+```
+
+Gets/sets the horizontal alignment of each dialog option's text.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `Dialog.OptionsZOrder`
+
+```ags
+static attribute int Dialog.OptionsZOrder
+```
+
+Gets/sets the z-order of dialog options, relative to GUI and on-screen Overlays..
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `Dialog.ScriptName`
 
 ```ags

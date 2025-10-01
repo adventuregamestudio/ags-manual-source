@@ -1342,7 +1342,7 @@ More specifically, AGS uses the Normal Font for the following:
 
 -   Display
 -   DisplayTopBar
--   dialog options text
+-   dialog options text (only before AGS 3.6.3, see notes below)
 -   the built-in save and restore dialogs
 
 The Normal Font is font 0 by default.
@@ -1354,6 +1354,9 @@ Game.NormalFont = eFontSpecial;
 ```
 
 will change the normal font to the font \"Special\".
+
+**NOTE:** Since AGS 3.6.3 the dialog options text font can be get/set with
+[`Dialog.OptionsFont`](Game#gameoptionsfont)
 
 *See also:* [`Game.SpeechFont`](Game#gamespeechfont)
 

@@ -195,6 +195,20 @@ enum CutsceneSkipType {
 
 ---
 
+### `DialogOptionsNumbering`
+
+```ags
+enum DialogOptionsNumbering {
+  eDialogOptNumbers_Disabled  = -1,
+  eDialogOptNumbers_KeysOnly  = 0,
+  eDialogOptNumbers_Display   = 1
+};
+```
+
+*Used by:* [`Dialog.OptionsNumbering`](Dialog#dialogoptionsnumbering)
+
+---
+
 ### `DialogOptionSayStyle`
 
 ```ags

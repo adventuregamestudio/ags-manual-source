@@ -153,6 +153,7 @@
   - [DrawingSurface functions and properties](DrawingSurface)
   - [DynamicSprite functions and properties](DynamicSprite)
   - [File functions and properties](File)
+  - [GameInfo properties](GameInfo)
   - [Game functions and properties](Game)
   - [GUI functions and properties](GUI)
   - [GUI control functions and properties](GUIControl)

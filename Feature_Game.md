@@ -24,9 +24,9 @@ Note that the player character does not have to be seen on screen at all. It mig
 
 While the starting "player character" is set in the Editor, you may select virtually *any other* character as playable during gameplay using a script command. This allows, for example, to have multiple playable characters in game, switching between them as the story progresses, or letting player to switch at will.
 
-NOTE: AGS game requires at least 1 Room and 1 Character (set as "player character") to run. Everything else is optional.
+**NOTE:** AGS game requires at least 1 Room and 1 Character (set as "player character") to run. Everything else is optional.
 
-See Also: [AGS Tutorial](StartingOff)
+*See Also:* [AGS Tutorial](StartingOff)
 
 ### Game genre and gameplay
 
@@ -61,10 +61,10 @@ Event functions are optional though, you don't have to create functions for all 
 
 It's important to know that there are 2 kinds of events in AGS: ones that expect a script function of predefined name to run, and ones that require you to explicitly assign your custom function name to them. The global events that refer to the game itself are of the first kind, while Room and object-related are of the second. Assigning a function to event is done in the Editor, on the "events" tab of a selected game object.
 
-See Also: [Scripting Tutorial](ScriptingTutorial), [Scripting Language](ScriptingLanguage), [Script API](Scripting), [Event Types](EventTypes), [How to assign functions to object events](acintro3)
+*See Also:* [Scripting Tutorial](ScriptingTutorial), [Scripting Language](ScriptingLanguage), [Script API](Scripting), [Event Types](EventTypes), [How to assign functions to object events](acintro3)
 
 ### Game Templates
 
 When you create a new game in AGS Editor, you choose a Game Template to start with. Please be aware that the Template is only a starting set, but in no way a restriction to what you can do in your game. Regardless of which template do you choose, you can modify anything later: add, change, remove, and even redo all the things that template has created for you from scratch, if you find them unnecessary or conflicting with your game idea. Latter, however, would defeat the purpose of a template, therefore it's useful to learn what each template provides and start with the one best suited for your purpose.
 
-See Also: [Templates](Templates)
+*See Also:* [Templates](Templates)

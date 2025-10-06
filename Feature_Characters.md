@@ -4,7 +4,7 @@ Characters are meant to represent personalities in your game. But they might as 
 
 Characters are global entities, which may freely travel between rooms. When in room they have position in their current room's coordinate system, visual image and properties. They may be moved around, have their looks changed, and may be interacted with by the player. Besides the above, they have several additional behaviors: walking, speaking, idling and inventory. We'll discuss these below.
 
-See Also: [Character Editor](EditorCharacter), [Character functions and properties](Character)
+*See Also:* [Character Editor](EditorCharacter), [Character functions and properties](Character)
 
 ### Player Character
 
@@ -38,7 +38,7 @@ Speech, Blink and Think Views only use directional loops if the game has "Lucas-
 
 **NOTE:** Views are not *owned* by a character. A single View may be assigned to multiple characters at once (and few other types of objects), and even to multiple "slots" in a character (e.g. as both Speech View and Think View).
 
-See Also: [Character Editor](EditorCharacter), [View Editor](EditorView)
+*See Also:* [Character Editor](EditorCharacter), [View Editor](EditorView)
 
 ### Custom Views and Animating
 
@@ -46,7 +46,7 @@ Besides the standard set of Views, Character may be assigned any view for perfor
 
 The common use for this is to animate any character actions not covered by default views, such as: picking items up, opening doors, jumping, performing gestures, and so forth. But you may also use custom animate function as a substitute for standard views as well (walking, speech, etc), if their default behavior is not suiting you.
 
-See Also: [Character.LockView](Character#characterlockview), [Character.Animate](Character#characteranimate), [Character.UnlockView](Character#characterunlockview), [View Editor](EditorView)
+*See Also:* [Character.LockView](Character#characterlockview), [Character.Animate](Character#characteranimate), [Character.UnlockView](Character#characterunlockview), [View Editor](EditorView)
 
 ### Moving and Walking
 
@@ -64,9 +64,9 @@ There are couple of additional settings related to how the walking is performed.
 
 "Turn when moving" option (set per character in the editor) makes character animate a turn in place step by step instead of an immediate switch to the new direction.
 
-**NOTE:** the character does not have to be visible to move or walk. You may turn character invisible by e.g. setting its [Transparency](Character#charactertransparency) property to 100%, and any moving command will still work. Such trick may be used to create an invisible "reference point" that something else, such as another character, should follow.
+**NOTE:** The character does not have to be visible to move or walk. You may turn character invisible by e.g. setting its [Transparency](Character#charactertransparency) property to 100%, and any moving command will still work. Such trick may be used to create an invisible "reference point" that something else, such as another character, should follow.
 
-See Also: [Character.Move](Character#charactermove), [Character.Walk](Character#characterwalk), [Feature: Walkable Areas](Feature_Rooms#walkable-areas)
+*See Also:* [Character.Move](Character#charactermove), [Character.Walk](Character#characterwalk), [Feature: Walkable Areas](Feature_Rooms#walkable-areas)
 
 ### Speaking
 
@@ -84,16 +84,16 @@ All three effects are optional and there are conditions under which they will no
 
 All those three effects may be achieved by scripting as well, and that's how custom speech styles can be created in AGS.
 
-**NOTE:** the character itself does not have to be seen on screen in order to do speech, it just has to be in the active room, but it may as well be invisible or offscreen. One trick that you may do with an invisible character is to position it at an arbitrary place in the room and make it speak, which will have effect of a speech appearing over that place.
+**NOTE:** The character itself does not have to be seen on screen in order to do speech, it just has to be in the active room, but it may as well be invisible or offscreen. One trick that you may do with an invisible character is to position it at an arbitrary place in the room and make it speak, which will have effect of a speech appearing over that place.
 
-See Also: [Character.Say](Character#charactersay), [Character.Think](Character#characterthink), [Dialog Script](DialogScript)
+*See Also:* [Character.Say](Character#charactersay), [Character.Think](Character#characterthink), [Dialog Script](DialogScript)
 
 ### Idling
 
 Characters have a setting that tells how long to wait before it enters idling state and animates using an assigned Idle View. After a single animation idle timer resets and character waits again. This timer is also reset whenever character does something else, like walking or speaking.
 The idle timer setting may be set to zero, in which case character will be permanently running its "idle" animation, while standing still. This may be used as a kind of a "standing" animation.
 
-See Also: [Character.SetIdleView](Character#charactersetidleview)
+*See Also:* [Character.SetIdleView](Character#charactersetidleview)
 
 ### Inventory
 
@@ -101,4 +101,4 @@ Each character in the game has inventory, which is a collection of items that th
 
 Each character may have a "selected item", in script this is depicted by [ActiveInventory](Character#characteractiveinventory) property. When this property is set for the player character the cursor mode "use item" displays that item's graphic. This property does not have much meaning for the NPCs though.
 
-See Also: [Feature: Inventory](Feature_InventoryItems)
+*See Also:* [Feature: Inventory](Feature_InventoryItems)

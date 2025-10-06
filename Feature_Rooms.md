@@ -12,7 +12,7 @@ The way it currently works in AGS, Room numbers 0-300 are defined as state-savin
 
 Non-state-saving rooms help to save on memory, and also they guarantee that upon entering them their state will be exactly the same as you set it in the Editor each time player revisits this room. It's a good practice to have rooms serving as title screens, menus and similar be non-state-saving, because these usually don't need to be restored. Same goes to rooms which you know will only be visited once during a playthrough, such as cutscenes, for instance.
 
-See Also: [Tutorial: Creating your first room](acintro2)
+*See Also:* [Tutorial: Creating your first room](acintro2)
 
 ### Changing Rooms
 
@@ -34,7 +34,7 @@ However, if the room is larger than the Game's resolution, say it's 640x200, the
 
 By default the camera is centered at player character. When player character walks around the room, the camera will follow as far as it can without crossing the room's bounds. There are ways to control the camera using [relevant script commands](Camera).
 
-See Also: [Camera functions and properties](Camera), [Viewport functions and properties](Viewport)
+*See Also:* [Camera functions and properties](Camera), [Viewport functions and properties](Viewport)
 
 ### Room contents
 
@@ -48,7 +48,7 @@ Besides their basic settings, rooms may have following contents in them:
 * Regions
 * Walk-behinds
 
-See Also: [Room Editor](EditorRoom)
+*See Also:* [Room Editor](EditorRoom)
 
 ### Room Backgrounds
 
@@ -68,7 +68,7 @@ Their purpose is to detect when player character crosses them, in which case the
 
 One downside of using a Room Edge is that it is a straight line running across the whole room, and will trigger regardless of which point character crosses it at. If the room has a non-trivial layout, then Hotspots or Regions would be more suitable for this purpose.
 
-See Also: [Room events](EventTypes#room-events)
+*See Also:* [Room events](EventTypes#room-events)
 
 ### Room Objects
 
@@ -82,7 +82,7 @@ They may be [assigned a View](Object#objectsetview) and animated by a [script co
 
 Room Objects may be clicked on by player to trigger one of their interaction events, depending on the active cursor mode.
 
-See Also: [Tutorial: room objects](acintro4#objects), [Object events](EventTypes#object-events), [Object functions and properties](Object)
+*See Also:* [Tutorial: room objects](acintro4#objects), [Object events](EventTypes#object-events), [Object functions and properties](Object)
 
 ### Room Areas
 
@@ -111,7 +111,7 @@ A hotspot may be enabled or disabled by a [script command](Hotspot#hotspotenable
 
 Hotspot may have a Walk-to Point: that's an optional setting that tells where a character will walk to automatically when the player clicks on hotspot.
 
-See Also: [Tutorial: hotspots](acintro3#hotspots), [Hotspot events](EventTypes#hotspot-events), [Hotspot functions and properties](Hotspot)
+*See Also:* [Tutorial: hotspots](acintro3#hotspots), [Hotspot events](EventTypes#hotspot-events), [Hotspot functions and properties](Hotspot)
 
 ### Walkable areas
 
@@ -127,7 +127,7 @@ Speaking of effects, Walkable Areas may have following configured:
 
 2. Area specific view. You can assign a view number, which will be applied to a playable character automatically when it walks on this area.
 
-See Also: [Tutorial: creating your first room](acintro2), [Global functions (room actions)](Globalfunctions_Room)
+*See Also:* [Tutorial: creating your first room](acintro2), [Global functions (room actions)](Globalfunctions_Room)
 
 ### Regions
 
@@ -145,7 +145,7 @@ Regions have a number of events, and react to following:
 
 Each of the above triggers [corresponding event](EventTypes#region-events), which in turn may run a custom function in script.
 
-See Also: [Region events](EventTypes#region-events), [Region functions and properties](Region)
+*See Also:* [Region events](EventTypes#region-events), [Region functions and properties](Region)
 
 ### Walk-behinds
 
@@ -161,4 +161,4 @@ Walk-behinds may be turned off by setting their Baseline to 0.
 
 Walk-behinds are an optional feature, as they may be substituted by room objects, which have certain advantages over them. Because walk-behinds are using parts of the room background, they cannot change their looks dynamically (unless you switch whole room background), cannot animate or change position. Thus they are only suitable for static parts of the scene that never change.
 
-See Also: [Global functions (room actions)](Globalfunctions_Room)
+*See Also:* [Global functions (room actions)](Globalfunctions_Room)

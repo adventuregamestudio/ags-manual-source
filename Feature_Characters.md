@@ -93,6 +93,12 @@ All those three effects may be achieved by scripting as well, and that's how cus
 Characters have a setting that tells how long to wait before it enters idling state and animates using an assigned Idle View. After a single animation idle timer resets and character waits again. This timer is also reset whenever character does something else, like walking or speaking.
 The idle timer setting may be set to zero, in which case character will be permanently running its "idle" animation, while standing still. This may be used as a kind of a "standing" animation.
 
+Following actions are counted as character's "activity" and will reset idle timer, or stop idle animation if one was playing:
+* Walking or moving with a Walk or Move command (but not changing x,y properties directly).
+* Regular blocking speech started with a Say command if the SpeechView is set; if SpeechView is not set, then idling timer will not be reset, and idle animation may even play during speech. Also background speech (SayBackground) does not prevent idling timer or animation either.
+* Turning on a spot with FaceDirection and similar commands (but not changing Loop property directly).
+* Locking the view with LockView command will prevent idle animation completely for the duration of lock. Idling timer will start anew when the view is unlocked with UnlockView.
+
 *See Also:* [Character.SetIdleView](Character#charactersetidleview)
 
 ### Inventory

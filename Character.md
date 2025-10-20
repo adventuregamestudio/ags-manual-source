@@ -1507,6 +1507,14 @@ Pass IDLEVIEW as -1 to disable the idle view completely.
 In the unlikely event that you created your idle view in View 1, you'll
 need to move it to another view number.
 
+Following actions are counted as character's "activity" and will reset idle timer, or stop idle animation if one was playing:
+* Walking or moving with a Walk or Move command (but not changing x,y properties directly).
+* Regular blocking speech started with a Say command if the SpeechView is set; if SpeechView is not set, then idling timer will not be reset, and idle animation may even play during speech. Also background speech (SayBackground) does not prevent idling timer or animation either.
+* Turning on a spot with FaceDirection and similar commands (but not changing Loop property directly).
+* Locking the view with LockView command will prevent idle animation completely for the duration of lock. Idling timer will start anew when the view is unlocked with UnlockView.
+
+**NOTE:** There was a historical mistake in the engine because of which FaceDirection and similar commands did not reset idling timer nor prevented idle animation. The newer versions should have this fixed.
+
 Example:
 
 ```ags

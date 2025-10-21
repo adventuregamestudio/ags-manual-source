@@ -530,7 +530,11 @@ Plays a voice clip from the **speech.vox** in a non-blocking manner. It returns 
 
 Character and "cue" arguments are used to find actual clip, this works the same way as when you do `cEgo.Say("&10 speech text");` in which case "10" is a cue number. For more information about this see: [Voice speech](VoiceSpeech).
 
-The "as_speech" argument tells whether playback has same effect on game as regular speech. At the moment this means that music volume will drop and restore after playback is finished. This parameter "as_speech" is TRUE by default and may be omitted.
+The "as_speech" argument tells whether playback has same effect on game as regular speech's voice-over. The effect is following:
+* Any blocking speech text which is displayed while the voice is playing will not be removed by a timer until voice playback ends.
+* Any other audio playbacks will have their volume dropped for the duration of a voice clip, if their types have "VolumeReductionWhileSpeechPlaying" property set.
+
+The parameter "as_speech" is TRUE by default and may be omitted.
 
 This command will be ignored if a regular blocking voice is currently playing. Also, both blocking and non-blocking voice will interrupt non-blocking voice-over if one was playing.
 

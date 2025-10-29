@@ -29,6 +29,148 @@ Retrieves a dialog name from the character's custom property, and gets a pointer
 
 ---
 
+### `Dialog.SetHasOptionBeenChosen`
+
+```ags
+Dialog.SetHasOptionBeenChosen(int option, bool chosen)
+```
+
+Changes whether an option in a conversation is marked as previously
+chosen by the player. The option is marked as chosen whenever player
+selects it during the conversation, and is usually highlighted with
+different text color. This function lets you to reset the option state,
+or force it change at any random moment.
+
+OPTION is the option number within the dialog, from 1 to whatever the
+highest option is for that topic.
+
+Example:
+
+```ags
+if (dDialog1.HasOptionBeenChosen(1))
+    dDialog1.SetHasOptionBeenChosen(1, false); // reset the option state
+```
+
+will mark option 1 of dialog dDialog1 as "not chosen yet".
+
+*Compatibility:* Supported by **AGS 3.3.0** and later versions.
+
+*See also:* [`Dialog.GetOptionState`](Dialog#dialoggetoptionstate),
+[`Dialog.HasOptionBeenChosen`](Dialog#dialoghasoptionbeenchosen)
+
+---
+
+### `Dialog.SetOptionState`
+
+*(Formerly known as global function `SetDialogOption`, which is now
+obsolete)*
+
+```ags
+Dialog.SetOptionState(int option, DialogOptionState)
+```
+
+Changes whether an option in a conversation is available to the player
+or not. This allows you to add extra options to a conversation once the
+player has done certain things.
+
+OPTION is the option number within the topic, from 1 to whatever the
+highest option is for that topic.
+
+The DialogOptionState controls what happens to this option. It can have
+the following values:
+
+    eOptionOff
+      The option is disabled - the player will not see it
+    eOptionOn
+      The option is enabled - the player can now see and use it
+    eOptionOffForever
+      The option is permanently disabled - no other command can ever turn
+      it back on again.
+
+These are equivalent to the option-off, option-on, and
+option-off-forever dialog commands.
+
+Example:
+
+```ags
+dFriend1.SetOptionState(2, eOptionOn);
+```
+
+will enable option 2 of topic number 4.
+
+*See also:* [`Dialog.GetOptionState`](Dialog#dialoggetoptionstate),
+[`Dialog.Start`](Dialog#dialogstart),
+[`StopDialog`](Dialog#stopdialog)
+
+---
+
+### `Dialog.Start`
+
+*(Formerly known as global function `RunDialog`, which is now obsolete)*
+
+```ags
+Dialog.Start()
+```
+
+Starts a conversation from the specified topic.
+
+NOTE: The conversation will not start immediately; instead, it will be
+run when the current script function finishes executing.
+
+If you use this command from within the dialog_request function, it
+will specify that the game should return to this new topic when the
+script finishes.
+
+Example:
+
+```ags
+dMerchant.Start();
+```
+
+will start the conversation topic named dMerchant.
+
+*See also:* [`Dialog.StartOption`](Dialog#dialogstartoption),
+[`Dialog.Stop`](Dialog#dialogstop),
+[`Dialog.DisplayOptions`](Dialog#dialogdisplayoptions),
+[`Dialog.SetOptionState`](Dialog#dialogsetoptionstate)
+
+---
+
+### `Dialog.StartOption`
+
+```ags
+Dialog.StartOption(int option)
+```
+
+Starts a conversation from the specified topic, and starts executing dialog script for the specified option. Remember that the user-made options begin with 1, while option 0 is a entry point, so calling Dialog.StartOption(0) will work essentially like Dialog.Start().
+
+NOTE: The conversation will not start immediately; instead, it will be
+run when the current script function finishes executing.
+
+Besides the starting point, there's no other differences compared to the regular Dialog.Start(), and dialog will continue as normal after the current option's script finishes. Unless it ends with `stop` command, in which case the dialog will end.
+
+This command can be useful in combination with the fully scripted dialog options, going around the standard dialog system. If you do something like that, don't forget to use `stop` in the end of each option's script to stop dialog instead of `return`.
+
+Example:
+
+```ags
+int chosen_question = ListOfQuestions.SelectedIndex + 1;
+dLibrarian.StartDialog(chosen_question);
+```
+
+will read the index of selected topic from the ListBox control, and run dLibrarian dialog from the corresponding option.
+
+For the opposite scenario see [`Dialog.DisplayOptions`](Dialog#dialogdisplayoptions), which displays dialog options in a common way, but does not run dialog scripts.
+
+**Compatibility:** Supported by **AGS 3.6.2** and later versions.
+
+**See also:** [`Dialog.Start`](Dialog#dialogstart),
+[`Dialog.Stop`](Dialog#dialogstop),
+[`Dialog.DisplayOptions`](Dialog#dialogdisplayoptions), 
+[`Dialog.SetOptionState`](Dialog#dialogsetoptionstate)
+
+---
+
 ### `Dialog.Stop`
 
 ```ags
@@ -55,7 +197,7 @@ Stops running dialog when player presses Escape key.
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
-*See also:* [`Dialog.Start`](Dialog#dialogstart), [`StopDialog`](Dialog#stopdialog)
+*See also:* [`Dialog.Start`](Dialog#dialogstart), [`Dialog.StartOption`](Dialog#dialogstartoption), [`StopDialog`](Dialog#stopdialog)
 
 ---
 
@@ -258,6 +400,7 @@ depending on what the player selected.
 *Compatibility:* Supported by **AGS 3.0.2** and later versions.
 
 *See also:* [`Dialog.Start`](Dialog#dialogstart),
+[`Dialog.StartOption`](Dialog#dialogstartoption),
 [`Parser.ParseText`](Parser#parserparsetext)
 
 ---
@@ -433,6 +576,8 @@ static attribute int Dialog.OptionsFont
 
 Gets/sets the font to use when displaying dialog options.
 
+For backwards compatibility this property starts initialized with a eUndefinedFont value. While its set to eUndefinedFont, a Game.NormalFont will be used for options instead.
+
 **Compatibility:** Supported by **AGS 3.6.3** and later versions.
 
 ---
@@ -533,6 +678,20 @@ Gets/sets whether dialog options have numbers before them, and the numeric keys 
 
 ---
 
+### `Dialog.OptionsOverlay`
+
+```ags
+static readonly attribute Overlay* Dialog.OptionsOverlay
+```
+
+Gets the Overlay object that represents dialog options on screen. This property will only return a valid Overlay while dialog options are shown, and returns null when they are not shown. You may further access this Overlay's properties and modify them (position, z-order, transparency and so forth).
+
+While it's technically possible, it is not recommended to change overlay's graphic though, because the engine will replace it with a dialog options image whenever they are updated. Removing this Overlay will also not affect the state of the options nor the Dialog, and a new overlay will appear during the next update anyway.
+
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `Dialog.OptionsPaddingX`
 
 ```ags
@@ -587,7 +746,7 @@ Gets/sets the horizontal alignment of each dialog option's text.
 static attribute int Dialog.OptionsZOrder
 ```
 
-Gets/sets the z-order of dialog options, relative to GUI and on-screen Overlays..
+Gets/sets the z-order of dialog options, relative to GUI and on-screen Overlays.
 
 **Compatibility:** Supported by **AGS 3.6.3** and later versions.
 
@@ -622,81 +781,6 @@ Starting a dialog using the `CustomDialogStart()` method, like `dExampleDialog.C
 
 ---
 
-### `Dialog.SetHasOptionBeenChosen`
-
-```ags
-Dialog.SetHasOptionBeenChosen(int option, bool chosen)
-```
-
-Changes whether an option in a conversation is marked as previously
-chosen by the player. The option is marked as chosen whenever player
-selects it during the conversation, and is usually highlighted with
-different text color. This function lets you to reset the option state,
-or force it change at any random moment.
-
-OPTION is the option number within the dialog, from 1 to whatever the
-highest option is for that topic.
-
-Example:
-
-```ags
-if (dDialog1.HasOptionBeenChosen(1))
-    dDialog1.SetHasOptionBeenChosen(1, false); // reset the option state
-```
-
-will mark option 1 of dialog dDialog1 as "not chosen yet".
-
-*Compatibility:* Supported by **AGS 3.3.0** and later versions.
-
-*See also:* [`Dialog.GetOptionState`](Dialog#dialoggetoptionstate),
-[`Dialog.HasOptionBeenChosen`](Dialog#dialoghasoptionbeenchosen)
-
----
-
-### `Dialog.SetOptionState`
-
-*(Formerly known as global function `SetDialogOption`, which is now
-obsolete)*
-
-```ags
-Dialog.SetOptionState(int option, DialogOptionState)
-```
-
-Changes whether an option in a conversation is available to the player
-or not. This allows you to add extra options to a conversation once the
-player has done certain things.
-
-OPTION is the option number within the topic, from 1 to whatever the
-highest option is for that topic.
-
-The DialogOptionState controls what happens to this option. It can have
-the following values:
-
-    eOptionOff
-      The option is disabled - the player will not see it
-    eOptionOn
-      The option is enabled - the player can now see and use it
-    eOptionOffForever
-      The option is permanently disabled - no other command can ever turn
-      it back on again.
-
-These are equivalent to the option-off, option-on, and
-option-off-forever dialog commands.
-
-Example:
-
-```ags
-dFriend1.SetOptionState(2, eOptionOn);
-```
-
-will enable option 2 of topic number 4.
-
-*See also:* [`Dialog.GetOptionState`](Dialog#dialoggetoptionstate),
-[`Dialog.Start`](Dialog#dialogstart),
-[`StopDialog`](Dialog#stopdialog)
-
----
-
 ### `Dialog.ShowTextParser`
 
 ```ags
@@ -720,37 +804,6 @@ if (dFisherman.ShowTextParser)
 will display a message if dFisherman has the option enabled
 
 *Compatibility:* Supported by **AGS 3.2.1** and later versions.
-
----
-
-### `Dialog.Start`
-
-*(Formerly known as global function `RunDialog`, which is now obsolete)*
-
-```ags
-Dialog.Start()
-```
-
-Starts a conversation from the specified topic.
-
-NOTE: The conversation will not start immediately; instead, it will be
-run when the current script function finishes executing.
-
-If you use this command from within the dialog_request function, it
-will specify that the game should return to this new topic when the
-script finishes.
-
-Example:
-
-```ags
-dMerchant.Start();
-```
-
-will start the conversation topic named dMerchant.
-
-*See also:* [`StopDialog`](Dialog#stopdialog),
-[`Dialog.DisplayOptions`](Dialog#dialogdisplayoptions),
-[`Dialog.SetOptionState`](Dialog#dialogsetoptionstate)
 
 ---
 

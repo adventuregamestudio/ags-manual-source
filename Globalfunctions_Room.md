@@ -48,7 +48,7 @@ DisableGroundLevelAreas(int disableTints)
 Disables all ground-level events. This means that all Region events, the
 Player Stands On Hotspot event, and the room edges become disabled.
 
-This command is useful in conjunction with the `character[].z` variable,
+This command is useful in conjunction with the `Character.z` property,
 if you want the player to be able to temporarily fly or levitate, for
 example. It allows you to stop the character from triggering Player
 Stands On events while they are in the air.
@@ -113,10 +113,10 @@ Example:
 
 ```ags
 if (GetBackgroundFrame()==4)
-    object[2].Visible = true;
+    oMoon.Visible = true;
 ```
 
-will turn on object 2 if the background frame of the room is frame 4.
+will turn on object oMoon if the background frame of the room is frame 4.
 
 *See also:* [`SetBackgroundFrame`](Globalfunctions_Room#setbackgroundframe)
 
@@ -209,7 +209,7 @@ if (GetScalingAt(player.x, player.y) == 100)
 
 ### `GetViewportX`
 
-**This function is obsolete since AGS 3.5.0. Use [`Game`](Game#gamecamera).[`Camera.X`](Camera#camerax) instead.**
+**This function is obsolete since AGS 3.5.0. Use [`Game.Camera.X`](Camera#camerax) instead.**
 
 ```ags
 GetViewportX()
@@ -222,7 +222,7 @@ allows you to find out what part of the room the player is looking at.
 
 ### `GetViewportY`
 
-**This function is obsolete since AGS 3.5.0. Use [`Game`](Game#gamecamera).[`Camera.Y`](Camera#cameray) instead.**
+**This function is obsolete since AGS 3.5.0. Use [`Game.Camera.Y`](Camera#cameray) instead.**
 
 ```ags
 GetViewportY()

@@ -476,10 +476,10 @@ Wait(1);
 Example:
 
 ```ags
-player.FaceObject(object[2]);
+player.FaceObject(oTable);
 ```
 
-will make the player character face object 2.
+will make the player character face object oTable.
 
 *See also:*
 [`Character.FaceCharacter`](Character#characterfacecharacter),
@@ -891,13 +891,12 @@ Returns 1 if they are, and 0 if they are not.
 Example:
 
 ```ags
-if (cEgo.IsCollidingWithObject(object[3]) == 1) {
+if (cEgo.IsCollidingWithObject(oPressurePlate) == 1) {
     // colliding code here
 }
 ```
 
-will execute the colliding code only if the character EGO and the object
-number 3 are colliding.
+will execute the colliding code only if the character cEgo and the object oPressurePlate are colliding.
 
 *See also:*
 [`Character.IsCollidingWithChar`](Character#characteriscollidingwithchar),
@@ -1596,6 +1595,14 @@ Pass IDLEVIEW as -1 to disable the idle view completely.
 **NOTE:** Due to a quirk in AGS, you cannot set the Idle View to view 1.
 In the unlikely event that you created your idle view in View 1, you'll
 need to move it to another view number.
+
+Following actions are counted as character's "activity" and will reset idle timer, or stop idle animation if one was playing:
+* Walking or moving with a Walk or Move command (but not changing x,y properties directly).
+* Regular blocking speech started with a Say command if the SpeechView is set; if SpeechView is not set, then idling timer will not be reset, and idle animation may even play during speech. Also background speech (SayBackground) does not prevent idling timer or animation either.
+* Turning on a spot with FaceDirection and similar commands (but not changing Loop property directly).
+* Locking the view with LockView command will prevent idle animation completely for the duration of lock. Idling timer will start anew when the view is unlocked with UnlockView.
+
+**NOTE:** There was a historical mistake in the engine because of which FaceDirection and similar commands did not reset idling timer nor prevented idle animation. The newer versions should have this fixed.
 
 Example:
 

@@ -542,7 +542,11 @@ Plays a voice clip from the **speech.vox** in a non-blocking manner. It returns 
 
 Character and "cue" arguments are used to find actual clip, this works the same way as when you do `cEgo.Say("&10 speech text");` in which case "10" is a cue number. For more information about this see: [Voice speech](VoiceSpeech).
 
-The "as_speech" argument tells whether playback has same effect on game as regular speech. At the moment this means that music volume will drop and restore after playback is finished. This parameter "as_speech" is TRUE by default and may be omitted.
+The "as_speech" argument tells whether playback has same effect on game as regular speech's voice-over. The effect is following:
+* Any blocking speech text which is displayed while the voice is playing will not be removed by a timer until voice playback ends.
+* Any other audio playbacks will have their volume dropped for the duration of a voice clip, if their types have "VolumeReductionWhileSpeechPlaying" property set.
+
+The parameter "as_speech" is TRUE by default and may be omitted.
 
 This command will be ignored if a regular blocking voice is currently playing. Also, both blocking and non-blocking voice will interrupt non-blocking voice-over if one was playing.
 
@@ -954,6 +958,23 @@ Display("We have %d musical clips in our game", music_count);
 
 ---
 
+### `Game.BlockingWaitSkipped`
+
+```ags
+readonly static int Game.BlockingWaitSkipped
+```
+
+Gets the code which describes how was the last blocking state skipped by a user (or autotimer). The possible code values are explained on the [Wait functions](Globalfunctions_Wait#global-functions-wait) page, but note that BlockingWaitSkipped also returns this code for any other skippable actions, such as speech.
+
+*Compatibility:* Supported by **AGS 3.6.0** and later versions.
+
+*See also:* [`Game.InBlockingWait`](Game#gameinblockingwait), 
+[`WaitKey`](Globalfunctions_Wait#waitkey),
+[`WaitMouseKey`](Globalfunctions_Wait#waitmousekey),
+[`SkipWait`](Globalfunctions_Wait#skipwait)
+
+---
+
 ### `Game.Camera`
 
 ```ags
@@ -1355,7 +1376,7 @@ More specifically, AGS uses the Normal Font for the following:
 
 -   Display
 -   DisplayTopBar
--   dialog options text
+-   dialog options text (only before AGS 3.6.3, see notes below)
 -   the built-in save and restore dialogs
 
 The Normal Font is font 0 by default.
@@ -1367,6 +1388,9 @@ Game.NormalFont = eFontSpecial;
 ```
 
 will change the normal font to the font \"Special\".
+
+**NOTE:** Since AGS 3.6.3 the dialog options text font can be get/set with
+[`Dialog.OptionsFont`](Dialog#dialogoptionsfont)
 
 *See also:* [`Game.SpeechFont`](Game#gamespeechfont)
 
@@ -1466,6 +1490,52 @@ if (Game.SpeechVoxFilename== "German") {
 
 ---
 
+### `Game.Speed`
+
+*(Formerly known as global functions `SetGameSpeed` and `GetGameSpeed`, which are now obsolete)*
+
+```ags
+static int Game.Speed;
+```
+
+Gets or sets the desired game frame rate, which is a number of updates per second. The default speed (or FPS) is configured in the General Settings of your project, but you may change that using this property anytime in script.
+
+(Older versions of the AGS may not have this setting in the editor, in which case they used a historical default of 40 fps.)
+
+Note that this speed is also the rate at which the [repeatedly_execute](RepExec) functions are triggered.
+
+The speed value must lie between 10 and 1000. If it exceeds this range, it will be clamped to 10 or 1000, whatever is nearest.
+
+The engine tries to keep the game update frequency as close to this number as possible, but in practice there are two factors that may make real FPS lower:
+- Vertical synchronization (graphics option): because currently the game's updates are tied to the game rendering, when VSync is enabled it will limit rate of updates too.
+- The system is not powerful enough to run your game at the desired rate. You may that out by checking [`System.FPS`](System#systemfps) property that tells the real update rate.
+
+NOTE: Because the mouse cursor is repainted at the game frame rate, at
+very low speeds, like 10 to 20 fps, the mouse will appear to be jumpy
+and not very responsive.
+
+NOTE: If you set the [`System.VSync`](System#systemvsync) property to
+*true*, the game speed will be capped at the screen's refresh rate, so
+you will be unable to set it higher than 60-85 (depending on the
+player's screen refresh).
+
+Example:
+
+```ags
+Game.Speed = 60;
+```
+
+will set the game speed to 60 fps.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Game.TickCounter`](Game#gametickcounter),
+[`System.FPS`](System#systemfps),
+[`System.VSync`](System#systemvsync)
+
+---
+
 ### `Game.SpriteHeight`
 
 *(Formerly part of `GetGameParameter`, which is now obsolete)*
@@ -1482,8 +1552,8 @@ If an invalid sprite slot is supplied, 0 will be returned.
 Example:
 
 ```ags
-Display("Object 0's sprite is sized %d x %d.", Game.SpriteWidth[object[0].Graphic],
-        Game.SpriteHeight[object[0].Graphic]);
+Display("Object %s's sprite is sized %d x %d.", oObject.ScriptName, Game.SpriteWidth[oObject.Graphic],
+        Game.SpriteHeight[oObject.Graphic]);
 ```
 
 *See also:* [`Game.SpriteWidth`](Game#gamespritewidth)
@@ -1506,8 +1576,8 @@ If an invalid sprite slot is supplied, 0 will be returned.
 Example:
 
 ```ags
-Display("Object 0's sprite is sized %d x %d.", Game.SpriteWidth[object[0].Graphic],
-        Game.SpriteHeight[object[0].Graphic]);
+Display("Object %s's sprite is sized %d x %d.", oObject.ScriptName, Game.SpriteWidth[oObject.Graphic],
+        Game.SpriteHeight[oObject.Graphic]);
 ```
 
 *See also:* [`Game.SpriteHeight`](Game#gamespriteheight)
@@ -1552,6 +1622,28 @@ on-screen for twice as long as usual.
 [`Character.SpeechAnimationDelay`](Character#characterspeechanimationdelay),
 [`Game.MinimumTextDisplayTimeMs`](Game#gameminimumtextdisplaytimems),
 [`Speech.SkipStyle`](Speech#speechskipstyle)
+
+---
+
+### `Game.TickCounter`
+
+```ags
+static readonly int Game.TickCounter;
+```
+
+Returns the number of full game updates passed since the game start. This may be useful if you need to know how many game frames completed between two points in game: then you can remember the value of Game.TickCounter at the first point, and compare the saved value with the new value at the second point in time.
+
+It's important to know that this number increases in almost all states of the game: when game is paused, when blocking actions are run, when dialog options are displayed, and so forth. There are only few cases when game updates are not run and so the tick counter is not being increased, which is: during a room transition (fade-in and fade-out effects), when a [`Display`](Globalfunctions_Message#display) command is run, and when built-in Restore or Save game dialogs are shown with [`RestoreGameDialog`](Globalfunctions_General#restoregamedialog) and [`SaveGameDialog`](Globalfunctions_General#savegamedialog) commands. The latter is a historical engine's behavior, but may be a subject to a change in the future.
+
+The TickCounter value is a part of the game's save state, which means that it's written to saves and read back when you restore a save. Therefore it means number of updates performed in a full gameplay, rather than in a current session.
+
+**NOTE:** the max positive value that an integer type can contain in AGS script is 2147483647, which is the max possible value the TickCounter can report. Whenever the number of updates exceeds this value, the counter will be reset and continue from 1. This is highly improbable in practice, because with 60 FPS it would take approximately 414 full days of continuous gameplay to reach that number, but still something to keep in mind.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Game.Speed`](Game#gamespeed),
+[`System.FPS`](System#systemfps)
 
 ---
 
@@ -1641,20 +1733,3 @@ Example:
 ```ags
 Display("The game has %d views.", Game.ViewCount);
 ```
-
----
-
-### `Game.BlockingWaitSkipped`
-
-```ags
-readonly static int Game.BlockingWaitSkipped
-```
-
-Gets the code which describes how was the last blocking state skipped by a user (or autotimer). The possible code values are explained on the [Wait functions](Globalfunctions_Wait#global-functions-wait) page, but note that BlockingWaitSkipped also returns this code for any other skippable actions, such as speech.
-
-*Compatibility:* Supported by **AGS 3.6.0** and later versions.
-
-*See also:* [`Game.InBlockingWait`](Game#gameinblockingwait), 
-[`WaitKey`](Globalfunctions_Wait#waitkey),
-[`WaitMouseKey`](Globalfunctions_Wait#waitmousekey),
-[`SkipWait`](Globalfunctions_Wait#skipwait)

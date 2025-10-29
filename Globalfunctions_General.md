@@ -449,24 +449,15 @@ GP_NUMINVITEMS)
 
 ### `GetGameSpeed`
 
+**This function is obsolete since AGS 3.6.3. Use [`Game.Speed`](Game#gamespeed).**
+
 ```ags
 GetGameSpeed ()
 ```
 
 Returns the current game speed (number of cycles per second).
 
-Example:
-
-```ags
-if (GetGameSpeed() > 40) {
-    SetGameSpeed(40);
-}
-```
-
-will always keep the game speed at 40 cycles per second (in case the
-user has raised it )
-
-*See also:* [`SetGameSpeed`](Globalfunctions_General#setgamespeed)
+*See also:* [`Game.Speed`](Game#gamespeed)
 
 ---
 
@@ -1478,38 +1469,13 @@ will disable pixel-perfect click detection.
 
 ### `SetGameSpeed`
 
+**This function is obsolete since AGS 3.6.3. Use [`Game.Speed`](Game#gamespeed).**
+
 ```ags
 SetGameSpeed (int new_speed)
 ```
 
-Sets the maximum game frame rate to NEW_SPEED frames per second, or as
-near as possible to that speed. The default frame rate is 40 fps, but
-you can speed up or slow down the game by using this function. Note that
-this speed is also the rate at which the [repeatedly_execute](RepExec) functions
-are triggered.
-
-The NEW_SPEED must lie between 10 and 1000. If it does not, it will be
-rounded to 10 or 1000. Note that if you set a speed which the player's
-computer cannot handle, then it will go as fast as possible.
-
-NOTE: Because the mouse cursor is repainted at the game frame rate, at
-very low speeds, like 10 to 20 fps, the mouse will appear to be jumpy
-and not very responsive.
-
-NOTE: If you set the [`System.VSync`](System#systemvsync) property to
-*true*, the game speed will be capped at the screen's refresh rate, so
-you will be unable to set it higher than 60-85 (depending on the
-player's screen refresh).
-
-Example:
-
-```ags
-SetGameSpeed(60);
-```
-
-will set the game speed to 60 fps.
-
-*See also:* [`GetGameSpeed`](Globalfunctions_General#getgamespeed)
+*See also:* [`Game.Speed`](Game#gamespeed)
 
 ---
 

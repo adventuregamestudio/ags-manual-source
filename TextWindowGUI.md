@@ -6,6 +6,110 @@ This struct extends the GUI struct, so it has all functions and properties from 
 
 ---
 
+### `TextWindowGUI.LeftGraphic`
+
+```ags
+import readonly attribute int TextWindowGUI.LeftGraphic
+```
+
+Gets the sprite number used for this TextWindow's left border.
+
+
+*Compatibility:* supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `TextWindowGUI.TopLeftGraphic`
+
+```ags
+import readonly attribute int TextWindowGUI.TopLeftGraphic
+```
+
+Gets the sprite number used for this TextWindow's top-left corner.
+
+
+*Compatibility:* supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `TextWindowGUI.TopGraphic`
+
+```ags
+import readonly attribute int TextWindowGUI.TopGraphic
+```
+
+Gets the sprite number used for this TextWindow's top border.
+
+
+*Compatibility:* supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `TextWindowGUI.TopRightGraphic`
+
+```ags
+import readonly attribute int TextWindowGUI.TopRightGraphic
+```
+
+Gets the sprite number used for this TextWindow's top-right corner.
+
+
+*Compatibility:* supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `TextWindowGUI.RightGraphic`
+
+```ags
+import readonly attribute int TextWindowGUI.RightGraphic
+```
+
+Gets the sprite number used for this TextWindow's right border.
+
+
+*Compatibility:* supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `TextWindowGUI.BottomRightGraphic`
+
+```ags
+import readonly attribute int TextWindowGUI.BottomRightGraphic
+```
+
+Gets the sprite number used for this TextWindow's bottom-right corner.
+
+
+*Compatibility:* supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `TextWindowGUI.BottomGraphic`
+
+```ags
+import readonly attribute int TextWindowGUI.BottomGraphic
+```
+
+Gets the sprite number used for this TextWindow's bottom border.
+
+
+*Compatibility:* supported by **AGS 3.6.3** and later versions.
+
+---
+
+### `TextWindowGUI.BottomLeftGraphic`
+
+```ags
+import readonly attribute int TextWindowGUI.BottomLeftGraphic
+```
+
+Gets the sprite number used for this TextWindow's bottom-left corner.
+
+
+*Compatibility:* supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `TextWindowGUI.TextColor`
 
 ```ags

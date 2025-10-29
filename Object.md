@@ -45,13 +45,13 @@ set up the object's current view.
 Example:
 
 ```ags
-object[0].Animate(2, 5);
-object[1].Animate(1, 3, eOnce, eBlock, eBackwards);
+oGate.Animate(2, 5);
+oBridge.Animate(1, 3, eOnce, eBlock, eBackwards);
 ```
 
-will animate object 0 using loop 2 of its current view, at speed 5, and
+will animate object oGate using loop 2 of its current view, at speed 5, and
 play the animation once only. This happens in the background. Then,
-object 1 will animate backwards using loop 1 of its current view, at
+object oBridge will animate backwards using loop 1 of its current view, at
 speed 3. The function won't return until the animation is finished.
 
 *Compatibility:* Optional *frame* parameter is supported only by **AGS 3.5.0** and later versions.<br>
@@ -194,11 +194,11 @@ Use the equivalent GetTextProperty function to get a text property.
 Example:
 
 ```ags
-if (object[0].GetProperty("Value") > 200)
-    Display("Object 0's value is over 200!");
+if (oCar.GetProperty("Value") > 200)
+    Display("Object %s's value is over 200!", oCar.ScriptName);
 ```
 
-will print the message if object 0 has its "Value" property set to more
+will print the message if object oCar has its "Value" property set to more
 than 200.
 
 *See also:* [`Object.GetTextProperty`](Object#objectgettextproperty)
@@ -225,11 +225,11 @@ Use the equivalent GetProperty function to get a non-text property.
 Example:
 
 ```ags
-String description = object[0].GetTextProperty("Description");
-Display("Object 0's description: %s", description);
+String description = oCar.GetTextProperty("Description");
+Display("Object %s's description: %s", oCar.ScriptName, description);
 ```
 
-will retrieve Object 0's "description" property then display it.
+will retrieve object oCar's "description" property then display it.
 
 *See also:* [`Object.GetProperty`](Object#objectgetproperty)
 
@@ -310,13 +310,13 @@ pixel-perfect click detection is turned on.
 Example:
 
 ```ags
-if (object[2].IsCollidingWithObject(object[3]))
+if (oCat.IsCollidingWithObject(oMouse))
 {
-    Display("object 2 and 3 are colliding!");
+    Display("object Cat and Mouse are colliding!");
 }
 ```
 
-will display the message if the objects 2 and 3 are colliding.
+will display the message if the objects oCat and oMouse are colliding.
 
 *See also:* [`AreThingsOverlapping`](Globalfunctions_Room#arethingsoverlapping)
 
@@ -383,10 +383,10 @@ from its current location to (X,Y), ignoring the room walkable areas.
 Example:
 
 ```ags
-object[2].Move(125, 40, 4, eBlock);
+oCar.Move(125, 40, 4, eBlock);
 ```
 
-will move object 2 to 125,40 and return control to the player when the
+will move object oCar to 125,40 and return control to the player when the
 object gets there.
 
 *See also:* [`Object.Moving`](Object#objectmoving),
@@ -409,12 +409,12 @@ room's ambient tint.
 Example:
 
 ```ags
-object[1].Tint(0, 250, 0, 30, 100);
+oScreen.Tint(0, 250, 0, 30, 100);
 Wait(40);
-object[1].RemoveTint();
+oScreen.RemoveTint();
 ```
 
-will tint object 1 green for a second, then turn it back to normal.
+will tint object oScreen green for a second, then turn it back to normal.
 
 *See also:* [`Object.Tint`](Object#objecttint)
 
@@ -434,10 +434,10 @@ object in the current room, using the specified cursor mode.
 Example:
 
 ```ags
-object[3].RunInteraction(eModeInteract);
+oTable.RunInteraction(eModeInteract);
 ```
 
-will execute the code defined in object 3's "Interact with object" event
+will execute the code defined in object oTable's "Interact with object" event
 handler.
 
 *See also:* [`Room.ProcessClick`](Room#roomprocessclick),
@@ -506,10 +506,10 @@ separately, but provides a more convenient way of doing so.
 Example:
 
 ```ags
-object[2].SetPosition(50, 100);
+oCloud.SetPosition(50, 100);
 ```
 
-will change object's 2 position to 50,100.
+will change object's oCloud position to 50,100.
 
 *See also:* [`Object.X`](Object#objectx),
 [`Object.Y`](Object#objecty)
@@ -538,11 +538,11 @@ which view to animate the object with.
 Example:
 
 ```ags
-object[3].SetView(14);
-object[1].SetView(5, 2, 1);
+oDoor.SetView(14);
+oWindow.SetView(5, 2, 1);
 ```
 
-will change object 3's view to view number 14 while resetting to loop 0 and frame 0 of that view, and change object 1 to
+will change object oDoor's view to view number 14 while resetting to loop 0 and frame 0 of that view, and change object oWindow to
 view 5, loop 2, frame 1.
 
 *See also:* [`Object.Animate`](Object#objectanimate)
@@ -564,12 +564,12 @@ until you change it or start a new animation.
 Example:
 
 ```ags
-if (object[2].Animating) {
-    object[2].StopAnimating();
+if (oTree.Animating) {
+    oTree.StopAnimating();
 }
 ```
 
-will stop object 2 animating if it currently is doing so.
+will stop object oTree animating if it currently is doing so.
 
 *See also:* [`Object.Animate`](Object#objectanimate),
 [`Object.Animating`](Object#objectanimating)
@@ -590,12 +590,12 @@ until any further commands are issued.
 Example:
 
 ```ags
-if (object[2].Moving) {
-    object[2].StopMoving();
+if (oCar.Moving) {
+    oCar.StopMoving();
 }
 ```
 
-will stop object 2 moving if it currently is doing so.
+will stop object oCar moving if it currently is doing so.
 
 *See also:* [`Object.Moving`](Object#objectmoving),
 [`Object.Move`](Object#objectmove),
@@ -632,10 +632,10 @@ sprites.
 Example:
 
 ```ags
-object[1].Tint(0, 250, 0, 30, 100);
+oScreen.Tint(0, 250, 0, 30, 100);
 ```
 
-will tint object 1 green.
+will tint object oScreen green.
 
 *See also:* [`Object.RemoveTint`](Object#objectremovetint),
 [`SetAmbientTint`](Globalfunctions_General#setambienttint)
@@ -659,11 +659,11 @@ This property is read-only. To change object animation, use the
 Example:
 
 ```ags
-object[2].Animate(5, 0);
-while (object[2].Animating) Wait(1);
+oTree.Animate(5, 0);
+while (oTree.Animating) Wait(1);
 ```
 
-will animate object 2 and wait until the animation finishes.
+will animate object oTree and wait until the animation finishes.
 
 In reality, you would simply use the Blocking parameter of Animate so
 you wouldn't need to do this.
@@ -826,10 +826,10 @@ it to be clicked on by the player.
 Example:
 
 ```ags
-object[2].Clickable = 0;
+oDoor.Clickable = 0;
 ```
 
-will make object 2 ignore clicks from the player.
+will make object oDoor ignore clicks from the player.
 
 *See also:*
 [`Object.Visible`](Object#objectvisible),
@@ -897,10 +897,10 @@ Graphic, then the animation will be stopped.
 Example:
 
 ```ags
-object[2].Graphic = 100;
+oDoor.Graphic = 100;
 ```
 
-will change the object 2's image to the image stored in the sprite
+will change the object oDoor's image to the image stored in the sprite
 manager's slot 100.
 
 *See also:* [`Object.SetView`](Object#objectsetview)
@@ -1123,11 +1123,11 @@ This property is read-only; to change the object's movement, use the
 Example:
 
 ```ags
-object[2].Move(125,40,3);
-while (object[2].Moving) Wait(1);
+oCar.Move(125,40,3);
+while (oCar.Moving) Wait(1);
 ```
 
-will move object 2 to 125,40 and return control to the player when the
+will move object oCar to 125,40 and return control to the player when the
 object gets there.
 
 *See also:* [`Object.Animating`](Object#objectanimating),
@@ -1144,17 +1144,17 @@ object gets there.
 String Object.Name;
 ```
 
-Gets/sets the name of the object.
+Gets/sets the name of the object. This is a human-readable name (description), not a script name.
 
 **NOTE:** This property may be changed only in AGS versions 3.6.0 or higher. It is read-only in earlier versions.
 
 Example:
 
 ```ags
-Display("Object 0's name is %s.", object[0].Name);
+Display("oDoor's name is %s.", oDoor.Name);
 ```
 
-will retrieve and then display object 0's name.
+will retrieve and then display object oDoor's description.
 
 *See also:* [`Game.GetLocationName`](Game#gamegetlocationname)
 
@@ -1396,7 +1396,7 @@ can significantly slow down AGS.
 Some rounding is done internally when the transparency is stored --
 therefore, if you get the transparency after setting it, the value you
 get back might be one out. Therefore, using a loop with
-`object[0].Transparency++;` is not recommended as it will probably end
+`oMagicChest.Transparency++;` is not recommended as it will probably end
 too quickly.
 
 In order to fade an object in/out, the best approach is shown in the
@@ -1405,10 +1405,10 @@ example below:
 Example:
 
 ```ags
-int trans = object[0].Transparency;
+int trans = oMagicChest.Transparency;
 while (trans < 100) {
     trans++;
-    object[0].Transparency = trans;
+    oMagicChest.Transparency = trans;
     Wait(1);
 }
 ```
@@ -1478,10 +1478,10 @@ object is switched on and visible in the room. If you set this to 0
 Example:
 
 ```ags
-object[5].Visible = false;
+oApple.Visible = false;
 ```
 
-will make object number 5 in the current room disappear.
+will make object oApple in the current room disappear.
 
 *See also:*
 [`Object.Clickable`](Object#objectclickable),
@@ -1503,10 +1503,10 @@ Gets/sets the X co-ordinate of the object.
 Example:
 
 ```ags
-Display("Object 1's X co-ordinate is %d.", object[1].X);
+Display("Object oCar's X co-ordinate is %d.", oCar.X);
 ```
 
-will display the X co-ordinate of object 1.
+will display the X co-ordinate of object oCar.
 
 *See also:* [`Object.Y`](Object#objecty),
 [`Object.Animating`](Object#objectanimating),
@@ -1536,10 +1536,10 @@ sprite is drawn from the Y co-ordinate at (Object.Y - Height) to
 Example:
 
 ```ags
-Display("Object 1's Y co-ordinate is %d.", object[1].Y);
+Display("Object oCar's Y co-ordinate is %d.", oCar.Y);
 ```
 
-will display the Y co-ordinate of object 1.
+will display the Y co-ordinate of object oCar.
 
 *See also:* [`Object.Animating`](Object#objectanimating),
 [`Object.Baseline`](Object#objectbaseline),

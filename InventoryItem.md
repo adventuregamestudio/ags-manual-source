@@ -90,11 +90,11 @@ Use the equivalent GetTextProperty function to get a text property.
 Example:
 
 ```ags
-if (inventory[1].GetProperty("Value") > 200)
-    Display("Inventory item 1's value is over 200!");
+if (iStone.GetProperty("Weight") > 200)
+    Display("Stone's weight is over 200!");
 ```
 
-will print the message if inventory item 1 has its "Value" property set
+will print the message if inventory item iStone has its "Weight" property set
 to more than 200.
 
 *See also:*
@@ -122,11 +122,11 @@ Use the equivalent GetProperty function to get a non-text property.
 Example:
 
 ```ags
-String description = inventory[2].GetTextProperty("Description");
-Display("Inv item 2's description: %s", description);
+String description = iKey.GetTextProperty("Description");
+Display("Inv item %s's description: %s", iKey.ScriptName, description);
 ```
 
-will retrieve inv item 2's "description" property and display it.
+will retrieve inv item iKey's "Description" property and display it.
 
 *See also:*
 [`InventoryItem.GetProperty`](InventoryItem#inventoryitemgetproperty)
@@ -186,7 +186,7 @@ Example:
 iKey.SetTextProperty("Description", "A rusty key");
 ```
 
-will change key's "description" property.
+will change key's "Description" property.
 
 *Compatibility:* Supported by **AGS 3.4.0** and later versions.
 

@@ -211,14 +211,33 @@ static bool System.DisplayFPS;
 ```
 
 Gets/sets whether the current frames per second is displayed on the screen.
-This is useful for debugging purposes and quickly understanding performance impacts from different scripting approaches.
+This is useful for debugging purposes and quickly understanding performance impacts of the changes you do to your game.
 
 **NOTE:** if a command line flag that forces displaying fps is passed,
 this property will always be true, setting it will be ignored.
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
-*See also:* [`Debug`](Globalfunctions_General#debug)
+*See also:* [`System.FPS`](System#systemfps),
+[`Debug`](Globalfunctions_General#debug)
+
+---
+
+### `System.FPS`
+
+```ags
+static readonly int System.FPS;
+```
+
+Gets the current real frames per second ratio of the game.
+This is useful for debugging purposes and quickly understanding performance impacts of the changes you do to your game.
+
+Note that System.FPS may or not be equal to the [`Game.Speed`](Game#gamespeed) value. While Game.Speed reports a logical game's frame rate, and is useful for measuring timing relative to the rest of the game, System.FPS tells the real frame rate, which demonstrates rather how well your game performs on a current system, and whether it runs slower than requested.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`System.DisplayFPS`](System#systemdisplayfps),
+[`Game.Speed`](Game#gamespeed)
 
 ---
 

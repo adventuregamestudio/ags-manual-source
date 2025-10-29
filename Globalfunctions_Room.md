@@ -209,7 +209,7 @@ if (GetScalingAt(player.x, player.y) == 100)
 
 ### `GetViewportX`
 
-**This function is obsolete since AGS 3.5.0. Use [`Game`](Game#gamecamera).[`Camera.X`](Camera#camerax) instead.**
+**This function is obsolete since AGS 3.5.0. Use [`Game.Camera.X`](Camera#camerax) instead.**
 
 ```ags
 GetViewportX()
@@ -222,7 +222,7 @@ allows you to find out what part of the room the player is looking at.
 
 ### `GetViewportY`
 
-**This function is obsolete since AGS 3.5.0. Use [`Game`](Game#gamecamera).[`Camera.Y`](Camera#cameray) instead.**
+**This function is obsolete since AGS 3.5.0. Use [`Game.Camera.Y`](Camera#cameray) instead.**
 
 ```ags
 GetViewportY()

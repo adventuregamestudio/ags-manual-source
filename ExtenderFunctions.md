@@ -79,3 +79,21 @@ and you use such function as:
 ```ags
 int x = Maths.AbsInt(-10);
 ```
+
+### Extenders and function overloading
+
+Function overloading is an ability of a scripting language to have multiple functions of same name but with different parameters. AGS script does not support function overloading at this moment, but when using extender functions you may have multiple extenders of the same name attached to different types. This is possible, because compiler treats such functions as members of respective structs, and it is allowed to have identically named functions in different structs.
+
+For example, you may declare functions like this:
+
+```ags
+function PickUp(this Object*)
+{
+    // some code here
+}
+
+function PickUp(this Hotspot*)
+{
+    // some code here
+}
+```

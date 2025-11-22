@@ -403,8 +403,16 @@ Windows, this option has been removed since AGS 3.6.0 as well.
     
     This option will be used as a default value for each new imported font, but
     you may also customize it in the Font's properties.
+    
+    NOTE: this option was removed from General Settings since **AGS 3.6.3**,
+    you should be using a respective Font's property instead.
+    
 -   **TTF fonts height used in the game logic** - How the true-type font height
-    will be defined whenever it is required by the script of game logic.  
+    will be defined whenever it is required by the script of game logic.
+    
+    NOTE: since **AGS 3.6.3** this option was moved from General Settings to
+    the Font properties, where it's called "Logical font height".
+    
 -   **Write game text Right-to-Left** - in-game text will be written
     right-to-left, i.e. line breaks are worked out from the end of the
     sentence going backwards, and the last words are displayed first.

@@ -6,27 +6,28 @@ similar, chances are this section will answer it.
 
 ### System restrictions
 
-| Item | 3.5.0 | 3.5.1 | 3.6.0 |
+| Item | 3.6.0 | 3.6.2 | 3.6.3 |
 |-|-|-|-|
-| Audio channels | 8 | 8 | **16** |
+| Audio channels | 16 | 16 | 16 |
 | Background frames per room | 5 | 5 | 5 |
 | Characters | unlimited | unlimited  | unlimited |
-| Cursors | 20 | 20 | **unlimited** |
+| Cursors | unlimited | unlimited | unlimited |
 | Custom properties | unlimited | unlimited | unlimited |
 | Dialog options per topic | 30 | 30 | 30 |
 | Dialog topics | unlimited | unlimited | unlimited |
-| Dynamic array elements | 1 million | **2+ billion** | **2+ billion** |
+| Dynamic array elements | 2+ billion | 2+ billion | 2+ billion |
 | Fonts | unlimited | unlimited | unlimited |
 | GUI | unlimited | unlimited | unlimited |
 | GUI Controls per GUI | unlimited | unlimited | unlimited |
 | Hotspots per room | 49 | 49 | 49 |
 | Inventory items | 300 | 300 | 300 |
-| Overlays (at runtime) | 20 | 20 | **unlimited** |
+| Overlays (at runtime) | unlimited | unlimited | unlimited |
 | Regions per room | 15 | 15 | 15 |
 | Rooms, total | 1000 | 1000 | 1000 |
 | Rooms, state-saving | 300 | 300 | 300 |
-| Room Objects per room | 40 | 40 | **256** |
-| Script modules | 126 | 126 | 126 |
+| Room Objects per room | 256 | 256 | 256 |
+| Script modules | 126 | 1022 | 1022 |
+| Script function arguments | 14 | 14 | unlimited |
 | Sprites, imported | 90000 | 90000 | 90000 |
 | Sprites, dynamic | 2+ billion | 2+ billion| 2+ billion |
 | Timers (at runtime) | 20 | 20 | 20 |

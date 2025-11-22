@@ -30,6 +30,7 @@ will display the current date and time in 24-hour format
 
 *See also:* [`DateTime.DayOfMonth`](DateTime#datetimedayofmonth),
 [`DateTime.Hour`](DateTime#datetimehour),
+[`DateTime.Millisecond`](DateTime#datetimemillisecond),
 [`DateTime.Minute`](DateTime#datetimeminute),
 [`DateTime.Month`](DateTime#datetimemonth),
 [`DateTime.RawTime`](DateTime#datetimerawtime),
@@ -104,6 +105,37 @@ Gets the hour represented by the DateTime object. This will be from 0 to
 Example: For an example, see [`DateTime.Now`](DateTime#datetimenow).
 
 *See also:* [`DateTime.Now`](DateTime#datetimenow)
+
+---
+
+### `DateTime.Millisecond`
+
+```ags
+readonly int DateTime.Millisecond;
+```
+
+Gets the millisecond represented by the DateTime object. This will be from 0
+to 999, meaning the milliseconds passed since the last second.
+
+Millisecond property can be used to measure time periods in combination with [RawTime](DateTime#datetimerawtime), which reports a number of seconds passed since certain zero point. This may be useful to calculate duration of events in game when you need to know such duration in a higher precision.
+
+Example:
+
+```ags
+DateTime* old_time = DateTime.Now;
+
+// imagine some actions are performed here
+
+DateTime* new_time = DateTime.Now;
+
+int duration_ms = ((new_time.RawTime - old_time.RawTime) * 1000) + (new_time.Millisecond - old_time.Millisecond);
+System.Log(eLogDebug, "Time passed: %d ms", duration_ms);
+```
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`DateTime.Now`](DateTime#datetimenow),
+[`DateTime.RawTime`](DateTime#datetimerawtime)
 
 ---
 

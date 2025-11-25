@@ -292,51 +292,10 @@ updated, but before the game screen is redrawn.
 ### `unhandled_event`
 
 ```ags
-unhandled_event (int what, int type)
+unhandled_event(LocationType what, CursorMode mode)
 ```
 
-Called when an event occurs, but no corresponding event handler has
-been configured. This is typically used to display a default "I can't
-do that" type response in-order to avoid having to add unique
-messages for all in-game interactions. The values of WHAT and TYPE
-tell you what the player did. The possible values are listed below:
-
-WHAT | TYPE | Description
---- | --- | ---
-1 | 1 | Look at hotspot
-1 | 2 | Interact with hotspot
-1 | 3 | Use inventory on hotspot
-1 | 4 | Talk to hotspot
-1 | 7 | Pick up hotspot
-1 | 8 | Cursor Mode 8 on hotspot
-1 | 9 | Cursor Mode 9 on hotspot
-2 | 0 | Look at object
-2 | 1 | Interact with object
-2 | 2 | Talk to object
-2 | 3 | Use inventory on object
-2 | 5 | Pick up object
-2 | 6 | Cursor Mode 8 on object
-2 | 7 | Cursor Mode 9 on object
-3 | 0 | Look at character
-3 | 1 | Interact with character
-3 | 2 | Speak to character
-3 | 3 | Use inventory on character
-3 | 5 | Pick up character
-3 | 6 | Cursor Mode 8 on character
-3 | 7 | Cursor Mode 9 on character
-4 | 1 | Look at nothing (i.e. no hotspot)
-4 | 2 | Interact with nothing
-4 | 3 | Use inventory with nothing
-4 | 4 | Talk to nothing
-5 | 0 | Look at inventory
-5 | 1 | Interact with inventory (currently not possible)
-5 | 2 | Speak to inventory
-5 | 3 | Use an inventory item on another
-5 | 4 | Other click on inventory
-
-**NOTE:** the "Character stands on hotspot" event does not trigger
-this function, nor will it be triggered if there is an "Any click"
-event handler defined, nor if the player clicks on nothing (hotspot 0)
+Called when an interaction event occurs for an object, but no corresponding event handler has been set. This is typically used to display a default "I can't do that" type response in-order to avoid having to add unique messages for all in-game interactions. The values of WHAT and MODE tell you what the player did. The possible values for WHAT are defined by [LocationType](StandardEnums.html#locationtype) enum, and MODE is one of the cursor modes.
 
 ---
 

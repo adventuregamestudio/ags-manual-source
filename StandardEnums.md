@@ -591,11 +591,14 @@ enum LocationType {
     eLocationNothing,
     eLocationHotspot,
     eLocationCharacter,
-    eLocationObject
+    eLocationObject,
+    eLocationInvItem
 };
 ```
 
 *Returned by:* [`GetLocationType`](Globalfunctions_General#getlocationtype)
+
+*Used by:* [unhandled_event](Globalfunctions_Event.html#unhandled_event)
 
 ---
 

@@ -6,20 +6,6 @@ Overlays may be created as *screen overlays* and *room overlays*. This defines t
 
 ---
 
-### `Overlay.BlendMode`
-
-```ags
-BlendMode Overlay.BlendMode
-```
-
-Gets/sets the blending mode for this overlay.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
-*See also:* [`BlendMode`](StandardEnums#blendmode)
-
----
-
 ### `Overlay.CreateGraphical`
 
 *(Formerly known as `CreateGraphicOverlay`, which is now obsolete)*
@@ -181,20 +167,6 @@ Following [game variables](Gamevariables) affect the textual overlay's look:
 
 ---
 
-### `Overlay.Flip`
-
-```ags
-eFlipDirection Overlay.Flip
-```
-
-Gets/sets the flip direction of this overlay.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
-*See also:* [`eFlipDirection`](StandardEnums#eflipdirection)
-
----
-
 ### `Overlay.Remove`
 
 *(Formerly known as `RemoveOverlay`, which is now obsolete)*
@@ -221,13 +193,25 @@ and then remove the overlay from the screen.
 
 ---
 
-### `Overlay.Rotation`
+### `Overlay.RemoveTint`
 
 ```ags
-float Overlay.Rotation
+Overlay.RemoveTint()
 ```
 
-Gets/sets the overlay's image rotation in degrees.
+Removes an existing colour tint or light level from this overlay.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.SetLightLevel`
+
+```ags
+Overlay.SetLightLevel(int light_level)
+```
+
+Sets the light level for this overlay, from -100 to 100 (negative values darken the sprite, positive brighten the sprite).
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -297,6 +281,46 @@ and then replace the overlay with another one.
 
 *See also:* [`Overlay.CreateTextual`](Overlay#overlaycreatetextual),
 [`Overlay.Remove`](Overlay#overlayremove)
+
+---
+
+### `Overlay.Tint`
+
+```ags
+Overlay.Tint(int red, int green, int blue, int saturation, int luminance)
+```
+
+Tints the overlay to the specified colour. RGB values must be in 0-255 range, saturation and luminance in 0-100 range.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.BlendMode`
+
+```ags
+BlendMode Overlay.BlendMode
+```
+
+Gets/sets the blending mode for this overlay.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`BlendMode`](StandardEnums#blendmode)
+
+---
+
+### `Overlay.Flip`
+
+```ags
+eFlipDirection Overlay.Flip
+```
+
+Gets/sets the flip direction of this overlay.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`eFlipDirection`](StandardEnums#eflipdirection)
 
 ---
 
@@ -392,18 +416,6 @@ Gets the individual light level for this character.
 
 ---
 
-### `Overlay.SetLightLevel`
-
-```ags
-Overlay.SetLightLevel(int light_level)
-```
-
-Sets the light level for this overlay, from -100 to 100 (negative values darken the sprite, positive brighten the sprite).
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
 ### `Overlay.HasLightLevel`
 
 ```ags
@@ -416,13 +428,44 @@ Gets whether the overlay has a light level set.
 
 ---
 
-### `Overlay.Tint`
+### `Overlay.HasTint`
 
 ```ags
-Overlay.Tint(int red, int green, int blue, int saturation, int luminance)
+readonly bool Overlay.HasTint
 ```
 
-Tints the overlay to the specified colour. RGB values must be in 0-255 range, saturation and luminance in 0-100 range.
+Gets whether the overlay has a tint set.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.Rotation`
+
+```ags
+float Overlay.Rotation
+```
+
+Gets/sets the overlay's image rotation in degrees.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.Shader`
+
+```ags
+ShaderInstance* Overlay.Shader
+```
+
+Gets/sets the shader of this overlay.
+
+Example:
+
+```ags
+ShaderProgram wave = ShaderProgram.CreateFromFile("$DATA$/Shaders/wave.glsl");
+myOverlay.Shader = wave.Default; // assign the default instance for the shader
+```
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -484,49 +527,6 @@ readonly int Overlay.TintLuminance
 ```
 
 Gets the Luminance of this overlay's colour tint.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
-### `Overlay.HasTint`
-
-```ags
-readonly bool Overlay.HasTint
-```
-
-Gets whether the overlay has a tint set.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
-### `Overlay.RemoveTint`
-
-```ags
-Overlay.RemoveTint()
-```
-
-Removes an existing colour tint or light level from this overlay.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
-### `Overlay.Shader`
-
-```ags
-ShaderInstance* Overlay.Shader
-```
-
-Gets/sets the shader of this overlay.
-
-Example:
-
-```ags
-ShaderProgram wave = ShaderProgram.CreateFromFile("$DATA$/Shaders/wave.glsl");
-myOverlay.Shader = wave.Default; // assign the default instance for the shader
-```
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 

@@ -540,13 +540,9 @@ static AudioChannel* Game.PlayVoiceClip(Character* c, int cue, bool as_speech)
 
 Plays a voice clip from the **speech.vox** in a non-blocking manner. It returns an AudioChannel pointer which you may use to control playback same way you control other clips, or null if it could not be started.
 
-Character and "cue" arguments are used to find actual clip, this works the same way as when you do `cEgo.Say("&10 speech text");` in which case "10" is a cue number. For more information about this see: [Voice speech](VoiceSpeech).
+Character and "cue" arguments are used to find actual clip, this works the same way as when you do `cEgo.Say("&10 speech text");` in which case "10" is a cue number. Passing "null" instead of a character's pointer will play "narrator's" voice instead. For more information about this see: [Voice speech](VoiceSpeech).
 
-The "as_speech" argument tells whether playback has same effect on game as regular speech's voice-over. The effect is following:
-* Any blocking speech text which is displayed while the voice is playing will not be removed by a timer until voice playback ends.
-* Any other audio playbacks will have their volume dropped for the duration of a voice clip, if their types have "VolumeReductionWhileSpeechPlaying" property set.
-
-The parameter "as_speech" is TRUE by default and may be omitted.
+The "as_speech" argument tells whether playback has same effect on game as regular speech's voice-over. At the moment this means that any other audio playbacks will have their volume dropped for the duration of a voice clip, if their types have "VolumeReductionWhileSpeechPlaying" property set. The parameter "as_speech" is TRUE by default and may be omitted.
 
 This command will be ignored if a regular blocking voice is currently playing. Also, both blocking and non-blocking voice will interrupt non-blocking voice-over if one was playing.
 
@@ -554,7 +550,40 @@ This command will be ignored if a regular blocking voice is currently playing. A
 
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
-*See also:* [Voice speech](VoiceSpeech), [`AudioChannel`](AudioChannel), [`AudioClip.Play`](AudioClip#audioclipplay), [`Character.Say`](Character#charactersay)
+*See also:* [Voice speech](VoiceSpeech),
+[`AudioChannel`](AudioChannel),
+[`AudioClip.Play`](AudioClip#audioclipplay),
+[`Character.Say`](Character#charactersay),
+[`Game.PlayVoiceClipAsType`](Game#gameplayvoiceclipastype)
+
+---
+
+### `Game.PlayVoiceClipAsType`
+
+```ags
+static AudioChannel* Game.PlayVoiceClipAsType(Character*, int cue, AudioType type, optional int chan, optional AudioPriority, optional RepeatStyle)
+```
+
+Plays a voice clip from the **speech.vox** in a non-blocking manner, using specified audio type's settings and channels, as if this was an audio clip belonging to that audio type.
+
+This function optionally lets specify exact channel, which the playback would be run on. If the channel parameter is not provided, or is equal to SCR_NO_VALUE, then the type's channels are used. If a valid channel number is passed, then the engine will ignore type's rules and try to put the playback on the given channel, if possible.
+
+This function returns an AudioChannel pointer which you may use to control playback same way you control other clips, or null if it could not be started.
+
+Character and "cue" arguments are used to find actual clip, this works the same way as when you do `cEgo.Say("&10 speech text");` in which case "10" is a cue number. Passing "null" instead of a character's pointer will play "narrator's" voice instead. For more information about this see: [Voice speech](VoiceSpeech).
+
+Optionally you can supply a [AudioPriority](StandardEnums#audiopriority) and [RepeatStyle](StandardEnums#repeatstyle) setting; if you do not
+supply these, the defaults set for the audio clip in the editor will be
+used.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [Voice speech](VoiceSpeech),
+[`AudioChannel`](AudioChannel),
+[`AudioClip.Play`](AudioClip#audioclipplay),
+[`Character.Say`](Character#charactersay),
+[`Game.PlayVoiceClip`](Game#gameplayvoiceclip)
+
 
 ---
 
@@ -958,6 +987,34 @@ Display("We have %d musical clips in our game", music_count);
 
 ---
 
+### `Game.BlockingWaitCounter`
+
+```ags
+readonly static int Game.BlockingWaitCounter
+```
+
+Gets the current value of a wait counter. This is a number of game ticks (updates) remaining until the Wait function will end automatically. This value may be either positive for a counter ticking down, negative if the Wait function was called with an infinite timeout, or zero in case there's no Wait function running at the moment.
+
+The only script events that run during blocking state are "repeatedly_execute_always" and "late_repeatedly_execute_always", so these are the only functions where this property may actually be used.
+
+Example:
+
+```ags
+function repeatedly_execute_always()
+{
+    lblWait.Text = String.Format("Wait time remaining: %d", Game.BlockingWaitCounter);
+}
+```
+
+will print the remaining wait time on a GUI label.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Game.InBlockingWait`](Game#gameinblockingwait),
+[Wait functions](Globalfunctions_Wait)
+
+---
+
 ### `Game.BlockingWaitSkipped`
 
 ```ags
@@ -972,6 +1029,39 @@ Gets the code which describes how was the last blocking state skipped by a user 
 [`WaitKey`](Globalfunctions_Wait#waitkey),
 [`WaitMouseKey`](Globalfunctions_Wait#waitmousekey),
 [`SkipWait`](Globalfunctions_Wait#skipwait)
+
+---
+
+### `Game.BlockingWaitSkipType`
+
+```ags
+readonly static InputType Game.BlockingWaitSkipType
+```
+
+Gets the skip type of the currently run Wait function. This value represents a input device type (or a combination of devices) which are allowed to skip the Wait function. The value depends on which of the Wait functions was run, or which parameter was passed into the [WaitInput](Globalfunctions_Wait#waitinput) function.
+
+For the list of possible values see [InputType enum](StandardEnums#inputtype).
+
+The only script events that run during blocking state are "repeatedly_execute_always" and "late_repeatedly_execute_always", so these are the only functions where this property may actually be used.
+
+Example:
+
+```ags
+function repeatedly_execute_always()
+{
+    if ((Game.BlockingWaitSkipType & eInputKeyboard) && (Mouse.IsButtonDown(eMouseRight)))
+    {
+        Game.SimulateKeyPress(eKeySpace);
+    }
+}
+```
+
+The above code will check if the current Wait function is expecting a key press, and simulate a "space" key press in case a right mouse button was down.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Game.InBlockingWait`](Game#gameinblockingwait),
+[Wait functions](Globalfunctions_Wait)
 
 ---
 
@@ -1186,15 +1276,53 @@ text is automatically removed from the screen.
 
 ---
 
+### `Game.InBlockingAction`
+
+```ags
+static bool Game.InBlockingAction
+```
+
+Returns whether the game is currently in a blocking state, which is a state during *either* any blocking action *or* a [Wait](Globalfunctions_Wait) call. The blocking actions are ones performed by a call to a function like Walk, Move or Animate with eBlock argument, but also regular Say command, and anything else that halts current script's execution until the action finishes.
+
+If you need to distinguish Wait command in particular, then use [`Game.InBlockingWait`](Game#gameinblockingwait) property.
+
+The only script events that run during blocking state are "repeatedly_execute_always" and "late_repeatedly_execute_always", so these are the only functions where this property may actually be used.
+
+Example:
+
+```ags
+bool WasInBlockingState;
+
+function repeatedly_execute_always()
+{
+    if (WasInBlockingState != Game.InBlockingAction)
+    {
+         if (Game.InBlockingAction)
+             btnSignalButton.NormalGraphic = 100;
+         else
+             btnSignalButton.NormalGraphic = 200;
+         WasInBlockingState = Game.InBlockingAction;
+    }
+}
+```
+This will change the GUI button's graphic depending on whether the game is in blocking action state or not.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Game.BlockingWaitSkipped`](Game#gameblockingwaitskipped),
+[`Game.InBlockingAction`](Game#gameinblockingaction)
+
+---
+
 ### `Game.InBlockingWait`
 
 ```ags
 static bool Game.InBlockingWait
 ```
 
-Returns whether the game is currently in a blocking wait state, which is a state during any blocking action or a [Wait](Globalfunctions_Wait) call. The blocking actions are ones performed by a call to a function like Walk, Move or Animate with eBlock argument, but also regular Say command, and anything else that halts current script's execution until the action finishes.
+Returns whether the game is currently inside a [Wait](Globalfunctions_Wait) call.
 
-The only script events that run during blocking state are "repeatedly_execute_always" and "late_repeatedly_execute_always", so that's these are the only functions where this property may actually be used.
+The only script events that run during blocking state are "repeatedly_execute_always" and "late_repeatedly_execute_always", so these are the only functions where this property may actually be used.
 
 Example:
 
@@ -1215,9 +1343,14 @@ function repeatedly_execute_always()
 ```
 This will change the GUI button's graphic depending on whether the game is in blocking wait state or not.
 
+**NOTE:** When this function was first introduced in AGS 3.6.2, it also returned positive during *any* blocking action, such as a call to a function like Walk, Move or Animate with eBlock argument, and so forth. Since AGS 3.6.3 this functionality was separated to [Game.InBlockingAction](Game#gameinblockingaction) for convenience.
+
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
-*See also:* [`Game.BlockingWaitSkipped`](Game#gameblockingwaitskipped)
+*See also:* [`Game.BlockingWaitCounter`](Game#gameblockingwaitcounter),
+[`Game.BlockingWaitSkipped`](Game#gameblockingwaitskipped),
+[`Game.BlockingWaitSkipType`](Game#gameblockingwaitskiptype),
+[`Game.InBlockingAction`](Game#gameinblockingaction)
 
 ---
 

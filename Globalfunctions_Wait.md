@@ -62,12 +62,14 @@ while (true) {
 ### `SkipWait`
 
 ```ags
-void SkipWait ()
+void SkipWait (optional int resultValue)
 ```
 
 Cancels current Wait function, regardless of its type, if one was active at the moment.
 
-*Compatibility:* Supported by **AGS 3.6.0** and later versions.
+Optionally lets provide a "result value" that will be returned by the Wait function, or by [Game.BlockingWaitSkipped](Game#gameblockingwaitskipped) property. Because of how Wait's return code is defined, this has to be a positive value not greater than 16777215.
+
+*Compatibility:* Supported by **AGS 3.6.0** and later versions. A "resultValue" argument is supported since **AGS 3.6.3**.
 
 *See also:* [`WaitKey`](Globalfunctions_Wait#waitkey),
 [`WaitMouse`](Globalfunctions_Wait#waitmouse),

@@ -102,6 +102,40 @@ plays *aIntroMusic* audio clip repeatedly using default priority.
 
 ---
 
+### `AudioClip.PlayAsType`
+
+```ags
+AudioChannel* AudioClip.PlayAsType(AudioType type, optional int chan, optional AudioPriority, optional RepeatStyle)
+```
+
+Plays this audio clip using another type's settings and channels. The result is fully similar to what would happen if the clip belonged to that type.
+
+This function optionally lets specify exact channel, which the playback would be run on. If the channel parameter is not provided, or is equal to SCR_NO_VALUE, then the type's channels are used. If a valid channel number is passed, then the engine will ignore type's rules and try to put the playback on the given channel, if possible.
+
+If respective audio channels are busy playing higher priority sounds, then this
+new audio clip will not be played.
+
+This command returns the AudioChannel instance that the new sound is
+playing on, or *null* if it did not play for any reason.
+
+Example:
+
+```ags
+aBeep.PlayAsType(eAudioTypeMusic, SCR_NO_VALUE, eAudioPriorityHigh, eOnce);
+```
+
+plays the *aBeep* audio clip as "Music" audio type, with a high priority.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioClip.Play`](AudioClip#audioclipplay),
+[`AudioClip.PlayFrom`](AudioClip#audioclipplayfrom),
+[`AudioClip.PlayOnChannel`](AudioClip#audioclipplayonchannel),
+[`AudioClip.PlayQueued`](AudioClip#audioclipplayqueued),
+[`AudioClip.Stop`](AudioClip#audioclipstop)
+
+---
+
 ### `AudioClip.PlayFrom`
 
 ```ags
@@ -129,6 +163,40 @@ it is OGG/MP3).
 *Compatibility:* Supported by **AGS 3.2.0** and later versions.
 
 *See also:* [`AudioClip.Play`](AudioClip#audioclipplay)
+
+---
+
+### `AudioClip.PlayOnChannel`
+
+```ags
+AudioChannel* AudioClip.PlayOnChannel(int channel, optional AudioPriority, optional RepeatStyle)
+```
+
+Plays this audio clip, explicitly putting it on the particular channel, starting with 1 (as channel 0 is reserved for Speech). The maximal number of channels may be found on a [System limits](SystemLimits) page, or using [`System.AudioChannelCount`](System#systemaudiochannelcount) at runtime.
+
+This function disregards any audio type rules, so you may script your own channel logic. 
+
+If the selected audio channel is busy playing higher priority sounds, then this
+new audio clip will not be played.
+
+This command returns the AudioChannel instance that the new sound is
+playing on, or *null* if it did not play for any reason.
+
+Example:
+
+```ags
+aBeep.PlayOnChannel(2, eAudioPriorityHigh, eOnce);
+```
+
+plays the *aBeep* audio clip on channel 2.
+
+*Compatibility:* Supported by **AGS 3.6.0** and later versions.
+
+*See also:* [`AudioClip.Play`](AudioClip#audioclipplay),
+[`AudioClip.PlayAsType`](AudioClip#audioclipplayastype),
+[`AudioClip.PlayFrom`](AudioClip#audioclipplayfrom),
+[`AudioClip.PlayQueued`](AudioClip#audioclipplayqueued),
+[`AudioClip.Stop`](AudioClip#audioclipstop)
 
 ---
 
@@ -169,39 +237,6 @@ be played afterwards.
 *Compatibility:* Supported by **AGS 3.2.0** and later versions.
 
 *See also:* [`AudioClip.Play`](AudioClip#audioclipplay)
-
----
-
-### `AudioClip.PlayOnChannel`
-
-```ags
-AudioChannel* AudioClip.PlayOnChannel(int channel, optional AudioPriority, optional RepeatStyle)
-```
-
-Plays this audio clip, explicitly putting it on the particular channel, starting with 1 (as channel 0 is reserved for Speech). The maximal number of channels may be found on a [System limits](SystemLimits) page, or using [`System.AudioChannelCount`](System#systemaudiochannelcount) at runtime.
-
-This function disregards any audio type rules, so you may script your own channel logic. 
-
-If the selected audio channel is busy playing higher priority sounds, then this
-new audio clip will not be played.
-
-This command returns the AudioChannel instance that the new sound is
-playing on, or *null* if it did not play for any reason.
-
-Example:
-
-```ags
-aBeep.PlayOnChannel(2, eAudioPriorityHigh, eOnce);
-```
-
-plays the *aBeep* audio clip on channel 2.
-
-*Compatibility:* Supported by **AGS 3.6.0** and later versions.
-
-*See also:* [`AudioClip.Play`](AudioClip#audioclipplay),
-[`AudioClip.PlayFrom`](AudioClip#audioclipplayfrom),
-[`AudioClip.PlayQueued`](AudioClip#audioclipplayqueued),
-[`AudioClip.Stop`](AudioClip#audioclipstop)
 
 ---
 

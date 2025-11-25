@@ -542,7 +542,8 @@ Gets/sets the transparency of this overlay.
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
-*See also:* [`Object.Transparency`](Object#objecttransparency)
+*See also:* [`Overlay.Visible`](Overlay#overlayvisible)
+[`Object.Transparency`](Object#objecttransparency)
 [`Character.Transparency`](Character#charactertransparency),
 [`GUI.Transparency`](GUI#guitransparency)
 
@@ -572,6 +573,20 @@ Then, removes the overlay and prints Valid again (which will now be 0).
 
 *See also:* [`Overlay.CreateTextual`](Overlay#overlaycreatetextual),
 [`Overlay.Remove`](Overlay#overlayremove)
+
+---
+
+### `Overlay.Visible`
+
+```ags
+readonly bool Overlay.Visible;
+```
+
+Gets/sets whether the overlay is visible. This is *true* by default, but you can set it to *false* in order to temporarily hide the Overlay.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Overlay.Transparency`](Overlay#overlaytransparency)
 
 ---
 

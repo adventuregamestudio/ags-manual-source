@@ -295,7 +295,7 @@ updated, but before the game screen is redrawn.
 unhandled_event(LocationType what, CursorMode mode)
 ```
 
-Called when an interaction event occurs for an object, but no corresponding event handler has been set. This is typically used to display a default "I can't do that" type response in-order to avoid having to add unique messages for all in-game interactions. The values of WHAT and MODE tell you what the player did. The possible values for WHAT are defined by [LocationType](StandardEnums.html#locationtype) enum, and MODE is one of the cursor modes.
+Called when an interaction event occurs for an object, but no corresponding event handler has been set. This is typically used to display a default "I can't do that" type response in-order to avoid having to add unique messages for all in-game interactions. The values of WHAT and MODE tell you what the player did. The possible values for WHAT are defined by [LocationType](StandardEnums#locationtype) enum, and MODE is one of the cursor modes.
 
 ---
 

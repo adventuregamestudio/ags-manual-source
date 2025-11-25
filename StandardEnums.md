@@ -598,7 +598,7 @@ enum LocationType {
 
 *Returned by:* [`GetLocationType`](Globalfunctions_General#getlocationtype)
 
-*Used by:* [unhandled_event](Globalfunctions_Event.html#unhandled_event)
+*Used by:* [unhandled_event](Globalfunctions_Event#unhandled_event)
 
 ---
 
@@ -741,7 +741,7 @@ Another use for RepeatStyle is when playing audio or video clip. But in that cas
 [`Character.MovePath`](Character#charactermovepath),
 [`Character.WalkPath`](Character#characterwalkpath),
 [`Object.Animate`](Object#objectanimate),
-[`Object.MovePath`](Character#objectmovepath),
+[`Object.MovePath`](Object#objectmovepath),
 [`VideoPlayer.Open`](VideoPlayer#videoplayeropen)
 
 ---

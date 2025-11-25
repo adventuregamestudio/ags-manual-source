@@ -17,6 +17,7 @@
 - [Global functions: room actions](Globalfunctions_Room)
 - [Global functions: screen effects](Globalfunctions_Screen)
 - [Global functions: wait](Globalfunctions_Wait)
+- [AnimatedOverlay functions and properties](AnimatedOverlay)
 - [AudioChannel functions and properties](AudioChannel)
 - [AudioClip functions and properties](AudioClip)
 - [Camera functions and properties](Camera)

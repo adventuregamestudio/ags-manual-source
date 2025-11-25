@@ -711,13 +711,38 @@ The `RenderLayer` enum can be combined like flags, using bitwise operators.
 ```ags
 enum RepeatStyle {
     eOnce,
-    eRepeat
+    eRepeat,
+    eOnceAndReset,
+    eOnceAndBack,
+    eRepeatAlternate
 };
 ```
 
-*Used by:* [`Button.Animate`](Button#buttonanimate),
+The `RepeatStyle` enum lets determine the flow of the animation, but also used for movement along a path, and for playing audio or video (with certain exceptions).
+
+- eOnce means that the animation plays once from first to last frame, and remains at the last frame.
+- eOnceAndReset means that the animation plays once from first to last frame, and then resets and stays at the first frame.
+- eOnceAndBack means that the animation plays once in initial direction to the last frame, and then another once in reverse.
+- eRepeat means that the animation plays indefinitely from first to last frame, resetting back to first frame and playing over again.
+- eRepeatAlternate means that animation plays indefinitely, but changing direction each time it reaches either last or first frame, respectively.
+
+Note that "first" and "last" frames are relative to the initial direction, that is if the initial direction is "backwards", then "first" frame will be the one with the last index, and "last" frame is the one with index 0.
+
+When used for movement, RepeatStyle has a similar meaning, except it affects a motion between path points rather than frames.
+
+Another use for RepeatStyle is when playing audio or video clip. But in that case only first two modes are recognized: eOnce and eRepeat.
+
+*Compatibility:* values eOnceAndReset, eOnceAndBack and eRepeatAlternate are supported by **AGS 4.0.0** and higher. 
+
+*Used by:* [`AnimatedOverlay.Animate`](AnimatedOverlay#animatedoverlayanimate),
+[`AudioClip.Play`](AudioClip#audioclipplay),
+[`Button.Animate`](Button#buttonanimate),
 [`Character.Animate`](Character#characteranimate),
-[`Object.Animate`](Object#objectanimate)
+[`Character.MovePath`](Character#charactermovepath),
+[`Character.WalkPath`](Character#characterwalkpath),
+[`Object.Animate`](Object#objectanimate),
+[`Object.MovePath`](Character#objectmovepath),
+[`VideoPlayer.Open`](VideoPlayer#videoplayeropen)
 
 ---
 

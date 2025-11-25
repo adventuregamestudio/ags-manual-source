@@ -1,4 +1,21 @@
+
 ## `ViewFrame` functions and properties
+
+### `ViewFrame.EventName`
+
+```ags
+String ViewFrame.EventName
+```
+
+Gets/sets a custom frame event tag. If set, this tag will be used as a parameter to the animating object's OnFrameEvent event, whenever this frame is displayed.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Button.RunFrameEvent`](Button#buttonrunframeevent),
+[`Character.RunFrameEvent`](Character#characterrunframeevent),
+[`Object.RunFrameEvent`](Object#objectrunframeevent)
+
+---
 
 ### `ViewFrame.Flipped`
 

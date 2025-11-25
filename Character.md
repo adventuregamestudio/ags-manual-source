@@ -1339,6 +1339,23 @@ if (cNPC.IsInteractionAvailable(eModeTalkto) == 0)
 
 ---
 
+### `Character.RunFrameEvent`
+
+```ags
+bool Character.RunFrameEvent(int view, int loop, int frame)
+```
+
+If the specified view frame has a "EventName" property set, then triggers Character's OnFrameEvent event. If there is a script function bound to that event then it will be run, otherwise nothing happens.
+
+Returns TRUE if the view frame has an event name tag, and FALSE otherwise.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.RunInteraction`](Character#characterruninteraction),
+[`ViewFrame.EventName`](ViewFrame#viewframeeventname)
+
+---
+
 ### `Character.RunInteraction`
 
 *(Formerly known as `RunCharacterInteraction`, which is now obsolete)*

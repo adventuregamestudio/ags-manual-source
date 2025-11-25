@@ -420,6 +420,23 @@ will tint object oScreen green for a second, then turn it back to normal.
 
 ---
 
+### `Object.RunFrameEvent`
+
+```ags
+bool Object.RunFrameEvent(int view, int loop, int frame)
+```
+
+If the specified view frame has a "EventName" property set, then triggers Object's OnFrameEvent event. If there is a script function bound to that event then it will be run, otherwise nothing happens.
+
+Returns TRUE if the view frame has an event name tag, and FALSE otherwise.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.RunInteraction`](Object#objectruninteraction),
+[`ViewFrame.EventName`](ViewFrame#viewframeeventname)
+
+---
+
 ### `Object.RunInteraction`
 
 *(Formerly known as `RunObjectInteraction`, which is now obsolete)*

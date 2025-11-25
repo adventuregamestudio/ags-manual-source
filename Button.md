@@ -9,7 +9,7 @@ Button is a subclass of [`GUIControl`](GUIControl) and therefore inherits all GU
 *(Formerly known as `AnimateButton`, which is now obsolete)*
 
 ```ags
-Button.Animate(int view, int loop, int delay, optional RepeatStyle, 
+void Button.Animate(int view, int loop, int delay, optional RepeatStyle, 
                optional BlockingStyle, optional Direction, 
                optional int frame, optional int volume)
 ```
@@ -67,16 +67,32 @@ Compatibility: Parameters *BlockingStyle*, *Direction*, *frame* and *volume* are
 ### `Button.Click`
 
 ```ags
-Button.Click()
+void Button.Click()
 ```
 
 Forces Button's OnClick event. If there is a script function bound to
-that event it will be run, otherwise nothing happens.
+that event then it will be run, otherwise nothing happens.
 
 *Compatibility:* Supported by **AGS 3.4.0** and later versions.
 
 *See also:* [`GUI.Click`](GUI#guiclick),
 [`GUI.ProcessClick`](GUI#guiprocessclick)
+
+---
+
+### `Button.RunFrameEvent`
+
+```ags
+bool Button.RunFrameEvent(int view, int loop, int frame)
+```
+
+If the specified view frame has a "EventName" property set, then triggers Button's OnFrameEvent event. If there is a script function bound to that event then it will be run, otherwise nothing happens.
+
+Returns TRUE if the view frame has an event name tag, and FALSE otherwise.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`ViewFrame.EventName`](ViewFrame#viewframeeventname)
 
 ---
 

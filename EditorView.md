@@ -75,14 +75,21 @@ When you animate a [game object](Object#objectanimate) or you want the [characte
 _Delay_  
 With the delay setting you delay the displaytime of the selected _frame_ by a set amount. This delay is in game frames, so how long the delay is in time depends on how many frames per second your game is running at. You can check the game-speed with the [`GetGameSpeed`](Globalfunctions_General#getgamespeed) function. By default AGS games run at 40 FPS, but this can be configured by setting the desired frame rate using the [`SetGameSpeed`](Globalfunctions_General#setgamespeed) function. This delay value is specific to this single frame only. To add delay to an entire animation, use the delay parameter of the [`Animate`](Object#objectanimate) function instead. This frame delay is added to the overall loop delay.
 
-_Flipped_  
+_Flip_  
 You can flip a single frame with this property. This is very useful for mirrored animations, such as walkcycles, where a flipped version of the walk-left animation and be used to walk right, for example. Note that instead of flipping just a single frame you can also flip the whole loop by using the  [Right Click Context Menu](EditorView#right-click-context-menu).
 
 _Image_  
 The sprite number for this frame's image, as displayed in the [Sprite Manager](EditorSprite).
+
+_XOffset_
+_YOffset_
+The optional relative x,y offset for this frame's graphic.
 
 _ID_  
 The will display the frame number within the loop, for the selected frame. This value is not directly editable.
 
 _Sound_  
 Play a sound when this frame is displayed. This is typically used to add footsteps to character walkcycles.
+
+_EventName_
+A custom event string tag. If frame is assigned a "event name", then whenever this frame is displayed during object's animation, that object will trigger its OnFrameEvent event, passing current frame's "event name" as parameter.

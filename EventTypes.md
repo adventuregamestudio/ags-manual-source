@@ -270,7 +270,7 @@ Occurs repeatedly while the player character is standing on the hotspot.
 
     function hHotspot_MouseMove(Hotspot *theHotspot)
 
-Pccurs repeatedly while the mouse cursor is over the hotspot. You can
+Occurs repeatedly while the mouse cursor is over the hotspot. You can
 use this to highlight the cursor, and for other various effects.
 
 ---

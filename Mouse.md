@@ -184,7 +184,7 @@ if (mouse.IsModeEnabled(eModeWalkto)) {
 }
 ```
 
-will change the the "WalkTo" cursor mode, but only if it's currently
+will change the "WalkTo" cursor mode, but only if it's currently
 enabled.
 
 *See also:* [`Mouse.EnableMode`](Mouse#mouseenablemode),

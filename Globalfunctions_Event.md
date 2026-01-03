@@ -121,6 +121,11 @@ The possible values of event are:
             called when dialog options close
             DATA1 = dialog ID
             DATA2 = entry ID, the option chosen
+    eEventSavesScanComplete
+            called when the save scan, run by [`Game.ScanSaveSlots`](Game#gamescansaveslots) function, is completed
+            DATA1 = "user param" value passed into Game.ScanSaveSlots().
+    eEventUserEvent
+            this is not a real event, but defines a minimal value for user events (see [`SendEvent`](Globalfunctions_General#SendEvent)).
 
 **NOTE:** when you write this function in your script, you do not have to declare it with all 4 "data" arguments, you may put only first 1 or 2 instead, and the engine will correctly discard unused parameters without error. This also helps when you upgrade older projects to the latest version of AGS.
 
@@ -142,15 +147,18 @@ function on_event(int event, int data1, int data2)
 *Compatibility:*
  - The `data2`, `data3` and `data4` arguments are only supported since AGS 3.6.2.
  - `eEventEnterRoomAfterFadein` event type is only supported since AGS 3.6.0.
- - `eEventLeaveRoomAfterFadeout` event type  is only supported since AGS 3.6.1.
- - `eEventGameSaved` event type  is only supported since AGS 3.6.1.
- - `eEventDialogStart` event type  is only supported since AGS 3.6.2.
- - `eEventDialogStop` event type  is only supported since AGS 3.6.2.
- - `eEventDialogRun` event type  is only supported since AGS 3.6.2.
- - `eEventDialogOptionsOpen` event type  is only supported since AGS 3.6.2.
- - `eEventDialogOptionsClose` event type  is only supported since AGS 3.6.2.
+ - `eEventLeaveRoomAfterFadeout` event type is only supported since AGS 3.6.1.
+ - `eEventGameSaved` event type is only supported since AGS 3.6.1.
+ - `eEventDialogStart` event type is only supported since AGS 3.6.2.
+ - `eEventDialogStop` event type is only supported since AGS 3.6.2.
+ - `eEventDialogRun` event type is only supported since AGS 3.6.2.
+ - `eEventDialogOptionsOpen` event type is only supported since AGS 3.6.2.
+ - `eEventDialogOptionsClose` event type is only supported since AGS 3.6.2.
  - `eEventGUIMouseDown` event type has 4 parameters since AGS 3.6.2, and only 1 parameter before that.
  - `eEventGUIMouseUp` event type has 4 parameters since AGS 3.6.2, and only 1 parameter before that.
+ - `eEventUserEvent` event type is only supported since AGS 3.6.2.
+
+*See Also:* [`SendEvent`](Globalfunctions_General#SendEvent)
 
 ---
 

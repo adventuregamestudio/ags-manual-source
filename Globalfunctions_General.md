@@ -117,7 +117,7 @@ if (keycode == eKeySpace) {
 prevents the on_key_press in further scripts from running if the player pressed the space bar.
 
 SeeAlso: [Script events](Globalfunctions_Event),
-[`SendEvent`](Globalfunctions_General#SendEvent)
+[`SendEvent`](Globalfunctions_General#sendevent)
 
 ---
 

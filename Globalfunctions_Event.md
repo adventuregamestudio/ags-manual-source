@@ -158,7 +158,7 @@ function on_event(int event, int data1, int data2)
  - `eEventGUIMouseUp` event type has 4 parameters since AGS 3.6.2, and only 1 parameter before that.
  - `eEventUserEvent` event type is only supported since AGS 3.6.2.
 
-*See Also:* [`SendEvent`](Globalfunctions_General#SendEvent)
+*See Also:* [`SendEvent`](Globalfunctions_General#sendevent)
 
 ---
 

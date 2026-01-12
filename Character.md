@@ -2204,7 +2204,53 @@ cEgo.BlockingHeight = 20;
 will make EGO block 20 pixels high (10 above and 10 below his baseline)
 
 *See also:*
+[`Character.BlockingRectX`](Character#characterblockingrectx),
+[`Character.BlockingRectY`](Character#characterblockingrecty),
 [`Character.BlockingWidth`](Character#characterblockingwidth),
+[`Character.Solid`](Character#charactersolid)
+
+---
+
+### `Character.BlockingRectX`
+
+```ags
+int Character.BlockingRectX
+```
+
+Gets/sets the X offset of the character's blocking rectangle.
+
+By default, the blocking rectangle is centered around character's position. This property specifies a *relative* offset either to left (negative value) or right (positive value) from character's center.
+
+**NOTE:** This property has no effect unless the [`Solid`](Character#charactersolid) property is set to *true*.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Character.BlockingRectY`](Character#characterblockingrecty),
+[`Character.BlockingHeight`](Character#characterblockingwidth),
+[`Character.BlockingHeight`](Character#characterblockingheight),
+[`Character.Solid`](Character#charactersolid)
+
+---
+
+### `Character.BlockingRectY`
+
+```ags
+int Character.BlockingRectY
+```
+
+Gets/sets the Y offset of the character's blocking rectangle.
+
+By default, the blocking rectangle is centered around character's position. This property specifies a *relative* offset either to up (negative value) or down (positive value) from character's center.
+
+**NOTE:** This property has no effect unless the [`Solid`](Character#charactersolid) property is set to *true*.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Character.BlockingRectX`](Character#characterblockingrectx),
+[`Character.BlockingHeight`](Character#characterblockingwidth),
+[`Character.BlockingHeight`](Character#characterblockingheight),
 [`Character.Solid`](Character#charactersolid)
 
 ---
@@ -2239,6 +2285,8 @@ will make EGO block 50 pixels wide (25 pixels to the left of his X
 co-ordinate, and 25 to the right)
 
 *See also:*
+[`Character.BlockingRectX`](Character#characterblockingrectx),
+[`Character.BlockingRectY`](Character#characterblockingrecty),
 [`Character.BlockingHeight`](Character#characterblockingheight),
 [`Character.Solid`](Character#charactersolid)
 

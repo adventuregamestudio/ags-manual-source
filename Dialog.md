@@ -104,6 +104,34 @@ will enable option 2 of topic number 4.
 
 ---
 
+### `Dialog.SetOptionText`
+
+
+```ags
+Dialog.SetOptionText(int option, const string text)
+```
+
+Changes the text for the specified option.
+
+OPTION is the option number within the topic, from 1 to whatever the
+highest option is for that topic.
+
+Example:
+
+```ags
+dNPC.SetOptionText(4, String.Format("I've found %d gold coins!", GoldCoinsCounter));
+```
+
+will change the 4th option text depending on the value of a global variable "GoldCoinsCounter".
+
+
+*See also:* [`Dialog.OptionCount`](Dialog#dialogoptioncount),
+[`Dialog.GetOptionState`](Dialog#dialoggetoptionstate),
+[`Dialog.SetOptionState`](Dialog#dialogsetoptionstate),
+[`Dialog.GetOptionText`](Dialog#dialoggetoptiontext)
+
+---
+
 ### `Dialog.Start`
 
 *(Formerly known as global function `RunDialog`, which is now obsolete)*
@@ -472,7 +500,9 @@ will display the text for the third option of the dJoeBloggs dialog.
 *Compatibility:* Supported by **AGS 3.0.2** and later versions.
 
 *See also:* [`Dialog.OptionCount`](Dialog#dialogoptioncount),
-[`Dialog.GetOptionState`](Dialog#dialoggetoptionstate)
+[`Dialog.GetOptionState`](Dialog#dialoggetoptionstate),
+[`Dialog.SetOptionState`](Dialog#dialogsetoptionstate),
+[`Dialog.SetOptionText`](Dialog#dialogsetoptiontext)
 
 ---
 

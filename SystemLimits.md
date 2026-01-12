@@ -13,7 +13,7 @@ similar, chances are this section will answer it.
 | Characters | unlimited | unlimited  | unlimited |
 | Cursors | unlimited | unlimited | unlimited |
 | Custom properties | unlimited | unlimited | unlimited |
-| Dialog options per topic | 30 | 30 | 30 |
+| Dialog options per topic | 30 | 30 | unlimited |
 | Dialog topics | unlimited | unlimited | unlimited |
 | Dynamic array elements | 2+ billion | 2+ billion | 2+ billion |
 | Fonts | unlimited | unlimited | unlimited |
@@ -30,7 +30,7 @@ similar, chances are this section will answer it.
 | Script function arguments | 14 | 14 | unlimited |
 | Sprites, imported | 90000 | 90000 | 90000 |
 | Sprites, dynamic | 2+ billion | 2+ billion| 2+ billion |
-| Timers (at runtime) | 20 | 20 | 20 |
+| Timers (at runtime) | 20 | 20 | unlimited |
 | Views (animation sets) | unlimited  | unlimited  | unlimited  |
 | Walk-behinds per room | 15 | 15 | 15 |
 | Walkable areas per room | 15 | 15 | 15 |

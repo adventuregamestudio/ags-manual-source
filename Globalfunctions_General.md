@@ -768,26 +768,15 @@ Instead of using this command, you should create your own Inventory GUI.
 
 ### `IsGamePaused`
 
+**This function is obsolete since AGS 3.6.3. Use [`Game.IsPaused`](Game#gameispaused).**
+
 ```ags
 IsGamePaused ()
 ```
 
 Returns *true* if the game is currently paused, or *false* otherwise.
-The game is paused when either the icon bar interface has been popped
-up, or a \"script-only\" interface has been displayed with
-GUI.Visible=true. While the game is paused, no animations or other
-updates take place.
 
-Example:
-
-```ags
-if (IsGamePaused()) UnPauseGame();
-```
-
-will unpause the game if it's paused.
-
-*See also:* [`PauseGame`](Globalfunctions_General#pausegame), [`UnPauseGame`](Globalfunctions_General#unpausegame),
-[`GUI.Visible`](GUI#guivisible)
+*See also:* [`PauseGame`](Globalfunctions_General#pausegame), [`UnPauseGame`](Globalfunctions_General#unpausegame)
 
 ---
 
@@ -1022,38 +1011,13 @@ The save slot 2 won't be found anymore in its previous slot.
 
 ### `PauseGame`
 
+**This function is obsolete since AGS 3.6.3. Use [`Game.Pause`](Game#gamepause).**
+
 ```ags
 PauseGame ()
 ```
 
 Stops AGS processing movement and animations. This has the same effect on the game as happens when a modal GUI is popped up.
-
-When the game is paused, game cycles will continue to run but no animations or movement will be performed, and timers will not count down. Apart from that, your scripts will continue to run as normal.
-
-To be precise, following is paused by this function:
-* Timers (ones set by [SetTimer](Globalfunctions_General#settimer)),
-* Character walking and animating, idle view timing,
-* Object moving and animating,
-* Overlay timing (for auto removal),
-* Speech timing and animation.
-
-As you may notice, GUI and Audio are not paused at all. PauseGame was historically purposed to pause the Room, while having some kind of the GUI menus and background music running. If you want to also suspend (and later unsuspend) these, you would have to script that yourself.
-
-**NOTE:** `PauseGame()` works as a counter, so if you call it twice, you will need to call `UnPauseGame()` game twice too to resume game. To avoid this behavior make sure to only pause once:
-
-```ags
-if (!IsGamePaused()) PauseGame();
-```
-
-Game processing will not resume until you call the UnPauseGame function as needed.
-
-Example:
-
-```ags
-if (IsKeyPressed(32)) PauseGame();
-```
-
-will pause the game if the player presses the space bar
 
 *See also:* [`UnPauseGame`](Globalfunctions_General#unpausegame), [`IsGamePaused`](Globalfunctions_General#isgamepaused)
 
@@ -1868,27 +1832,12 @@ the editor.
 
 ### `UnPauseGame`
 
+**This function is obsolete since AGS 3.6.3. Use [`Game.Resume`](Game#gameresume).**
+
 ```ags
 UnPauseGame ()
 ```
 
 Resumes the game.
-
-Example:
-
-```ags
-if (IsGamePaused() == 1)
-    UnPauseGame();
-```
-
-will unpause the game if it is paused.
-
-**NOTE:** Because PauseGame works as a counter, if you called it more
-than once, this won't work. To ignore this behavior, unpause as much
-as needed with the below snippet.
-
-```ags
-while (IsGamePaused()) UnPauseGame();
-```
 
 *See also:* [`PauseGame`](Globalfunctions_General#pausegame), [`IsGamePaused`](Globalfunctions_General#isgamepaused)

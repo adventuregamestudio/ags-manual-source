@@ -176,8 +176,7 @@ Display("Loop 2 in SWIMMING view has %d frames.", frameCount);
 
 ### `Game.GetLocationName`
 
-*(Formerly known as global function `GetLocationName`, which is now
-obsolete)*
+*(Formerly known as global function `GetLocationName`, which is now obsolete)*
 
 ```ags
 static String Game.GetLocationName(int x, int y)
@@ -277,8 +276,7 @@ else {
 
 ### `Game.GetSaveSlotDescription`
 
-*(Formerly known as global function `GetSaveSlotDescription`, which is now
-obsolete)*
+*(Formerly known as global function `GetSaveSlotDescription`, which is now obsolete)*
 
 ```ags
 static String Game.GetSaveSlotDescription(int slot)
@@ -520,6 +518,56 @@ will display a message if plugin is present.
 
 ---
 
+### `Game.Pause`
+
+*(Formerly known as global function `PauseGame`, which is now obsolete)*
+
+```ags
+static void Game.Pause()
+```
+
+Stops AGS processing movement and animations. This has the same effect on the game as happens when a modal GUI is popped up.
+
+When the game is paused, game cycles will continue to run but no animations or movement will be performed, and timers will not count down. Apart from that, your scripts will continue to run as normal.
+
+To be precise, following is paused by this function:
+* Timers (ones set by [SetTimer](Globalfunctions_General#settimer)),
+* Character walking and animating, idle view timing,
+* Object moving and animating,
+* Overlay timing (for auto removal),
+* Speech timing and animation.
+
+As you may notice, GUI and Audio are not paused at all. Game.Pause() was historically purposed to pause the Room, while having some kind of the GUI menus and background music running. If you want to also suspend (and later unsuspend) these, you would have to script that yourself.
+
+**NOTE:** `Game.Pause()` works as a counter, so if you call it twice, you will need to call `Game.Resume()` game twice too to resume game. To avoid this behavior make sure to only pause once:
+
+```ags
+if (!Game.IsPaused) Game.Pause();
+```
+
+Game processing will not resume until you call the UnPauseGame function as needed.
+
+Example:
+
+```ags
+function on_key_press(eKeyCode keycode)
+{
+    if (keycode == eKeySpace)
+    {
+        if (Game.IsPaused)
+            Game.Resume();
+        else
+            Game.Pause();
+    }
+}
+```
+
+will pause / unpause the game when the player presses the space bar.
+
+*See also:* [`Game.Resume`](Game#gameresume), [`Game.IsPaused`](Game#gameispaused)
+
+---
+
 ### `Game.PlayVoiceClip`
 
 ```ags
@@ -636,6 +684,36 @@ will say hi twice, and also reset ALL do once only tokens.
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
 *See also:* [`Game.DoOnceOnly`](Game#gamedoonceonly)
+
+---
+
+### `Game.Resume`
+
+*(Formerly known as global function `UnPauseGame`, which is now obsolete)*
+
+```ags
+static void Game.Resume()
+```
+
+Resumes the game.
+
+Example:
+
+```ags
+if (Game.IsPaused)
+    Game.Resume();
+```
+
+will unpause the game if it is paused.
+
+**NOTE:** Because Game.Pause works as a counter, if you called it more
+than once, this won't fully resume the game. If you must override this behavior, call Resume until game is unpaused with this snippet below:
+
+```ags
+while (Game.IsPaused) Game.Resume();
+```
+
+*See also:* [`Game.Pause`](Game#gamepause), [`Game.IsPaused`](Game#gameispaused)
 
 ---
 
@@ -1398,6 +1476,28 @@ Example:
 ```ags
 Display("The game has %d inventory items.", Game.InventoryItemCount);
 ```
+
+---
+
+### `Game.IsPaused`
+
+*(Formerly known as global function `IsGamePaused`, which is now obsolete)*
+
+```ags
+readonly static bool Game.IsPaused
+```
+
+Returns *true* if the game is currently paused, or *false* otherwise. The game can be paused by calling Game.Pause(). Also, the game is paused when any GUI with PopupStyle "pause game when shown" or "popup when cursor is at y" is displayed. While the game is paused, no animations or other updates take place.
+
+Example:
+
+```ags
+if (Game.IsPaused) Game.Resume();
+```
+
+will unpause the game if it's paused.
+
+*See also:* [`Game.Pause`](Game#gamepause), [`Game.Resume`](Game#gameresume)
 
 ---
 

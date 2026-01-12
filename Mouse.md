@@ -215,6 +215,32 @@ will display the sprite slot number of the current mouse cursor.
 
 ---
 
+### `Mouse.GetModeHotspot`
+
+```ags
+static Point* Mouse.GetModeHotspot(CursorMode)
+```
+
+Returns the coordinates of the hotspot of the specified mouse cursor mode. The hotspot is a pixel on the cursor graphic where the click takes effect, so the coordinates are relative to the graphic's top-left corner (0,0).
+
+The return value is a instance of Point struct. Access this instance's members to read either x or y coordinate.
+
+Example:
+
+```ags
+Point* pt = Mouse.GetModeHotspot(mouse.Mode);
+gUnderCursor.X = mouse.x - pt.x;
+gUnderCursor.Y = mouse.y - pt.y;
+```
+
+will move a GUI gUnderCursor to a position matching left-top corner of the current cursor graphic.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Mouse.ChangeModeHotspot`](Mouse#mousechangemodehotspot)
+
+---
+
 ### `Mouse.IsButtonDown`
 
 *(Formerly known as global function `IsButtonDown`, which is now

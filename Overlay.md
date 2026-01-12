@@ -345,6 +345,23 @@ Tells whether current overlay is a room (returns "true") or screen (if "false") 
 
 ---
 
+### `Overlay.Text`
+
+```ags
+String Overlay.Text;
+```
+
+Gets/sets the textual description of this overlay.
+
+Overlay's Text property stores an arbitrary value, similar to the Character.RealName or Object.Name, that has purely informative purpose and does not affect the overlay itself in any way. If Overlay was created using Overlay.CreateTextual(), or modified using Overlay.SetText(), then the Text property will return a text used when generating the overlay's image. If it was created using Overlay.CreateGraphical(), then it will return empty string. But you also may assign a custom value to this property for your own purposes.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Overlay.CreateTextual`](Overlay#overlaycreatetextual),
+[`Overlay.CreateRoomTextual`](Overlay#overlaycreateroomtextual)
+
+---
+
 ### `Overlay.Transparency`
 
 ```ags

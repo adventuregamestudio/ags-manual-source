@@ -779,7 +779,53 @@ oRock.BlockingHeight = 20;
 will make the Rock object block 20 pixels high (10 above and 10 below
 its baseline)
 
-*See also:* [`Object.BlockingWidth`](Object#objectblockingwidth),
+*See also:* [`Object.BlockingRectX`](Object#objectblockingrectx),
+[`Object.BlockingRectY`](Object#objectblockingrecty),
+[`Object.BlockingWidth`](Object#objectblockingwidth),
+[`Object.Solid`](Object#objectsolid)
+
+---
+
+### `Object.BlockingRectX`
+
+```ags
+int Object.BlockingRectX
+```
+
+Gets/sets the X offset of the object's blocking rectangle.
+
+By default, the blocking rectangle is aligned to the object's position (left-bottom corner). This property specifies a *relative* offset either to left (negative value) or right (positive value) from that position.
+
+**NOTE:** This property has no effect unless the [`Solid`](Object#objectsolid) property is set to *true*.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Object.BlockingRectY`](Object#objectblockingrecty),
+[`Object.BlockingHeight`](Object#objectblockingheight),
+[`Object.BlockingWidth`](Object#objectblockingwidth),
+[`Object.Solid`](Object#objectsolid)
+
+---
+
+### `Object.BlockingRectY`
+
+```ags
+int Object.BlockingRectY
+```
+
+Gets/sets the Y offset of the object's blocking rectangle.
+
+By default, the blocking rectangle is centered around object's position (left-bottom corner). This property specifies a *relative* offset either to up (negative value) or down (positive value) from that position.
+
+**NOTE:** This property has no effect unless the [`Solid`](Object#objectsolid) property is set to *true*.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Object.BlockingRectX`](Object#objectblockingrectx),
+[`Object.BlockingHeight`](Object#objectblockingheight),
+[`Object.BlockingWidth`](Object#objectblockingwidth),
 [`Object.Solid`](Object#objectsolid)
 
 ---
@@ -814,6 +860,8 @@ will make the Rock object block 50 pixels wide (25 pixels to the left of
 its center, and 25 to the right)
 
 *See also:* [`Object.BlockingHeight`](Object#objectblockingheight),
+[`Object.BlockingRectX`](Object#objectblockingrectx),
+[`Object.BlockingRectY`](Object#objectblockingrecty),
 [`Object.Solid`](Object#objectsolid)
 
 ---

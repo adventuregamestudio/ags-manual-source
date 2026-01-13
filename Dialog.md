@@ -124,6 +124,7 @@ dNPC.SetOptionText(4, String.Format("I've found %d gold coins!", GoldCoinsCounte
 
 will change the 4th option text depending on the value of a global variable "GoldCoinsCounter".
 
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`Dialog.OptionCount`](Dialog#dialogoptioncount),
 [`Dialog.GetOptionState`](Dialog#dialoggetoptionstate),

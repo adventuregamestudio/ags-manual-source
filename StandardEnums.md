@@ -42,7 +42,9 @@ will execute some code if *align* variable contains "Left" in any combination (e
 
 *Compatibility:* new version of Alignment enum was introduced in **AGS 3.5.0**. Previous Alignment was renamed into HorizontalAlignment.
 
-*Used by:* [`Button.TextAlignment`](Button#buttontextalignment)
+*Used by:* [`Button.TextAlignment`](Button#buttontextalignment),
+[`Label.TextAlignment`](Label#labeltextalignment),
+[`TextBox.TextAlignment`](TextBox#textboxtextalignment)
 
 ---
 
@@ -141,6 +143,22 @@ enum CharacterDirection {
 
 *Used by:* [`Character.ChangeRoom`](Character#characterchangeroom),
 [`Character.FaceDirection`](Character#characterfacedirection)
+
+---
+
+### `GUIButtonColorStyle`
+
+```ags
+enum GUIButtonColorStyle {
+  eGUIButtonDefault,
+  eGUIButtonDynamic,
+  eGUIButtonDynamicFlat
+};
+```
+
+*Compatibility:* supported by **AGS 3.6.3** and higher.
+
+*Used by:* [`Button.ColorStyle`](Button#buttoncolorstyle)
 
 ---
 

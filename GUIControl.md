@@ -87,6 +87,131 @@ The file contains the name of a control and it's position, the function reads it
 
 ---
 
+### `GUIControl.BringToFront`
+
+```ags
+GUIControl.BringToFront()
+```
+
+Brings this control to the front of the Z-order. This allows you to
+rearrange the display order of controls within the GUI.
+
+**Applies To**
+
+Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
+
+Example:
+
+```ags
+btnBigButton.BringToFront();
+```
+
+will move the *btnBigButton* button to be in front of all other controls
+on the GUI.
+
+*See also:* [`GUIControl.SendToBack`](GUIControl#guicontrolsendtoback),
+[`GUIControl.ZOrder`](GUIControl#guicontrolzorder)
+
+---
+
+### `GUIControl.SendToBack`
+
+```ags
+GUIControl.SendToBack()
+```
+
+Sends this control to the back of the Z-order. This allows you to
+rearrange the display order of controls within the GUI.
+
+**Applies To**
+
+Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
+
+Example:
+
+```ags
+btnBigButton.SendToBack();
+```
+
+will move the *btnBigButton* button to be behind all other controls on
+the GUI.
+
+*See also:*
+[`GUIControl.BringToFront`](GUIControl#guicontrolbringtofront),
+[`GUIControl.ZOrder`](GUIControl#guicontrolzorder)
+
+---
+
+### `GUIControl.SetPosition`
+
+*(Formerly known as `SetGUIObjectPosition`, which is now obsolete)*
+
+```ags
+GUIControl.SetPosition(int x, int y)
+```
+
+Moves the top-left corner of the GUI control to be at (X,Y). These
+co-ordinates are relative to the GUI which contains the control.
+
+This allows you to dynamically move GUI controls around on the screen
+while the game is running, and this may well be useful in conjunction
+with GUI.SetSize if you want to create dynamically resizable GUIs.
+
+**Applies To**
+
+Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
+
+Example:
+
+```ags
+btnConfirm.SetPosition(40, 10);
+```
+
+will move the *btnConfirm* button to be positioned at (40,10) within the
+GUI.
+
+*See also:* [`GUIControl.Enabled`](GUIControl#guicontrolenabled),
+[`GUI.SetPosition`](GUI#guisetposition),
+[`GUIControl.SetSize`](GUIControl#guicontrolsetsize),
+[`GUIControl.X`](GUIControl#guicontrolx),
+[`GUIControl.Y`](GUIControl#guicontroly)
+
+---
+
+### `GUIControl.SetSize`
+
+*(Formerly known as `SetGUIObjectSize`, which is now obsolete)*
+
+```ags
+GUIControl.SetSize(int width, int height)
+```
+
+Adjusts the specified GUI control to have the new size WIDTH x HEIGHT.
+
+This allows you to dynamically resize GUI controls on the screen while
+the game is running, and this may well be useful in conjunction with
+GUI.SetSize and GUIControl.SetPosition if you want to create dynamically
+resizable GUIs.
+
+**Applies To**
+
+Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
+
+Example:
+
+```ags
+invMain.SetSize(160, 100);
+```
+
+will resize the *invMain* control to have a size of 160 x 100.
+
+*See also:* [`GUIControl.Height`](GUIControl#guicontrolheight),
+[`GUIControl.SetPosition`](GUIControl#guicontrolsetposition),
+[`GUI.SetSize`](GUI#guisetsize),
+[`GUIControl.Width`](GUIControl#guicontrolwidth)
+
+---
+
 ### `GUIControl.AsType`
 
 ```ags
@@ -121,30 +246,63 @@ that control is not a button, prints a message.
 
 ---
 
-### `GUIControl.BringToFront`
+### `GUIControl.BackgroundColor`
 
 ```ags
-GUIControl.BringToFront()
+int GUIControl.BackgroundColor
 ```
 
-Brings this control to the front of the Z-order. This allows you to
-rearrange the display order of controls within the GUI.
+Gets/sets control's background color, which is used to fill the control's rectangle. This color is only drawn if [`SolidBackground`](GUIControl#guicontrolsolidbackground) property is set to *true*.
 
-**Applies To**
+Out of all the control types, only Buttons and Sliders have background color enabled by default, others don't. For these you'll need to set SolidBackground first if you like to have one.
 
-Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
+**NOTE:** some control types may have alternate settings that override background and border colors. For example, Button has NormalGraphic, which replaces a colored box completely.
 
-Example:
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
+[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder),
+[`GUIControl.SolidBackground`](GUIControl#guicontrolsolidbackground)
+
+---
+
+### `GUIControl.BorderColor`
 
 ```ags
-btnBigButton.BringToFront();
+int GUIControl.BorderColor
 ```
 
-will move the *btnBigButton* button to be in front of all other controls
-on the GUI.
+Gets/sets control's border color. This color is only drawn if [`ShowBorder`](GUIControl#guicontrolshowborder) property is set to *true*. The border's thickness is defined by [`BorderWidth`](GUIControl#guicontrolborderwidth) property.
 
-*See also:* [`GUIControl.SendToBack`](GUIControl#guicontrolsendtoback),
-[`GUIControl.ZOrder`](GUIControl#guicontrolzorder)
+Labels are the only controls that do not have a border enabled by default. For them you'll need to set ShowBorder first if you like to have one.
+
+**NOTE:** some control types may have alternate settings that override background and border colors. For example, Button has NormalGraphic, which replaces a colored box completely.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BackgroundColor`](GUIControl#guicontrolbackgroundcolor),
+[`GUIControl.BorderWidth`](GUIControl#guicontrolborderwidth),
+[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder),
+[`GUIControl.SolidBackground`](GUIControl#guicontrolsolidbackground)
+
+---
+
+### `GUIControl.BorderWidth`
+
+```ags
+int GUIControl.BorderWidth
+```
+
+Gets/sets control's border thickness. This property only has effect when [`ShowBorder`](GUIControl#guicontrolshowborder) is set to *true*.
+
+Labels are the only controls that do not have a border enabled by default. For them you'll need to set ShowBorder first.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BackgroundColor`](GUIControl#guicontrolbackgroundcolor),
+[`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
+[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder),
+[`GUIControl.SolidBackground`](GUIControl#guicontrolsolidbackground)
 
 ---
 
@@ -318,101 +476,78 @@ again using the niftier full pathing approach.
 
 ---
 
-### `GUIControl.SendToBack`
+### `GUIControl.PaddingX`
 
 ```ags
-GUIControl.SendToBack()
+int GUIControl.PaddingX
 ```
 
-Sends this control to the back of the Z-order. This allows you to
-rearrange the display order of controls within the GUI.
+Gets/sets the control's horizontal padding, that is the distance between the control's border and its inner content. Padding is measured since where the border ends, therefore the total distance between the control's edge to its inner content is a summ of BorderWidth + PaddingX (assuming border is enabled).
 
-**Applies To**
+Each control type decides what "inner content" is on its own.
+* Button - padding affects the position of the text. Button's graphic is not affected, because it replaces both border and background altogether.
+* Label - position of text.
+* ListBox - position of items altogether.
+* InventoryWindow - inventory items grid.
+* Slider - not applicable, ignores padding property.
+* TextBox - position of text.
 
-Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
-Example:
-
-```ags
-btnBigButton.SendToBack();
-```
-
-will move the *btnBigButton* button to be behind all other controls on
-the GUI.
-
-*See also:*
-[`GUIControl.BringToFront`](GUIControl#guicontrolbringtofront),
-[`GUIControl.ZOrder`](GUIControl#guicontrolzorder)
+*See also:* [`GUIControl.BorderWidth`](GUIControl#guicontrolborderwidth),
+[`GUIControl.PaddingY`](GUIControl#guicontrolpaddingy),
+[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder)
 
 ---
 
-### `GUIControl.SetPosition`
-
-*(Formerly known as `SetGUIObjectPosition`, which is now obsolete)*
+### `GUIControl.PaddingY`
 
 ```ags
-GUIControl.SetPosition(int x, int y)
+int GUIControl.PaddingY
 ```
 
-Moves the top-left corner of the GUI control to be at (X,Y). These
-co-ordinates are relative to the GUI which contains the control.
+Gets/sets the control's vertical padding, that is the distance between the control's border and its inner content. Padding is measured since where the border ends, therefore the total distance between the control's edge to its inner content is a summ of BorderWidth + PaddingY (assuming border is enabled).
 
-This allows you to dynamically move GUI controls around on the screen
-while the game is running, and this may well be useful in conjunction
-with GUI.SetSize if you want to create dynamically resizable GUIs.
+Each control type decides what "inner content" is on its own. See [`GUIControl.PaddingX`](GUIControl#guicontrolpaddingx) for more details.
 
-**Applies To**
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
-Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
-
-Example:
-
-```ags
-btnConfirm.SetPosition(40, 10);
-```
-
-will move the *btnConfirm* button to be positioned at (40,10) within the
-GUI.
-
-*See also:* [`GUIControl.Enabled`](GUIControl#guicontrolenabled),
-[`GUI.SetPosition`](GUI#guisetposition),
-[`GUIControl.SetSize`](GUIControl#guicontrolsetsize),
-[`GUIControl.X`](GUIControl#guicontrolx),
-[`GUIControl.Y`](GUIControl#guicontroly)
+*See also:* [`GUIControl.BorderWidth`](GUIControl#guicontrolborderwidth),
+[`GUIControl.PaddingX`](GUIControl#guicontrolpaddingx),
+[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder)
 
 ---
 
-### `GUIControl.SetSize`
-
-*(Formerly known as `SetGUIObjectSize`, which is now obsolete)*
+### `GUIControl.ShowBorder`
 
 ```ags
-GUIControl.SetSize(int width, int height)
+int GUIControl.ShowBorder
 ```
 
-Adjusts the specified GUI control to have the new size WIDTH x HEIGHT.
+Gets/sets whether control should have a border drawn. The border color is defined by [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor) property. The border's thickness is defined by [`BorderWidth`](GUIControl#guicontrolborderwidth) property.
 
-This allows you to dynamically resize GUI controls on the screen while
-the game is running, and this may well be useful in conjunction with
-GUI.SetSize and GUIControl.SetPosition if you want to create dynamically
-resizable GUIs.
+Labels are the only controls that do not have a border enabled by default. For them you'll need to set ShowBorder first if you like to have one.
 
-**Applies To**
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
-Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
+*See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
+[`GUIControl.BorderWidth`](GUIControl#guicontrolborderwidth)
 
-Example:
+---
+
+### `GUIControl.SolidBackground`
 
 ```ags
-invMain.SetSize(160, 100);
+bool GUIControl.SolidBackground
 ```
 
-will resize the *invMain* control to have a size of 160 x 100.
+Gets/sets whether control's rectangle should be filled with color. The fill color is defined by [`GUIControl.BackgroundColor`](GUIControl#guicontrolbackgroundcolor) property.
 
-*See also:* [`GUIControl.Height`](GUIControl#guicontrolheight),
-[`GUIControl.SetPosition`](GUIControl#guicontrolsetposition),
-[`GUI.SetSize`](GUI#guisetsize),
-[`GUIControl.Width`](GUIControl#guicontrolwidth),
+Out of all the control types, only Buttons and Sliders have background color enabled by default, others don't. For these you'll need to set SolidBackground first if you like to have one.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BackgroundColor`](GUIControl#guicontrolbackgroundcolor)
 
 ---
 
@@ -622,4 +757,3 @@ Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
 *See also:*
 [`GUIControl.BringToFront`](GUIControl#guicontrolbringtofront),
 [`GUIControl.SendToBack`](GUIControl#guicontrolsendtoback)
-

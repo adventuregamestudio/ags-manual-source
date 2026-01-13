@@ -72,6 +72,20 @@ will clear the txtUserInput text box.
 
 ---
 
+### `TextBox.TextAlignment`
+
+```ags
+Alignment TextBox.TextAlignment;
+```
+
+Gets/sets how the text is aligned relative to the textbox's rectangle.
+
+*See also:* [Alignment enum](StandardEnums#Alignment)
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `TextBox.TextColor`
 
 ```ags

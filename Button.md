@@ -567,7 +567,7 @@ Gets/sets how the text is aligned relative to the button's rectangle.
 
 If the button has no text set, then this property has no effect.
 
-*See also:* [Alignment enum](StandardEnums#Alignment),
+*See also:* [Alignment enum](StandardEnums#alignment),
 [`Button.NormalGraphic`](Button#buttonnormalgraphic)
 [`Button.Text`](Button#buttontext)
 

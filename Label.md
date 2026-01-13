@@ -97,11 +97,12 @@ Alignment Label.TextAlignment;
 
 Gets/sets how the text is aligned relative to the label's rectangle.
 
-*See also:* [Standard Enumerated Types](StandardEnums), [`Label.Font`](Label#labelfont),
-[`Label.Text`](Label#labeltext)
-
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 This property used to have the type HorizontalAlignment prior to **AGS 3.6.2**.
+
+*See also:* [Alignment enum](StandardEnums#alignment),
+[`Label.Font`](Label#labelfont),
+[`Label.Text`](Label#labeltext)
 
 ---
 

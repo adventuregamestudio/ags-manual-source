@@ -564,6 +564,8 @@ function on_key_press(eKeyCode keycode)
 
 will pause / unpause the game when the player presses the space bar.
 
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
 *See also:* [`Game.Resume`](Game#gameresume), [`Game.IsPaused`](Game#gameispaused)
 
 ---
@@ -712,6 +714,8 @@ than once, this won't fully resume the game. If you must override this behavior,
 ```ags
 while (Game.IsPaused) Game.Resume();
 ```
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`Game.Pause`](Game#gamepause), [`Game.IsPaused`](Game#gameispaused)
 
@@ -1496,6 +1500,8 @@ if (Game.IsPaused) Game.Resume();
 ```
 
 will unpause the game if it's paused.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`Game.Pause`](Game#gamepause), [`Game.Resume`](Game#gameresume)
 

@@ -32,6 +32,22 @@ displays the *sldHealth* slider's background image
 
 ---
 
+### `Slider.BorderShadeColor`
+
+```ags
+int Slider.BorderShadeColor
+```
+
+Gets/sets the alternate border color that will be used for 3D effect. It's used for both handle and the slider bar, but only if HandleGraphic and BackgroundGraphic are not set, respectively.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
+[`Slider.BackgroundGraphic`](Slider#sliderbackgroundgraphic)
+[`Slider.HandleColor`](Slider#sliderhandlecolor)
+
+---
+
 ### `Slider.HandleColor`
 
 ```ags
@@ -42,7 +58,8 @@ Gets/sets the fill color of the handle. This setting will be ignored if HandleGr
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
-*See also:* [`Slider.HandleGraphic`](Slider#sliderhandlegraphic)
+*See also:* [`Slider.BorderShadeColor`](Slider#bordershadecolor)
+[`Slider.HandleGraphic`](Slider#sliderhandlegraphic)
 
 ---
 
@@ -149,21 +166,6 @@ sets the minimum value of the *sldHealth* slider to 0.
 
 *See also:* [`Slider.Max`](Slider#slidermax),
 [`Slider.Value`](Slider#slidervalue)
-
----
-
-### `Slider.ShadowColor`
-
-```ags
-int Slider.ShadowColor
-```
-
-Gets/sets the alternate border color that will be used for 3D effect. It's used for both handle and the slider bar, but only if HandleGraphic and BackgroundGraphic are not set, respectively.
-
-*Compatibility:* Supported by **AGS 3.6.3** and later versions.
-
-*See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
-[`Slider.BackgroundGraphic`](Slider#sliderbackgroundgraphic)
 
 ---
 

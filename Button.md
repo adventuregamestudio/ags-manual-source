@@ -177,6 +177,26 @@ This property is read-only. To change button's animation, use the
 
 ---
 
+### `Button.BorderShadeColor`
+
+```ags
+int Button.BorderShadeColor
+```
+
+Gets/sets the alternate border color that will be used for 3D effect. This color will be used under two conditions:
+* if [`ShowBorder`](GUIControl#guicontrolshowborder) property is enabled.
+* if [`ColorStyle`](Button#buttoncolorstyle) is Default or Dynamic (NOT DynamicFlat).
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
+[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder)
+[`Button.ColorStyle`](Button#buttoncolorstyle),
+[`Button.MouseOverBorderColor`](Button#buttonmouseoverbordercolor),
+[`Button.PushedBorderColor`](Button#buttonpushedbordercolor)
+
+---
+
 ### `Button.ClipImage`
 
 ```ags
@@ -219,8 +239,8 @@ Gets/sets the coloring style of a GUI button. The coloring style determines whic
 **NOTE:** when the button has a NormalGraphic set, then it's considered a "image button", and most of the colors do not apply. However, text colors are still used if this button has any Text assigned, as the text is drawn on top of the graphic.
 
 Following Color Styles are supported:
-* eGUIButtonDefault - Default style. Button is drawn as a pseudo-3D box, using BackgroundColor as its main color, BorderColor as a light border color, and ShadowColor as a dark border color. TextColor is used to draw text. All color roles are fixed, regardless of the button state. (When the button is pushed, light and dark border lines are swapped in order to simulate 3D button pressed down.)
-* eGUIButtonDynamic - Dynamic 3D style. Changes background and text color depending on the current state (MouseOverBackgroundColor, MouseOverTextColor, PushedBackgroundColor and PushedTextColor), but keeps 3D border colors fixed (BorderColor and ShadowColor).
+* eGUIButtonDefault - Default style. Button is drawn as a pseudo-3D box, using BackgroundColor as its main color, BorderColor as a light border color, and BorderShadeColor as a dark border color. TextColor is used to draw text. All color roles are fixed, regardless of the button state. (When the button is pushed, light and dark border lines are swapped in order to simulate 3D button pressed down.)
+* eGUIButtonDynamic - Dynamic 3D style. Changes background and text color depending on the current state (MouseOverBackgroundColor, MouseOverTextColor, PushedBackgroundColor and PushedTextColor), but keeps 3D border colors fixed (BorderColor and BorderShadeColor).
 * eGUIButtonDynamicFlat - Flat style. Uses only single color for the border, but changes that depending on the current state (BorderColor, MouseOverBorderColor, PushedBorderColor).
 
 In addition, both 3D styles (default and dynamic) shift the button text by 1 pixel down-right when the button is pressed, as a part of the 3D look simulation. Flat style does not do that. This rule applies even if the button has graphic. This means that if you are using button graphics instead of colors, but still use its Text property, you may choose to assign Flat style to prevent text being shifted when the button is pushed down.
@@ -239,7 +259,7 @@ assigns a dynamic 3D style to a button.
 [`Button.MouseOverBorderColor`](Button#buttonmouseoverbordercolor),
 [`Button.PushedBackgroundColor`](Button#buttonpushedbackgroundcolor),
 [`Button.PushedBorderColor`](Button#buttonpushedbordercolor),
-[`Button.ShadowColor`](Button#buttonshadowcolor),
+[`Button.BorderShadeColor`](Button#buttonbordershadecolor),
 [`Button.TextColor`](Button#buttontextcolor),
 [`Button.MouseOverTextColor`](Button#buttonmouseovertextcolor),
 [`Button.PushedTextColor`](Button#buttonpushedtextcolor),
@@ -491,26 +511,6 @@ Gets/sets the text color that will be used when the button is being pushed.
 *See also:* [`Button.ColorStyle`](Button#buttoncolorstyle),
 [`Button.TextColor`](Button#buttontextcolor),
 [`Button.MouseOverTextColor`](Button#buttonmouseovertextcolor)
-
----
-
-### `Button.ShadowColor`
-
-```ags
-int Button.ShadowColor
-```
-
-Gets/sets the alternate border color that will be used for 3D effect. This color will be used under two conditions:
-* if [`ShowBorder`](GUIControl#guicontrolshowborder) property is enabled.
-* if [`ColorStyle`](Button#buttoncolorstyle) is Default or Dynamic (NOT DynamicFlat).
-
-*Compatibility:* Supported by **AGS 3.6.3** and later versions.
-
-*See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
-[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder)
-[`Button.ColorStyle`](Button#buttoncolorstyle),
-[`Button.MouseOverBorderColor`](Button#buttonmouseoverbordercolor),
-[`Button.PushedBorderColor`](Button#buttonpushedbordercolor)
 
 ---
 

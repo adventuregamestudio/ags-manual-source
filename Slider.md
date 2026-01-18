@@ -58,7 +58,7 @@ Gets/sets the fill color of the handle. This setting will be ignored if HandleGr
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
-*See also:* [`Slider.BorderShadeColor`](Slider#bordershadecolor)
+*See also:* [`Slider.BorderShadeColor`](Slider#sliderbordershadecolor)
 [`Slider.HandleGraphic`](Slider#sliderhandlegraphic)
 
 ---

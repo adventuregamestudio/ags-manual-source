@@ -147,15 +147,8 @@ to when it is drawn.
 As of **AGS 3.6.0**, you can also cut the original image in a specific
 rectangle using it's x,y position and width and height.
 
-**NOTE:** This command only works if the image to be drawn is the same
-color depth as the surface that you are drawing onto.
-
-**NOTE:** Transparency does not work in 256-color games, or with
+**NOTE:** Transparency parameter does not work in 256-color games, or with
 256-color sprites.
-
-**NOTE:** The X and Y co-ordinates given are ROOM co-ordinates, not
-SCREEN co-ordinates. This means that in a scrolling room you can draw
-outside the current visible area.
 
 Example:
 
@@ -171,8 +164,7 @@ will draw the *oDoor* object's graphic onto the room background at (100,
 *See also:*
 [`DrawingSurface.DrawLine`](DrawingSurface#drawingsurfacedrawline),
 [`DrawingSurface.DrawString`](DrawingSurface#drawingsurfacedrawstring),
-[`DrawingSurface.DrawSurface`](DrawingSurface#drawingsurfacedrawsurface),
-[`Room.ColorDepth`](Room#roomcolordepth)
+[`DrawingSurface.DrawSurface`](DrawingSurface#drawingsurfacedrawsurface)
 
 ---
 

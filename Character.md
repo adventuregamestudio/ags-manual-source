@@ -1295,6 +1295,8 @@ If a character has a valid Speech View assigned to it, that view will be used to
 
 The text will remain on screen for a limited time, and the player may or may not be able to click it away depending on the setting of "Allow speech to be skipped" and runtime property [Speech.SkipStyle](Speech#speechskipstyle).
 
+There's a special case for the text which consists of just three dots: "...". Such text causes the game to pause briefly as if the character is stopping to think, and nothing will be displayed. If, on another hand, you'd like to actually display three dots, then the trick is to add any number of extra spaces into this string.
+
 `Character.Say` supports playing a voice file. For that you need to precede the text with `&N`, where N is a voice clip's number. For more information, see the [Voice speech](VoiceSpeech) section.
 
 This function is used by the dialog scrips by default, using it in normal script is fully equivalent to having "charname: message" in the dialog.

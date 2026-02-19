@@ -63,10 +63,11 @@ will change the cursor's hotspot for walk mode to coordinates 10,10.
 ### `Mouse.ChangeModeView`
 
 ```ags
-Mouse.ChangeModeView(CursorMode, int view)
+Mouse.ChangeModeView(CursorMode, int view, optional int delay)
 ```
 
-Changes the specified mouse cursor mode's animation view to VIEW.
+Changes the specified mouse cursor mode's animation view to VIEW, optionally setting a different animation delay.
+If no delay parameter is provided, then the view will use a default AnimationDelay parameter of the Cursor itself.
 
 You can pass *view* as -1 to stop the cursor from animating.
 
@@ -80,6 +81,8 @@ mouse.ChangeModeView(eModeLookat, ROLLEYES);
 ```
 
 will change the Look cursor's view to ROLLEYES.
+
+*Compatibility:* "delay" parameter is supported by **AGS 3.6.0** and later versions.
 
 *See also:*
 [`Mouse.ChangeModeGraphic`](Mouse#mousechangemodegraphic),

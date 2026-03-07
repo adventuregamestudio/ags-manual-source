@@ -191,7 +191,7 @@ will read the index of selected topic from the ListBox control, and run dLibrari
 
 For the opposite scenario see [`Dialog.DisplayOptions`](Dialog#dialogdisplayoptions), which displays dialog options in a common way, but does not run dialog scripts.
 
-**Compatibility:** Supported by **AGS 3.6.2** and later versions.
+**Compatibility:** Supported by **AGS 3.6.3** and later versions.
 
 **See also:** [`Dialog.Start`](Dialog#dialogstart),
 [`Dialog.Stop`](Dialog#dialogstop),

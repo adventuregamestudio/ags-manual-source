@@ -184,10 +184,10 @@ Example:
 
 ```ags
 int chosen_question = ListOfQuestions.SelectedIndex + 1;
-dLibrarian.StartDialog(chosen_question);
+dLibrarian.StartOption(chosen_question);
 ```
 
-will read the index of selected topic from the ListBox control, and run dLibrarian dialog from the corresponding option.
+will read the index of selected topic from the ListBox control, and run dLibrarian dialog starting from the corresponding option.
 
 For the opposite scenario see [`Dialog.DisplayOptions`](Dialog#dialogdisplayoptions), which displays dialog options in a common way, but does not run dialog scripts.
 

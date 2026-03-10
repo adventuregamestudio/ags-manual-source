@@ -1,6 +1,6 @@
 ## `GameInfo` properties
 
-Structure holding the game information properties set in the Editor under the General Settings pane.
+GameInfo struct provides optional information about the game, which corresponds to the "Info" category section of the General Settings pane in the Editor.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 

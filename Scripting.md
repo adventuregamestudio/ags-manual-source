@@ -23,6 +23,7 @@
 - [Character functions and properties](Character)
 - [DateTime functions and properties](DateTime)
 - [Dialog functions and properties](Dialog)
+- [DialogOptions functions and properties](DialogOptions)
 - [DialogOptionsRenderingInfo functions and properties](DialogOptionsRenderingInfo)
 - [Dictionary functions and properties](Dictionary)
 - [DrawingSurface functions and properties](DrawingSurface)

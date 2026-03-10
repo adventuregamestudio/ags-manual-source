@@ -223,7 +223,7 @@ enum DialogOptionsNumbering {
 };
 ```
 
-*Used by:* [`Dialog.OptionsNumbering`](Dialog#dialogoptionsnumbering)
+*Used by:* [`DialogOptions.ItemNumbering`](DialogOptions#dialogoptionsitemnumbering)
 
 ---
 

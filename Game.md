@@ -1616,7 +1616,7 @@ Game.NormalFont = eFontSpecial;
 will change the normal font to the font \"Special\".
 
 **NOTE:** Since AGS 3.6.3 the dialog options text font can be get/set with
-[`Dialog.OptionsFont`](Dialog#dialogoptionsfont)
+[`DialogOptions.Font`](DialogOptions#dialogoptionsfont)
 
 *See also:* [`Game.SpeechFont`](Game#gamespeechfont)
 

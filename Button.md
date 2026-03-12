@@ -322,6 +322,34 @@ will display btnPlay's current sprite number.
 
 ---
 
+### `Button.IsHighlighted`
+
+```ags
+readonly bool Button.IsHighlighted
+```
+
+Tells whether the button is currently in "highlighted" state, which is when the mouse cursor is hovering over.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Button.IsPushed`](Button#buttonispushed)
+
+---
+
+### `Button.IsPushed
+
+```ags
+readonly bool Button.IsPushed
+```
+
+Tells whether the button is currently in "pushed" state, which is when it's being clicked on with mouse button, but not released yet.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Button.IsHighlighted`](Button#buttonishighlighted)
+
+---
+
 ### `Button.MouseOverBackgroundColor`
 
 ```ags
@@ -594,7 +622,23 @@ btnRestart.TextColor = 15;
 
 will change button 'btnRestart' to have white text.
 
-*See also:* [`Button.NormalGraphic`](Button#buttonnormalgraphic)
+*See also:* [`Button.TextOutlineColor`](Button#buttontextoutlinecolor),
+[`Button.NormalGraphic`](Button#buttonnormalgraphic)
+
+---
+
+### `Button.TextOutlineColor`
+
+```ags
+int Button.TextOutlineColor;
+```
+
+Gets/sets the color used to display the text's outline, but only if the button's Font uses outline. If the font has no outline, then this property has no effect.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Button.TextColor`](Button#buttonfont),
+[`Button.TextColor`](Button#buttontextcolor)
 
 ---
 

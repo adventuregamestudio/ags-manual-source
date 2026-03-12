@@ -125,5 +125,20 @@ lblStatus.TextColor = 14;
 will change label 'lblStatus' to have yellow text.
 
 *See also:* [`Label.Font`](Label#labelfont),
-[`Label.Text`](Label#labeltext)
+[`Label.Text`](Label#labeltext),
+[`Label.TextOutlineColor`](Label#labeltextoutlinecolor)
 
+---
+
+### `Label.TextOutlineColor`
+
+```ags
+int Label.TextOutlineColor;
+```
+
+Gets/sets the color used to display the text's outline, but only if the label's Font uses outline. If the font has no outline, then this property has no effect.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Label.Font`](Label#labelfont),
+[`Label.TextColor`](Label#labeltextcolor)

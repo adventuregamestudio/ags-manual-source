@@ -107,3 +107,17 @@ will change text box 'txtInput' to have yellow text.
 
 *See also:* [`TextBox.ShowBorder`](TextBox#textboxshowborder), [`TextBox.Text`](TextBox#textboxtext)
 
+---
+
+### `TextBox.TextOutlineColor`
+
+```ags
+int TextBox.TextOutlineColor;
+```
+
+Gets/sets the color used to display the text's outline, but only if the textbox's Font uses outline. If the font has no outline, then this property has no effect.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`TextBox.Font`](TextBox#textboxfont),
+[`TextBox.TextColor`](TextBox#textboxtextcolor)

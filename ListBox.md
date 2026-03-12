@@ -629,7 +629,25 @@ lstSaveGames.TextColor = Game.GetColorFromRGB(80, 80, 200);
 
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
-*See also:* [`ListBox.Font`](ListBox#listboxfont), [`ListBox.SelectedBackColor`](ListBox#listboxselectedbackcolor), [`ListBox.SelectedTextColor`](ListBox#listboxselectedtextcolor), [`ListBox.ShowBorder`](ListBox#listboxshowborder), [`ListBox.ShowScrollArrows`](ListBox#listboxshowscrollarrows)
+*See also:* [`ListBox.Font`](ListBox#listboxfont),
+[`ListBox.SelectedBackColor`](ListBox#listboxselectedbackcolor),
+[`ListBox.SelectedTextColor`](ListBox#listboxselectedtextcolor),
+[`ListBox.TextOutlineColor`](ListBox#listboxtextoutlinecolor)
+
+---
+
+### `ListBox.TextOutlineColor`
+
+```ags
+int ListBox.TextOutlineColor;
+```
+
+Gets/sets the color used to display the text's outline, but only if the listbox's Font uses outline. If the font has no outline, then this property has no effect.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`ListBox.Font`](ListBox#listboxfont),
+[`ListBox.TextColor`](ListBox#listboxtextcolor)
 
 ---
 

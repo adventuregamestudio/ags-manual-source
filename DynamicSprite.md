@@ -356,7 +356,7 @@ takes a screen shot, and draws it onto the background scene at
 ### `DynamicSprite.ChangeCanvasSize`
 
 ```ags
-DynamicSprite.ChangeCanvasSize(int width, int height, int x, int y);
+DynamicSprite.ChangeCanvasSize(int width, int height, optional int x, optional int y);
 ```
 
 Changes the sprite size to *width* x *height*, placing the current image
@@ -370,6 +370,8 @@ the opposite of [`Crop`](DynamicSprite#dynamicspritecrop). The additional
 surface area will be transparent.
 
 The width and height are specified in pixels.
+
+The x and y parameters may be omited (since **AGS 3.6.3**), in which case the original image is copied to the top-left of the new canvas.
 
 Example:
 
@@ -385,6 +387,8 @@ sprite.Delete();
 
 creates a dynamic sprite as a copy of sprite 10, enlarges it by 5 pixels
 to the left and right, and draws a line in the new area to the left.
+
+*Compatibility:* parameters `x` and `y` are *optional* only since **AGS 3.6.3**. In previous versions they are always mandatory.
 
 *See also:* [`DynamicSprite.Crop`](DynamicSprite#dynamicspritecrop),
 [`DynamicSprite.Resize`](DynamicSprite#dynamicspriteresize),

@@ -1526,6 +1526,11 @@ cEgo.SetIdleView(12, 30);
 will change/set the character EGO's idle view to 12. The idle view will
 be played if the character is idle for 30 seconds.
 
+*See also:*
+[`Character.IdleDelay`](Character#characteridledelay),
+[`Character.IdleTime`](Character#characteridletime),
+[`Character.IdleView`](Character#characteridleview)
+
 ---
 
 ### `Character.SetWalkSpeed`
@@ -2497,7 +2502,39 @@ Gets/sets the character's idle animation delay
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
-*See also:* [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
+*See also:* [`Character.IdleDelay`](Character#characteridledelay), [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
+
+---
+
+### `Character.IdleDelay`
+
+```ags
+readonly int Character.IdleDelay
+```
+
+Gets the character's idle delay, which is a time in seconds between the moment when the last character's action ends and idle animation begins.
+
+This property is read-only; to change the delay, use the [`SetIdleView`](Character#charactersetidleview) function.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.IdleTime`](Character#characteridletime), [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
+
+---
+
+### `Character.IdleTime`
+
+```ags
+readonly int Character.IdleTime
+```
+
+Gets the remaining time (in game ticks) until the idle animation begins.
+
+The idle delay is set using [`SetIdleView`](Character#charactersetidleview) function.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.IdleDelay`](Character#characteridledelay), [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
 
 ---
 
@@ -2510,8 +2547,7 @@ readonly int Character.IdleView
 Gets the character's current idle view. If the character doesn't have
 one, returns -1.
 
-This property is read-only; to change the view, use the
-[`SetIdleView`](Character#charactersetidleview) function.
+This property is read-only; to change the view, use the [`SetIdleView`](Character#charactersetidleview) function.
 
 Example:
 
@@ -2521,7 +2557,7 @@ Display("EGO's idle view is currently view %d.", cEgo.IdleView);
 
 will display EGO's current idle view number.
 
-*See also:* [`Character.SetIdleView`](Character#charactersetidleview)
+*See also:* [`Character.IdleDelay`](Character#characteridledelay), [`Character.IdleTime`](Character#characteridletime), [`Character.SetIdleView`](Character#charactersetidleview)
 
 ---
 

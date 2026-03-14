@@ -85,40 +85,39 @@ SeeAlso: [The text parser documentation](TextParser), [`on_call`](Globalfunction
 ClaimEvent()
 ```
 
-This command is used in a room script or script module's
-*on_key_press* or *on_mouse_click* function, and it tells AGS not to
-run the global script afterwards.
+When some event, such as key press or mouse click, happens in the game, the game runs corresponding script function in each existing script module (and the current room's script), where they are present. First it runs the one in the room script, then ones in script modules in the module's order (from top to bottom). Such process is called "event propagation".
 
-For example, if your room script responds to the player pressing the
-space bar, and you don't want the global script's on_key_press to
-handle it as well, then use this command.
+Sometimes you may want to prevent event from being passed (propagated) further, and stop at the certain script module. For example, you may want the room script to prevent some event from getting to global script. Like, if you wish to have special keyboard or mouse controls in this room only.
 
-This is useful if you have for example a mini-game in the room, and you
-want to use some keys for a different purpose to what they normally do.
+This is where ClaimEvent comes into play. ClaimEvent function tells the engine that the event is "claimed" by the current script, and should not be passed further into other scripts.
 
-The normal order in which scripts are called for *on_key_press* and
-*on_mouse_click* is as follows:
+ClaimEvent may claim following events:
+ - on_key_press
+ - on_mouse_click
+ - on_text_input
+ - on_event
 
--   room script
--   script modules, in order
--   global script
+The normal order in which scripts are called are
 
-If any of these scripts calls ClaimEvent, then the chain is aborted at
-that point.
+ - room script
+ - script modules, in the same order as they are listed in the game project
+ - global script
+
+If any of these scripts calls ClaimEvent, then the chain is aborted at that point.
 
 Example:
 
 ```ags
-if (keycode == ' ') {
+if (keycode == eKeySpace) {
     Display("You pressed space in this room!");
     ClaimEvent();
 }
 ```
 
-prevents the global script on_key_press from running if the player
-pressed the space bar.
+prevents the on_key_press in further scripts from running if the player pressed the space bar.
 
-SeeAlso: [Script events](Globalfunctions_Event)
+SeeAlso: [Script events](Globalfunctions_Event),
+[`SendEvent`](Globalfunctions_General#sendevent)
 
 ---
 
@@ -742,26 +741,15 @@ Instead of using this command, you should create your own Inventory GUI.
 
 ### `IsGamePaused`
 
+**This function is obsolete since AGS 3.6.3. Use [`Game.IsPaused`](Game#gameispaused).**
+
 ```ags
 IsGamePaused ()
 ```
 
 Returns *true* if the game is currently paused, or *false* otherwise.
-The game is paused when either the icon bar interface has been popped
-up, or a \"script-only\" interface has been displayed with
-GUI.Visible=true. While the game is paused, no animations or other
-updates take place.
 
-Example:
-
-```ags
-if (IsGamePaused()) UnPauseGame();
-```
-
-will unpause the game if it's paused.
-
-*See also:* [`PauseGame`](Globalfunctions_General#pausegame), [`UnPauseGame`](Globalfunctions_General#unpausegame),
-[`GUI.Visible`](GUI#guivisible)
+*See also:* [`PauseGame`](Globalfunctions_General#pausegame), [`UnPauseGame`](Globalfunctions_General#unpausegame)
 
 ---
 
@@ -996,38 +984,13 @@ The save slot 2 won't be found anymore in its previous slot.
 
 ### `PauseGame`
 
+**This function is obsolete since AGS 3.6.3. Use [`Game.Pause`](Game#gamepause).**
+
 ```ags
 PauseGame ()
 ```
 
 Stops AGS processing movement and animations. This has the same effect on the game as happens when a modal GUI is popped up.
-
-When the game is paused, game cycles will continue to run but no animations or movement will be performed, and timers will not count down. Apart from that, your scripts will continue to run as normal.
-
-To be precise, following is paused by this function:
-* Timers (ones set by [SetTimer](Globalfunctions_General#settimer)),
-* Character walking and animating, idle view timing,
-* Object moving and animating,
-* Overlay timing (for auto removal),
-* Speech timing and animation.
-
-As you may notice, GUI and Audio are not paused at all. PauseGame was historically purposed to pause the Room, while having some kind of the GUI menus and background music running. If you want to also suspend (and later unsuspend) these, you would have to script that yourself.
-
-**NOTE:** `PauseGame()` works as a counter, so if you call it twice, you will need to call `UnPauseGame()` game twice too to resume game. To avoid this behavior make sure to only pause once:
-
-```ags
-if (!IsGamePaused()) PauseGame();
-```
-
-Game processing will not resume until you call the UnPauseGame function as needed.
-
-Example:
-
-```ags
-if (IsKeyPressed(32)) PauseGame();
-```
-
-will pause the game if the player presses the space bar
 
 *See also:* [`UnPauseGame`](Globalfunctions_General#unpausegame), [`IsGamePaused`](Globalfunctions_General#isgamepaused)
 
@@ -1310,6 +1273,62 @@ Since **AGS 3.6.2**, the filename can accept standard file tokens (`$SAVEGAMEDIR
 
 *See also:*
 [`DynamicSprite.SaveToFile`](DynamicSprite#dynamicspritesavetofile)
+
+---
+
+### `SendEvent`
+
+```ags
+void SendEvent(EventType, optional int data1, optional int data2, optional int data3, optional int data4);
+```
+
+SendEvent triggers the "on_event" script function in all scripts, passing EventType and a number of optional parameters.
+
+This function lets you pass any of the [standard event types](Globalfunctions_Event), thus emulating a standard event occurance, or pass a custom event type that you defined yourself in your script.
+
+Event types are essentially just integer numbers. If you invent your own event, you should give it some number too. There's a `eEventUserEvent` constant already declared (with a value of `10000`) which should be used as a minimal value for all custom event types. All further user events should be equal to `eEventUserEvent + 1`, `eEventUserEvent + 2`, and so forth. (Technically, you may give your events any arbitrary numeric values, but if they are low enough, there's a chance that they will conflict with existing standard ones, so it's best to stick to `eEventUserEvent` and higher range of values.)
+
+Example 1:
+
+```ags
+SendEvent(eEventAddInventory, iKey.ID);
+```
+
+emulates a "inventory was added" event, with iKey item's id.
+
+Example 2:
+
+in GlobalScript.ash
+```ags
+#define eEventGamePaused    (eEventUserEvent + 10)
+#define eEventGameUnPaused  (eEventUserEvent + 11)
+```
+in GlobalScript.asc
+```ags
+function on_key_press(eKeyCode key)
+{
+    if (key == eKeySpace)
+    {
+        if (IsGamePaused())
+        {
+            UnPauseGame();
+            SendEvent(eEventGameUnPaused);
+        }
+        else
+        {
+            PauseGame();
+            SendEvent(eEventGamePaused);
+        }
+    }
+}
+```
+
+above declares new event type constants `eEventGamePaused` and `eEventGameUnPaused`, and send one of these to the game whenever a "Space" key is pressed, depending on the current pause state. This will trigger `on_event` function in every game script.
+
+*Compatibility:* Supported by **AGS 3.6.2** and later versions.
+
+*See Also:* [`on_event`](Globalfunctions_Event#on_event),
+[`ClaimEvent`](Globalfunctions_General#claimevent)
 
 ---
 
@@ -1731,27 +1750,12 @@ the editor.
 
 ### `UnPauseGame`
 
+**This function is obsolete since AGS 3.6.3. Use [`Game.Resume`](Game#gameresume).**
+
 ```ags
 UnPauseGame ()
 ```
 
 Resumes the game.
-
-Example:
-
-```ags
-if (IsGamePaused() == 1)
-    UnPauseGame();
-```
-
-will unpause the game if it is paused.
-
-**NOTE:** Because PauseGame works as a counter, if you called it more
-than once, this won't work. To ignore this behavior, unpause as much
-as needed with the below snippet.
-
-```ags
-while (IsGamePaused()) UnPauseGame();
-```
 
 *See also:* [`PauseGame`](Globalfunctions_General#pausegame), [`IsGamePaused`](Globalfunctions_General#isgamepaused)

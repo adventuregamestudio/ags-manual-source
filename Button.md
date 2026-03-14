@@ -193,6 +193,26 @@ This property is read-only. To change button's animation, use the
 
 ---
 
+### `Button.BorderShadeColor`
+
+```ags
+int Button.BorderShadeColor
+```
+
+Gets/sets the alternate border color that will be used for 3D effect. This color will be used under two conditions:
+* if [`ShowBorder`](GUIControl#guicontrolshowborder) property is enabled.
+* if [`ColorStyle`](Button#buttoncolorstyle) is Default or Dynamic (NOT DynamicFlat).
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
+[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder)
+[`Button.ColorStyle`](Button#buttoncolorstyle),
+[`Button.MouseOverBorderColor`](Button#buttonmouseoverbordercolor),
+[`Button.PushedBorderColor`](Button#buttonpushedbordercolor)
+
+---
+
 ### `Button.ClipImage`
 
 ```ags
@@ -221,6 +241,45 @@ sets the *btnOK* button so that its image will be restrained to the
 button's clickable area.
 
 *See also:* [`Button.Graphic`](Button#buttongraphic)
+
+---
+
+### `Button.ColorStyle`
+
+```ags
+GUIButtonColorStyle Button.ColorStyle;
+```
+
+Gets/sets the coloring style of a GUI button. The coloring style determines which of the color properties are used when drawing a button, and whether different colors are used when the button changes state (being highlighted when the cursor hovers over, or being pushed).
+
+**NOTE:** when the button has a NormalGraphic set, then it's considered a "image button", and most of the colors do not apply. However, text colors are still used if this button has any Text assigned, as the text is drawn on top of the graphic.
+
+Following Color Styles are supported:
+* eGUIButtonDefault - Default style. Button is drawn as a pseudo-3D box, using BackgroundColor as its main color, BorderColor as a light border color, and BorderShadeColor as a dark border color. TextColor is used to draw text. All color roles are fixed, regardless of the button state. (When the button is pushed, light and dark border lines are swapped in order to simulate 3D button pressed down.)
+* eGUIButtonDynamic - Dynamic 3D style. Changes background and text color depending on the current state (MouseOverBackgroundColor, MouseOverTextColor, PushedBackgroundColor and PushedTextColor), but keeps 3D border colors fixed (BorderColor and BorderShadeColor).
+* eGUIButtonDynamicFlat - Flat style. Uses only single color for the border, but changes that depending on the current state (BorderColor, MouseOverBorderColor, PushedBorderColor).
+
+In addition, both 3D styles (default and dynamic) shift the button text by 1 pixel down-right when the button is pressed, as a part of the 3D look simulation. Flat style does not do that. This rule applies even if the button has graphic. This means that if you are using button graphics instead of colors, but still use its Text property, you may choose to assign Flat style to prevent text being shifted when the button is pushed down.
+
+Example:
+
+```ags
+Button1.ColorStyle = eGUIButtonDynamic;
+```
+
+assigns a dynamic 3D style to a button.
+
+*See also:* [`GUIControl.BackgroundColor`](GUIControl#guicontrolbackgroundcolor),
+[`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
+[`Button.MouseOverBackgroundColor`](Button#buttonmouseoverbackgroundcolor),
+[`Button.MouseOverBorderColor`](Button#buttonmouseoverbordercolor),
+[`Button.PushedBackgroundColor`](Button#buttonpushedbackgroundcolor),
+[`Button.PushedBorderColor`](Button#buttonpushedbordercolor),
+[`Button.BorderShadeColor`](Button#buttonbordershadecolor),
+[`Button.TextColor`](Button#buttontextcolor),
+[`Button.MouseOverTextColor`](Button#buttonmouseovertextcolor),
+[`Button.PushedTextColor`](Button#buttonpushedtextcolor),
+[`Button.NormalGraphic`](Button#buttonnormalgraphic)
 
 ---
 
@@ -301,6 +360,72 @@ will mirror btnPlay's sprite horizontally.
 
 ---
 
+### `Button.IsHighlighted`
+
+```ags
+readonly bool Button.IsHighlighted
+```
+
+Tells whether the button is currently in "highlighted" state, which is when the mouse cursor is hovering over.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Button.IsPushed`](Button#buttonispushed)
+
+---
+
+### `Button.IsPushed
+
+```ags
+readonly bool Button.IsPushed
+```
+
+Tells whether the button is currently in "pushed" state, which is when it's being clicked on with mouse button, but not released yet.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Button.IsHighlighted`](Button#buttonishighlighted)
+
+---
+
+### `Button.MouseOverBackgroundColor`
+
+```ags
+int Button.MouseOverBackgroundColor
+```
+
+Gets/sets the background color that will be used when the cursor is hovering this button. This color will be used under two conditions:
+* if [`SolidBackground`](GUIControl#guicontrolsolidbackground) property is enabled.
+* if [`ColorStyle`](Button#buttoncolorstyle) is either Dynamic or DynamicFlat.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BackgroundColor`](GUIControl#guicontrolbackgroundcolor),
+[`GUIControl.SolidBackground`](GUIControl#guicontrolsolidbackground)
+[`Button.ColorStyle`](Button#buttoncolorstyle),
+[`Button.PushedBackgroundColor`](Button#buttonpushedbackgroundcolor),
+
+---
+
+### `Button.MouseOverBorderColor`
+
+```ags
+int Button.MouseOverBorderColor
+```
+
+Gets/sets the border color that will be used when the cursor is hovering this button. This color will be used under two conditions:
+* if [`ShowBorder`](GUIControl#guicontrolshowborder) property is enabled.
+* if [`ColorStyle`](Button#buttoncolorstyle) is DynamicFlat.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
+[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder)
+[`Button.ColorStyle`](Button#buttoncolorstyle),
+[`Button.PushedBorderColor`](Button#buttonpushedbordercolor)
+
+---
+
 ### `Button.MouseOverGraphic`
 
 *(Formerly part of `GetButtonPic`, which is now obsolete)*<br>
@@ -324,6 +449,22 @@ will display btnPlay's mouse-over sprite number.
 *See also:* [`Button.Graphic`](Button#buttongraphic),
 [`Button.NormalGraphic`](Button#buttonnormalgraphic),
 [`Button.PushedGraphic`](Button#buttonpushedgraphic)
+
+---
+
+### `Button.MouseOverTextColor`
+
+```ags
+int Button.MouseOverTextColor
+```
+
+Gets/sets the text color that will be used when the cursor is hovering this button.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Button.ColorStyle`](Button#buttoncolorstyle),
+[`Button.TextColor`](Button#buttontextcolor),
+[`Button.PushedTextColor`](Button#buttonpushedtextcolor)
 
 ---
 
@@ -358,6 +499,44 @@ will display btnPlay's normal sprite number.
 
 ---
 
+### `Button.PushedBackgroundColor`
+
+```ags
+int Button.PushedBackgroundColor
+```
+
+Gets/sets the background color that will be used when the button is being pushed. This color will be used under two conditions:
+* if [`SolidBackground`](GUIControl#guicontrolsolidbackground) property is enabled.
+* if [`ColorStyle`](Button#buttoncolorstyle) is either Dynamic or DynamicFlat.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BackgroundColor`](GUIControl#guicontrolbackgroundcolor),
+[`GUIControl.SolidBackground`](GUIControl#guicontrolsolidbackground)
+[`Button.ColorStyle`](Button#buttoncolorstyle),
+[`Button.MouseOverBackgroundColor`](Button#buttonmouseoverbackgroundcolor),
+
+---
+
+### `Button.PushedBorderColor`
+
+```ags
+int Button.PushedBorderColor
+```
+
+Gets/sets the border color that will be used when the button is being pushed. This color will be used under two conditions:
+* if [`ShowBorder`](GUIControl#guicontrolshowborder) property is enabled.
+* if [`ColorStyle`](Button#buttoncolorstyle) is DynamicFlat.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
+[`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder)
+[`Button.ColorStyle`](Button#buttoncolorstyle),
+[`Button.MouseOverBorderColor`](Button#buttonmouseoverbordercolor)
+
+---
+
 ### `Button.PushedGraphic`
 
 *(Formerly part of `GetButtonPic`, which is now obsolete)*<br>
@@ -382,6 +561,22 @@ will display btnPlay's pushed sprite number.
 *See also:* [`Button.Graphic`](Button#buttongraphic),
 [`Button.MouseOverGraphic`](Button#buttonmouseovergraphic),
 [`Button.NormalGraphic`](Button#buttonnormalgraphic)
+
+---
+
+### `Button.PushedTextColor`
+
+```ags
+int Button.PushedTextColor
+```
+
+Gets/sets the text color that will be used when the button is being pushed.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Button.ColorStyle`](Button#buttoncolorstyle),
+[`Button.TextColor`](Button#buttontextcolor),
+[`Button.MouseOverTextColor`](Button#buttonmouseovertextcolor)
 
 ---
 
@@ -436,9 +631,11 @@ Alignment Button.TextAlignment;
 
 Gets/sets how the text is aligned relative to the button's rectangle.
 
-If the button is displaying an image rather than text, then this property has no effect.
+If the button has no text set, then this property has no effect.
 
-*See also:* [Standard Enumerated Types](StandardEnums), [`Button.NormalGraphic`](Button#buttonnormalgraphic)
+*See also:* [Alignment enum](StandardEnums#alignment),
+[`Button.NormalGraphic`](Button#buttonnormalgraphic)
+[`Button.Text`](Button#buttontext)
 
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
@@ -463,7 +660,23 @@ btnRestart.TextColor = 15;
 
 will change button 'btnRestart' to have white text.
 
-*See also:* [`Button.NormalGraphic`](Button#buttonnormalgraphic)
+*See also:* [`Button.TextOutlineColor`](Button#buttontextoutlinecolor),
+[`Button.NormalGraphic`](Button#buttonnormalgraphic)
+
+---
+
+### `Button.TextOutlineColor`
+
+```ags
+int Button.TextOutlineColor;
+```
+
+Gets/sets the color used to display the text's outline, but only if the button's Font uses outline. If the font has no outline, then this property has no effect.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Button.TextColor`](Button#buttonfont),
+[`Button.TextColor`](Button#buttontextcolor)
 
 ---
 

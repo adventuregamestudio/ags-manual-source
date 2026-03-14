@@ -94,11 +94,12 @@ Alignment Label.TextAlignment;
 
 Gets/sets how the text is aligned relative to the label's rectangle.
 
-*See also:* [Standard Enumerated Types](StandardEnums), [`Label.Font`](Label#labelfont),
-[`Label.Text`](Label#labeltext)
-
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 This property used to have the type HorizontalAlignment prior to **AGS 3.6.2**.
+
+*See also:* [Alignment enum](StandardEnums#alignment),
+[`Label.Font`](Label#labelfont),
+[`Label.Text`](Label#labeltext)
 
 ---
 
@@ -121,5 +122,20 @@ lblStatus.TextColor = 14;
 will change label 'lblStatus' to have yellow text.
 
 *See also:* [`Label.Font`](Label#labelfont),
-[`Label.Text`](Label#labeltext)
+[`Label.Text`](Label#labeltext),
+[`Label.TextOutlineColor`](Label#labeltextoutlinecolor)
 
+---
+
+### `Label.TextOutlineColor`
+
+```ags
+int Label.TextOutlineColor;
+```
+
+Gets/sets the color used to display the text's outline, but only if the label's Font uses outline. If the font has no outline, then this property has no effect.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Label.Font`](Label#labelfont),
+[`Label.TextColor`](Label#labeltextcolor)

@@ -1401,6 +1401,8 @@ If a character has a valid Speech View assigned to it, that view will be used to
 
 The text will remain on screen for a limited time, and the player may or may not be able to click it away depending on the setting of "Allow speech to be skipped" and runtime property [Speech.SkipStyle](Speech#speechskipstyle).
 
+There's a special case for the text which consists of just three dots: "...". Such text causes the game to pause briefly as if the character is stopping to think, and nothing will be displayed. If, on another hand, you'd like to actually display three dots, then the trick is to add any number of extra spaces into this string.
+
 `Character.Say` supports playing a voice file. For that you need to precede the text with `&N`, where N is a voice clip's number. For more information, see the [Voice speech](VoiceSpeech) section.
 
 This function is used by the dialog scrips by default, using it in normal script is fully equivalent to having "charname: message" in the dialog.
@@ -1629,6 +1631,11 @@ cEgo.SetIdleView(12, 30);
 
 will change/set the character EGO's idle view to 12. The idle view will
 be played if the character is idle for 30 seconds.
+
+*See also:*
+[`Character.IdleDelay`](Character#characteridledelay),
+[`Character.IdleTime`](Character#characteridletime),
+[`Character.IdleView`](Character#characteridleview)
 
 ---
 
@@ -2345,7 +2352,53 @@ cEgo.BlockingHeight = 20;
 will make EGO block 20 pixels high (10 above and 10 below his baseline)
 
 *See also:*
+[`Character.BlockingRectX`](Character#characterblockingrectx),
+[`Character.BlockingRectY`](Character#characterblockingrecty),
 [`Character.BlockingWidth`](Character#characterblockingwidth),
+[`Character.Solid`](Character#charactersolid)
+
+---
+
+### `Character.BlockingRectX`
+
+```ags
+int Character.BlockingRectX
+```
+
+Gets/sets the X offset of the character's blocking rectangle.
+
+By default, the blocking rectangle is centered around character's position. This property specifies a *relative* offset either to left (negative value) or right (positive value) from character's center.
+
+**NOTE:** This property has no effect unless the [`Solid`](Character#charactersolid) property is set to *true*.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Character.BlockingRectY`](Character#characterblockingrecty),
+[`Character.BlockingHeight`](Character#characterblockingwidth),
+[`Character.BlockingHeight`](Character#characterblockingheight),
+[`Character.Solid`](Character#charactersolid)
+
+---
+
+### `Character.BlockingRectY`
+
+```ags
+int Character.BlockingRectY
+```
+
+Gets/sets the Y offset of the character's blocking rectangle.
+
+By default, the blocking rectangle is centered around character's position. This property specifies a *relative* offset either to up (negative value) or down (positive value) from character's center.
+
+**NOTE:** This property has no effect unless the [`Solid`](Character#charactersolid) property is set to *true*.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Character.BlockingRectX`](Character#characterblockingrectx),
+[`Character.BlockingHeight`](Character#characterblockingwidth),
+[`Character.BlockingHeight`](Character#characterblockingheight),
 [`Character.Solid`](Character#charactersolid)
 
 ---
@@ -2380,6 +2433,8 @@ will make EGO block 50 pixels wide (25 pixels to the left of his X
 co-ordinate, and 25 to the right)
 
 *See also:*
+[`Character.BlockingRectX`](Character#characterblockingrectx),
+[`Character.BlockingRectY`](Character#characterblockingrecty),
 [`Character.BlockingHeight`](Character#characterblockingheight),
 [`Character.Solid`](Character#charactersolid)
 
@@ -2589,7 +2644,39 @@ Gets/sets the character's idle animation delay
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
-*See also:* [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
+*See also:* [`Character.IdleDelay`](Character#characteridledelay), [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
+
+---
+
+### `Character.IdleDelay`
+
+```ags
+readonly int Character.IdleDelay
+```
+
+Gets the character's idle delay, which is a time in seconds between the moment when the last character's action ends and idle animation begins.
+
+This property is read-only; to change the delay, use the [`SetIdleView`](Character#charactersetidleview) function.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.IdleTime`](Character#characteridletime), [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
+
+---
+
+### `Character.IdleTime`
+
+```ags
+readonly int Character.IdleTime
+```
+
+Gets the remaining time (in game ticks) until the idle animation begins.
+
+The idle delay is set using [`SetIdleView`](Character#charactersetidleview) function.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.IdleDelay`](Character#characteridledelay), [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
 
 ---
 
@@ -2602,8 +2689,7 @@ readonly int Character.IdleView
 Gets the character's current idle view. If the character doesn't have
 one, returns -1.
 
-This property is read-only; to change the view, use the
-[`SetIdleView`](Character#charactersetidleview) function.
+This property is read-only; to change the view, use the [`SetIdleView`](Character#charactersetidleview) function.
 
 Example:
 
@@ -2613,7 +2699,7 @@ Display("EGO's idle view is currently view %d.", cEgo.IdleView);
 
 will display EGO's current idle view number.
 
-*See also:* [`Character.SetIdleView`](Character#charactersetidleview)
+*See also:* [`Character.IdleDelay`](Character#characteridledelay), [`Character.IdleTime`](Character#characteridletime), [`Character.SetIdleView`](Character#charactersetidleview)
 
 ---
 

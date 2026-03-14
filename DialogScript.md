@@ -32,9 +32,10 @@ alias "player", which will say it as the current player character -
 useful if you don't know which character the player will be controlling
 when they speak the conversation.
 
-If you just use `...` as the text for a character to say, the game will
+If you just use "..." as the text for a character to say, the game will
 pause briefly as if they are stopping to think, and nothing will be
-displayed.
+displayed. If, on another hand, you'd like to actually display three dots,
+then the trick is to add any number of extra spaces into this string.
 
 To signal the end of the script for this option, place a "return"
 command on the last line of it. For example,

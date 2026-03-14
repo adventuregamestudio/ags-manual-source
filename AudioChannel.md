@@ -127,11 +127,11 @@ jump to 10 seconds position and continue from there.
 *(Formerly part of `PlayAmbientSound`, which is now obsolete)*
 
 ```ags
-AudioChannel.SetRoomLocation(int x, int y)
+AudioChannel.SetRoomLocation(int x, int y, optional int maxDistance)
 ```
 
 Sets the currently playing audio to be a directional sound, emanating
-from (x,y).
+from (x,y). Optionally sets "maxDistance" at which the volume should reach 0. If no maxDistance value is provided, then the maxDistance will be calculated as the distance from the location to the farthest room's side.
 
 The volume of the channel will be dynamically adjusted depending on how
 close the player character is to the co-ordinates. Therefore, as the
@@ -154,7 +154,7 @@ channel.SetRoomLocation(oMachine.X, oMachine.Y);
 will start playing the *aMachine* audio clip, and set it at the location
 of the *oMachine* room object.
 
-*Compatibility:* Supported by **AGS 3.2.0** and later versions.
+*Compatibility:* Supported by **AGS 3.2.0** and later versions. The optional "maxDistance" parameter is supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`AudioChannel.Volume`](AudioChannel#audiochannelvolume),
 [`Character.ScaleVolume`](Character#characterscalevolume)

@@ -541,10 +541,10 @@ Gets/sets the GUI's image rotation in degrees.
 ### `GUI.PopupStyle`
 
 ```ags
-readonly GUIPopupStyle GUI.PopupStyle
+GUIPopupStyle GUI.PopupStyle
 ```
 
-Gets the style of GUI behavior on screen. Possible values are:
+Gets/sets the style of GUI behavior on screen. Possible values are:
 
     eGUIPopupNormal       no special behavior
     eGUIPopupMouseYPos    shown when the mouse cursor moves to the top of the screen, past GUI.PopupYPos, and hidden at all other times
@@ -561,7 +561,7 @@ Gets the style of GUI behavior on screen. Possible values are:
 General Settings option `When player interface is disabled, GUIs should` needs
 to be set as `Be hidden`.
 
-*Compatibility:* Supported by **AGS 3.5.0** and later versions.
+*Compatibility:* Supported by **AGS 3.5.0** and later versions. The property is settable since **AGS 3.6.3**.
 
 *See also:* [`GUI.PopupYPos`](GUI#guipopupypos), [`GUI.Shown`](GUI#guishown), [`GUI.Visible`](GUI#guivisible)
 

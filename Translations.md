@@ -77,6 +77,43 @@ This would set NormalFont to font 4, leave SpeechFont unchanged, and switch text
 
 **NOTE:** these options are applied to game properties the moment new translation is enabled. But they are not kept permanently while that translation is active. Changing any of these in script would override values set by current translation.
 
+### Font overrides
+
+Starting with **AGS 3.6.3** you can specify font overrides in the translation file. Font override defines replacement of one or more of the game fonts with either another game font, or completely custom font setup. These replacements are applied whenever translation is enabled in game, and are restored to defaults when it's disabled.
+
+Similar to the translation options described above, a font override must be preceded with the comment opening and a pound sign `//#`.
+A font override itself can have one of two syntaxes. The first syntax is for the direct font replacement:
+
+  ```FontN=FontX```
+  
+This syntax simply replaces a game font N with the game font X. This means that whenever font N is referenced in game, a font X will be used instead.
+The second syntax is for the custom font setup:
+
+  ```FontN=PROPERTY1=VALUE1;PROPERTY2=VALUE2;PROPERTY3=VALUE3...```
+
+Here properties and their values may be any of the following:
+
+- **File** - font's filename; e.g. "agsfnt10.ttf".
+- **Size** - import font size (number).
+- **SizeMultiplier** - an integer size multiplier (useful only for bitmap fonts).
+- **Outline** - font's outline type, can be: NONE, AUTO or FontX, where X is a outline font's index.
+- **AutoOutline** - automatic outline's style: SQUARED or ROUND.
+- **AutoOutlineThickness** - automatic outline's thickness, in pixels.
+- **HeightDefinition** - how the font's logical height is defined, can be: NOMINAL, REAL or CUSTOM. NOMINAL uses font's Size as its height, REAL uses actual font's height calculated after loading a font, and CUSTOM lets specify a height value.
+- **CustomHeight** - custom font's logical height, in pixels.
+- **VerticalOffset** - optional vertical offset used when drawing any text with this font.
+- **LineSpacing** - custom distance between top of one line of text and top of the next line of text.
+- **CharacterSpacing** - custom additional horizontal distance between any two characters of text.
+
+Examples:
+
+```
+// Replace font 0 with font 10
+//#Font0=Font10
+// Replace font 1 with a custom font
+//#Font1=File=example.ttf;Size=12;Outline=AUTO;
+```
+
 ### Troubleshooting
 
 If you have ?s displaying instead of special characters in the translated lines, make

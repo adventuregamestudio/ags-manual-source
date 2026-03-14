@@ -63,10 +63,11 @@ will change the cursor's hotspot for walk mode to coordinates 10,10.
 ### `Mouse.ChangeModeView`
 
 ```ags
-Mouse.ChangeModeView(CursorMode, int view)
+Mouse.ChangeModeView(CursorMode, int view, optional int delay)
 ```
 
-Changes the specified mouse cursor mode's animation view to VIEW.
+Changes the specified mouse cursor mode's animation view to VIEW, optionally setting a different animation delay.
+If no delay parameter is provided, then the view will use a default AnimationDelay parameter of the Cursor itself.
 
 You can pass *view* as -1 to stop the cursor from animating.
 
@@ -80,6 +81,8 @@ mouse.ChangeModeView(eModeLookat, ROLLEYES);
 ```
 
 will change the Look cursor's view to ROLLEYES.
+
+*Compatibility:* "delay" parameter is supported by **AGS 3.6.0** and later versions.
 
 *See also:*
 [`Mouse.ChangeModeGraphic`](Mouse#mousechangemodegraphic),
@@ -196,7 +199,7 @@ if (mouse.IsModeEnabled(eModeWalkto)) {
 }
 ```
 
-will change the the "WalkTo" cursor mode, but only if it's currently
+will change the "WalkTo" cursor mode, but only if it's currently
 enabled.
 
 *See also:* [`Mouse.EnableMode`](Mouse#mouseenablemode),
@@ -224,6 +227,32 @@ Display("The current mouse cursor sprite is %d.", mouse.GetModeGraphic(mouse.Mod
 will display the sprite slot number of the current mouse cursor.
 
 *See also:* [`Mouse.ChangeModeGraphic`](Mouse#mousechangemodegraphic)
+
+---
+
+### `Mouse.GetModeHotspot`
+
+```ags
+static Point* Mouse.GetModeHotspot(CursorMode)
+```
+
+Returns the coordinates of the hotspot of the specified mouse cursor mode. The hotspot is a pixel on the cursor graphic where the click takes effect, so the coordinates are relative to the graphic's top-left corner (0,0).
+
+The return value is a instance of Point struct. Access this instance's members to read either x or y coordinate.
+
+Example:
+
+```ags
+Point* pt = Mouse.GetModeHotspot(mouse.Mode);
+gUnderCursor.X = mouse.x - pt.x;
+gUnderCursor.Y = mouse.y - pt.y;
+```
+
+will move a GUI gUnderCursor to a position matching left-top corner of the current cursor graphic.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Mouse.ChangeModeHotspot`](Mouse#mousechangemodehotspot)
 
 ---
 

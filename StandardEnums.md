@@ -146,22 +146,6 @@ enum CharacterDirection {
 
 ---
 
-### `GUIButtonColorStyle`
-
-```ags
-enum GUIButtonColorStyle {
-  eGUIButtonDefault,
-  eGUIButtonDynamic,
-  eGUIButtonDynamicFlat
-};
-```
-
-*Compatibility:* supported by **AGS 3.6.3** and higher.
-
-*Used by:* [`Button.ColorStyle`](Button#buttoncolorstyle)
-
----
-
 ### `CursorMode`
 
 ```ags
@@ -427,6 +411,22 @@ and instead will draw no text, and return 0 size for the text.
 [`TextBox.Font`](TextBox#textboxfont),
 [`Overlay.CreateTextual`](Overlay#overlaycreatetextual),
 [`Overlay.SetText`](Overlay#overlaysettext)
+
+---
+
+### `GUIButtonColorStyle`
+
+```ags
+enum GUIButtonColorStyle {
+  eGUIButtonDefault,
+  eGUIButtonDynamic,
+  eGUIButtonDynamicFlat
+};
+```
+
+*Compatibility:* supported by **AGS 3.6.3** and higher.
+
+*Used by:* [`Button.ColorStyle`](Button#buttoncolorstyle)
 
 ---
 

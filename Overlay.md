@@ -375,6 +375,30 @@ Gets the original width of the overlay's image. This property may be used to kno
 
 ---
 
+### `Overlay.HasLightLevel`
+
+```ags
+readonly bool Overlay.HasLightLevel
+```
+
+Gets whether the overlay has a light level set.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Overlay.HasTint`
+
+```ags
+readonly bool Overlay.HasTint
+```
+
+Gets whether the overlay has a tint set.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Overlay.Height`
 
 ```ags
@@ -411,30 +435,6 @@ readonly int Overlay.LightLevel
 ```
 
 Gets the individual light level for this character.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
-### `Overlay.HasLightLevel`
-
-```ags
-readonly bool Overlay.HasLightLevel
-```
-
-Gets whether the overlay has a light level set.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
-### `Overlay.HasTint`
-
-```ags
-readonly bool Overlay.HasTint
-```
-
-Gets whether the overlay has a tint set.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 

@@ -7,18 +7,6 @@ has its own specific section.
 
 ---
 
-### `GUIControl.BlendMode`
-
-```ags
-BlendMode GUIControl.BlendMode
-```
-
-Gets an integer custom property for this control.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
 ### `GUIControl.GetAtScreenXY`
 
 *(Formerly known as `GetGUIObjectAt`, which is now obsolete)*
@@ -126,6 +114,30 @@ on the GUI.
 
 ---
 
+### `GUIControl.GetProperty`
+
+```ags
+int  GUIControl.GetProperty(const string property)
+```
+
+Gets an integer custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUIControl.GetTextProperty`
+
+```ags
+String GUIControl.GetTextProperty(const string property)
+```
+
+Gets a text custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `GUIControl.SendToBack`
 
 ```ags
@@ -190,6 +202,30 @@ GUI.
 
 ---
 
+### `GUIControl.SetProperty`
+
+```ags
+bool GUIControl.SetProperty(const string property, int value)
+```
+
+Sets an integer custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `GUIControl.SetScale`
+
+```ags
+GUIControl.SetScale(float x, float y)
+```
+
+Sets this control's horizontal and vertical scaling
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `GUIControl.SetSize`
 
 *(Formerly known as `SetGUIObjectSize`, which is now obsolete)*
@@ -221,6 +257,18 @@ will resize the *invMain* control to have a size of 160 x 100.
 [`GUIControl.SetPosition`](GUIControl#guicontrolsetposition),
 [`GUI.SetSize`](GUI#guisetsize),
 [`GUIControl.Width`](GUIControl#guicontrolwidth)
+
+---
+
+### `GUIControl.SetTextProperty`
+
+```ags
+bool GUIControl.SetTextProperty(const string property, const string value)
+```
+
+Sets a text custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -275,6 +323,18 @@ Out of all the control types, only Buttons and Sliders have background color ena
 *See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
 [`GUIControl.ShowBorder`](GUIControl#guicontrolshowborder),
 [`GUIControl.SolidBackground`](GUIControl#guicontrolsolidbackground)
+
+---
+
+### `GUIControl.BlendMode`
+
+```ags
+BlendMode GUIControl.BlendMode
+```
+
+Gets an integer custom property for this control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -400,54 +460,6 @@ will disable the *btnSaveGame* button.
 
 ---
 
-### `GUIControl.GetProperty`
-
-```ags
-int  GUIControl.GetProperty(const string property)
-```
-
-Gets an integer custom property for this control.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
-### `GUIControl.GetTextProperty`
-
-```ags
-String GUIControl.GetTextProperty(const string property)
-```
-
-Gets a text custom property for this control.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
-### `GUIControl.SetProperty`
-
-```ags
-bool GUIControl.SetProperty(const string property, int value)
-```
-
-Sets an integer custom property for this control.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
-### `GUIControl.SetTextProperty`
-
-```ags
-bool GUIControl.SetTextProperty(const string property, const string value)
-```
-
-Sets a text custom property for this control.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
 ### `GUIControl.Height`
 
 ```ags
@@ -536,18 +548,6 @@ again using the niftier full pathing approach.
 
 ---
 
-### `GUIControl.Rotation`
-
-```ags
-float GUIControl.Rotation
-```
-
-Gets/sets the control's rotation in degrees.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
 ### `GUIControl.PaddingX`
 
 ```ags
@@ -590,6 +590,18 @@ Each control type decides what "inner content" is on its own. See [`GUIControl.P
 
 ---
 
+### `GUIControl.Rotation`
+
+```ags
+float GUIControl.Rotation
+```
+
+Gets/sets the control's rotation in degrees.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `GUIControl.ScaleX`
 
 ```ags
@@ -614,13 +626,44 @@ Gets/sets this control's vertical scaling.
 
 ---
 
-### `GUIControl.SetScale`
+### `GUIControl.ScriptName`
 
 ```ags
-GUIControl.SetScale(float x, float y)
+readonly String GUIControl.ScriptName
 ```
 
-Sets this control's horizontal and vertical scaling
+Gets the script name of the GUI Control, which serves as a unique identifier, as set in the AGS Editor.
+
+This may be useful if you have a pointer to some dialog stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each control in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [GUIControl.GetByName](GUIControl#guicontrolgetbyname) function to retrieve the control by the previously saved script name.
+
+Example:
+
+```ags
+void ActivateControl(const string controlName)
+{
+    GUIControl* control = GUIControl.GetByName(controlName);
+    if (control != null) {
+        control.Visible = true;
+        System.Log(eLogInfo, "Activated control: %s", control.ScriptName);
+    }
+}
+```
+
+Activating a control by calling `ActivateControl("btnOptions")` will log its script name for debugging purposes and make it visible if it exists.
+
+*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+
+*See also:* [`GUIControl.GetByName`](GUIControl#guicontrolgetbyname), [`GUIControl.Visible`](GUIControl#guicontrolvisible)
+
+---
+
+### `GUIControl.Shader`
+
+```ags
+ShaderInstance\* GUIControl.Shader
+```
+
+Gets/sets the shader of this control.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -798,49 +841,6 @@ top of its GUI.
 
 *See also:* [`GUIControl.SetPosition`](GUIControl#guicontrolsetposition),
 [`GUIControl.X`](GUIControl#guicontrolx)
-
----
-
-### `GUIControl.ScriptName`
-
-```ags
-readonly String GUIControl.ScriptName
-```
-
-Gets the script name of the GUI Control, which serves as a unique identifier, as set in the AGS Editor.
-
-This may be useful if you have a pointer to some dialog stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each control in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [GUIControl.GetByName](GUIControl#guicontrolgetbyname) function to retrieve the control by the previously saved script name.
-
-Example:
-
-```ags
-void ActivateControl(const string controlName)
-{
-    GUIControl* control = GUIControl.GetByName(controlName);
-    if (control != null) {
-        control.Visible = true;
-        System.Log(eLogInfo, "Activated control: %s", control.ScriptName);
-    }
-}
-```
-
-Activating a control by calling `ActivateControl("btnOptions")` will log its script name for debugging purposes and make it visible if it exists.
-
-*Compatibility:* Supported by **AGS 3.6.1** and later versions.
-
-*See also:* [`GUIControl.GetByName`](GUIControl#guicontrolgetbyname), [`GUIControl.Visible`](GUIControl#guicontrolvisible)
-
----
-
-### `GUIControl.Shader`
-
-```ags
-ShaderInstance\* GUIControl.Shader
-```
-
-Gets/sets the shader of this control.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

@@ -35,12 +35,14 @@ property:
 -   **Description** - this is the user-friendly description which will
     be displayed in the custom property editor when you are setting
     the property.
--   **Type** - this specifies what type of property you want. "Boolean"
-    gives you a checkbox (which will return 0 or 1 to the script),
-    "Number" gives you a text box which you can type numbers into, and
-    "Text" gives you a larger text box which can store a string.
+-   **Type** - this specifies what type of property you want. Following types are supported: "Boolean", "Number" and "Text".
+    Boolean type's value may be only True or False (or 1 and 0 respectively).
+    "Number" can be any integer number supported by a script (from -2 billions to +2 billions).
+    "Text" can have any string value.
 -   **Default value** - this specifies what the default value of the
     property will be for objects where you have not set it specifically.
+-   **Translated** - this tells the Editor to either include or not include the Text property type values in Translation file(s).
+    This option is available since **AGS 3.6.3**. AGS 3.6.0 to 3.6.2 were always including Text properties into Translation, and any older versions did not do that at all.
 
 For example, add a new "Boolean" property. Close the schema editor, and
 then click the "Properties" button again. You'll now have a window with

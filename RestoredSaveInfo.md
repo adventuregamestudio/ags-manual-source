@@ -76,6 +76,18 @@ Gets the version of the AGS engine which wrote this save, represented as a "N.N.
 
 ---
 
+### `RestoredSaveInfo.GameVersion`
+
+```ags
+String RestoredSaveInfo.GameVersion;
+```
+
+Gets the version of the game which wrote this save, represented as a "N.N.N.N" string. This value is taken from the respective property of the "Info" section of the General Settings.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `RestoredSaveInfo.GlobalScriptDataSize`
 
 ```ags

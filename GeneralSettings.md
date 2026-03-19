@@ -418,6 +418,22 @@ Windows, this option has been removed since AGS 3.6.0 as well.
     sentence going backwards, and the last words are displayed first.
     This is used by languages such as Arabic and Hebrew.
 
+### Translation
+
+This section is available since **AGS 3.6.3**.
+
+-   **Exclude script function calls** - Comma-separated list of script functions, which string arguments should be excluded from Translation file.
+    This lets exclude literal strings found within certain function calls from being added to translation. For example, you may want to exclude strings found in [`System.Log`](System#systemlog).
+	This option affects both regular scripts and dialog scripts.
+    
+	NOTE: this option only excludes literal strings from being added to TRS files. This does NOT prevent text from being translated (or at least tried to be translated) when passed into the script functions that do automatic translations, such as [`Character.Say`](Character#charactersay) and similar.
+	
+-   **Exclude script texts with prefix** - Any text lines in script that begin with this prefix will be excluded from Translation file.
+    This option affects both regular scripts and dialog scripts.
+
+-   **Include script texts with prefix** - Only text lines in script which have this prefix will be included to Translation file. Leave this option empty to include all (this is the default behavior).
+    This option affects both regular scripts and dialog scripts.
+
 ### Visual
 
 -   **Default transition when changing rooms** - defines what type of

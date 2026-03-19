@@ -158,7 +158,9 @@ See also: [Dynamic Arrays](DynamicArrays)
 
 ### Built-in managed structs
 
-Besides the managed structs that you may write in your game script, there is a collection of structs declared by the engine itself. Majority of them are declared using another special keyword: `builtin`. This keyword prevents creating struct's object using `new` command. This is done because these structs have internal parts hidden from script, and only engine is allowed to create these, either at game's startup, or when you call certain functions (for example: [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical) creates a `Overlay` managed object and returns a pointer to it).
+Besides the managed structs that you may write in your game script, there is a collection of structs declared by the engine itself. These define standard game objects, such as Character, GUI, InventoryItem, and so forth.
+These structs are declared with a special modifier keyword: `builtin`. This modifier prevents extending a struct, and prevents creating struct's instance using `new` command.
+This is done so because these objects have internal parts hidden from script, and are stored in certain special way in the engine's memory, so neither they, not their descendants cannot be trivially created in script. Only engine is allowed to create these, either at game's startup, or when you call certain functions (for example: [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical) creates a `Overlay` managed object and returns a pointer to it).
 
 You should not be using `builtin` keyword yourself. That's not forbidden, but will do no good, as it will prevent you from working with your own managed struct.
 
@@ -248,12 +250,11 @@ function SaveRectangle(File* f, Rectangle* rect)
 ```ags
 Rectangle* LoadRectangle(File* f)
 {
-    Rectangle* rect = new Rectangle;
-    rect.x = f.ReadInt();
-    rect.y = f.ReadInt();
-    rect.width = f.ReadInt();
-    rect.height = f.ReadInt();
-    return rect;
+    int x = f.ReadInt();
+    int y = f.ReadInt();
+    int width = f.ReadInt();
+    int height = f.ReadInt();
+	return Rectangle.Create(x, y, width, height);
 }
 ```
 

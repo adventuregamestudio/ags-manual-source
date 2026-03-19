@@ -46,6 +46,8 @@ You may also have arrays of struct instances:
 MyStruct lotsOfMyStructs[100];
 ```
 
+*See also:* [Managed structs](ScriptManagedStructs)
+
 ### Member functions
 
 Struct's functions must be declared with an `import` keyword, but the actual function code cannot be put inside the struct. Instead they have to be written outside the struct, below the struct's declaration. Note that if the struct is declared in a script header (`*.ash` file), then normally their functions are written in a script's body (`*.asc` file): that is a common practice for functions declared in headers (see [Exporting and importing a function](ImportingFunctionsAndVariables#exporting-and-importing-a-function)).
@@ -204,6 +206,44 @@ Here struct Sibling will also have all the contents from struct Parent. But, whi
 There's no limit to how long the "chain" of extending structs can be. That is, you may have a struct GrandChild extending Child, a struct Descendant extending GrandChild, and so forth.
 
 Extending structs is useful when you need common data and functionality be shared among multiple subtypes.
+
+### Built-in structs
+
+Besides the structs that you may write in your game script, there is a collection of structs declared by the engine itself. These define standard game objects, such as Character, GUI, InventoryItem, and so forth.
+These structs are declared with a special modifier keyword: `builtin`. This modifier *prevents extending a struct*. This is done so because these objects have internal parts hidden from script, and are stored in certain special way in the engine's memory, so neither they, not their descendants cannot be trivially created in script.
+
+You should not be using `builtin` keyword yourself. That's not forbidden, but will do no good.
+
+If you happen to need to combine a standard game object with your own data, then use other methods rather than extending a struct. There are two common approaches here.
+One is to just have a struct with your extra variables, and declare an array of these structs, just enough to cover the number of standard objects. For example:
+
+```ags
+struct MyCharacterData
+{
+    int Health;
+	String HomeCountry;
+};
+
+#define NUMBER_OF_CHARACTERS 50
+MyCharacterData charExtra[NUMBER_OF_CHARACTERS];
+```
+
+In the above case the character's numeric ID (or index of their global (`character[]`)[GlobalArrays] array) will also be the index of your extra data array.
+
+Another approach is to write a custom struct that combines a pointer to the standard object with extra data, for example:
+
+```ags
+struct MyCharacter
+{
+    Character* BaseCharacter;
+	int Health;
+	String HomeCharacter;
+};
+```
+
+This way you may create variables of type MyCharacter, and assign BaseCharacter member to a real character, thus connecting them with your custom data.
+
+Finally, there are [Custom Properties](CustomProperties). Although they are not available for all the built-in types, but where they are, these can be a way to add custom variables of simple types to them.
 
 ### Examples
 

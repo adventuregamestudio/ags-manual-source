@@ -621,6 +621,21 @@ Since AGS 3.5.0 this property is ignored unless you have backwards-compatible "A
 
 ---
 
+### `DrawingSurface.Valid`
+
+```ags
+readonly bool DrawingSurface.Valid
+```
+
+Gets whether the drawing surface is valid to be used, and is actually linked to a existing image.
+
+The drawing surface may become invalid if it was acquired from a dynamic sprite and that sprite got deleted, or if it was acquired from a room background but the room was changed. Any operation on an invalid DrawingSurface will be ignored.
+In general, it is not recommended to keep DrawingSurface objects for a prolonged period of time, nor store them in a global variable. But if you do so for some reasons, and there's a chance that the underlying image is disposed, then this property may help to double check if it's safe to still use the surface for drawing.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `DrawingSurface.Width`
 
 ```ags

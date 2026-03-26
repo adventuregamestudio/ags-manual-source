@@ -1463,6 +1463,60 @@ will display a message if we are within a cutscene
 
 ---
 
+### `Game.InventoryCursorHotspotColor`
+
+```ags
+static int Game.InventoryCursorHotspotColor
+```
+
+Gets/sets the color used to draw a hotspot marker's dot on a inventory cursor. When this color is set to non-zero value, and [InventoryCursorHotspotGraphic](Game#gameinventorycursorhotspotgraphic) is not set, the hotspot marker will be drawn on top of the active item's cursor image, at position defined by [`InventoryItem.CursorHotspotX`](InventoryItem#inventoryitemcursorhotspotx) and [`InventoryItem.CursorHotspotY`](InventoryItem#inventoryitemcursorhotspoty).
+Setting this property to 0 will disable the colored hotspot marker. The hotspot marker may be still drawn using a sprite if [InventoryCursorHotspotGraphic](Game#gameinventorycursorhotspotgraphic) is set.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Mouse.ChangeModeHotspot`](Mouse#mousechangemodehotspot),
+[Game.InventoryCursorHotspotGraphic](Game#gameinventorycursorhotspotgraphic),
+[Game.InventoryCursorHotspotCrossColor](Game#gameinventorycursorhotspotcrosscolor),
+[Game.UseActiveInventoryGraphicForCursor](Game#gameuseactiveinventorygraphicforcursor)
+
+---
+
+### `Game.InventoryCursorHotspotCrossColor`
+
+```ags
+static int Game.InventoryCursorHotspotCrossColor
+```
+
+Gets/sets the color used to draw a hotspot marker's cross on a inventory cursor. When this color is set to non-zero value, and [InventoryCursorHotspotGraphic](Game#gameinventorycursorhotspotgraphic) is not set, the hotspot marker will be drawn on top of the active item's cursor image, at position defined by [`InventoryItem.CursorHotspotX`](InventoryItem#inventoryitemcursorhotspotx) and [`InventoryItem.CursorHotspotY`](InventoryItem#inventoryitemcursorhotspoty).
+Setting this property to 0 will disable the drawing of a cross for the inventory cursor's hotspot. The hotspot marker may be still drawn using a sprite if [InventoryCursorHotspotGraphic](Game#gameinventorycursorhotspotgraphic) is set.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Mouse.ChangeModeHotspot`](Mouse#mousechangemodehotspot),
+[Game.InventoryCursorHotspotGraphic](Game#gameinventorycursorhotspotgraphic),
+[Game.InventoryCursorHotspotColor](Game#gameinventorycursorhotspotcolor),
+[Game.UseActiveInventoryGraphicForCursor](Game#gameuseactiveinventorygraphicforcursor)
+
+---
+
+### `Game.InventoryCursorHotspotGraphic`
+
+```ags
+static int Game.InventoryCursorHotspotGraphic
+```
+
+Gets/sets the graphic used as a hotspot marker on a inventory cursor. When set, this graphic will be drawn on top of the active item's cursor image, at position defined by [`InventoryItem.CursorHotspotX`](InventoryItem#inventoryitemcursorhotspotx) and [`InventoryItem.CursorHotspotY`](InventoryItem#inventoryitemcursorhotspoty).
+Setting this property to 0 will disable the hotspot graphic. The hotspot marker may be still drawn if [InventoryCursorHotspotColor](Game#gameinventorycursorhotspotcolor) is set.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Mouse.ChangeModeHotspot`](Mouse#mousechangemodehotspot),
+[Game.InventoryCursorHotspotColor](Game#gameinventorycursorhotspotcolor),
+[Game.InventoryCursorHotspotCrossColor](Game#gameinventorycursorhotspotcrosscolor),
+[Game.UseActiveInventoryGraphicForCursor](Game#gameuseactiveinventorygraphicforcursor)
+
+---
+
 ### `Game.InventoryItemCount`
 
 *(Formerly part of `GetGameParameter`, which is now obsolete)*
@@ -1504,6 +1558,30 @@ will unpause the game if it's paused.
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`Game.Pause`](Game#gamepause), [`Game.Resume`](Game#gameresume)
+
+---
+
+### `Game.IsSpriteDynamic`
+
+```ags
+readonly static bool Game.IsSpriteDynamic[int slot]
+```
+
+Returns if the specified sprite is a dynamic sprite, created by a script command.
+
+```ags
+for (int i = 0; i < Game.TopSpriteNumber; i++)
+{
+    if (Game.IsSpriteDynamic[i])
+		System.Log("sprite %d: %dx%d", i, Game.SpriteWidth[i], Game.SpriteHeight[i]);
+}
+```
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Game.SpriteHeight`](Game#gamespriteheight),
+[`Game.SpriteWidth`](Game#gamespritewidth),
+[`Game.TopSpriteNumber`](Game#gametopspritenumber)
 
 ---
 
@@ -1771,8 +1849,6 @@ readonly static int Game.SpriteHeight[int slot]
 ```
 
 Returns the height of the specified sprite.
-
-The height will be returned in the original sprite pixels (without any scaling).
 If an invalid sprite slot is supplied, 0 will be returned.
 
 Example:
@@ -1782,7 +1858,9 @@ Display("Object %s's sprite is sized %d x %d.", oObject.ScriptName, Game.SpriteW
         Game.SpriteHeight[oObject.Graphic]);
 ```
 
-*See also:* [`Game.SpriteWidth`](Game#gamespritewidth)
+*See also:* [`Game.SpriteWidth`](Game#gamespritewidth),
+[`Game.IsSpriteDynamic`](Game#gameisspritedynamic),
+[`Game.TopSpriteNumber`](Game#gametopspritenumber)
 
 ---
 
@@ -1795,8 +1873,6 @@ readonly static int Game.SpriteWidth[int slot]
 ```
 
 Returns the width of the specified sprite.
-
-The width will be returned in the original sprite pixels (without any scaling).
 If an invalid sprite slot is supplied, 0 will be returned.
 
 Example:
@@ -1806,7 +1882,9 @@ Display("Object %s's sprite is sized %d x %d.", oObject.ScriptName, Game.SpriteW
         Game.SpriteHeight[oObject.Graphic]);
 ```
 
-*See also:* [`Game.SpriteHeight`](Game#gamespriteheight)
+*See also:* [`Game.SpriteHeight`](Game#gamespriteheight),
+[`Game.IsSpriteDynamic`](Game#gameisspritedynamic),
+[`Game.TopSpriteNumber`](Game#gametopspritenumber)
 
 ---
 
@@ -1873,6 +1951,35 @@ The TickCounter value is a part of the game's save state, which means that it's 
 
 ---
 
+### `Game.TopSpriteNumber`
+
+```ags
+static readonly int Game.TopSpriteNumber;
+```
+
+Returns the topmost sprite index currently present in the game. This counts both regular sprites and dynamic sprites created by script commands.
+
+Example:
+
+```ags
+for (int i = 0; i < Game.TopSpriteNumber; i++)
+{
+    if (Game.IsSpriteDynamic[i])
+		System.Log("sprite %d: %dx%d", i, Game.SpriteWidth[i], Game.SpriteHeight[i]);
+}
+```
+
+will print a list of all dynamic sprites to the log.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Game.IsSpriteDynamic`](Game#gameisspritedynamic),
+[`Game.SpriteHeight`](Game#gamespriteheight),
+[`Game.SpriteWidth`](Game#gamespritewidth)
+
+---
+
 ### `Game.TranslationFilename`
 
 *(Formerly known as `GetTranslationName`, which is now obsolete)*
@@ -1901,6 +2008,22 @@ if (Game.TranslationFilename == "German") {
 [`IsTranslationAvailable`](Globalfunctions_General#istranslationavailable),
 [`Game.SpeechVoxFilename`](Game#gamespeechvoxfilename),
 [Translation Manual](Translations)
+
+---
+
+### `Game.UseActiveInventoryGraphicForCursor`
+
+```ags
+static bool Game.UseActiveInventoryGraphicForCursor
+```
+
+Gets/sets whether inventory item's [CursorGraphic](InventoryItem#inventoryitemcursorgraphic) will be used when the cursor mode is "use inventory" and there's a active item.
+When disabled, a default graphic of a respective cursor mode will be used instead.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic),
+[`Mouse.ChangeModeGraphic`](Mouse#mousechangemodegraphic)
 
 ---
 

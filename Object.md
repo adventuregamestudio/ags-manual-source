@@ -972,6 +972,96 @@ manager's slot 100.
 
 ---
 
+### `Object.GraphicAnchorX`
+
+```ags
+float Object.GraphicAnchorX
+```
+
+Gets/sets the object's sprite anchor X position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its left side, 1.0 means that the sprite is aligned by its right side, and any value in between defines a proportional part of a sprite displayed to the left from object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third to the left from object's coordinate.
+
+The default object's graphic anchor is (x: 0.0, y: 1.0) which corresponds to left-bottom alignment.
+
+Example:
+
+```ags
+oDoor.GraphicAnchorX = 1.0;
+```
+
+will align the sprite right horizontally.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GraphicAnchorY`](Object#objectgraphicanchory),
+[`Object.GraphicOffsetX`](Object#objectgraphicoffsetx),
+[`Object.GraphicOffsetY`](Object#objectgraphicoffsety)
+
+---
+
+### `Object.GraphicAnchorY`
+
+```ags
+float Object.GraphicAnchorY
+```
+
+Gets/sets the object's sprite anchor Y position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its top side, 1.0 means that the sprite is aligned by its bottom side, and any value in between defines a proportional part of a sprite displayed above the object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third above from object's coordinate.
+
+The default object's graphic anchor is (x: 0.0, y: 1.0) which corresponds to left-bottom alignment.
+
+Example:
+
+```ags
+oBox.GraphicAnchorY = 0.5;
+```
+
+will center the sprite vertically.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GraphicAnchorX`](Object#objectgraphicanchorx),
+[`Object.GraphicOffsetX`](Object#objectgraphicoffsetx),
+[`Object.GraphicOffsetY`](Object#objectgraphicoffsety)
+
+---
+
+### `Object.GraphicOffsetX`
+
+```ags
+float Object.GraphicOffsetX
+```
+
+Gets/sets the object's sprite relative offset on X axis, in pixels.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GraphicAnchorX`](Object#objectgraphicanchorx),
+[`Object.GraphicAnchorY`](Object#objectgraphicanchory),
+[`Object.GraphicOffsetY`](Object#objectgraphicoffsety)
+
+---
+
+### `Object.GraphicOffsetY`
+
+```ags
+float Object.GraphicOffsetY
+```
+
+Gets/sets the object's sprite relative offset on Y axis, in pixels.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GraphicAnchorX`](Object#objectgraphicanchorx),
+[`Object.GraphicAnchorY`](Object#objectgraphicanchory),
+[`Object.GraphicOffsetX`](Object#objectgraphicoffsetx)
+
+---
+
 ### `Object.GraphicRotation`
 
 ```ags

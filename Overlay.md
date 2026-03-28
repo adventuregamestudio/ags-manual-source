@@ -344,6 +344,96 @@ Gets/sets the sprite slot number that the overlay is currently using. Textual ov
 
 ---
 
+### `Overlay.GraphicAnchorX`
+
+```ags
+float Overlay.GraphicAnchorX
+```
+
+Gets/sets the overlay's sprite anchor X position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its left side, 1.0 means that the sprite is aligned by its right side, and any value in between defines a proportional part of a sprite displayed to the left from object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third to the left from object's coordinate.
+
+The default overlay's graphic anchor is (x: 0.0, y: 0.0) which corresponds to left-top alignment.
+
+Example:
+
+```ags
+over.GraphicAnchorX = 1.0;
+```
+
+will align the sprite right horizontally.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Overlay.GraphicAnchorY`](Overlay#overlaygraphicanchory),
+[`Overlay.GraphicOffsetX`](Overlay#overlaygraphicoffsetx),
+[`Overlay.GraphicOffsetY`](Overlay#overlaygraphicoffsety)
+
+---
+
+### `Overlay.GraphicAnchorY`
+
+```ags
+float Overlay.GraphicAnchorY
+```
+
+Gets/sets the object's sprite anchor Y position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its top side, 1.0 means that the sprite is aligned by its bottom side, and any value in between defines a proportional part of a sprite displayed above the object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third above from object's coordinate.
+
+The default overlay's graphic anchor is (x: 0.0, y: 0.0) which corresponds to left-top alignment.
+
+Example:
+
+```ags
+over.GraphicAnchorY = 0.5;
+```
+
+will center the sprite vertically.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Overlay.GraphicAnchorX`](Overlay#overlaygraphicanchorx),
+[`Overlay.GraphicOffsetX`](Overlay#overlaygraphicoffsetx),
+[`Overlay.GraphicOffsetY`](Overlay#overlaygraphicoffsety)
+
+---
+
+### `Overlay.GraphicOffsetX`
+
+```ags
+float Overlay.GraphicOffsetX
+```
+
+Gets/sets the overlay's sprite relative offset on X axis, in pixels.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Overlay.GraphicAnchorX`](Overlay#overlaygraphicanchorx),
+[`Overlay.GraphicAnchorY`](Overlay#overlaygraphicanchory),
+[`Overlay.GraphicOffsetY`](Overlay#overlaygraphicoffsety)
+
+---
+
+### `Overlay.GraphicOffsetY`
+
+```ags
+float Overlay.GraphicOffsetY
+```
+
+Gets/sets the overlay's sprite relative offset on Y axis, in pixels.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Overlay.GraphicAnchorX`](Overlay#overlaygraphicanchorx),
+[`Overlay.GraphicAnchorY`](Overlay#overlaygraphicanchory),
+[`Overlay.GraphicOffsetX`](Overlay#overlaygraphicoffsetx)
+
+---
+
 ### `Overlay.GraphicHeight`
 
 ```ags

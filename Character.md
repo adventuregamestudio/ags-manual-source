@@ -770,6 +770,128 @@ will change EGO's "description" property.
 
 ---
 
+### `Character.GraphicAnchorX`
+
+```ags
+float Character.GraphicAnchorX
+```
+
+Gets/sets the character's sprite anchor X position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its left side, 1.0 means that the sprite is aligned by its right side, and any value in between defines a proportional part of a sprite displayed to the left from object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third to the left from object's coordinate.
+
+The default character's graphic anchor is (x: 0.5, y: 1.0) which corresponds to middle-bottom alignment.
+
+Example:
+
+```ags
+player.GraphicAnchorX = 1.0;
+```
+
+will align the sprite right horizontally.
+
+**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current anchor, read [ViewAnchorX](Character#characterviewanchorx), and [ViewAnchorY](Character#characterviewanchory) properties instead.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.GraphicAnchorY`
+
+```ags
+float Character.GraphicAnchorY
+```
+
+Gets/sets the character's sprite anchor Y position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its top side, 1.0 means that the sprite is aligned by its bottom side, and any value in between defines a proportional part of a sprite displayed above the object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third above from object's coordinate.
+
+The default character's graphic anchor is (x: 0.5, y: 1.0) which corresponds to middle-bottom alignment.
+
+Example:
+
+```ags
+player.GraphicAnchorY = 0.5;
+```
+
+will center the sprite vertically.
+
+**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current anchor, read [ViewAnchorX](Character#characterviewanchorx), and [ViewAnchorY](Character#characterviewanchory) properties instead.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.GraphicOffsetX`
+
+```ags
+float Character.GraphicOffsetX
+```
+
+Gets/sets the character's sprite relative offset on X axis, in pixels.
+
+**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current offset, read [ViewOffsetX](Character#characterviewoffsetx), and [ViewOffsetY](Character#characterviewoffsety) properties instead.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.GraphicOffsetY`
+
+```ags
+float Character.GraphicOffsetY
+```
+
+Gets/sets the character's sprite relative offset on Y axis, in pixels.
+
+**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current offset, read [ViewOffsetX](Character#characterviewoffsetx), and [ViewOffsetY](Character#characterviewoffsety) properties instead.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
 ### `Character.GraphicRotation`
 
 ```ags
@@ -991,18 +1113,7 @@ characters have the central point as their 'axis', if you have a wider
 animation then it can be difficult to stop yourself getting a jumping
 effect when the animation starts.
 
-*Alignment* can have one of the following values:
-
-align | description
---- | ---
-eAlignLeft | Moves the new frame so that the left hand side is at exactly the same X co-ordinate as the old one was.
-eAlignCentre | Leaves the frames centered in the middle.<br>This is the default and using this is equivalent to just calling LockView.
-eAlignRight | Moves the new frame so that the right hand side is at exactly the same X co-ordinate as the old one was.
-
-Note that this only aligns the first frame of the animation, so to get
-the full benefit all your frames in the animation loop should be the
-same width. All following frames will be shifted by the same amount,
-until UnlockView is called.
+*Alignment* can have any value from the respective [Alignment enum](StandardEnums#alignment). This alignment will be applied until UnlockView is called.
 
 *StopMovementStyle* determines what to do if character was moving when
 this function is called. You can pass either eStopMoving (in which case
@@ -1031,6 +1142,51 @@ character to his normal view.
 only by **AGS 3.4.1** and later versions.
 
 *See also:* [`Character.LockView`](Character#characterlockview),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.LockViewOffset`](Character#characterlockviewoffset),
+[`Character.UnlockView`](Character#characterunlockview)
+
+---
+
+### `Character.LockViewAnchored`
+
+```ags
+Character.LockViewAnchored(int view, float xAnchor, float yAnchor, optional int xOffset, optional int yOffset, optional StopMovementStyle)
+```
+
+Sets the character's view to VIEW.
+
+Applies temporary sprite anchor and offset, which change the relative position of a sprite compared to the character's position. These anchor and offsets are applied until UnlockView is called.
+
+*xAnchor* and *yAnchor* can be a floating number between 0.0 and 1.0, inclusive. *xOffset* and *yOffset* can be any integer number, in pixels. Offset parameters are optional, and if not provided, they both will be set to 0 (no extra offset).
+
+*StopMovementStyle* determines what to do if character was moving when
+this function is called. You can pass either eStopMoving (in which case
+the walking character will stop), or eKeepMoving (in which case the
+character will keep moving). The default is eStopMoving.
+
+**NOTE:** This function locks the character's view to the specified
+view, so that it can only be changed by other script commands (i.e. it
+won't automatically be changed by the program on regions, screen
+changes, etc). When you are done with the animation, call UnlockView to
+allow the program to take control back.
+
+Example:
+
+```ags
+cEgo.LockViewAnchored(12, 0.5, 0.5);
+cEgo.Animate(1, 5, eOnce, eBlock, eForwards);
+cEgo.UnlockView();
+```
+
+will change the character's EGO view to view 12, centered around character's position, perform an animation
+using loop 1, wait until the animation finishes and then return the
+character to his normal view.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.LockView`](Character#characterlockview),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
 [`Character.LockViewOffset`](Character#characterlockviewoffset),
 [`Character.UnlockView`](Character#characterunlockview)
 
@@ -1130,6 +1286,7 @@ only by **AGS 3.4.1** and later versions.
 
 *See also:* [`Character.LockView`](Character#characterlockview),
 [`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
 [`Character.UnlockView`](Character#characterunlockview)
 
 ---
@@ -3605,6 +3762,108 @@ will display EGO's current view number.
 [`Character.LockView`](Character#characterlockview),
 [`Character.Loop`](Character#characterloop),
 [`Character.NormalView`](Character#characternormalview)
+
+---
+
+### `Character.ViewAnchorX`
+
+```ags
+readonly float Character.ViewAnchorX
+```
+
+Gets the character's effective sprite anchor X position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its left side, 1.0 means that the sprite is aligned by its right side, and any value in between defines a proportional part of a sprite displayed to the left from object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third to the left from object's coordinate.
+
+Normally the character's anchor is determined by [GraphicAnchorX](Character#charactergraphicanchorx) and [GraphicAnchorY](Character#charactergraphicanchory) properties, but [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions may temporarily override them. ViewAnchorX returns the actual anchor anytime.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.ViewAnchorY`
+
+```ags
+readonly float Character.ViewAnchorY
+```
+
+Gets the character's effective sprite anchor Y position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its top side, 1.0 means that the sprite is aligned by its bottom side, and any value in between defines a proportional part of a sprite displayed above the object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third above from object's coordinate.
+
+Normally the character's anchor is determined by [GraphicAnchorX](Character#charactergraphicanchorx) and [GraphicAnchorY](Character#charactergraphicanchory) properties, but [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions may temporarily override them. ViewAnchorY returns the actual anchor anytime.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.ViewOffsetX`
+
+```ags
+readonly float Character.ViewOffsetX
+```
+
+Gets the character's effective sprite relative offset on X axis, in pixels.
+
+Normally the character's anchor is determined by [GraphicOffsetX](Character#charactergraphicoffsetx) and [GraphicOffsetY](Character#charactergraphicoffsety) properties, but [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions may temporarily override them. ViewOffsetX returns the actual offset anytime.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.ViewOffsetY`
+
+```ags
+readonly float Character.ViewOffsetY
+```
+
+Gets the character's effective sprite relative offset on Y axis, in pixels.
+
+Normally the character's anchor is determined by [GraphicOffsetX](Character#charactergraphicoffsetx) and [GraphicOffsetY](Character#charactergraphicoffsety) properties, but [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions may temporarily override them. ViewOffsetY returns the actual offset anytime.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx)
 
 ---
 

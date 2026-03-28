@@ -138,28 +138,6 @@ Optional *volume* parameter is supported only by **AGS 3.6.0** and later version
 
 ---
 
-### `Character.BlendMode`
-
-```ags
-BlendMode Character.BlendMode
-```
-
-Gets/sets the character's current blend mode.
-
-Example:
-
-```ags
-player.BlendMode = eBlendModeAdd;
-```
-
-will set the player BlenMode to additive blending.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
-*See also:* [`BlendMode`](StandardEnums#blendmode)
-
----
-
 ### `Character.ChangeRoom`
 
 *(Formerly known as `NewRoom`, which is now obsolete)*<br>
@@ -280,24 +258,6 @@ will make the EGO character use view number 5 as his walking view.
 
 *See also:* [`Character.LockView`](Character#characterlockview),
 [`Character.NormalView`](Character#characternormalview)
-
----
-
-### `Character.Enabled`
-
-*(Formerly known as `Character.on`, which is now obsolete)*
-
-```ags
-bool Character.Enabled
-```
-
-Gets/sets whether the character is enabled and visible. This lets you disable any character anytime, including player character. When disabled a character will not be drawn on screen and not updated (not animating, not moving, etc). Disabled characters may still be modified and have their coordinates changed by setting their corresponding properties directly, and also moved to another room with [ChangeRoom](Character#characterchangeroom) function.
-
-Rooms have a property called "ShowPlayerCharacter", which is enabled by default. If this property is disabled, then player character will have their `on` property set to 0 when such room is loaded, and restored it to 1 when leaving that room.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
-*See also:* [`Character.Visible`](Character#charactervisible)
 
 ---
 
@@ -624,6 +584,8 @@ will display the message if the mouse cursor is over the EGO character
 [`Region.GetAtScreenXY`](Region#regiongetatscreenxy),
 [`Game.GetLocationName`](Game#gamegetlocationname)
 
+---
+
 ### `Character.GetByName`
 
 ```ags
@@ -711,258 +673,6 @@ will retrieve EGO's "description" property and display it.
 
 ---
 
-### `Character.SetProperty`
-
-```ags
-bool Character.SetProperty(const string property, int value)
-```
-
-Sets the new *value* for the custom *property* for the specified
-character. Returns TRUE if such property exists and FALSE on failure.
-
-This command works with Number properties (it sets the numeric value),
-and with Boolean properties (sets FALSE is value is equal to 0, or TRUE
-otherwise).
-
-Use the equivalent SetTextProperty function to set new text property
-value.
-
-Example:
-
-```ags
-cEgo.SetProperty("XPLevel", 10);
-```
-
-will change EGO character's "XPLevel" custom property to 10.
-
-*Compatibility:* Supported by **AGS 3.4.0** and later versions.
-
-*See also:*
-[`Character.SetTextProperty`](Character#charactersettextproperty)
-
----
-
-### `Character.SetTextProperty`
-
-```ags
-bool Character.SetTextProperty(const string property, const string value)
-```
-
-Sets the new *value* text for the custom *property* for the specified
-character. Returns TRUE if such property exists and FALSE on failure.
-
-This command works with Text properties only. The property's text will
-be changed to new value.
-
-Use the equivalent SetProperty function to set a non-text property.
-
-Example:
-
-```ags
-cEgo.SetTextProperty("Description", "I am handsome!");
-```
-
-will change EGO's "description" property.
-
-*Compatibility:* Supported by **AGS 3.4.0** and later versions.
-
-*See also:* [`Character.SetProperty`](Character#charactersetproperty)
-
----
-
-### `Character.GraphicAnchorX`
-
-```ags
-float Character.GraphicAnchorX
-```
-
-Gets/sets the character's sprite anchor X position.
-
-The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its left side, 1.0 means that the sprite is aligned by its right side, and any value in between defines a proportional part of a sprite displayed to the left from object's pos.
-For example, value of 0.3 means that a sprite is shifted by one third to the left from object's coordinate.
-
-The default character's graphic anchor is (x: 0.5, y: 1.0) which corresponds to middle-bottom alignment.
-
-Example:
-
-```ags
-player.GraphicAnchorX = 1.0;
-```
-
-will align the sprite right horizontally.
-
-**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current anchor, read [ViewAnchorX](Character#characterviewanchorx), and [ViewAnchorY](Character#characterviewanchory) properties instead.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
-*See also:* [`Character.GraphicAnchorY`](Character#charactergraphicanchory),
-[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
-[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
-[`Character.LockViewAligned`](Character#characterlockviewaligned),
-[`Character.LockViewAnchored`](Character#characterlockviewanchored),
-[`Character.ViewAnchorX`](Character#characterviewanchorx),
-[`Character.ViewAnchorY`](Character#characterviewanchory),
-[`Character.ViewOffsetX`](Character#characterviewoffsetx),
-[`Character.ViewOffsetY`](Character#characterviewoffsety)
-
----
-
-### `Character.GraphicAnchorY`
-
-```ags
-float Character.GraphicAnchorY
-```
-
-Gets/sets the character's sprite anchor Y position.
-
-The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its top side, 1.0 means that the sprite is aligned by its bottom side, and any value in between defines a proportional part of a sprite displayed above the object's pos.
-For example, value of 0.3 means that a sprite is shifted by one third above from object's coordinate.
-
-The default character's graphic anchor is (x: 0.5, y: 1.0) which corresponds to middle-bottom alignment.
-
-Example:
-
-```ags
-player.GraphicAnchorY = 0.5;
-```
-
-will center the sprite vertically.
-
-**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current anchor, read [ViewAnchorX](Character#characterviewanchorx), and [ViewAnchorY](Character#characterviewanchory) properties instead.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
-*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
-[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
-[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
-[`Character.LockViewAligned`](Character#characterlockviewaligned),
-[`Character.LockViewAnchored`](Character#characterlockviewanchored),
-[`Character.ViewAnchorX`](Character#characterviewanchorx),
-[`Character.ViewAnchorY`](Character#characterviewanchory),
-[`Character.ViewOffsetX`](Character#characterviewoffsetx),
-[`Character.ViewOffsetY`](Character#characterviewoffsety)
-
----
-
-### `Character.GraphicOffsetX`
-
-```ags
-float Character.GraphicOffsetX
-```
-
-Gets/sets the character's sprite relative offset on X axis, in pixels.
-
-**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current offset, read [ViewOffsetX](Character#characterviewoffsetx), and [ViewOffsetY](Character#characterviewoffsety) properties instead.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
-*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
-[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
-[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
-[`Character.LockViewAligned`](Character#characterlockviewaligned),
-[`Character.LockViewAnchored`](Character#characterlockviewanchored),
-[`Character.ViewAnchorX`](Character#characterviewanchorx),
-[`Character.ViewAnchorY`](Character#characterviewanchory),
-[`Character.ViewOffsetX`](Character#characterviewoffsetx),
-[`Character.ViewOffsetY`](Character#characterviewoffsety)
-
----
-
-### `Character.GraphicOffsetY`
-
-```ags
-float Character.GraphicOffsetY
-```
-
-Gets/sets the character's sprite relative offset on Y axis, in pixels.
-
-**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current offset, read [ViewOffsetX](Character#characterviewoffsetx), and [ViewOffsetY](Character#characterviewoffsety) properties instead.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
-*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
-[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
-[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
-[`Character.LockViewAligned`](Character#characterlockviewaligned),
-[`Character.LockViewAnchored`](Character#characterlockviewanchored),
-[`Character.ViewAnchorX`](Character#characterviewanchorx),
-[`Character.ViewAnchorY`](Character#characterviewanchory),
-[`Character.ViewOffsetX`](Character#characterviewoffsetx),
-[`Character.ViewOffsetY`](Character#characterviewoffsety)
-
----
-
-### `Character.GraphicRotation`
-
-```ags
-float Character.GraphicRotation
-```
-
-Gets/sets the character's sprite rotation in degrees.
-
-Example:
-
-```ags
-player.GraphicRotation = 180.0;
-```
-
-will rotate the player character sprite by 180 degrees.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
-### `Character.HasExplicitLight`
-
-```ags
-readonly bool Character.HasExplicitTint
-```
-
-Returns *true* if the character has a light set explicitly with the
-[`Character.SetLightLevel`](Character#charactersetlightlevel) command.
-
-Returns *false* if the character has no explicit light level, but it may
-still be lighted by
-[`SetAmbientLightLevel`](Globalfunctions_General#setambientlightlevel) or a region
-light.
-
-*Compatibility:* Supported by **AGS 3.4.1** and later versions.
-
-*See also:* [`Character.SetLightLevel`](Character#charactersetlightlevel)
-
----
-
-### `Character.HasInventory`
-
-```ags
-bool Character.HasInventory(InventoryItem *item)
-```
-
-Checks whether the character currently has the specified inventory item.
-Returns *true* if they do, or *false* if they don't.
-
-The parameter is the inventory item's Script Name from the editor (for
-example, *iPoster*).
-
-Example:
-
-```ags
-if (player.HasInventory(iKey))
-{
-    Display("The player has the key!!");
-}
-```
-
-will display a message if the player has the key.
-
-*Compatibility:* Supported by **AGS 3.1.0** and later versions.
-
-*See also:* [`Character.AddInventory`](Character#characteraddinventory),
-[`Character.InventoryQuantity`](Character#characterinventoryquantity),
-[`Character.LoseInventory`](Character#characterloseinventory)
-
----
-
 ### `Character.IsCollidingWithChar`
 
 *(Formerly known as `AreCharactersColliding`, which is now obsolete)*
@@ -1027,24 +737,31 @@ will execute the colliding code only if the character cEgo and the object oPress
 
 ---
 
-### `Character.LightLevel`
+### `Character.IsInteractionAvailable`
 
 ```ags
-readonly int Character.LightLevel
+Character.IsInteractionAvailable(CursorMode)
 ```
 
-If the character has an individual light set explicitly with the
-[`Character.SetLightLevel`](Character#charactersetlightlevel) command,
-this property returns the light level value. Otherwise it returns 0.
+Checks whether there is an event handler defined for activating the
+character in cursor mode MODE.
 
-**NOTE:** without individual light level set, Character.LightLevel
-returns 0 even if the character is affected by the ambient or region's
-light.
+This function is very similar to RunInteraction, except that rather than
+run the event handler script function, it simply returns *true* if
+something would have happened, or *false* if unhandled_event would have
+been run.
 
-*Compatibility:* Supported by **AGS 3.4.1** and later versions.
+Example:
 
-*See also:* [`Character.SetLightLevel`](Character#charactersetlightlevel),
-[`SetAmbientLightLevel`](Globalfunctions_General#setambientlightlevel)
+```ags
+if (cNPC.IsInteractionAvailable(eModeTalkto) == 0)
+    Display("speaking with this character would not do anything.");
+```
+
+*Compatibility:* Supported by **AGS 3.4.0** and later versions.
+
+*See also:* [`IsInteractionAvailable`](Globalfunctions_General#isinteractionavailable),
+[`Character.RunInteraction`](Character#characterruninteraction)
 
 ---
 
@@ -1468,34 +1185,6 @@ normal.
 
 ---
 
-### `Character.IsInteractionAvailable`
-
-```ags
-Character.IsInteractionAvailable(CursorMode)
-```
-
-Checks whether there is an event handler defined for activating the
-character in cursor mode MODE.
-
-This function is very similar to RunInteraction, except that rather than
-run the event handler script function, it simply returns *true* if
-something would have happened, or *false* if unhandled_event would have
-been run.
-
-Example:
-
-```ags
-if (cNPC.IsInteractionAvailable(eModeTalkto) == 0)
-    Display("speaking with this character would not do anything.");
-```
-
-*Compatibility:* Supported by **AGS 3.4.0** and later versions.
-
-*See also:* [`IsInteractionAvailable`](Globalfunctions_General#isinteractionavailable),
-[`Character.RunInteraction`](Character#characterruninteraction)
-
----
-
 ### `Character.RunFrameEvent`
 
 ```ags
@@ -1796,6 +1485,65 @@ be played if the character is idle for 30 seconds.
 
 ---
 
+### `Character.SetProperty`
+
+```ags
+bool Character.SetProperty(const string property, int value)
+```
+
+Sets the new *value* for the custom *property* for the specified
+character. Returns TRUE if such property exists and FALSE on failure.
+
+This command works with Number properties (it sets the numeric value),
+and with Boolean properties (sets FALSE is value is equal to 0, or TRUE
+otherwise).
+
+Use the equivalent SetTextProperty function to set new text property
+value.
+
+Example:
+
+```ags
+cEgo.SetProperty("XPLevel", 10);
+```
+
+will change EGO character's "XPLevel" custom property to 10.
+
+*Compatibility:* Supported by **AGS 3.4.0** and later versions.
+
+*See also:*
+[`Character.SetTextProperty`](Character#charactersettextproperty)
+
+---
+
+### `Character.SetTextProperty`
+
+```ags
+bool Character.SetTextProperty(const string property, const string value)
+```
+
+Sets the new *value* text for the custom *property* for the specified
+character. Returns TRUE if such property exists and FALSE on failure.
+
+This command works with Text properties only. The property's text will
+be changed to new value.
+
+Use the equivalent SetProperty function to set a non-text property.
+
+Example:
+
+```ags
+cEgo.SetTextProperty("Description", "I am handsome!");
+```
+
+will change EGO's "description" property.
+
+*Compatibility:* Supported by **AGS 3.4.0** and later versions.
+
+*See also:* [`Character.SetProperty`](Character#charactersetproperty)
+
+---
+
 ### `Character.SetWalkSpeed`
 
 *(Formerly known as `SetCharacterSpeed`, which is now obsolete)*<br>
@@ -1962,131 +1710,6 @@ will tint the EGO character green.
 
 ---
 
-### `Character.TintBlue`
-
-```ags
-readonly int Character.TintBlue
-```
-
-Gets the *Blue* setting for the character's current tint.
-
-This property is read-only; to change it, use the
-[`Character.Tint`](Character#charactertint) command.
-
-**NOTE:** If the
-[`Character.HasExplicitTint`](Character#characterhasexplicittint)
-property is false, then this value is meaningless.
-
-*Compatibility:* Supported by **AGS 3.4.1** and later versions.
-
-*See also:* [`Character.Tint`](Character#charactertint),
-[`Character.HasExplicitTint`](Character#characterhasexplicittint),
-[`Character.TintGreen`](Character#charactertintgreen),
-[`Character.TintRed`](Character#charactertintred),
-[`Character.TintLuminance`](Character#charactertintluminance)
-
----
-
-### `Character.TintGreen`
-
-```ags
-readonly int Character.TintGreen
-```
-
-Gets the *Green* setting for the character's current tint.
-
-This property is read-only; to change it, use the
-[`Character.Tint`](Character#charactertint) command.
-
-**NOTE:** If the
-[`Character.HasExplicitTint`](Character#characterhasexplicittint)
-property is false, then this value is meaningless.
-
-*Compatibility:* Supported by **AGS 3.4.1** and later versions.
-
-*See also:* [`Character.Tint`](Character#charactertint),
-[`Character.TintBlue`](Character#charactertintblue),
-[`Character.TintRed`](Character#charactertintred),
-[`Character.TintSaturation`](Character#charactertintsaturation),
-[`Character.TintLuminance`](Character#charactertintluminance)
-
----
-
-### `Character.TintRed`
-
-```ags
-readonly int Character.TintRed
-```
-
-Gets the *Red* setting for the character's current tint.
-
-This property is read-only; to change it, use the
-[`Character.Tint`](Character#charactertint) command.
-
-**NOTE:** If the
-[`Character.HasExplicitTint`](Character#characterhasexplicittint)
-property is false, then this value is meaningless.
-
-*Compatibility:* Supported by **AGS 3.4.1** and later versions.
-
-*See also:* [`Character.Tint`](Character#charactertint),
-[`Character.TintBlue`](Character#charactertintblue),
-[`Character.TintGreen`](Character#charactertintgreen),
-[`Character.TintSaturation`](Character#charactertintsaturation),
-[`Character.TintLuminance`](Character#charactertintluminance)
-
----
-
-### `Character.TintSaturation`
-
-```ags
-readonly int Character.TintSaturation
-```
-
-Gets the *saturation* setting for the character's current tint.
-
-This property is read-only; to change it, use the
-[`Character.Tint`](Character#charactertint) command.
-
-**NOTE:** If the
-[`Character.HasExplicitTint`](Character#characterhasexplicittint)
-property is false, then this value is meaningless.
-
-*Compatibility:* Supported by **AGS 3.4.1** and later versions.
-
-*See also:* [`Character.Tint`](Character#charactertint),
-[`Character.TintBlue`](Character#charactertintblue),
-[`Character.TintGreen`](Character#charactertintgreen),
-[`Character.TintRed`](Character#charactertintred),
-[`Character.TintLuminance`](Character#charactertintluminance)
-
----
-
-### `Character.TintLuminance`
-
-```ags
-readonly int Character.TintLuminance
-```
-
-Gets the *luminance* setting for the character's current tint.
-
-This property is read-only; to change it, use the
-[`Character.Tint`](Character#charactertint) command.
-
-**NOTE:** If the
-[`Character.HasExplicitTint`](Character#characterhasexplicittint)
-property is false, then this value is meaningless.
-
-*Compatibility:* Supported by **AGS 3.4.1** and later versions.
-
-*See also:* [`Character.Tint`](Character#charactertint),
-[`Character.TintBlue`](Character#charactertintblue),
-[`Character.TintGreen`](Character#charactertintgreen),
-[`Character.TintRed`](Character#charactertintred),
-[`Character.TintSaturation`](Character#charactertintsaturation)
-
----
-
 ### `Character.UnlockView`
 
 *(Formerly known as `ReleaseCharacterView`, which is now obsolete)*
@@ -2119,27 +1742,6 @@ character to its normal view.
 only by **AGS 3.4.1** and later versions.
 
 *See also:* [`Character.LockView`](Character#characterlockview)
-
----
-
-### `Character.UseRegionTint`
-
-```ags
-bool UseRegionTint
-```
-
-Gets/sets whether the character uses region tinting.
-
-Example:
-
-```ags
-cEgo.UseRegionTint = false;
-```
-
-will make the character look the same no matter if he stands on regions
-with different tinting.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -2386,6 +1988,28 @@ will find out the character's effective z-order in the room.
 
 *See also:* [`Object.Baseline`](Object#objectbaseline),
 [`SetWalkBehindBase`](Globalfunctions_Room#setwalkbehindbase)
+
+---
+
+### `Character.BlendMode`
+
+```ags
+BlendMode Character.BlendMode
+```
+
+Gets/sets the character's current blend mode.
+
+Example:
+
+```ags
+player.BlendMode = eBlendModeAdd;
+```
+
+will set the player BlenMode to additive blending.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`BlendMode`](StandardEnums#blendmode)
 
 ---
 
@@ -2688,6 +2312,24 @@ will enable diagonal walking loops for character EGO.
 
 ---
 
+### `Character.Enabled`
+
+*(Formerly known as `Character.on`, which is now obsolete)*
+
+```ags
+bool Character.Enabled
+```
+
+Gets/sets whether the character is enabled and visible. This lets you disable any character anytime, including player character. When disabled a character will not be drawn on screen and not updated (not animating, not moving, etc). Disabled characters may still be modified and have their coordinates changed by setting their corresponding properties directly, and also moved to another room with [ChangeRoom](Character#characterchangeroom) function.
+
+Rooms have a property called "ShowPlayerCharacter", which is enabled by default. If this property is disabled, then player character will have their `on` property set to 0 when such room is loaded, and restored it to 1 when leaving that room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.Visible`](Character#charactervisible)
+
+---
+
 ### `Character.Following`
 
 ```ags
@@ -2739,6 +2381,169 @@ displays EGO's current frame number within his view.
 
 ---
 
+### `Character.GraphicAnchorX`
+
+```ags
+float Character.GraphicAnchorX
+```
+
+Gets/sets the character's sprite anchor X position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its left side, 1.0 means that the sprite is aligned by its right side, and any value in between defines a proportional part of a sprite displayed to the left from object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third to the left from object's coordinate.
+
+The default character's graphic anchor is (x: 0.5, y: 1.0) which corresponds to middle-bottom alignment.
+
+Example:
+
+```ags
+player.GraphicAnchorX = 1.0;
+```
+
+will align the sprite right horizontally.
+
+**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current anchor, read [ViewAnchorX](Character#characterviewanchorx), and [ViewAnchorY](Character#characterviewanchory) properties instead.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.GraphicAnchorY`
+
+```ags
+float Character.GraphicAnchorY
+```
+
+Gets/sets the character's sprite anchor Y position.
+
+The sprite anchor is a alignment of a sprite's image relative to the object's position. It's depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 means that the sprite is aligned by its top side, 1.0 means that the sprite is aligned by its bottom side, and any value in between defines a proportional part of a sprite displayed above the object's pos.
+For example, value of 0.3 means that a sprite is shifted by one third above from object's coordinate.
+
+The default character's graphic anchor is (x: 0.5, y: 1.0) which corresponds to middle-bottom alignment.
+
+Example:
+
+```ags
+player.GraphicAnchorY = 0.5;
+```
+
+will center the sprite vertically.
+
+**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current anchor, read [ViewAnchorX](Character#characterviewanchorx), and [ViewAnchorY](Character#characterviewanchory) properties instead.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.GraphicOffsetX`
+
+```ags
+float Character.GraphicOffsetX
+```
+
+Gets/sets the character's sprite relative offset on X axis, in pixels.
+
+**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current offset, read [ViewOffsetX](Character#characterviewoffsetx), and [ViewOffsetY](Character#characterviewoffsety) properties instead.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetY`](Character#charactergraphicoffsety),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.GraphicOffsetY`
+
+```ags
+float Character.GraphicOffsetY
+```
+
+Gets/sets the character's sprite relative offset on Y axis, in pixels.
+
+**NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current offset, read [ViewOffsetX](Character#characterviewoffsetx), and [ViewOffsetY](Character#characterviewoffsety) properties instead.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
+[`Character.GraphicAnchorY`](Character#charactergraphicanchory),
+[`Character.GraphicOffsetX`](Character#charactergraphicoffsetx),
+[`Character.LockViewAligned`](Character#characterlockviewaligned),
+[`Character.LockViewAnchored`](Character#characterlockviewanchored),
+[`Character.ViewAnchorX`](Character#characterviewanchorx),
+[`Character.ViewAnchorY`](Character#characterviewanchory),
+[`Character.ViewOffsetX`](Character#characterviewoffsetx),
+[`Character.ViewOffsetY`](Character#characterviewoffsety)
+
+---
+
+### `Character.GraphicRotation`
+
+```ags
+float Character.GraphicRotation
+```
+
+Gets/sets the character's sprite rotation in degrees.
+
+Example:
+
+```ags
+player.GraphicRotation = 180.0;
+```
+
+will rotate the player character sprite by 180 degrees.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Character.HasExplicitLight`
+
+```ags
+readonly bool Character.HasExplicitTint
+```
+
+Returns *true* if the character has a light set explicitly with the
+[`Character.SetLightLevel`](Character#charactersetlightlevel) command.
+
+Returns *false* if the character has no explicit light level, but it may
+still be lighted by
+[`SetAmbientLightLevel`](Globalfunctions_General#setambientlightlevel) or a region
+light.
+
+*Compatibility:* Supported by **AGS 3.4.1** and later versions.
+
+*See also:* [`Character.SetLightLevel`](Character#charactersetlightlevel)
+
+
+---
+
 ### `Character.HasExplicitTint`
 
 ```ags
@@ -2768,6 +2573,37 @@ removes the player's tint if it currently has one.
 *See also:* [`Character.Tint`](Character#charactertint),
 [`Character.RemoveTint`](Character#characterremovetint),
 [`Character.UseRegionTint`](Character#characteruseregiontint)
+
+---
+
+### `Character.HasInventory`
+
+```ags
+bool Character.HasInventory(InventoryItem *item)
+```
+
+Checks whether the character currently has the specified inventory item.
+Returns *true* if they do, or *false* if they don't.
+
+The parameter is the inventory item's Script Name from the editor (for
+example, *iPoster*).
+
+Example:
+
+```ags
+if (player.HasInventory(iKey))
+{
+    Display("The player has the key!!");
+}
+```
+
+will display a message if the player has the key.
+
+*Compatibility:* Supported by **AGS 3.1.0** and later versions.
+
+*See also:* [`Character.AddInventory`](Character#characteraddinventory),
+[`Character.InventoryQuantity`](Character#characterinventoryquantity),
+[`Character.LoseInventory`](Character#characterloseinventory)
 
 ---
 
@@ -2948,6 +2784,27 @@ will display how many inventory items of type iCash the player has.
 [`Character.AddInventory`](Character#characteraddinventory),
 [`Character.HasInventory`](Character#characterhasinventory),
 [`Character.LoseInventory`](Character#characterloseinventory)
+
+---
+
+### `Character.LightLevel`
+
+```ags
+readonly int Character.LightLevel
+```
+
+If the character has an individual light set explicitly with the
+[`Character.SetLightLevel`](Character#charactersetlightlevel) command,
+this property returns the light level value. Otherwise it returns 0.
+
+**NOTE:** without individual light level set, Character.LightLevel
+returns 0 even if the character is affected by the ambient or region's
+light.
+
+*Compatibility:* Supported by **AGS 3.4.1** and later versions.
+
+*See also:* [`Character.SetLightLevel`](Character#charactersetlightlevel),
+[`SetAmbientLightLevel`](Globalfunctions_General#setambientlightlevel)
 
 ---
 
@@ -3636,6 +3493,131 @@ will change the character EGO's thinking view to 14.
 
 ---
 
+### `Character.TintBlue`
+
+```ags
+readonly int Character.TintBlue
+```
+
+Gets the *Blue* setting for the character's current tint.
+
+This property is read-only; to change it, use the
+[`Character.Tint`](Character#charactertint) command.
+
+**NOTE:** If the
+[`Character.HasExplicitTint`](Character#characterhasexplicittint)
+property is false, then this value is meaningless.
+
+*Compatibility:* Supported by **AGS 3.4.1** and later versions.
+
+*See also:* [`Character.Tint`](Character#charactertint),
+[`Character.HasExplicitTint`](Character#characterhasexplicittint),
+[`Character.TintGreen`](Character#charactertintgreen),
+[`Character.TintRed`](Character#charactertintred),
+[`Character.TintLuminance`](Character#charactertintluminance)
+
+---
+
+### `Character.TintGreen`
+
+```ags
+readonly int Character.TintGreen
+```
+
+Gets the *Green* setting for the character's current tint.
+
+This property is read-only; to change it, use the
+[`Character.Tint`](Character#charactertint) command.
+
+**NOTE:** If the
+[`Character.HasExplicitTint`](Character#characterhasexplicittint)
+property is false, then this value is meaningless.
+
+*Compatibility:* Supported by **AGS 3.4.1** and later versions.
+
+*See also:* [`Character.Tint`](Character#charactertint),
+[`Character.TintBlue`](Character#charactertintblue),
+[`Character.TintRed`](Character#charactertintred),
+[`Character.TintSaturation`](Character#charactertintsaturation),
+[`Character.TintLuminance`](Character#charactertintluminance)
+
+---
+
+### `Character.TintRed`
+
+```ags
+readonly int Character.TintRed
+```
+
+Gets the *Red* setting for the character's current tint.
+
+This property is read-only; to change it, use the
+[`Character.Tint`](Character#charactertint) command.
+
+**NOTE:** If the
+[`Character.HasExplicitTint`](Character#characterhasexplicittint)
+property is false, then this value is meaningless.
+
+*Compatibility:* Supported by **AGS 3.4.1** and later versions.
+
+*See also:* [`Character.Tint`](Character#charactertint),
+[`Character.TintBlue`](Character#charactertintblue),
+[`Character.TintGreen`](Character#charactertintgreen),
+[`Character.TintSaturation`](Character#charactertintsaturation),
+[`Character.TintLuminance`](Character#charactertintluminance)
+
+---
+
+### `Character.TintSaturation`
+
+```ags
+readonly int Character.TintSaturation
+```
+
+Gets the *saturation* setting for the character's current tint.
+
+This property is read-only; to change it, use the
+[`Character.Tint`](Character#charactertint) command.
+
+**NOTE:** If the
+[`Character.HasExplicitTint`](Character#characterhasexplicittint)
+property is false, then this value is meaningless.
+
+*Compatibility:* Supported by **AGS 3.4.1** and later versions.
+
+*See also:* [`Character.Tint`](Character#charactertint),
+[`Character.TintBlue`](Character#charactertintblue),
+[`Character.TintGreen`](Character#charactertintgreen),
+[`Character.TintRed`](Character#charactertintred),
+[`Character.TintLuminance`](Character#charactertintluminance)
+
+---
+
+### `Character.TintLuminance`
+
+```ags
+readonly int Character.TintLuminance
+```
+
+Gets the *luminance* setting for the character's current tint.
+
+This property is read-only; to change it, use the
+[`Character.Tint`](Character#charactertint) command.
+
+**NOTE:** If the
+[`Character.HasExplicitTint`](Character#characterhasexplicittint)
+property is false, then this value is meaningless.
+
+*Compatibility:* Supported by **AGS 3.4.1** and later versions.
+
+*See also:* [`Character.Tint`](Character#charactertint),
+[`Character.TintBlue`](Character#charactertintblue),
+[`Character.TintGreen`](Character#charactertintgreen),
+[`Character.TintRed`](Character#charactertintred),
+[`Character.TintSaturation`](Character#charactertintsaturation)
+
+---
+
 ### `Character.Transparency`
 
 *(Formerly known as `SetCharacterTransparency`, which is now obsolete)*
@@ -3735,6 +3717,27 @@ will tell EGO to turn to face left, and then turn again until they face right.
 *Compatibility*: Supported by **AGS 3.6.2** and later versions.
 
 *See also:* [`Game.TurnBeforeWalking`](Character#characterturnbeforewalking)
+
+---
+
+### `Character.UseRegionTint`
+
+```ags
+bool UseRegionTint
+```
+
+Gets/sets whether the character uses region tinting.
+
+Example:
+
+```ags
+cEgo.UseRegionTint = false;
+```
+
+will make the character look the same no matter if he stands on regions
+with different tinting.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

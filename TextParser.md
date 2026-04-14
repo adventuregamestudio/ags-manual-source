@@ -1,6 +1,8 @@
 ## Text Parser
 
-You can now use a text parser in your games if you wish to, much as the
+### Overview
+
+You can use a text parser in your games if you wish to, much as the
 older Sierra games did. Go to the "Text parser" pane in the editor.
 There, you will see a short list of words which are provided for you.
 Each word has a number beside it.

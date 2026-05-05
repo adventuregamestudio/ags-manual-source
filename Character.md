@@ -1554,8 +1554,8 @@ X_SPEED and Y_SPEED can be identical, in which case the character
 moves with the same speed in any direction (the editor calls this
 "Uniform movement speed").
 
-**NOTE:** This function CANNOT be called while the character is moving,
-so you must stop him first.
+**NOTE:** Prior to 3.6.1 this function could not be called while the character is moving (you had to stop him first).
+Starting with 3.6.1 and onwards you may change character's walking speed during movement too.
 
 Example:
 

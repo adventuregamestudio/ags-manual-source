@@ -271,14 +271,17 @@ and then replace the overlay with another one.
 int Overlay.Graphic;
 ```
 
-Gets/sets the sprite slot number that the overlay is currently using. Textual overlays always return -1, as their image is generated and stored internally, and does not have a formal "number". Setting `Graphic` of a textual overlay will effectively change them to a graphical overlay.
+Gets/sets the sprite slot number that the overlay is currently using.
 
-**NOTE:** unlike [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical), where you may choose whether to make an image's copy or a shared reference, setting `Graphic` will always make a shared reference to the sprite. If this is a [DynamicSprite](DynamicSprite), you have to make sure it is not deleted so long as overlay stays on screen, or overlay's image will reset to sprite 0.
+Textual overlays return a number of a generated dynamic sprite that they have created for themselves. Setting `Graphic` of a textual overlay will effectively change them to a graphical overlay.
 
-*Compatibility:* Supported by **AGS 3.6.0** and later versions.
+**NOTE:** unlike [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical), where you may choose whether to make an image's copy or a shared reference, setting `Graphic` will always make a shared reference to the sprite. If this is a [DynamicSprite](DynamicSprite), you have to make sure it is not deleted so long as overlay stays on screen, or overlay will be displaying a dummy sprite 0 instead.
+
+*Compatibility:* Supported by **AGS 3.6.0** and later versions. Prior to **AGS 3.6.1** textual overlays would return "-1", as back then their graphic was stored as a internal image unaccessible from script.
 
 *See also:* [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical),
 [`Overlay.CreateRoomGraphical`](Overlay#overlaycreateroomgraphical),
+[`Overlay.Text`](Overlay#overlaytext),
 [`Overlay.X`](Overlay#overlayx), [`Overlay.Y`](Overlay#overlayy),
 [`Overlay.Width`](Overlay#overlaywidth),
 [`Overlay.Height`](Overlay#overlayheight)
@@ -358,7 +361,8 @@ Overlay's Text property stores an arbitrary value, similar to the Character.Real
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`Overlay.CreateTextual`](Overlay#overlaycreatetextual),
-[`Overlay.CreateRoomTextual`](Overlay#overlaycreateroomtextual)
+[`Overlay.CreateRoomTextual`](Overlay#overlaycreateroomtextual),
+[`Overlay.Graphic`](Overlay#overlaygraphic)
 
 ---
 

@@ -59,6 +59,7 @@ Font options let you define certain font substitutes for this particular transla
 - **SpeechFont** - sets the font used for character speech. This corresponds to the [`Game.SpeechFont`](Game#gamespeechfont) script property. The value may be either the font's number or `DEFAULT` for no change.
 - **TextDirection** - sets the direction in which the text is written. This corresponds to calling the [`SetGameOption`](Globalfunctions_General#setgameoption) script function with the OPT_RIGHTTOLEFT argument. The value may be `LEFT` (for left-to-right), `RIGHT` (for right-to-left) or `DEFAULT`.
 - **Encoding** - sets the encoding hint that matches the encoding of the file. If you use UTF-8, the file must be saved with **UTF-8 without BOM** encoding. Your game can be set to a different encoding, just make sure that the font used supports the encoding used.
+- **GameEncoding** - sets the game encoding hint that tells which locale does the game text use. If the game is made in Unicode mode, then you don't normally need to set this. This option may be useful if the game is done in ASCII/ANSI mode, and base language is not English. In such case the engine needs to know how to interpret game texts when trying to find a translation entry for them. The value of GameEncoding should be set in a format ".NNNN" where "NNNN" is a number of the respective ANSI code page (e.g. ".1252").
 
 Example:
 
@@ -73,7 +74,7 @@ Example:
 //#Encoding=UTF-8
 ```
 
-This would set NormalFont to font 4, leave SpeechFont unchanged, and switch text direction to Right-to-left mode.
+This would set NormalFont to font 4, leave SpeechFont unchanged, and switch text direction to Right-to-left mode. The Encoding hint tells that the translation uses UTF-8 encoding.
 
 **NOTE:** these options are applied to game properties the moment new translation is enabled. But they are not kept permanently while that translation is active. Changing any of these in script would override values set by current translation.
 

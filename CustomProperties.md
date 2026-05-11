@@ -43,15 +43,16 @@ property:
     property will be for objects where you have not set it specifically.
 -   **Translated** - this tells the Editor to either include or not include the Text property type values in Translation file(s).
     This option is available since **AGS 3.6.3**. AGS 3.6.0 to 3.6.2 were always including Text properties into Translation, and any older versions did not do that at all.
+-   **Applies to** - lets you select which types of game objects should have this property.
 
 For example, add a new "Boolean" property. Close the schema editor, and
 then click the "Properties" button again. You'll now have a window with
 a checkbox with the description text you typed in. You can click the
 "Edit schema" button there to return to the schema editor if you like.
 
-All types of game item share the same schema. That is, if you create a
-"Jibble" property in the schema editor for a hotspot, it will also
-appear in the properties window for characters, objects, and so on.
+Since **AGS 3.6.2** custom properties are also listed right in the property grid, under "Custom Properties" section.
+
+Since **AGS 3.6.3** editor allows to rename a existing custom property. This was not available earlier. Renaming a custom property is a complex operation, because editor must process all objects, including room objects in every room, and rename the respective property entry in them. However, it won't automatically rename custom property names in script, so you have to do that by hand.
 
 **Getting and setting values in the script**
 

@@ -171,30 +171,6 @@ will enable cursor mode walk which was disabled before.
 
 ---
 
-### `Mouse.IsModeEnabled`
-
-```ags
-static bool Mouse.IsModeEnabled(int mode)
-```
-
-Returns whether the specified mouse cursor is currently enabled.
-
-Example:
-
-```ags
-if (mouse.IsModeEnabled(eModeWalkto)) {
-    mouse.Mode = eModeWalkto;
-}
-```
-
-will change the "WalkTo" cursor mode, but only if it's currently
-enabled.
-
-*See also:* [`Mouse.EnableMode`](Mouse#mouseenablemode),
-[`Mouse.DisableMode`](Mouse#mousedisablemode)
-
----
-
 ### `Mouse.GetModeGraphic`
 
 ```ags
@@ -244,6 +220,22 @@ will move a GUI gUnderCursor to a position matching left-top corner of the curre
 
 ---
 
+### `Mouse.IsAnyButtonDown`
+
+```ags
+static bool Mouse.IsAnyButtonDown()
+```
+
+Returns whether ANY of the mouse button's is currently pressed down.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Mouse.IsButtonDown`](Mouse#mouseisbuttondown),
+[`IsAnyKeyPressed`](Globalfunctions_General#isanykeypressed)
+[`IsKeyPressed`](Globalfunctions_General#iskeypressed)
+
+---
+
 ### `Mouse.IsButtonDown`
 
 *(Formerly known as global function `IsButtonDown`, which is now
@@ -281,7 +273,33 @@ sec.
 versions.<br>
 *eMouseLeft* and *eMouseRight* supported by all versions.
 
-*See also:* [`IsKeyPressed`](Globalfunctions_General#iskeypressed)
+*See also:* [`Mouse.IsAnyButtonDown`](Mouse#mouseisanybuttondown),
+[`IsAnyKeyPressed`](Globalfunctions_General#isanykeypressed)
+[`IsKeyPressed`](Globalfunctions_General#iskeypressed)
+
+---
+
+### `Mouse.IsModeEnabled`
+
+```ags
+static bool Mouse.IsModeEnabled(int mode)
+```
+
+Returns whether the specified mouse cursor is currently enabled.
+
+Example:
+
+```ags
+if (mouse.IsModeEnabled(eModeWalkto)) {
+    mouse.Mode = eModeWalkto;
+}
+```
+
+will change the "WalkTo" cursor mode, but only if it's currently
+enabled.
+
+*See also:* [`Mouse.EnableMode`](Mouse#mouseenablemode),
+[`Mouse.DisableMode`](Mouse#mousedisablemode)
 
 ---
 

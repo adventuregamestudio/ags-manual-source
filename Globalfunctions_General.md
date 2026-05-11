@@ -839,10 +839,26 @@ will disable the user interface if it's enabled.
 
 ---
 
+### `IsAnyKeyPressed`
+
+```ags
+bool IsAnyKeyPressed()
+```
+
+Returns whether ANY key on the keyboard is currently pressed down.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`IsKeyPressed`](Globalfunctions_General#iskeypressed)
+[`Mouse.IsAnyButtonDown`](Mouse#mouseisanybuttondown),
+[`Mouse.IsButtonDown`](Mouse#mouseisbuttondown)
+
+---
+
 ### `IsKeyPressed`
 
 ```ags
-IsKeyPressed(eKeyCode)
+bool IsKeyPressed(eKeyCode)
 ```
 
 Tests whether the supplied key on the keyboard is currently pressed down
@@ -873,7 +889,9 @@ if (IsKeyPressed(eKeyUpArrow))
 will move the character EGO upwards 3 pixels when the up arrow is
 pressed.
 
-*See also:* [`Mouse.IsButtonDown`](Mouse#mouseisbuttondown)
+*See also:* [`IsAnyKeyPressed`](Globalfunctions_General#isanykeypressed)
+[`Mouse.IsAnyButtonDown`](Mouse#mouseisanybuttondown),
+[`Mouse.IsButtonDown`](Mouse#mouseisbuttondown)
 
 ---
 
@@ -1814,7 +1832,9 @@ ESC the game could appear to hang.
 UpdateInventory ()
 ```
 
-Updates the on-screen inventory display. If you add or remove inventory
+**This function is obsolete since AGS 3.6.3.**
+
+Updates the on-screen inventory display. Prior to **AGS 3.6.3** if you add or remove inventory
 items manually (i.e. by using the InventoryQuantity array rather than the
 AddInventory/LoseInventory functions), the display may not get updated.
 In this case call this function after making your changes, to update
@@ -1823,6 +1843,8 @@ what is displayed to the player.
 Note that using this function will reset the order that items are
 displayed in the inventory window to the same order they were created in
 the editor.
+
+Starting with **AGS 3.6.3** changing InventoryQuantity will actually update both Character.Inventory array and its representation in InventoryWindow, so this function is no longer needed.
 
 *See also:* [`Character.AddInventory`](Character#characteraddinventory),
 [`Character.LoseInventory`](Character#characterloseinventory),

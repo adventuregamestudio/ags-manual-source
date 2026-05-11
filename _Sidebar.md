@@ -179,6 +179,7 @@
   - [String functions](String)
   - [System functions and properties](System)
   - [TextWindowGUI functions and properties](TextWindowGUI)
+  - [Utils functions and properties](Utils)
   - [ViewFrame functions and properties](ViewFrame)
   - [Viewport functions and properties](Viewport)
 - [Obsolete Script API](ObsoleteScriptAPI)

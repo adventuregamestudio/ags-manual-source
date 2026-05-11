@@ -117,7 +117,7 @@ eForwards (the default) or eBackwards.
 Note that for compatibility reasons if direction is eBackwards the animation actually begins with the *previous frame*. If you pass frame 0 (the default) then it will begin with the last frame in the loop.
 
 *Volume* lets you specify the *relative* volume in percents (0-100) of the frame-linked sounds for the duration of this animation. It's 100 by default (which means - unchanged).
-**NOTE:** the *volume* parameter from `Character.Animate` does not replace `Character.AnimationVolume` property, but acts as a relative factor to it and character's scale if [`ScaleVolume`](Character#characterscalevolume) is also set. In other words the final frame sound's volume will be equal to `sound volume * AnimationVolume % * scaled volume % * volume param %`.
+**NOTE:** the *volume* parameter from `Character.Animate` does not replace [`Character.AudioVolume`](Character#characteraudiovolume) property, but acts as a relative factor to it and character's scale if [`ScaleVolume`](Character#characterscalevolume) is also set. In other words the final frame sound's volume will be equal to `sound volume * AudioVolume % * scaled volume % * volume param %`.
 
 Example:
 
@@ -505,12 +505,12 @@ near him and waiting for a while before he makes his move.
 ### `Character.GetAtRoomXY`
 
 ```ags
-static Character* Character.GetAtRoomXY(int x, int y)
+static Character* Character.GetAtRoomXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Checks if there is a character at ROOM co-ordinates (X,Y). Returns the character if there is, or null if there is not.
 
-**NOTE:** Any characters with the "Clickable" property set to false will not be seen by this function.
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
 
 **NOTE:** When looking up for an object under coordinates, GetAtRoomXY is affected by the game setting ["Pixel-perfect click detection"](GeneralSettings#visual). It's possible to change this behavior in script by changing OPT_PIXELPERFECT option (see [SetGameOption](Globalfunctions_General#setgameoption)).
 
@@ -525,7 +525,7 @@ if (target != null) {
 
 will display the message if the room object oBullet is over any character.
 
-*Compatibility:* Supported by **AGS 3.5.0** and later versions.
+*Compatibility:* Supported by **AGS 3.5.0** and later versions. HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Character.GetAtScreenXY`](Character#charactergetatscreenxy),
 [`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy),
@@ -541,15 +541,14 @@ will display the message if the room object oBullet is over any character.
 obsolete)*
 
 ```ags
-static Character* Character.GetAtScreenXY(int x, int y)
+static Character* Character.GetAtScreenXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Checks if there is a character at SCREEN co-ordinates (X,Y). Returns the
 character if there is, or null if there is not. See the description of
 GetLocationName for more on screen co-ordinates.
 
-**NOTE:** Any characters with the "Clickable" property set to false will not
-be seen by this function.
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
 
 **NOTE:** When looking up for an object under coordinates, GetAtScreenXY is affected by the game setting ["Pixel-perfect click detection"](GeneralSettings#visual). It's possible to change this behavior in script by changing OPT_PIXELPERFECT option (see [SetGameOption](Globalfunctions_General#setgameoption)).
 
@@ -561,7 +560,9 @@ if (Character.GetAtScreenXY(mouse.x, mouse.y) == cEgo) {
 }
 ```
 
-will display the message if the mouse cursor is over the EGO character
+will display the message if the mouse cursor is over the EGO character.
+
+*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Character.GetAtRoomXY`](Character#charactergetatroomxy),
 [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy),
@@ -2038,20 +2039,71 @@ will change the player character's animation speed to 4.
 
 ### `Character.AnimationVolume`
 
+**This property was renamed since AGS 3.6.3. See [`Character.AudioVolume`](Character#characteraudiovolume).**
+
+*Compatibility:* Supported by **AGS 3.6.0** and later versions.
+
+---
+
+### `Character.AudioPanning`
+
 ```ags
-int Character.AnimationVolume
+int Character.AudioPanning
+```
+
+Gets/sets the character's animation sound panning, which is a panning (-100 - +100) of frame-linked sounds that play during character's animations.
+
+Currently the panning only works with mono sounds.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioChannel.Panning`](AudioChannel#audiochannelpanning),
+[`Character.Animate`](Character#characteranimate),
+[`Character.ChangeView`](Character#characterchangeview),
+[`Character.View`](Character#characterview),
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
+
+---
+
+### `Character.AudioSpeed`
+
+```ags
+int Character.AudioSpeed
+```
+
+Gets/sets the character's animation sound speed, which is a speed of frame-linked sounds that play during character's animations. The speed is defined in clip's milliseconds per second: 1000 is default, meaning 1000 of
+clip's ms in 1 real second (scale 1:1). Set < 1000 for slower play and > 1000 for faster play.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioChannel.Speed`](AudioChannel#audiochannelspeed),
+[`Character.Animate`](Character#characteranimate),
+[`Character.ChangeView`](Character#characterchangeview),
+[`Character.View`](Character#characterview),
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
+
+---
+
+### `Character.AudioVolume`
+
+*(Formerly known as `Character.AnimationVolume`, which is now obsolete)*
+
+```ags
+int Character.AudioVolume
 ```
 
 Gets/sets the character's animation sound volume, which is a *relative* volume (0-100) of frame-linked sounds that play during character's animations.
 
-**NOTE:** all the volume properties in Character act as relative factors: these are `AnimationVolume`, "volume" parameter of [`Animate`](Character#characteranimate) function, and character's scale if [`ScaleVolume`](Character#characterscalevolume) is also set. The final frame sound's volume will be equal to `sound volume * AnimationVolume % * scaled volume %` in case of a normal view animation (walking, talking, etc), and `sound volume * AnimationVolume % * scaled volume % * Animate's volume param %` when `Animate` is called.
+**NOTE:** all the volume properties in Character act as relative factors: these are `AudioVolume`, "volume" parameter of [`Animate`](Character#characteranimate) function, and character's scale if [`ScaleVolume`](Character#characterscalevolume) is also set. The final frame sound's volume will be equal to `sound volume * AudioVolume % * scaled volume %` in case of a normal view animation (walking, talking, etc), and `sound volume * AudioVolume % * scaled volume % * Animate's volume param %` when `Animate` is called.
 
-*Compatibility:* Supported by **AGS 3.6.0** and later versions.
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
-*See also:* [`Character.Animate`](Character#characteranimate),
+*See also:* [`AudioChannel.Volume`](AudioChannel#audiochannelvolume),
+[`Character.Animate`](Character#characteranimate),
 [`Character.ChangeView`](Character#characterchangeview),
 [`Character.ScaleVolume`](Character#characterscalevolume),
-[`Character.View`](Character#characterview)
+[`Character.View`](Character#characterview),
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
 
 ---
 
@@ -2615,6 +2667,46 @@ character as an overlay to display rain or snow onto a scene.
 
 ---
 
+### `Character.Inventory`
+
+```ags
+readonly InventoryItem* Character.Inventory[]
+```
+
+Gets the inventory item in the particular position of the character's inventory. The array index has a valid range from 0 to (Character.InventoryCount - 1).
+
+This property lets you access and iterate all items that the character currently has, in the order of acquisition. If "Display multiple icons for multiple items" is disabled in General Settings, then each item will be present only once, regardless of the times it was added, and their actual quantity in inventory may be found using [`Character.InventoryQuantity`](Character#characterinventoryquantity). If duplicates are allowed, then inventory may contain multiple instances of the same item, exactly in the order they were added.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.AddInventory`](Character#characteraddinventory),
+[`Character.HasInventory`](Character#characterhasinventory),
+[`Character.LoseInventory`](Character#characterloseinventory)
+[`Character.InventoryCount`](Character#characterinventorycount)
+[`Character.InventoryQuantity`](Character#characterinventoryquantity)
+
+---
+
+### `Character.InventoryCount`
+
+```ags
+readonly int Character.InventoryCount
+```
+
+Gets total number of items in the character's inventory.
+
+If "Display multiple icons for multiple items" is disabled in General Settings, then each item will be present only once, regardless of the times it was added, and their actual quantity in inventory may be found using [`Character.InventoryQuantity`](Character#characterinventoryquantity). If duplicates are allowed, then inventory may contain multiple instances of the same item.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.AddInventory`](Character#characteraddinventory),
+[`Character.HasInventory`](Character#characterhasinventory),
+[`Character.LoseInventory`](Character#characterloseinventory)
+[`Character.Inventory`](Character#characterinventory)
+[`Character.InventoryQuantity`](Character#characterinventoryquantity)
+
+---
+
 ### `Character.InventoryQuantity`
 
 *(Formerly known as `character[].inv`, which is now obsolete)*
@@ -2632,9 +2724,10 @@ modify the character's inventory; however, if you need to add or remove
 a large number of items in one go, directly changing this array can be
 an easier method.
 
-If you change this array directly, the on-screen inventory will not be
-updated. In this case, you must call UpdateInventory to see any new or
-removed items.
+Prior to **AGS 3.6.3** if you change this array directly, the on-screen inventory will not be
+updated. In this case, you must call UpdateInventory to see any new or removed items.
+
+In **AGS 3.6.3** and higher adding new items or removing items by setting their quantity to zero will actually work similar to AddInventory and LoseInventory, so UpdateInventory is no longer necessary.
 
 If you just want to quickly check whether the character has a particular
 item or not, use the [`HasInventory`](Character#characterhasinventory)

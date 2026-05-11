@@ -12,12 +12,14 @@ has its own specific section.
 *(Formerly known as `GetGUIObjectAt`, which is now obsolete)*
 
 ```ags
-static GUIControl* GUIControl.GetAtScreenXY(int x, int y)
+static GUIControl* GUIControl.GetAtScreenXY(int x, int y, optional HitTestOptions guiHitOptions, optional HitTestOptions controlHitOptions)
 ```
 
 Checks whether there is a GUI control at screen co-ordinates (X,Y).
 Returns the control object if there is, or null if there is not. You
-probably want to use this in conjunction with GetGUIAtLocation.
+probably want to use this in conjunction with [`GUI.GetAtScreenXY`](GUI#guigetatscreenxy).
+
+Optional HitTestOptions parameters guiHitOptions and controlHitOptions define an additional object filter (supported since **AGS 3.6.3**). They are both equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) GUI and GUI controls will be found. Pass `eHit_Any` instead, if you like even non-clickable gui controls to be found.
 
 Example:
 
@@ -36,6 +38,8 @@ else {
 ```
 
 will display what control the mouse is over.
+
+*Compatibility:* HitTestOptions parameters are supported since **AGS 3.6.3**.
 
 *See also:* [`GUI.GetAtScreenXY`](GUI#guigetatscreenxy)
 

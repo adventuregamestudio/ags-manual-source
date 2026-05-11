@@ -20,6 +20,8 @@ right-click it and choose "Add synonym". You'll notice that the new word
 is given the same number as the old one. All words with the same number
 are considered identical by the parser.
 
+Since **AGS 3.6.3** you can also add any number of synonyms in the same entry, if you write them as a comma-separated list, e.g. "apple,fruit".
+
 You will notice that the provided list has a lot of words with number 0.
 This is a special number, that indicates that the parser should ignore
 the word completely. In our previous example, the player might type

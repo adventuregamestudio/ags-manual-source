@@ -447,6 +447,33 @@ enum GUIPopupStyle {
 
 ---
 
+### `HitTestOptions`
+
+```ags
+enum HitTestOptions {
+    eHit_Any = 0,
+	eHit_Interactable = 0x0001
+};
+```
+
+Defines options for finding an object under certain coordinates.
+
+*Compatibility:* supported by **AGS 3.6.3** and higher.
+
+*Used by:* [`Character.GetAtRoomXY`](Character#charactergetatroomxy),
+[`Character.GetAtScreenXY`](Character#charactergetatscreenxy),
+[`GUI.GetAtScreenXY`](GUI#guigetatscreenxy),
+[`GUIControl.GetAtScreenXY`](GUIControl#guicontrolgetatscreenxy),
+[`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy),
+[`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy),
+[`InventoryItem.GetAtScreenXY`](InventoryItem#inventoryitemgetatscreenxy),
+[`Object.GetAtRoomXY`](Object#objectgetatroomxy),
+[`Object.GetAtScreenXY`](Object#objectgetatscreenxy),
+[`Region.GetAtRoomXY`](Region#regiongetatroomxy),
+[`Region.GetAtScreenXY`](Region#regiongetatscreenxy)
+
+---
+
 ### `HorizontalAlignment`
 
 ```ags
@@ -785,18 +812,22 @@ enum StopMovementStyle
 ```ags
 enum StringCompareStyle {
     eCaseInsensitive = 0,
-    eCaseSensitive = 1
+    eCaseSensitive = 1,
+	eCaseInsensitiveLocaleAware = 2,
+	eCaseSensitiveLocaleAware = 3
 };
 ```
 
-*Compatibility:* supported by **AGS 3.5.0** and higher.
+*Compatibility:* supported by **AGS 3.5.0** and higher. "Locale Aware" styles are supported since **AGS 3.6.3**.
 
 *Used by:* [`Dictionary.Create`](Dictionary#dictionarycreate),
+[`List.SortItems`](List#listsortitems),
 [`Set.Create`](Set#setcreate),
 [`String.CompareTo`](String#stringcompareto),
 [`String.EndsWith`](String#stringendswith),
 [`String.Replace`](String#stringreplace),
-[`String.StartsWith`](String#stringstartswith)
+[`String.StartsWith`](String#stringstartswith),
+[`Utils.SortStrings`](Utils#utilssortstrings)
 
 ---
 

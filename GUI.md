@@ -58,7 +58,7 @@ triggers OnClick event for gMainMenu.
 *(Formerly known as `GetGUIAt`, which is now obsolete)*
 
 ```ags
-static GUI* GUI.GetAtScreenXY(int x, int y)
+static GUI* GUI.GetAtScreenXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Checks whether there is currently a GUI at screen co-ordinates (X,Y). If
@@ -70,8 +70,7 @@ then *null* is returned. If null is returned, do NOT attempt to call any
 methods or use any properties of the GUI (since it does not actually
 exist).
 
-**NOTE:** This command will not find any GUIs that are set as
-Non-Clickable (i.e. the "Clickable" checkbox not checked).
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
 
 Example:
 
@@ -89,6 +88,8 @@ else {
 ```
 
 will display the number of the GUI that the mouse is over.
+
+*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:*
 [`GUIControl.GetAtScreenXY`](GUIControl#guicontrolgetatscreenxy),

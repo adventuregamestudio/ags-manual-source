@@ -33,6 +33,8 @@ Above script will get maximal and currently filled amount of the engine's sprite
 *See also:* [`System.GetEngineString`](System#systemgetenginestring),
 [EngineValueID Enum](StandardEnums#enginevalueid)
 
+---
+
 ### `System.GetEngineString`
 
 ```ags
@@ -58,6 +60,8 @@ Display("Running on AGS engine %s", engineVersion);
 
 *See also:* [`System.GetEngineInteger`](System#systemgetengineinteger),
 [EngineValueID Enum](StandardEnums#enginevalueid)
+
+---
 
 ### `System.Log`
 

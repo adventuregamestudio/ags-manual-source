@@ -3,12 +3,14 @@
 ### `Hotspot.GetAtRoomXY`
 
 ```ags
-static Hotspot* Hotspot.GetAtRoomXY(int x, int y)
+static Hotspot* Hotspot.GetAtRoomXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Returns the hotspot at ROOM co-ordinates (X,Y). If there is no hotspot
 there, or if invalid co-ordinates are specified, the Hotspot\*
 representing hotspot 0 will be returned.
+
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled) hotspots will be found. Pass `eHit_Any` instead, if you like even disabled hotspots to be found.
 
 Example:
 
@@ -20,7 +22,7 @@ if (Hotspot.GetAtRoomXY(player.x, player.y) == hPressurePlate) {
 
 will display the message if the player character is over the hPressurePlate hotspot.
 
-*Compatibility:* Supported by **AGS 3.5.0** and later versions.
+*Compatibility:* Supported by **AGS 3.5.0** and later versions. HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy),
 [`Character.GetAtRoomXY`](Character#charactergetatroomxy),
@@ -36,12 +38,14 @@ will display the message if the player character is over the hPressurePlate hots
 obsolete)*
 
 ```ags
-static Hotspot* Hotspot.GetAtScreenXY(int x, int y)
+static Hotspot* Hotspot.GetAtScreenXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Returns the hotspot at SCREEN co-ordinates (X,Y). If there is no hotspot
 there, or if invalid co-ordinates are specified, the Hotspot\*
 representing hotspot 0 will be returned.
+
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled) hotspots will be found. Pass `eHit_Any` instead, if you like even disabled hotspots to be found.
 
 Example:
 
@@ -55,6 +59,8 @@ else
 ```
 
 will display a message depending on what the mouse is on.
+
+*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy), [`Character.GetAtScreenXY`](Character#charactergetatscreenxy), [`Object.GetAtScreenXY`](Object#objectgetatscreenxy), [`Region.GetAtScreenXY`](Region#regiongetatscreenxy), [`Game.GetLocationName`](Game#gamegetlocationname), [`GetLocationType`](Globalfunctions_General#getlocationtype)
 

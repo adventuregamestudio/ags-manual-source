@@ -60,6 +60,8 @@ Font options let you define certain font substitutes for this particular transla
 - **TextDirection** - sets the direction in which the text is written. This corresponds to calling the [`SetGameOption`](Globalfunctions_General#setgameoption) script function with the OPT_RIGHTTOLEFT argument. The value may be `LEFT` (for left-to-right), `RIGHT` (for right-to-left) or `DEFAULT`.
 - **Encoding** - sets the encoding hint that matches the encoding of the file. If you use UTF-8, the file must be saved with **UTF-8 without BOM** encoding. Your game can be set to a different encoding, just make sure that the font used supports the encoding used.
 - **GameEncoding** - sets the game encoding hint that tells which locale does the game text use. If the game is made in Unicode mode, then you don't normally need to set this. This option may be useful if the game is done in ASCII/ANSI mode, and base language is not English. In such case the engine needs to know how to interpret game texts when trying to find a translation entry for them. The value of GameEncoding should be set in a format ".NNNN" where "NNNN" is a number of the respective ANSI code page (e.g. ".1252").
+- **Language** - lets specify a base game language. This setting is be used whenever engine needs to identify the game text as being of a particular language or using particular alphabet. For example: alphabetic string comparison and sort. In particular, this setting affects "locale aware" string compare styles in script. Assign a standardized language definition in a form of "en_US", or leave unassigned if you don't require this feature.
+- **AutoTranslateParserSaid** - can be either "ON" or "OFF" (where OFF is a default). If enabled, then pattern strings passed into Parser.Said function will be translated automatically (if the translation is provided by you). See ["Translating Text Parser"](Translations#translatingtextparser) for more details.
 
 Example:
 
@@ -77,6 +79,22 @@ Example:
 This would set NormalFont to font 4, leave SpeechFont unchanged, and switch text direction to Right-to-left mode. The Encoding hint tells that the translation uses UTF-8 encoding.
 
 **NOTE:** these options are applied to game properties the moment new translation is enabled. But they are not kept permanently while that translation is active. Changing any of these in script would override values set by current translation.
+
+### Translating Text Parser
+
+This feature is available since **AGS 3.6.3**, and must be enabled in [General Settings](GeneralSettings#translation) using "Translate Text Parser" option.
+
+For the Text Parser's overview please see the [respective section](TextParser).
+
+The Text Parser is special in a way that its synonym words cannot be translated individually. That's because another language may not have a direct equivalent to every synonym of the base language, or, on contrary, require more synonyms compared to the base language, for convenience. There also is a chance that certain word is met both in regular game texts and parser's dictionary, and must be translated differently in these two cases.
+
+For that reason, Text Parser's words are not added into the Translation one by one, but instead added as "word group" entries containing whole list of comma-separated synonyms. Similarly, they must be translated as a list of comma-separated synonyms.
+
+Each Text parser's entry is prepended with a "//$PARSERWORD=N" annotation, where N is a word group ID. This annotation must not be removed.
+
+Another thing that you might want decide is whether you will translate Parser.Said patterns. These patterns usually have a certain order of "object" and "verb" words. For example, in English language, the order is "verb object", such as "take apple" for example. Other languages may have either same or different order. If the order is same, then you dont have to translate these (you might still do if you want). If the order is different, then you SHOULD translate these, using exact words from the translated word groups (or players will find that they have to type commands using unusual expressions).
+
+If you translate Parser.Said strings, then consider enabling automatic translation of this function's input using "AutoTranslateParserSaid" option (see [list of options](Translations#additionaloptions)).
 
 ### Font overrides
 
@@ -114,6 +132,10 @@ Examples:
 // Replace font 1 with a custom font
 //#Font1=File=example.ttf;Size=12;Outline=AUTO;
 ```
+
+### Other annotations
+
+Since **AGS 3.6.3** the obsolete entries are annotated with "//$OBSOLETE". These will not be included when compiling a translation. What to do with these is entirely up to you; you may safely delete them in any case.
 
 ### Troubleshooting
 

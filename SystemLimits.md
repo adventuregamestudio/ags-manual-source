@@ -8,7 +8,7 @@ similar, chances are this section will answer it.
 
 | Item | 3.6.0 | 3.6.2 | 3.6.3 |
 |-|-|-|-|
-| Audio channels | 16 | 16 | 16 |
+| Audio channels | 16 | 16 | 32 |
 | Background frames per room | 5 | 5 | 5 |
 | Characters | unlimited | unlimited  | unlimited |
 | Cursors | unlimited | unlimited | unlimited |

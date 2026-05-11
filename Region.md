@@ -5,12 +5,14 @@
 *(Formerly known as global function `GetRegionAt`, which is now obsolete)*
 
 ```ags
-static Region* Region.GetAtRoomXY(int x, int y)
+static Region* Region.GetAtRoomXY(int x, int y, optional HitTestOptions hitOptions
 ```
 
 Returns the region at ROOM co-ordinates (X,Y). If there is no region
-there, or if invalid co-ordinates are specified, the Region\*
+there, or if invalid co-ordinates are specified, the Region
 representing region 0 will be returned.
+
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled) regions will be found. Pass `eHit_Any` instead, if you like even disabled regions to be found.
 
 Example:
 
@@ -19,6 +21,8 @@ if (Region.GetAtRoomXY(player.x, player.y) == region[0]) {
     Display("The player is not currently standing on a region.");
 }
 ```
+
+*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Region.GetAtScreenXY`](Region#regiongetatscreenxy), [`Character.GetAtRoomXY`](Character#charactergetatroomxy),
 [`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy),
@@ -29,12 +33,14 @@ if (Region.GetAtRoomXY(player.x, player.y) == region[0]) {
 ### `Region.GetAtScreenXY`
 
 ```ags
-static Region* Region.GetAtScreenXY(int x, int y)
+static Region* Region.GetAtScreenXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Returns the region at SCREEN co-ordinates (X,Y). If there is no region
-there, or if invalid co-ordinates are specified, the Region\*
+there, or if invalid co-ordinates are specified, the Region
 representing region 0 will be returned.
+
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled) regions will be found. Pass `eHit_Any` instead, if you like even disabled regions to be found.
 
 Example:
 
@@ -47,7 +53,7 @@ if (r != region[0]) {
 
 will display the message if there is any region under the mouse cursor.
 
-*Compatibility:* Supported by **AGS 3.5.0** and later versions.
+*Compatibility:* Supported by **AGS 3.5.0** and later versions. HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Region.GetAtRoomXY`](Region#regiongetatroomxy), [`Character.GetAtScreenXY`](Character#charactergetatscreenxy), [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy), [`Object.GetAtScreenXY`](Object#objectgetatscreenxy), [`Game.GetLocationName`](Game#gamegetlocationname), [`GetLocationType`](Globalfunctions_General#getlocationtype)
 

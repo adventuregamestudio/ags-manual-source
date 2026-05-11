@@ -39,6 +39,9 @@ Note that for compatibility reasons if direction is eBackwards the animation act
 
 *Volume* lets you specify the relative volume in percents (0-100) of the frame-linked sounds for the duration of this animation. It's 100 by default (which means - unchanged).
 
+**NOTE:** all the volume properties in Object act as relative factors: these are [`AudioVolume`](Object#objectaudiovolume), "volume" parameter of [`Animate`](Object#objectanimate) function.
+The final frame sound's volume will be equal to `sound volume * AudioVolume % * Animate's volume param %` when `Animate` is called.
+
 You need to use SetView at some stage before this command, in order to
 set up the object's current view.
 
@@ -68,11 +71,13 @@ Optional *volume* parameter is supported only by **AGS 3.6.0** and later version
 ### `Object.GetAtRoomXY`
 
 ```ags
-static Object* Object.GetAtRoomXY(int x, int y)
+static Object* Object.GetAtRoomXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Checks if there is a room object at ROOM co-ordinates (X,Y). Returns
 the object if there is, or *null* if there is not.
+
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
 
 **NOTE:** When looking up for an object under coordinates, GetAtRoomXY is affected by the game setting ["Pixel-perfect click detection"](GeneralSettings#visual). It's possible to change this behavior in script by changing OPT_PIXELPERFECT option (see [SetGameOption](Globalfunctions_General#setgameoption)).
 
@@ -86,7 +91,7 @@ if (Object.GetAtRoomXY(oBullet.x, oBullet.y) == oWall) {
 
 will display the message if the object oBullet is over the object oWall.
 
-*Compatibility:* Supported by **AGS 3.5.0** and later versions.
+*Compatibility:* Supported by **AGS 3.5.0** and later versions. HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Object.GetAtScreenXY`](Object#objectgetatscreenxy),
 [`Character.GetAtRoomXY`](Character#charactergetatroomxy),
@@ -101,11 +106,13 @@ will display the message if the object oBullet is over the object oWall.
 *(Formerly known as global function `GetObjectAt`, which is now obsolete)*
 
 ```ags
-static Object* Object.GetAtScreenXY(int x, int y)
+static Object* Object.GetAtScreenXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Checks if there is a room object at SCREEN co-ordinates (X,Y). Returns
 the object if there is, or *null* if there is not.
+
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
 
 **NOTE:** When looking up for an object under coordinates, GetAtScreenXY is affected by the game setting ["Pixel-perfect click detection"](GeneralSettings#visual). It's possible to change this behavior in script by changing OPT_PIXELPERFECT option (see [SetGameOption](Globalfunctions_General#setgameoption)).
 
@@ -118,6 +125,8 @@ if (Object.GetAtScreenXY(mouse.x, mouse.y) == oRock) {
 ```
 
 will display the message if there is the object oRock under the mouse cursor.
+
+*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Object.GetAtRoomXY`](Object#objectgetatroomxy), [`Character.GetAtScreenXY`](Character#charactergetatscreenxy), [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy), [`Region.GetAtScreenXY`](Region#regiongetatscreenxy), [`Game.GetLocationName`](Game#gamegetlocationname), [`GetLocationType`](Globalfunctions_General#getlocationtype)
 
@@ -689,20 +698,69 @@ you wouldn't need to do this.
 
 ### `Object.AnimationVolume`
 
+**This property was renamed since AGS 3.6.3. See [`Object.AudioVolume`](Object#objectaudioaudiovolume).**
+
+*Compatibility:* Supported by **AGS 3.6.0** and later versions.
+
+---
+
+### `Object.AudioPanning`
+
 ```ags
-int Object.AnimationVolume
+int Object.AudioPanning
+```
+
+Gets/sets the object's animation sound panning, which is a panning (-100 - +100) of frame-linked sounds that play during object's animations.
+
+Currently the panning only works with mono sounds.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioChannel.Panning`](AudioChannel#audiochannelpanning),
+[`Object.Animate`](Object#objectanimate),
+[`Object.SetView`](Object#objectsetview),
+[`Object.View`](Object#objectview),
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
+
+---
+
+### `Object.AudioSpeed`
+
+```ags
+int Object.AudioSpeed
+```
+
+Gets/sets the object's animation sound speed, which is a speed of frame-linked sounds that play during object's animations. The speed is defined in clip's milliseconds per second: 1000 is default, meaning 1000 of
+clip's ms in 1 real second (scale 1:1). Set < 1000 for slower play and > 1000 for faster play.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioChannel.Speed`](AudioChannel#audiochannelspeed),
+[`Object.Animate`](Object#objectanimate),
+[`Object.SetView`](Object#objectsetview),
+[`Object.View`](Object#objectview),
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
+
+---
+
+### `Object.AudioVolume`
+
+```ags
+int Object.AudioVolume
 ```
 
 Gets/sets the object's animation sound volume, which is a *relative* volume (0-100) of frame-linked sounds that play during object's animations.
 
-**NOTE:** all the volume properties in Object act as relative factors: these are `AnimationVolume`, "volume" parameter of [`Animate`](Object#objectanimate) function.
-The final frame sound's volume will be equal to `sound volume * AnimationVolume % * Animate's volume param %` when `Animate` is called.
+**NOTE:** all the volume properties in Object act as relative factors: these are `AudioVolume`, "volume" parameter of [`Animate`](Object#objectanimate) function.
+The final frame sound's volume will be equal to `sound volume * AudioVolume % * Animate's volume param %` when `Animate` is called.
 
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
-*SeeAlso:* [`Object.Animate`](Object#objectanimate),
+*SeeAlso:* [`AudioChannel.Volume`](AudioChannel#audiochannelvolume),
+[`Object.Animate`](Object#objectanimate),
 [`Object.SetView`](Object#objectsetview),
-[`Object.View`](Object#objectview)
+[`Object.View`](Object#objectview),
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
 
 ---
 

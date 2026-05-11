@@ -320,6 +320,26 @@ will scroll the *lstTest* list box up one row.
 
 ---
 
+### `ListBox.SortItems`
+
+```ags
+ListBox.SortItems(StringCompareStyle, SortDirection)
+```
+
+Sorts the ListBox's contents, according to the passed string compare style and sort direction. This is a one time operation, the ListBox won't automatically keep items sorted from now on. If you add more items later and want them sorted, then call this function again.
+
+Example:
+
+```ags
+lstTest.SortItems(eCaseSensitive, eSortDescending);
+```
+
+will arrange the *lstTest* list box's strings, comparing them according to their letter case, in the descending order.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `ListBox.Font`
 
 ```ags

@@ -72,8 +72,8 @@ tells character SOMEGUY to first of all walk to the center of the screen
 normally (obeying walkable areas), then move to the bottom left corner
 and then top left corner afterwards.
 
-*See also:* [`Character.Move`](Character#charactermove)
-[`Character.Walk`](Character#characterwalk)
+*See also:* [`Character.Move`](Character#charactermove),
+ [`Character.Walk`](Character#characterwalk)
 
 ---
 
@@ -1123,11 +1123,11 @@ his destination.
 *Compatibility:* Supported by **AGS 3.1.0** and later versions.
 
 *See also:* [`Character.AddWaypoint`](Character#characteraddwaypoint),
-[`Character.FaceCharacter`](Character#characterfacecharacter),
-[`Character.Walk`](Character#characterwalk),
-[`MoveCharacterToObject`](Globalfunctions_General#movecharactertoobject),
-[`Object.Move`](Object#objectmove),
-[`Character.StopMoving`](Character#characterstopmoving)
+ [`Character.MoveStraight`](Character#charactermovestraight),
+ [`Character.StopMoving`](Character#characterstopmoving),
+ [`Character.Walk`](Character#characterwalk),
+ [`Character.WalkStraight`](Character#characterwalkstraight),
+ [`Object.Move`](Object#objectmove)
 
 ---
 
@@ -1153,9 +1153,12 @@ will make the character move in a straight line 10 pixels towards bottom-right, 
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
-*See also:* [`Character.Move`](Character#charactermove),
+*See also:* [`Character.AddWaypoint`](Character#characteraddwaypoint),
+ [`Character.Move`](Character#charactermove),
+ [`Character.StopMoving`](Character#characterstopmoving)
  [`Character.Walk`](Character#characterwalk),
- [`Character.WalkStraight`](Character#characterwalkstraight)
+ [`Character.WalkStraight`](Character#characterwalkstraight),
+ [`Object.Move`](Object#objectmove)
 
 ---
 
@@ -1596,8 +1599,9 @@ if (cEgo.x > 299)
 
 will stop the character when he reaches the coordinate x=300.
 
-*See also:* [`Character.Walk`](Character#characterwalk),
-[`Object.StopMoving`](Object#objectstopmoving)
+*See also:* [`Character.Move`](Character#charactermove),
+ [`Character.Walk`](Character#characterwalk),
+ [`Object.StopMoving`](Object#objectstopmoving)
 
 ---
 
@@ -1906,11 +1910,11 @@ will make the character walk to 155,122. The script will not continue
 until the character has reached his destination.
 
 *See also:* [`Character.AddWaypoint`](Character#characteraddwaypoint),
-[`Character.FaceCharacter`](Character#characterfacecharacter),
-[`Character.Move`](Character#charactermove),
-[`MoveCharacterToObject`](Globalfunctions_General#movecharactertoobject),
-[`Object.Move`](Object#objectmove),
-[`Character.StopMoving`](Character#characterstopmoving)
+ [`Character.Move`](Character#charactermove),
+ [`Character.MoveStraight`](Character#charactermovestraight),
+ [`Character.StopMoving`](Character#characterstopmoving)
+ [`Character.WalkStraight`](Character#characterwalkstraight),
+ [`Object.Move`](Object#objectmove)
 
 ---
 
@@ -1938,9 +1942,12 @@ cEgo.WalkStraight(cEgo.x + 10, cEgo.y + 10, eBlock);
 
 will make the character walk in a straight line 10 pixels towards bottom-right, unless hitting a non-walkable area earlier.
 
-*See also:* [`Character.Move`](Character#charactermove),
+*See also:* [`Character.AddWaypoint`](Character#characteraddwaypoint),
+ [`Character.Move`](Character#charactermove),
  [`Character.MoveStraight`](Character#charactermovestraight)
+ [`Character.StopMoving`](Character#characterstopmoving)
  [`Character.Walk`](Character#characterwalk)
+ [`Object.Move`](Object#objectmove)
 
 ---
 

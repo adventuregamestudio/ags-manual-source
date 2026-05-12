@@ -255,13 +255,13 @@ far the easiest way to do this would be to put it in a function:
 ```ags
 function do_dance()
 {
-    cEgo.LockView(10);
+    cEgo.LockView(VDANCING);
     cEgo.Animate(2, 5);
     cEgo.UnlockView();
 }
 ```
 
-This function runs view 10, loop 2, as the character's animation, waits
+This function runs view VDANCING, loop 2, as the character's animation, waits
 until it finishes and then reverts to the default view.
 
 **NOTE:** If you're wondering where to place your custom functions, just

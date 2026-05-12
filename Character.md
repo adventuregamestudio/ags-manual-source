@@ -122,12 +122,12 @@ Note that for compatibility reasons if direction is eBackwards the animation act
 Example:
 
 ```ags
-cEgo.LockView(5);
+cEgo.LockView(VPICKUPITEM);
 cEgo.Animate(3, 1, 0, eBlock, eBackwards);
 cEgo.UnlockView();
 ```
 
-will animate the character once using loop number 3 of view 5 backwards,
+will animate the character once using loop number 3 of view VPICKUPITEM backwards,
 and wait until the animation finishes before returning.
 
 *Compatibility:* Optional *frame* parameter is supported only by **AGS 3.5.0** and later versions.<br>
@@ -878,12 +878,12 @@ to take control back.
 Example:
 
 ```ags
-cEgo.LockView(12);
+cEgo.LockView(VPUSHOBJECT);
 cEgo.Animate(0, 0, eOnce, eBlock, eForwards);
 cEgo.UnlockView();
 ```
 
-will change the character's EGO view to view 12, perform an animation
+will change the character's EGO view to view VPUSHOBJECT, perform an animation
 using loop 0, wait until the animation finishes and then return the
 character to his normal view.
 
@@ -944,12 +944,12 @@ allow the program to take control back.
 Example:
 
 ```ags
-cEgo.LockViewAligned(12, 1, eAlignLeft);
+cEgo.LockViewAligned(VTRIPANDFALL, 1, eAlignLeft);
 cEgo.Animate(1, 5, eOnce, eBlock, eForwards);
 cEgo.UnlockView();
 ```
 
-will change the character's EGO view to view 12, perform an animation
+will change the character's EGO view to view VTRIPANDFALL, perform an animation
 using loop 1, wait until the animation finishes and then return the
 character to his normal view.
 
@@ -1043,12 +1043,12 @@ to take control back.
 Example:
 
 ```ags
-cEgo.LockViewOffset(12, 1, -1);
+cEgo.LockViewOffset(VTRIPANDFALL, 1, -1);
 cEgo.Animate(1, 5, eOnce, eBlock, eForwards);
 cEgo.UnlockView();
 ```
 
-will change EGO's view to view 12 and animate using loop 1, meanwhile
+will change EGO's view to view VTRIPANDFALL and animate using loop 1, meanwhile
 all frames will be shifted 1 pixel right and 1 pixel up.
 
 *Compatibility:* Optional *StopMovementStyle* parameter is supported
@@ -1524,10 +1524,10 @@ Following actions are counted as character's "activity" and will reset idle time
 Example:
 
 ```ags
-cEgo.SetIdleView(12, 30);
+cEgo.SetIdleView(VIDLING, 30);
 ```
 
-will change/set the character EGO's idle view to 12. The idle view will
+will change/set the character EGO's idle view to VIDLING. The idle view will
 be played if the character is idle for 30 seconds.
 
 *See also:*
@@ -1849,12 +1849,12 @@ character will keep moving). The default is eStopMoving.
 Example:
 
 ```ags
-cEgo.LockView(12);
+cEgo.LockView(VPICKUPITEM);
 cEgo.Animate(0, 0, eOnce, eBlock, eForwards);
 cEgo.UnlockView();
 ```
 
-will play an animation using loop 0 of view 12, then return the
+will play an animation using loop 0 of view VPICKUPITEM, then return the
 character to its normal view.
 
 *Compatibility:* Optional *StopMovementStyle* parameter is supported
@@ -2171,11 +2171,11 @@ This property has no effect if no
 Example:
 
 ```ags
-cEgo.BlinkView = 10;
+cEgo.BlinkView = VBLINKING;
 cEgo.BlinkInterval = 160;
 ```
 
-will change the character EGO's blink view to view 10, and play the
+will change the character EGO's blink view to view VBLINKING, and play the
 animation every 4 seconds.
 
 *See also:* [`Character.BlinkView`](Character#characterblinkview),
@@ -2202,11 +2202,11 @@ often the blinking animation is played.
 Example:
 
 ```ags
-cEgo.BlinkView = 10;
+cEgo.BlinkView = VBLINKING;
 cEgo.BlinkInterval = 160;
 ```
 
-will change the character EGO's blink view to view 10, and play the
+will change the character EGO's blink view to view VBLINKING, and play the
 animation every 4 seconds.
 
 *See also:*
@@ -3293,10 +3293,10 @@ You can set this to -1 to disable the character's speech view.
 Example:
 
 ```ags
-cEgo.SpeechView = 10;
+cEgo.SpeechView = VSPEAKANGRY;
 ```
 
-will change the character EGO's speech view to view 10.
+will change the character EGO's speech view to view VSPEAKANGRY.
 
 *See also:* [`Character.ChangeView`](Character#characterchangeview),
 [`Character.BlinkView`](Character#characterblinkview),
@@ -3399,10 +3399,10 @@ character when a thought is being displayed.
 Example:
 
 ```ags
-cEgo.ThinkView = 14;
+cEgo.ThinkView = VTHINKING;
 ```
 
-will change the character EGO's thinking view to 14.
+will change the character EGO's thinking view to VTHINKING.
 
 *See also:* [`Character.Think`](Character#characterthink)
 

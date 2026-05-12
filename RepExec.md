@@ -118,7 +118,7 @@ function repeatedly_execute()
     if (hungerTimer == 800)
     {
         Display("You are getting very hungry.");
-        player.LockView(RUBSTOMACH);
+        player.LockView(VRUBSTOMACH);
         player.Animate(0, 5, eOnce, eBlock, eForwards);
         player.UnlockView();
     }

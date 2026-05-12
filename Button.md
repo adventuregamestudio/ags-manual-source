@@ -46,10 +46,10 @@ marked as "Flipped" will in fact be drawn normally when on a button.
 Example:
 
 ```ags
-btnDeathAnim.Animate(6, 2, 4, eRepeat);
+btnDeathAnim.Animate(VPLAYERDEATH, 2, 4, eRepeat);
 ```
 
-will animate the 'btnDeathAnim' button using loop 2 of view 6, with a
+will animate the 'btnDeathAnim' button using loop 2 of view VPLAYERDEATH, with a
 delay of 4 cycles per frame, and repeat the animation continually.
 
 Compatibility: Parameters *BlockingStyle*, *Direction*, *frame* and *volume* are supported only by AGS 3.6.0 and later versions.
@@ -95,7 +95,7 @@ This property is read-only. To change button's animation, use the
 Example:
 
 ```ags
-btnDeathAnim.Animate(6, 2, 4, eRepeat);
+btnDeathAnim.Animate(VPLAYERDEATH, 2, 4, eRepeat);
 while (btnDeathAnim.Animating) Wait(1);
 ```
 

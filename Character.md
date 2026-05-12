@@ -251,10 +251,10 @@ the character's normal walking view.
 Example:
 
 ```ags
-cEgo.ChangeView(5);
+cEgo.ChangeView(VSTEALTH);
 ```
 
-will make the EGO character use view number 5 as his walking view.
+will make the EGO character use view VSTEALTH as his walking view.
 
 *See also:* [`Character.LockView`](Character#characterlockview),
 [`Character.NormalView`](Character#characternormalview)

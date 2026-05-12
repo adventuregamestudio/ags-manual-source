@@ -559,12 +559,12 @@ which view to animate the object with.
 Example:
 
 ```ags
-oDoor.SetView(14);
-oWindow.SetView(5, 2, 1);
+oDoor.SetView(VDOOR);
+oWindow.SetView(VWINDOW, 2, 1);
 ```
 
-will change object oDoor's view to view number 14 while resetting to loop 0 and frame 0 of that view, and change object oWindow to
-view 5, loop 2, frame 1.
+will change object oDoor's view to view VDOOR while resetting to loop 0 and frame 0 of that view, and change object oWindow to
+view VWINDOW, loop 2, frame 1.
 
 *See also:* [`Object.Animate`](Object#objectanimate)
 [`Object.Frame`](Object#objectframe)

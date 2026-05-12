@@ -821,7 +821,7 @@ enum StringCompareStyle {
 *Compatibility:* supported by **AGS 3.5.0** and higher. "Locale Aware" styles are supported since **AGS 3.6.3**.
 
 *Used by:* [`Dictionary.Create`](Dictionary#dictionarycreate),
-[`List.SortItems`](List#listsortitems),
+[`ListBox.SortItems`](ListBox#listboxsortitems),
 [`Set.Create`](Set#setcreate),
 [`String.CompareTo`](String#stringcompareto),
 [`String.EndsWith`](String#stringendswith),

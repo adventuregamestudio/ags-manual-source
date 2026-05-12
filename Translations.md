@@ -61,7 +61,7 @@ Font options let you define certain font substitutes for this particular transla
 - **Encoding** - sets the encoding hint that matches the encoding of the file. If you use UTF-8, the file must be saved with **UTF-8 without BOM** encoding. Your game can be set to a different encoding, just make sure that the font used supports the encoding used.
 - **GameEncoding** - sets the game encoding hint that tells which locale does the game text use. If the game is made in Unicode mode, then you don't normally need to set this. This option may be useful if the game is done in ASCII/ANSI mode, and base language is not English. In such case the engine needs to know how to interpret game texts when trying to find a translation entry for them. The value of GameEncoding should be set in a format ".NNNN" where "NNNN" is a number of the respective ANSI code page (e.g. ".1252").
 - **Language** - lets specify a base game language. This setting is be used whenever engine needs to identify the game text as being of a particular language or using particular alphabet. For example: alphabetic string comparison and sort. In particular, this setting affects "locale aware" string compare styles in script. Assign a standardized language definition in a form of "en_US", or leave unassigned if you don't require this feature.
-- **AutoTranslateParserSaid** - can be either "ON" or "OFF" (where OFF is a default). If enabled, then pattern strings passed into Parser.Said function will be translated automatically (if the translation is provided by you). See ["Translating Text Parser"](Translations#translatingtextparser) for more details.
+- **AutoTranslateParserSaid** - can be either "ON" or "OFF" (where OFF is a default). If enabled, then pattern strings passed into Parser.Said function will be translated automatically (if the translation is provided by you). See ["Translating Text Parser"](Translations#translating-text-parser) for more details.
 
 Example:
 
@@ -94,7 +94,7 @@ Each Text parser's entry is prepended with a "//$PARSERWORD=N" annotation, where
 
 Another thing that you might want decide is whether you will translate Parser.Said patterns. These patterns usually have a certain order of "object" and "verb" words. For example, in English language, the order is "verb object", such as "take apple" for example. Other languages may have either same or different order. If the order is same, then you dont have to translate these (you might still do if you want). If the order is different, then you SHOULD translate these, using exact words from the translated word groups (or players will find that they have to type commands using unusual expressions).
 
-If you translate Parser.Said strings, then consider enabling automatic translation of this function's input using "AutoTranslateParserSaid" option (see [list of options](Translations#additionaloptions)).
+If you translate Parser.Said strings, then consider enabling automatic translation of this function's input using "AutoTranslateParserSaid" option (see [list of options](Translations#additional-options)).
 
 ### Font overrides
 

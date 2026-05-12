@@ -698,7 +698,7 @@ you wouldn't need to do this.
 
 ### `Object.AnimationVolume`
 
-**This property was renamed since AGS 3.6.3. See [`Object.AudioVolume`](Object#objectaudioaudiovolume).**
+**This property was renamed since AGS 3.6.3. See [`Object.AudioVolume`](Object#objectaudiovolume).**
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 

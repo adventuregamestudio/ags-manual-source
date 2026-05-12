@@ -437,7 +437,7 @@ This section is available since **AGS 3.6.3**.
 -   **Include script texts with prefix** - Only text lines in script which have this prefix will be included to Translation file. Leave this option empty to include all (this is the default behavior).
     This option affects both regular scripts and dialog scripts.
 	
--   **Translate Text Parser** - If enabled, then Editor will export Text Parser's words dictionary into Translation file. See [Translations](Translations#translatingtextparser) for more details.
+-   **Translate Text Parser** - If enabled, then Editor will export Text Parser's words dictionary into Translation file. See [Translations](Translations#translating-text-parser) for more details.
 
 ### Visual
 

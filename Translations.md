@@ -80,22 +80,6 @@ This would set NormalFont to font 4, leave SpeechFont unchanged, and switch text
 
 **NOTE:** these options are applied to game properties the moment new translation is enabled. But they are not kept permanently while that translation is active. Changing any of these in script would override values set by current translation.
 
-### Translating Text Parser
-
-This feature is available since **AGS 3.6.3**, and must be enabled in [General Settings](GeneralSettings#translation) using "Translate Text Parser" option.
-
-For the Text Parser's overview please see the [respective section](TextParser).
-
-The Text Parser is special in a way that its synonym words cannot be translated individually. That's because another language may not have a direct equivalent to every synonym of the base language, or, on contrary, require more synonyms compared to the base language, for convenience. There also is a chance that certain word is met both in regular game texts and parser's dictionary, and must be translated differently in these two cases.
-
-For that reason, Text Parser's words are not added into the Translation one by one, but instead added as "word group" entries containing whole list of comma-separated synonyms. Similarly, they must be translated as a list of comma-separated synonyms.
-
-Each Text parser's entry is prepended with a "//$PARSERWORD=N" annotation, where N is a word group ID. This annotation must not be removed.
-
-Another thing that you might want decide is whether you will translate Parser.Said patterns. These patterns usually have a certain order of "object" and "verb" words. For example, in English language, the order is "verb object", such as "take apple" for example. Other languages may have either same or different order. If the order is same, then you dont have to translate these (you might still do if you want). If the order is different, then you SHOULD translate these, using exact words from the translated word groups (or players will find that they have to type commands using unusual expressions).
-
-If you translate Parser.Said strings, then consider enabling automatic translation of this function's input using "AutoTranslateParserSaid" option (see [list of options](Translations#additional-options)).
-
 ### Font overrides
 
 Starting with **AGS 3.6.3** you can specify font overrides in the translation file. Font override defines replacement of one or more of the game fonts with either another game font, or completely custom font setup. These replacements are applied whenever translation is enabled in game, and are restored to defaults when it's disabled.
@@ -133,9 +117,30 @@ Examples:
 //#Font1=File=example.ttf;Size=12;Outline=AUTO;
 ```
 
+### Translating Text Parser
+
+This feature is available since **AGS 3.6.3**, and must be enabled in [General Settings](GeneralSettings#translation) using "Translate Text Parser" option.
+
+For the Text Parser's overview please see the [respective section](TextParser).
+
+The Text Parser is special in a way that its synonym words cannot be translated individually. That's because another language may not have a direct equivalent to every synonym of the base language, or, on contrary, require more synonyms compared to the base language, for convenience. There also is a chance that certain word is met both in regular game texts and parser's dictionary, and must be translated differently in these two cases.
+
+For that reason, Text Parser's words are not added into the Translation one by one, but instead added as "word group" entries containing whole list of comma-separated synonyms. Similarly, they must be translated as a list of comma-separated synonyms.
+
+Each Text parser's entry is prepended with a "//$PARSERWORD:N" annotation, where N is a word group ID. This annotation must not be removed.
+
+Another thing that you might want decide is whether you will translate Parser.Said patterns. These patterns usually have a certain order of "object" and "verb" words. For example, in English language, the order is "verb object", such as "take apple" for example. Other languages may have either same or different order. If the order is same, then you dont have to translate these (you might still do if you want). If the order is different, then you SHOULD translate these, using exact words from the translated word groups (or players will find that they have to type commands using unusual expressions).
+
+If you translate Parser.Said strings, then consider enabling automatic translation of this function's input using "AutoTranslateParserSaid" option (see [list of options](Translations#additional-options)).
+
 ### Other annotations
 
-Since **AGS 3.6.3** the obsolete entries are annotated with "//$OBSOLETE". These will not be included when compiling a translation. What to do with these is entirely up to you; you may safely delete them in any case.
+Since **AGS 3.6.3** the Editor recognizes annotation syntax in translation source file. The general syntax is "//$ANNOTATION" or "//$ANNOTATION: VALUE". You are allowed to add any number of annotations right before the translation entry, and Editor will read them and keep when updating translation with the new lines from the game. Some annotations, such as "//$PARSERWORD", have special meaning and must not be misused. But you may add any custom ones for your own purposes too. For example, you may add "//$COMMENT:" annotation and write commentary for the text lines.
+
+Special annotations are:
+* //$OBSOLETE - marks lines that are no longer found in game. When updating translation, Editor removes obsolete lines if they are not translated, and keeps them, marking with "//$OBSOLETE" if they have a translation line already. What to do with these is entirely up to you; you may safely delete them in any case.
+* //$PARSERWORD: N - used when translating parser words dictionary. See [respective section](Translation#translating-text-parser) for details.
+* //$SECTION: - used to mark the beginning of a group of text lines, belonging to the same category, such as certain script or room.
 
 ### Troubleshooting
 

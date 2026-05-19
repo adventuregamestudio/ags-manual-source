@@ -139,7 +139,7 @@ Since **AGS 3.6.3** the Editor recognizes annotation syntax in translation sourc
 
 Special annotations are:
 * //$OBSOLETE - marks lines that are no longer found in game. When updating translation, Editor removes obsolete lines if they are not translated, and keeps them, marking with "//$OBSOLETE" if they have a translation line already. What to do with these is entirely up to you; you may safely delete them in any case.
-* //$PARSERWORD: N - used when translating parser words dictionary. See [respective section](Translation#translating-text-parser) for details.
+* //$PARSERWORD: N - used when translating parser words dictionary. See [respective section](Translations#translating-text-parser) for details.
 * //$SECTION: - used to mark the beginning of a group of text lines, belonging to the same category, such as certain script or room.
 
 ### Troubleshooting

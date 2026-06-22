@@ -290,7 +290,7 @@ will set the pivot to the rightmost camera's edge.
 *See also:* [`Camera.PivotY`](Camera#camerapivoty),
 [`Camera.PivotOffsetX`](Camera#camerapivotoffsetx),
 [`Camera.PivotOffsetY`](Camera#camerapivotoffsety),
-[`Camera.Rotation`](Camera#cameragraphicrotation)
+[`Camera.Rotation`](Camera#camerarotation)
 
 ---
 
@@ -318,7 +318,7 @@ will set the pivot to the topmost camera's edge.
 *See also:* [`Camera.PivotX`](Camera#camerapivotx),
 [`Camera.PivotOffsetX`](Camera#camerapivotoffsetx),
 [`Camera.PivotOffsetY`](Camera#camerapivotoffsety),
-[`Camera.Rotation`](Camera#cameragraphicrotation)
+[`Camera.Rotation`](Camera#camerarotation)
 
 ---
 
@@ -335,7 +335,7 @@ Gets/sets the camera's pivot relative offset on X axis, in pixels. This offset i
 *See also:* [`Camera.PivotX`](Camera#camerapivotx),
 [`Camera.PivotY`](Camera#camerapivoty),
 [`Camera.PivotOffsetY`](Camera#camerapivotoffsety),
-[`Camera.Rotation`](Camera#cameragraphicrotation)
+[`Camera.Rotation`](Camera#camerarotation)
 
 ---
 
@@ -352,7 +352,7 @@ Gets/sets the camera's pivot relative offset on Y axis, in pixels. This offset i
 *See also:* [`Camera.PivotX`](Camera#camerapivotx),
 [`Camera.PivotY`](Camera#camerapivoty),
 [`Camera.PivotOffsetX`](Camera#camerapivotoffsetx),
-[`Camera.Rotation`](Camera#cameragraphicrotation)
+[`Camera.Rotation`](Camera#camerarotation)
 
 ---
 
@@ -371,7 +371,7 @@ Note that what's seen inside the camera is rotated in the opposite direction, fo
 *See also:* [`Camera.PivotX`](Camera#camerapivotx),
 [`Camera.PivotY`](Camera#camerapivoty),
 [`Camera.PivotOffsetX`](Camera#camerapivotoffsetx),
-[`Camera.PivotOffsetY`](Camera#camerapivotoffsety),
+[`Camera.PivotOffsetY`](Camera#camerapivotoffsety)
 
 ---
 

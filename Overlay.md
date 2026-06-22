@@ -513,7 +513,7 @@ will set the pivot to the rightmost sprite's edge.
 *See also:* [`Overlay.GraphicPivotY`](Overlay#overlaygraphicpivoty),
 [`Overlay.GraphicPivotOffsetX`](Overlay#overlaygraphicpivotoffsetx),
 [`Overlay.GraphicPivotOffsetY`](Overlay#overlaygraphicpivotoffsety),
-[`Overlay.GraphicRotation`](Overlay#overlaygraphicrotation)
+[`Overlay.GraphicRotation`](Overlay#overlayrotation)
 
 ---
 
@@ -541,7 +541,7 @@ will set the pivot to the topmost sprite's edge.
 *See also:* [`Overlay.GraphicPivotX`](Overlay#overlaygraphicpivotx),
 [`Overlay.GraphicPivotOffsetX`](Overlay#overlaygraphicpivotoffsetx),
 [`Overlay.GraphicPivotOffsetY`](Overlay#overlaygraphicpivotoffsety),
-[`Overlay.GraphicRotation`](Overlay#overlaygraphicrotation)
+[`Overlay.GraphicRotation`](Overlay#overlayrotation)
 
 ---
 
@@ -558,7 +558,7 @@ Gets/sets the overlay's sprite pivot relative offset on X axis, in pixels. This 
 *See also:* [`Overlay.GraphicPivotX`](Overlay#overlaygraphicpivotx),
 [`Overlay.GraphicPivotY`](Overlay#overlaygraphicpivoty),
 [`Overlay.GraphicPivotOffsetY`](Overlay#overlaygraphicpivotoffsety),
-[`Overlay.GraphicRotation`](Overlay#overlaygraphicrotation)
+[`Overlay.GraphicRotation`](Overlay#overlayrotation)
 
 ---
 
@@ -575,7 +575,7 @@ Gets/sets the overlay's sprite pivot relative offset on Y axis, in pixels. This 
 *See also:* [`Overlay.GraphicPivotX`](Overlay#overlaygraphicpivotx),
 [`Overlay.GraphicPivotY`](Overlay#overlaygraphicpivoty),
 [`Overlay.GraphicPivotOffsetX`](Overlay#overlaygraphicpivotoffsetx),
-[`Overlay.GraphicRotation`](Overlay#overlaygraphicrotation)
+[`Overlay.GraphicRotation`](Overlay#overlayrotation)
 
 ---
 
@@ -688,8 +688,7 @@ Gets/sets the overlay's image rotation in degrees, clockwise.
 *See also:* [`Overlay.GraphicPivotX`](Overlay#overlaygraphicpivotx),
 [`Overlay.GraphicPivotY`](Overlay#overlaygraphicpivoty),
 [`Overlay.GraphicPivotOffsetX`](Overlay#overlaygraphicpivotoffsetx),
-[`Overlay.GraphicPivotOffsetY`](Overlay#overlaygraphicpivotoffsety),
-[`Overlay.GraphicRotation`](Overlay#overlaygraphicrotation)
+[`Overlay.GraphicPivotOffsetY`](Overlay#overlaygraphicpivotoffsety)
 
 ---
 

@@ -613,6 +613,58 @@ Retrieves the player's companion name from its custom property, and gets a point
 
 ---
 
+### `Character.GetGraphicPosition`
+
+```ags
+Point[] Character.GetGraphicPosition()
+```
+
+Returns a dynamic array containing 4 Points, with positions of the actual character's sprite corners. These positions are in room coordinates, and are given starting with the Top-Left corner clockwise (Top-Left, Top-Right, Bottom-Right, Bottom-Left).
+
+This function is useful to know where exactly the sprite is located, as it accounts for any sprite's transformations, such as scaling and rotation.
+
+Example:
+
+```ags
+Point[] sprite_pos = player.GetGraphicPosition();
+Overlay* over = Overlay.CreateGraphical(sprite_pos[2].x, sprite_pos[2].y, 100);
+```
+
+will create a new overlay exactly at the character sprite's bottom-right corner.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GetGraphicBoundBox`](Character#charactergetgraphicboundbox)
+
+---
+
+### `Character.GetGraphicBoundBox`
+
+```ags
+Point[] Character.GetGraphicBoundBox()
+```
+
+Returns a dynamic array containing 4 Points, with positions of the character's sprite's axis-aligned bounding box. These positions are in room coordinates, and are given starting with the Top-Left corner clockwise (Top-Left, Top-Right, Bottom-Right, Bottom-Left).
+
+This function is used to get the imaginary axis-aligned box drawn around the sprite. This may be necessary if you like to know the in-room or on-screen rectangle that the sprite occupies.
+
+Example:
+
+```ags
+Point[] sprite_pos = player.GetGraphicBoundBox();
+Overlay* over = Overlay.CreateGraphical(sprite_pos[0].x, sprite_pos[0].y, 100);
+over.SetSize(sprite_pos[1].x - sprite_pos[0].x, sprite_pos[1].y - sprite_pos[0].y);
+over.Transparency = 50;
+```
+
+will create a half-transparent overlay covering the character sprite.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GetGraphicPosition`](Character#charactergetgraphicposition)
+
+---
+
 ### `Character.GetProperty`
 
 *(Formerly known as `GetCharacterProperty`, which is now obsolete)*
@@ -2562,13 +2614,103 @@ Gets/sets the character's sprite relative offset on Y axis, in pixels.
 
 ---
 
+### `Character.GraphicPivotX`
+
+```ags
+float Character.GraphicPivotX
+```
+
+Gets/sets the character's sprite pivot (rotation center) X position. The pivot is depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 corresponds to the sprite's left side, 1.0 corresponds to the sprite's right side, and any value in between means a proportional distance from the sprite's left edge.
+For example, value of 0.3 means that a sprite is rotated around the point which is one third inside the sprite horizontally counting from left edge.
+
+The default character's sprite pivot is (x: 0.5, y: 0.5) which corresponds to the sprite's center.
+
+Example:
+
+```ags
+player.GraphicPivotX = 1.0;
+```
+
+will set the pivot to the rightmost sprite's edge.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicPivotY`](Character#charactergraphicpivoty),
+[`Character.GraphicPivotOffsetX`](Character#charactergraphicpivotoffsetx),
+[`Character.GraphicPivotOffsetY`](Character#charactergraphicpivotoffsety),
+[`Character.GraphicRotation`](Character#charactergraphicrotation)
+
+---
+
+### `Character.GraphicPivotY`
+
+```ags
+float Character.GraphicPivotY
+```
+
+Gets/sets the character's sprite pivot (rotation center) Y position. The pivot is depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 corresponds to the sprite's top side, 1.0 corresponds to the sprite's bottom side, and any value in between means a proportional distance from the sprite's top edge.
+For example, value of 0.3 means that a sprite is rotated around the point which is one third inside the sprite vertically counting from top edge.
+
+The default character's sprite pivot is (x: 0.5, y: 0.5) which corresponds to the sprite's center.
+
+Example:
+
+```ags
+player.GraphicPivotY = 0.0;
+```
+
+will set the pivot to the topmost sprite's edge.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicPivotX`](Character#charactergraphicpivotx),
+[`Character.GraphicPivotOffsetX`](Character#charactergraphicpivotoffsetx),
+[`Character.GraphicPivotOffsetY`](Character#charactergraphicpivotoffsety),
+[`Character.GraphicRotation`](Character#charactergraphicrotation)
+
+---
+
+### `Character.GraphicPivotOffsetX`
+
+```ags
+float Character.GraphicPivotOffsetX
+```
+
+Gets/sets the character's sprite pivot relative offset on X axis, in pixels. This offset is combined with the [GraphicPivotX](Character#charactergraphicpivotx) property.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicPivotX`](Character#charactergraphicpivotx),
+[`Character.GraphicPivotY`](Character#charactergraphicpivoty),
+[`Character.GraphicPivotOffsetY`](Character#charactergraphicpivotoffsety),
+[`Character.GraphicRotation`](Character#charactergraphicrotation)
+
+---
+
+### `Character.GraphicPivotOffsetY`
+
+```ags
+float Character.GraphicPivotOffsetY
+```
+
+Gets/sets the character's sprite pivot relative offset on Y axis, in pixels. This offset is combined with the [GraphicPivotY](Character#charactergraphicpivoty) property.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicPivotX`](Character#charactergraphicpivotx),
+[`Character.GraphicPivotY`](Character#charactergraphicpivoty),
+[`Character.GraphicPivotOffsetX`](Character#charactergraphicpivotoffsetx),
+[`Character.GraphicRotation`](Character#charactergraphicrotation)
+
+---
+
 ### `Character.GraphicRotation`
 
 ```ags
 float Character.GraphicRotation
 ```
 
-Gets/sets the character's sprite rotation in degrees.
+Gets/sets the character's sprite rotation in degrees, clockwise.
 
 Example:
 
@@ -2579,6 +2721,11 @@ player.GraphicRotation = 180.0;
 will rotate the player character sprite by 180 degrees.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.GraphicPivotX`](Character#charactergraphicpivotx),
+[`Character.GraphicPivotY`](Character#charactergraphicpivoty),
+[`Character.GraphicPivotOffsetX`](Character#charactergraphicpivotoffsetx),
+[`Character.GraphicPivotOffsetY`](Character#charactergraphicpivotoffsety)
 
 ---
 

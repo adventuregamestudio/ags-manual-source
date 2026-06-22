@@ -266,15 +266,112 @@ while (Game.Camera.Y < (Room.Height - Game.Camera.Height))
 
 ---
 
+### `Camera.PivotX`
+
+```ags
+float Camera.PivotX
+```
+
+Gets/sets the camera's pivot (rotation center) X position. The pivot is depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 corresponds to the left side, 1.0 corresponds to the right side, and any value in between means a proportional distance from the left edge.
+For example, value of 0.3 means that a camera is rotated around the point which is one third inside the camera horizontally counting from left edge.
+
+The default camera's sprite pivot is (x: 0.5, y: 0.5) which corresponds to its center.
+
+Example:
+
+```ags
+Game.Camera.PivotX = 1.0;
+```
+
+will set the pivot to the rightmost camera's edge.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Camera.PivotY`](Camera#camerapivoty),
+[`Camera.PivotOffsetX`](Camera#camerapivotoffsetx),
+[`Camera.PivotOffsetY`](Camera#camerapivotoffsety),
+[`Camera.Rotation`](Camera#cameragraphicrotation)
+
+---
+
+### `Camera.PivotY`
+
+```ags
+float Camera.PivotY
+```
+
+Gets/sets the camera's pivot (rotation center) Y position. The pivot is depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 corresponds to the top side, 1.0 corresponds to the bottom side, and any value in between means a proportional distance from the top edge.
+For example, value of 0.3 means that a camera is rotated around the point which is one third inside the camera vertically counting from top edge.
+
+The default camera's pivot is (x: 0.5, y: 0.5) which corresponds to its center.
+
+Example:
+
+```ags
+Game.Camera.PivotY = 0.0;
+```
+
+will set the pivot to the topmost camera's edge.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Camera.PivotX`](Camera#camerapivotx),
+[`Camera.PivotOffsetX`](Camera#camerapivotoffsetx),
+[`Camera.PivotOffsetY`](Camera#camerapivotoffsety),
+[`Camera.Rotation`](Camera#cameragraphicrotation)
+
+---
+
+### `Camera.PivotOffsetX`
+
+```ags
+float Camera.PivotOffsetX
+```
+
+Gets/sets the camera's pivot relative offset on X axis, in pixels. This offset is combined with the [PivotX](Camera#camerapivotx) property.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Camera.PivotX`](Camera#camerapivotx),
+[`Camera.PivotY`](Camera#camerapivoty),
+[`Camera.PivotOffsetY`](Camera#camerapivotoffsety),
+[`Camera.Rotation`](Camera#cameragraphicrotation)
+
+---
+
+### `Camera.PivotOffsetY`
+
+```ags
+float Camera.PivotOffsetY
+```
+
+Gets/sets the camera's pivot relative offset on Y axis, in pixels. This offset is combined with the [PivotY](Camera#camerapivoty) property.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Camera.PivotX`](Camera#camerapivotx),
+[`Camera.PivotY`](Camera#camerapivoty),
+[`Camera.PivotOffsetX`](Camera#camerapivotoffsetx),
+[`Camera.Rotation`](Camera#cameragraphicrotation)
+
+---
+
 ### `Camera.Rotation`
 
 ```ags
 float Camera.Rotation;
 ```
 
-Gets/sets the camera rotation in degrees.
+Gets/sets the camera rotation in degrees, clockwise.
+
+Note that what's seen inside the camera is rotated in the opposite direction, for example, if you rotate camera 90 degrees clockwise, the seen portion of the room will be rotated 90 degrees counter-clockwise.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Camera.PivotX`](Camera#camerapivotx),
+[`Camera.PivotY`](Camera#camerapivoty),
+[`Camera.PivotOffsetX`](Camera#camerapivotoffsetx),
+[`Camera.PivotOffsetY`](Camera#camerapivotoffsety),
 
 ---
 

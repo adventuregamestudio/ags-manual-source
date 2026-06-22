@@ -184,6 +184,58 @@ and if a room has said object, that object becomes haunted - in the example it j
 
 ---
 
+### `Object.GetGraphicPosition`
+
+```ags
+Point[] Object.GetGraphicPosition()
+```
+
+Returns a dynamic array containing 4 Points, with positions of the actual object's sprite corners. These positions are in room coordinates, and are given starting with the Top-Left corner clockwise (Top-Left, Top-Right, Bottom-Right, Bottom-Left).
+
+This function is useful to know where exactly the sprite is located, as it accounts for any sprite's transformations, such as scaling and rotation.
+
+Example:
+
+```ags
+Point[] sprite_pos = oBox.GetGraphicPosition();
+Overlay* over = Overlay.CreateGraphical(sprite_pos[2].x, sprite_pos[2].y, 100);
+```
+
+will create a new overlay exactly at the object sprite's bottom-right corner.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GetGraphicBoundBox`](Object#objectgetgraphicboundbox)
+
+---
+
+### `Object.GetGraphicBoundBox`
+
+```ags
+Point[] Object.GetGraphicBoundBox()
+```
+
+Returns a dynamic array containing 4 Points, with positions of the object's sprite's axis-aligned bounding box. These positions are in room coordinates, and are given starting with the Top-Left corner clockwise (Top-Left, Top-Right, Bottom-Right, Bottom-Left).
+
+This function is used to get the imaginary axis-aligned box drawn around the sprite. This may be necessary if you like to know the in-room or on-screen rectangle that the sprite occupies.
+
+Example:
+
+```ags
+Point[] sprite_pos = oBox.GetGraphicBoundBox();
+Overlay* over = Overlay.CreateGraphical(sprite_pos[0].x, sprite_pos[0].y, 100);
+over.SetSize(sprite_pos[1].x - sprite_pos[0].x, sprite_pos[1].y - sprite_pos[0].y);
+over.Transparency = 50;
+```
+
+will create a half-transparent overlay covering the object sprite.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GetGraphicPosition`](Object#objectgetgraphicposition)
+
+---
+
 ### `Object.GetProperty`
 
 *(Formerly known as `GetObjectProperty`, which is now obsolete)*
@@ -1120,15 +1172,111 @@ Gets/sets the object's sprite relative offset on Y axis, in pixels.
 
 ---
 
+### `Object.GraphicPivotX`
+
+```ags
+float Object.GraphicPivotX
+```
+
+Gets/sets the object's sprite pivot (rotation center) X position. The pivot is depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 corresponds to the sprite's left side, 1.0 corresponds to the sprite's right side, and any value in between means a proportional distance from the sprite's left edge.
+For example, value of 0.3 means that a sprite is rotated around the point which is one third inside the sprite horizontally counting from left edge.
+
+The default object's sprite pivot is (x: 0.5, y: 0.5) which corresponds to the sprite's center.
+
+Example:
+
+```ags
+oBox.GraphicPivotX = 1.0;
+```
+
+will set the pivot to the rightmost sprite's edge.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GraphicPivotY`](Object#objectgraphicpivoty),
+[`Object.GraphicPivotOffsetX`](Object#objectgraphicpivotoffsetx),
+[`Object.GraphicPivotOffsetY`](Object#objectgraphicpivotoffsety),
+[`Object.GraphicRotation`](Object#objectgraphicrotation)
+
+---
+
+### `Object.GraphicPivotY`
+
+```ags
+float Object.GraphicPivotY
+```
+
+Gets/sets the object's sprite pivot (rotation center) Y position. The pivot is depicted in a fractional value between 0.0 and 1.0, inclusive, where 0.0 corresponds to the sprite's top side, 1.0 corresponds to the sprite's bottom side, and any value in between means a proportional distance from the sprite's top edge.
+For example, value of 0.3 means that a sprite is rotated around the point which is one third inside the sprite vertically counting from top edge.
+
+The default object's sprite pivot is (x: 0.5, y: 0.5) which corresponds to the sprite's center.
+
+Example:
+
+```ags
+oBox.GraphicPivotY = 0.0;
+```
+
+will set the pivot to the topmost sprite's edge.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GraphicPivotX`](Object#objectgraphicpivotx),
+[`Object.GraphicPivotOffsetX`](Object#objectgraphicpivotoffsetx),
+[`Object.GraphicPivotOffsetY`](Object#objectgraphicpivotoffsety),
+[`Object.GraphicRotation`](Object#objectgraphicrotation)
+
+---
+
+### `Object.GraphicPivotOffsetX`
+
+```ags
+float Object.GraphicPivotOffsetX
+```
+
+Gets/sets the object's sprite pivot relative offset on X axis, in pixels. This offset is combined with the [GraphicPivotX](Object#objectgraphicpivotx) property.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GraphicPivotX`](Object#objectgraphicpivotx),
+[`Object.GraphicPivotY`](Object#objectgraphicpivoty),
+[`Object.GraphicPivotOffsetY`](Object#objectgraphicpivotoffsety),
+[`Object.GraphicRotation`](Object#objectgraphicrotation)
+
+---
+
+### `Object.GraphicPivotOffsetY`
+
+```ags
+float Object.GraphicPivotOffsetY
+```
+
+Gets/sets the object's sprite pivot relative offset on Y axis, in pixels. This offset is combined with the [GraphicPivotY](Object#objectgraphicpivoty) property.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GraphicPivotX`](Object#objectgraphicpivotx),
+[`Object.GraphicPivotY`](Object#objectgraphicpivoty),
+[`Object.GraphicPivotOffsetX`](Object#objectgraphicpivotoffsetx),
+[`Object.GraphicRotation`](Object#objectgraphicrotation)
+
+---
+
 ### `Object.GraphicRotation`
 
 ```ags
 float Object.GraphicRotation
 ```
 
-Gets/sets the object's sprite rotation in degrees.
+Gets/sets the object's sprite rotation in degrees, clockwise.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Object.GraphicPivotX`](Object#objectgraphicpivotx),
+[`Object.GraphicPivotY`](Object#objectgraphicpivoty),
+[`Object.GraphicPivotOffsetX`](Object#objectgraphicpivotoffsetx),
+[`Object.GraphicPivotOffsetY`](Object#objectgraphicpivotoffsety),
+[`Object.GraphicRotation`](Object#objectgraphicrotation)
 
 ---
 

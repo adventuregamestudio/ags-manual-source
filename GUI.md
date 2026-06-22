@@ -111,6 +111,58 @@ will display the number of the GUI that the mouse is over.
 
 ---
 
+### `GUI.GetGraphicPosition`
+
+```ags
+Point[] GUI.GetGraphicPosition()
+```
+
+Returns a dynamic array containing 4 Points, with positions of the actual gui's corners. These positions are in screen coordinates, and are given starting with the Top-Left corner clockwise (Top-Left, Top-Right, Bottom-Right, Bottom-Left).
+
+This function is useful to know where exactly the GUI is located, as it accounts for any graphical transformations, such as scaling and rotation.
+
+Example:
+
+```ags
+Point[] sprite_pos = gMenu.GetGraphicPosition();
+Overlay* over = Overlay.CreateGraphical(sprite_pos[2].x, sprite_pos[2].y, 100);
+```
+
+will create a new overlay exactly at the gui's bottom-right corner.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`GUI.GetGraphicBoundBox`](GUI#guigetgraphicboundbox)
+
+---
+
+### `GUI.GetGraphicBoundBox`
+
+```ags
+Point[] GUI.GetGraphicBoundBox()
+```
+
+Returns a dynamic array containing 4 Points, with positions of the gui's axis-aligned bounding box. These positions are in screen coordinates, and are given starting with the Top-Left corner clockwise (Top-Left, Top-Right, Bottom-Right, Bottom-Left).
+
+This function is used to get the imaginary axis-aligned box drawn around the GUI. This may be necessary if you like to know the on-screen rectangle that the GUI occupies.
+
+Example:
+
+```ags
+Point[] sprite_pos = gMenu.GetGraphicBoundBox();
+Overlay* over = Overlay.CreateGraphical(sprite_pos[0].x, sprite_pos[0].y, 100);
+over.SetSize(sprite_pos[1].x - sprite_pos[0].x, sprite_pos[1].y - sprite_pos[0].y);
+over.Transparency = 50;
+```
+
+will create a half-transparent overlay covering the gui.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`GUI.GetGraphicPosition`](GUI#guigetgraphicposition)
+
+---
+
 ### `GUI.GetByName`
 
 ```ags

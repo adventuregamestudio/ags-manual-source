@@ -23,18 +23,6 @@ If room 10 is valid, go to that room.
 
 ---
 
-### `Room.FaceDirectionRatio`
-
-```ags
-static float Room.FaceDirectionRatio
-```
-
-Gets/sets the optional y/x ratio of character's facing directions, determining directional loop selection for each Character in the current room.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
 ### `Room.GetDrawingSurfaceForBackground`
 
 ```ags
@@ -145,18 +133,6 @@ will retrieve the room's "description" property then display it.
 
 ---
 
-### `Room.Name`
-
-```ags
-static readonly String Room.Name
-```
-
-Gets the current Room's name (description)
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
 ### `Room.NearestWalkableArea`
 
 ```ags
@@ -176,19 +152,6 @@ Display("Nearest walkable area is at %d,%d", walk_pt.x, walk_pt.y);
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
 *See also:* [`Character.PlaceOnWalkableArea`](Character#characterplaceonwalkablearea)
-
----
-
-
-### `Room.Number`
-
-```ags
-static readonly int Room.Number
-```
-
-Gets the current Room's number
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -364,6 +327,18 @@ Display("The current room background is %d-bit color.", Room.ColorDepth);
 
 ---
 
+### `Room.FaceDirectionRatio`
+
+```ags
+static float Room.FaceDirectionRatio
+```
+
+Gets/sets the optional y/x ratio of character's facing directions, determining directional loop selection for each Character in the current room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Room.Height`
 
 *(Formerly known as `game.room_height`, which is now obsolete)*
@@ -381,6 +356,18 @@ Display("The current room size is %d x %d.", Room.Width, Room.Height);
 ```
 
 *See also:* [`Room.Width`](Room#roomwidth)
+
+---
+
+### `Room.HotspotCount`
+
+```ags
+readonly static int Room.HotspotCount
+```
+
+Returns the number of hotspots in the room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -438,6 +425,30 @@ Display("The current room plays music %d when the player enters.", Room.MusicOnL
 
 ---
 
+### `Room.Name`
+
+```ags
+static readonly String Room.Name
+```
+
+Gets the current Room's name (description)
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Room.Number`
+
+```ags
+static readonly int Room.Number
+```
+
+Gets the current Room's number
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Room.ObjectCount`
 
 *(Formerly part of `GetGameParameter`, which is now obsolete)*
@@ -481,6 +492,18 @@ Gets the current Room's Pathfinder object that lets find route around walkable a
 *See also:*
 [Pathfinder function and properties](Pathfinder),
 [MaskPathfinder function and properties](MaskPathfinder)
+
+---
+
+### `Room.RegionCount`
+
+```ags
+readonly static int Room.RegionCount
+```
+
+Returns the number of regions in the room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -538,6 +561,18 @@ Display("The current room's top edge is at %d.", Room.TopEdge);
 
 ---
 
+### `Room.WalkableAreaCount`
+
+```ags
+readonly static int Room.WalkableAreaCount
+```
+
+Returns the number of walkable areas in the room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `Room.WalkableAreas`
 
 ```ags
@@ -545,6 +580,18 @@ static readonly WalkableArea *Room.WalkableAreas[]
 ```
 
 Accesses the Walkable areas in the current room.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Room.WalkbehindCount`
+
+```ags
+readonly static int Room.WalkbehindCount
+```
+
+Returns the number of walk-behinds in the room.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 

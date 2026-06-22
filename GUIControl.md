@@ -118,6 +118,58 @@ on the GUI.
 
 ---
 
+### `GUIControl.GetGraphicPosition`
+
+```ags
+Point[] GUIControl.GetGraphicPosition()
+```
+
+Returns a dynamic array containing 4 Points, with positions of the actual control's corners. These positions are in screen coordinates, and are given starting with the Top-Left corner clockwise (Top-Left, Top-Right, Bottom-Right, Bottom-Left).
+
+This function is useful to know where exactly the control is located, as it accounts for any graphical transformations, such as scaling and rotation.
+
+Example:
+
+```ags
+Point[] sprite_pos = MyButton.GetGraphicPosition();
+Overlay* over = Overlay.CreateGraphical(sprite_pos[2].x, sprite_pos[2].y, 100);
+```
+
+will create a new overlay exactly at the control's bottom-right corner.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`GUIControl.GetGraphicBoundBox`](GUIControl#guicontrolgetgraphicboundbox)
+
+---
+
+### `GUIControl.GetGraphicBoundBox`
+
+```ags
+Point[] GUIControl.GetGraphicBoundBox()
+```
+
+Returns a dynamic array containing 4 Points, with positions of the control's axis-aligned bounding box. These positions are in screen coordinates, and are given starting with the Top-Left corner clockwise (Top-Left, Top-Right, Bottom-Right, Bottom-Left).
+
+This function is used to get the imaginary axis-aligned box drawn around the control. This may be necessary if you like to know the on-screen rectangle that the control occupies.
+
+Example:
+
+```ags
+Point[] sprite_pos = MyButton.GetGraphicBoundBox();
+Overlay* over = Overlay.CreateGraphical(sprite_pos[0].x, sprite_pos[0].y, 100);
+over.SetSize(sprite_pos[1].x - sprite_pos[0].x, sprite_pos[1].y - sprite_pos[0].y);
+over.Transparency = 50;
+```
+
+will create a half-transparent overlay covering the control.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`GUIControl.GetGraphicPosition`](GUIControl#guicontrolgetgraphicposition)
+
+---
+
 ### `GUIControl.GetProperty`
 
 ```ags

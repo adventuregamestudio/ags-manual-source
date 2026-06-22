@@ -812,10 +812,26 @@ will disable the user interface if it's enabled.
 
 ---
 
+### `IsAnyKeyPressed`
+
+```ags
+bool IsAnyKeyPressed()
+```
+
+Returns whether ANY key on the keyboard is currently pressed down.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`IsKeyPressed`](Globalfunctions_General#iskeypressed)
+[`Mouse.IsAnyButtonDown`](Mouse#mouseisanybuttondown),
+[`Mouse.IsButtonDown`](Mouse#mouseisbuttondown)
+
+---
+
 ### `IsKeyPressed`
 
 ```ags
-IsKeyPressed(eKeyCode)
+bool IsKeyPressed(eKeyCode)
 ```
 
 Tests whether the supplied key on the keyboard is currently pressed down
@@ -846,7 +862,9 @@ if (IsKeyPressed(eKeyUpArrow))
 will move the character EGO upwards 3 pixels when the up arrow is
 pressed.
 
-*See also:* [`Mouse.IsButtonDown`](Mouse#mouseisbuttondown)
+*See also:* [`IsAnyKeyPressed`](Globalfunctions_General#isanykeypressed)
+[`Mouse.IsAnyButtonDown`](Mouse#mouseisanybuttondown),
+[`Mouse.IsButtonDown`](Mouse#mouseisbuttondown)
 
 ---
 
@@ -1249,9 +1267,15 @@ will save the current game position to slot 30 with the description
 int SaveScreenShot(string filename, optional int width, optional int height, optional RenderLayer layer)
 ```
 
-Takes a screen capture and saves it to disk. The FILENAME must end in
-either \".BMP\" or \".PCX\", as those are the types of files which can
-be saved. Returns 1 if the shot was successfully saved, or 0 if an
+Takes a screen capture and saves it to disk.
+
+The supported image formats are:
+
+    - BMP (1-bit, 4-bit, 8-bit, 16-bit, 24-bit and 32-bit)
+	- PCX
+	- PNG (indexed, 24-bit RGB and 32-bit ARGB), since **AGS 3.6.3**.
+
+Returns 1 if the shot was successfully saved, or 0 if an
 invalid file extension was provided.
 
 **NOTE:** The screenshot will be saved to the Saved Games folder.
@@ -1464,6 +1488,11 @@ OPT_WALKSPEEDABSOLUTE | Whether character and object moving speeds depend on rel
 OPT_SCALECHAROFFSETS | Character's offset properties (such as [`Character.z`](Character#characterz)) are scaled with the character's Scaling (0 or 1).
 OPT_SAVEGAMESCREENSHOTLAYER | The layer to select when savingsave screenshots into game's save ([`RenderLayer`](StandardEnums#renderlayer)).
 OPT_SAVECOMPONENTSIGNORE | Types of data which to *skip* when writing or restoring game saves ([`SaveComponentSelection`](StandardEnums#savecomponentselection)).
+OPT_GAMEFPS | Game speed, number of frames per second. This option is read from game data at start. Use [`Game.Speed`](Game#gamespeed) instead.
+OPT_GUICONTROLMOUSEBUT | Whether common gui controls should react only to left mouse button (0 - any button, 1 - LMB only).
+OPT_AUTOTRANSPARSERSAID | Automatically translates arguments to Parser functions, like Said(...).
+OPT_DISPLAYSINGLEDIALOGOPTION | Display dialog options even if only one is currently enabled. If disabled then the only enabled option will be chosen and run automatically.
+OPT_TURNORDERPRIORITY | Which turn order characters choose when making 180-degree turns. See [`TurnOrderPriority`](StandardEnums#turnorderpriority)
 
 The game settings which are not listed here either are read-only, deprecated and have a separate
 command to change them (such as Speech.Style), or unusable in the contemporary engine.
@@ -1732,7 +1761,9 @@ ESC the game could appear to hang.
 UpdateInventory ()
 ```
 
-Updates the on-screen inventory display. If you add or remove inventory
+**This function is obsolete since AGS 3.6.3.**
+
+Updates the on-screen inventory display. Prior to **AGS 3.6.3** if you add or remove inventory
 items manually (i.e. by using the InventoryQuantity array rather than the
 AddInventory/LoseInventory functions), the display may not get updated.
 In this case call this function after making your changes, to update
@@ -1741,6 +1772,8 @@ what is displayed to the player.
 Note that using this function will reset the order that items are
 displayed in the inventory window to the same order they were created in
 the editor.
+
+Starting with **AGS 3.6.3** changing InventoryQuantity will actually update both Character.Inventory array and its representation in InventoryWindow, so this function is no longer needed.
 
 *See also:* [`Character.AddInventory`](Character#characteraddinventory),
 [`Character.LoseInventory`](Character#characterloseinventory),

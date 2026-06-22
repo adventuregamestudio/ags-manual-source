@@ -43,6 +43,8 @@ SetGameOption.
 -   **Text format** - the format your game texts will be in. The contemporary default is "Unicode", which lets you have practically any language in the game. Another choice is "ASCII / ANSI" mode, but this is left strictly for backwards compatibility, e.g. for when upgrading old projects, and not recommended to be used in new projects at all, as that will make multi-language support in your game much more complicated.
 
     **NOTE:** please be aware that when switching **Text format** the Editor will convert all the game files (scripts, etc) to a new text encoding and re-save them. Normally this should be safe, but probably a good idea to make a project backup before doing this.
+	
+-   **Text language** - lets specify a base game language. This setting is used whenever engine needs to identify the game text as being of a particular language or using particular alphabet. For example: alphabetic string comparison and sort. In particular, this setting affects "locale aware" string compare styles in script. You may leave this option as "undefined" if you don't want to use related features.
     
 ### Information
 
@@ -166,6 +168,13 @@ accessible in future versions.
     commands, they will visibly turn around using their available loops.
     If this option is not set, they will immediately appear facing their
     new direction.
+-   **Prioritize this turning direction** - tells which turning direction to prioritize when characters are making 180-degree turns. Available choices are:
+
+    - **Clockwise** - characters will always make clockwise turns.
+	- **CounterClockwise** - characters will always make counter-clockwise turns.
+	- **Random** - characters will take either clockwise or counter-clockwise turns, chosen at random.
+	- **Face Down** - characters will select the direction that lets them face "down" more often. This is a convenient choice in case of a classic side-view perspective.
+
 -   **Scale Character sprite offsets** - if set, then visual character's offsets will be scaled in proportion to the current character's scaling. This refers to values of [`Character.z`](Character#characterz) property and parameters of [`Character.LockViewOffset`](Character#characterlockviewoffset).
 -   **Scale movement speed with room's mask resolution** - Character walking
     and object movement speeds will scale inversely in proportion to the
@@ -262,6 +271,7 @@ accessible in future versions.
     **IMPORTANT**: this setting currently does not work with the "Say" checkbox in the dialog options list. The workaround is to duplicate option's text as a first cue in the dialog script.
 -   **Dialog bullet point image** - defines the number of sprite to use
     as a bullet image before each dialog option.
+-   **Display single dialog option** - tells whether the dialog options should still be displayed for the player if there's one one enabled option left. If switched off, then that only enabled option will be run automatically.
 -   **Game-wide speech animation delay** - defines a game-wide speech animation delay to use instead of individual character settings. This setting is only available if **"Use game-wide speech animation delay"** is enabled.
 -   **Gap between dialog options** - defines the gap between the options
     displayed to the player in a conversation. Normally this is 0, which
@@ -422,6 +432,8 @@ This section is available since **AGS 3.6.3**.
 
 -   **Include script texts with prefix** - Only text lines in script which have this prefix will be included to Translation file. Leave this option empty to include all (this is the default behavior).
     This option affects both regular scripts and dialog scripts.
+	
+-   **Translate Text Parser** - If enabled, then Editor will export Text Parser's words dictionary into Translation file. See [Translations](Translations#translating-text-parser) for more details.
 
 ### Visual
 

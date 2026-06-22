@@ -329,6 +329,48 @@ Sets a text custom property for this item.
 
 ---
 
+### `AudioClip.DefaultPriority`
+
+```ags
+readonly AudioPriority AudioClip.DefaultPriority
+```
+
+Gets the default priority of the audio clip.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioClip.Play`](AudioClip#audioclipplay)
+
+---
+
+### `AudioClip.DefaultRepeat`
+
+```ags
+readonly RepeatStyle AudioClip.DefaultRepeat
+```
+
+Gets the default repeat style of the audio clip.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioClip.Play`](AudioClip#audioclipplay)
+
+---
+
+### `AudioClip.DefaultVolume`
+
+```ags
+readonly int AudioClip.DefaultVolume
+```
+
+Gets the default volume of the audio clip.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioClip.Play`](AudioClip#audioclipplay)
+
+---
+
 ### `AudioClip.ID`
 
 ```ags

@@ -13,14 +13,17 @@ Normally this would display the words in the speech text above the
 characters heads. However, you can add the special character '&' to
 symbolize that a voice file should be played along with the displayed text.
 
+When a line of text has a voice linked to it,
+the text on the screen will not be removed until the voice file has
+finished playing. If the player interrupts it by clicking the mouse or
+pressing a key, the text and voice will be stopped. Voice files must be
+placed in the "Speech" sub-directory of the game folder.
+
 The file name must follow a certain format, this format depends on the version of AGS that you are using, and an option called "Use old-style voice clip naming rule" which is found in [General Settings](GeneralSettings#backwards-compatibility).
 
-Historically, the name had to be XXXXY.EXT, where XXXX comes from the **first
-four letters** of the character's script name (except the leading 'c'), case insensitive,
-the Y is the speech file number (with no leading or trailing zeroes or
-padding of any kind), and EXT is the file extension.
+Prior to **AGS 3.6.2**, the name had to be CHARY.EXT, where CHAR is the **first four letters** of the character's script name (except the leading 'c'), case insensitive, the Y is the speech file number (with no leading or trailing zeroes or padding of any kind), and EXT is the file extension.
 
-Starting with **AGS v3.6.2** the format is slightly different, it's CHARNAME.NUMBER.EXT, where CHARNAME is a full character's script name (but still except the leading 'c'), case insensitive, NUMBER is the speech file number (with no leading or trailing zeroes), and EXT is the file extension.
+Starting with **AGS 3.6.2** the format is CHARNAME.NUMBER.EXT, where CHARNAME is a **full character's script name** (but still except the leading 'c'), case insensitive, NUMBER is the speech file number (with no leading or trailing zeroes), and EXT is the file extension.
 
 For example, if you have dialog script:
 
@@ -40,11 +43,13 @@ If the old file naming format is used by your project, then both of those exampl
 
 If the new file naming format is used, then they play Ego.10.ogg and Michael.7.ogg files respectively.
 
-When a line of text has a voice linked to it,
-the text on the screen will not be removed until the voice file has
-finished playing. If the player interrupts it by clicking the mouse or
-pressing a key, the text and voice will be stopped. Voice files must be
-placed in the "Speech" sub-directory of the game folder.
+The special case is a narrator text, that is any text displayed with a [Display](Globalfunctions_Message#display) function, that does not specify a character. If you'd like them to be voiced as well, then use NARR with the old-style naming and NARRATOR with the new style naming instead of a character name in file. For example, if you have in script:
+
+```ags
+Display("&123 And so the hero enters the dark tower.");
+```
+
+The voice file should be called Narr123.ogg in old-style and Narrator.123.ogg in new style.
 
 Script functions that support playing voice clips using this style are:
 * [Character.Say](Character#charactersay), [Character.SayAt](Character#charactersayat);
@@ -53,7 +58,7 @@ Script functions that support playing voice clips using this style are:
 
 **NOTE:** Speech file numbers are restricted to the positive range of 1 to 2147483647 (2 billion). This is a technical limitation based on how these are handled inside the engine, but we do not think that running out of numbers to use will ever become a problem to the user.
 
-Since AGS 3.5.0 you can play voice clips directly using function [Game.PlayVoiceClip](Game#gameplayvoiceclip).
+Since **AGS 3.5.0** you can play voice clips directly using function [Game.PlayVoiceClip](Game#gameplayvoiceclip).
 
 ### Voice packs
 

@@ -93,3 +93,9 @@ Play a sound when this frame is displayed. This is typically used to add footste
 
 _EventName_
 A custom event string tag. If frame is assigned a "event name", then whenever this frame is displayed during object's animation, that object will trigger its OnFrameEvent event, passing current frame's "event name" as parameter.
+
+### Scripting
+
+For each View having a unique name Editor will generate a script constant of the same name uppercased, which value is equal to this view's number. For example, if you have a view called WalkingView, there will be a constant called WALKINGVIEW available in script. Such constant may be used to reference the view (in functions like ChangeView, LockView, and so on), and it's recommended to do so instead of using bare numbers, since they are more difficult to remember and recognize later when you read your scripts.
+
+Following is not a rule, but the common convention is to have view's name begin with a letter 'V'.

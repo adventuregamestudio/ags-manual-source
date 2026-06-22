@@ -22,16 +22,21 @@ enum Alignment {
     eAlignBottomLeft    = 64,
     eAlignBottomCenter  = 128,
     eAlignBottomRight   = 256,
+};
+```
+
+```ags
+enum AlignmentMask {
     eAlignHasLeft       = 73,
     eAlignHasRight      = 292,
     eAlignHasTop        = 7,
     eAlignHasBottom     = 448,
     eAlignHasHorCenter  = 146,
     eAlignHasVerCenter  = 56
-};
+} 
 ```
 
-The Alignment enumeration consists of values that could be summed up in one integer variable to form a more complex combination of alignments. Although that ability is not used anywhere in practice yet, but may be in future. Additionally, it provides a set of masks that could be applied bitwise to check if alignment variable contains one of the distinct directions, for example:
+The Alignment enumeration consists of values that could be summed up in one integer variable to form a more complex combination of alignments. Although that ability is not used anywhere in practice yet, but may be in future. Additionally, AlignmentMask enumeration provides a set of masks that could be applied bitwise to check if alignment variable contains one of the distinct directions, for example:
 
 ```ags
 if (align & eAlignHasLeft)
@@ -529,6 +534,33 @@ enum GUIPopupStyle {
 
 ---
 
+### `HitTestOptions`
+
+```ags
+enum HitTestOptions {
+    eHit_Any = 0,
+	eHit_Interactable = 0x0001
+};
+```
+
+Defines options for finding an object under certain coordinates.
+
+*Compatibility:* supported by **AGS 3.6.3** and higher.
+
+*Used by:* [`Character.GetAtRoomXY`](Character#charactergetatroomxy),
+[`Character.GetAtScreenXY`](Character#charactergetatscreenxy),
+[`GUI.GetAtScreenXY`](GUI#guigetatscreenxy),
+[`GUIControl.GetAtScreenXY`](GUIControl#guicontrolgetatscreenxy),
+[`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy),
+[`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy),
+[`InventoryItem.GetAtScreenXY`](InventoryItem#inventoryitemgetatscreenxy),
+[`Object.GetAtRoomXY`](Object#objectgetatroomxy),
+[`Object.GetAtScreenXY`](Object#objectgetatscreenxy),
+[`Region.GetAtRoomXY`](Region#regiongetatroomxy),
+[`Region.GetAtScreenXY`](Region#regiongetatscreenxy)
+
+---
+
 ### `HorizontalAlignment`
 
 ```ags
@@ -562,7 +594,13 @@ enum InputType
 };
 ```
 
-The InputType enumeration consists of values that could be summed up in one integer variable to form a combination of input types. This may be used to store several "types" in one integer, pass them into a function, or return from a function. You may use bitwise operation to check if a variable contains one of the distinct types, for example:
+The InputType enumeration consists of values that could be summed up in one integer variable to form a combination of input types using bitwise OR operator. This may be used to store several "types" in one integer, pass them into a function, or return from a function:
+
+```ags
+WaitInput(eInputKeyboard | eInputMouse);
+```
+
+You may use bitwise operation to check if a variable contains one of the distinct types, for example:
 
 ```ags
 if (type & eInputKeyboard)
@@ -715,7 +753,11 @@ The `RenderLayer` enum lets specify which elements should be rendered in a scree
 This allows you to, as an example, create a screenshot of only the room layer and not include any GUI or cursor on top.
 The Engine layer is for things like the in-engine FPS counter.
 
-The `RenderLayer` enum can be combined like flags, using bitwise operators.
+The `RenderLayer` constants can be combined using bitwise OR operator:
+
+```ags
+DynamicSprite.CreateFromScreenShot(320, 200, eRenderLayerRoom | eRenderLayerUI);
+```
 
 *Compatibility:* supported by **AGS 3.6.2** and higher.
 
@@ -761,28 +803,6 @@ Another use for RepeatStyle is when playing audio or video clip. But in that cas
 [`Object.Animate`](Object#objectanimate),
 [`Object.MovePath`](Object#objectmovepath),
 [`VideoPlayer.Open`](VideoPlayer#videoplayeropen)
-
----
-
-### `RestoredSaveResult`
-
-```ags
-enum RestoredSaveResult
-{
-    eRestoredSave_ClearData   = 0x01,
-    eRestoredSave_MissingData = 0x08,
-    eRestoredSave_ExtraData   = 0x10,
-    eRestoredSave_Prescan     = 0x20
-};
-```
-
-The `RestoredSaveResult` enum is used to specify the result of reading a save.
-
-The `RestoredSaveResult` enum can be combined like flags, using bitwise operators.
-
-*Compatibility:* supported by **AGS 3.6.2** and higher.
-
-*Used by:* [`validate_restored_save`](ValidateRestoredSave)
 
 ---
 
@@ -844,7 +864,11 @@ enum SaveComponentSelection
 The `SaveComponentSelection` enum lets specify which parts of the save should be skipped when writing or restoring a game save.
 This allows you to, as an example, keep certain things persistent in your game, unaffected by player saving and loading their story progress.
 
-The `SaveComponentSelection` enum can be combined like flags, using bitwise operators.
+The `SaveComponentSelection` constants can be combined using bitwise OR operator:
+
+```ags
+SetGameOption(OPT_SAVECOMPONENTSIGNORE, eSaveCmp_Audio | eSaveCmp_DynamicSprites);
+```
 
 *Compatibility:* supported by **AGS 3.6.2** and higher.
 
@@ -942,19 +966,23 @@ enum StopMovementStyle
 ```ags
 enum StringCompareStyle {
     eCaseInsensitive = 0,
-    eCaseSensitive = 1
+    eCaseSensitive = 1,
+	eCaseInsensitiveLocaleAware = 2,
+	eCaseSensitiveLocaleAware = 3
 };
 ```
 
-*Compatibility:* supported by **AGS 3.5.0** and higher.
+*Compatibility:* supported by **AGS 3.5.0** and higher. "Locale Aware" styles are supported since **AGS 3.6.3**.
 
 *Used by:* [`Dictionary.Create`](Dictionary#dictionarycreate),
+[`ListBox.SortItems`](ListBox#listboxsortitems),
 [`Set.Create`](Set#setcreate),
 [`String.CompareTo`](String#stringcompareto),
 [`String.EndsWith`](String#stringendswith),
 [`String.Replace`](String#stringreplace),
 [`String.StartsWith`](String#stringstartswith),
 [`String.IndexOf`](String#stringindexof)
+[`Utils.SortStrings`](Utils#utilssortstrings)
 
 ---
 
@@ -988,6 +1016,23 @@ enum TransitionStyle {
 
 *Used by:* [`SetScreenTransition`](Globalfunctions_Screen#setscreentransition),
 [`SetNextScreenTransition`](Globalfunctions_Screen#setnextscreentransition)
+
+---
+
+### `TurnOrderPriority`
+
+```ags
+enum TurnOrderPriority {
+    eTurnOrderClockwise,
+    eTurnOrderCounterClockwise,
+    eTurnOrderRandom,
+    eTurnOrderFaceDown
+};
+```
+
+*Compatibility:* supported by **AGS 3.6.3** and higher.
+
+*Used by:* [`SetGameOption`](Globalfunctions_General#setgameoption)
 
 ---
 

@@ -1,6 +1,8 @@
 ## Text Parser
 
-You can now use a text parser in your games if you wish to, much as the
+### Overview
+
+You can use a text parser in your games if you wish to, much as the
 older Sierra games did. Go to the "Text parser" pane in the editor.
 There, you will see a short list of words which are provided for you.
 Each word has a number beside it.
@@ -17,6 +19,8 @@ To add a synonym for an existing word, highlight the current word,
 right-click it and choose "Add synonym". You'll notice that the new word
 is given the same number as the old one. All words with the same number
 are considered identical by the parser.
+
+Since **AGS 3.6.3** you can also add any number of synonyms in the same entry, if you write them as a comma-separated list, e.g. "apple,fruit".
 
 You will notice that the provided list has a lot of words with number 0.
 This is a special number, that indicates that the parser should ignore

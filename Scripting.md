@@ -64,6 +64,7 @@
 - [TextWindowGUI functions and properties](TextWindowGUI)
 - [Touch functions and properties](Touch)
 - [TouchPointer functions and properties](TouchPointer)
+- [Utils functions and properties](Utils)
 - [VideoPlayer functions and properties](VideoPlayer)
 - [ViewFrame functions and properties](ViewFrame)
 - [Viewport functions and properties](Viewport)

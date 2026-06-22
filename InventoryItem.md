@@ -5,7 +5,7 @@
 *(Formerly known as global function `GetInvAt`, which is now obsolete)*
 
 ```ags
-static InventoryItem* InventoryItem.GetAtScreenXY(int x, int y)
+static InventoryItem* InventoryItem.GetAtScreenXY(int x, int y, optional HitTestOptions guiHitOptions, optional HitTestOptions invHitOptions)
 ```
 
 Returns the inventory item at SCREEN coordinates (X,Y). Note that this
@@ -16,11 +16,7 @@ to do Verb Coin style GUIs and so on.
 If there is no inventory item there, or if invalid coordinates are
 specified, the function returns null.
 
-**NOTE:** The coordinates are SCREEN coordinates, NOT ROOM
-coordinates. This means that with a scrolling room, the coordinates
-you pass are relative to the screen's current position, and NOT absolute
-room coordinates. This means that this function is suitable for use
-with the mouse cursor position variables.
+Optional HitTestOptions parameters guiHitOptions and invHitOptions define an additional object filter (supported since **AGS 3.6.3**). They are both equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) GUI and InventoryWindow controls will be found. Pass `eHit_Any` instead, if you like even non-clickable gui controls to be found.
 
 Example:
 
@@ -34,7 +30,9 @@ else {
 }
 ```
 
-will display the number of the inv item that the mouse is over
+will display the number of the inv item that the mouse is over.
+
+*Compatibility:* HitTestOptions parameters are supported since **AGS 3.6.3**.
 
 *See also:* [`InventoryItem.Name`](InventoryItem#inventoryitemname),
 [`Game.GetLocationName`](Game#gamegetlocationname)

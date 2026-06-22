@@ -72,8 +72,8 @@ tells character SOMEGUY to first of all walk to the center of the screen
 normally (obeying walkable areas), then move to the bottom left corner
 and then top left corner afterwards.
 
-*See also:* [`Character.Move`](Character#charactermove)
-[`Character.Walk`](Character#characterwalk)
+*See also:* [`Character.Move`](Character#charactermove),
+ [`Character.Walk`](Character#characterwalk)
 
 ---
 
@@ -117,17 +117,17 @@ eForwards (the default) or eBackwards.
 Note that for compatibility reasons if direction is eBackwards the animation actually begins with the *previous frame*. If you pass frame 0 (the default) then it will begin with the last frame in the loop.
 
 *Volume* lets you specify the *relative* volume in percents (0-100) of the frame-linked sounds for the duration of this animation. It's 100 by default (which means - unchanged).
-**NOTE:** the *volume* parameter from `Character.Animate` does not replace `Character.AnimationVolume` property, but acts as a relative factor to it and character's scale if [`ScaleVolume`](Character#characterscalevolume) is also set. In other words the final frame sound's volume will be equal to `sound volume * AnimationVolume % * scaled volume % * volume param %`.
+**NOTE:** the *volume* parameter from `Character.Animate` does not replace [`Character.AudioVolume`](Character#characteraudiovolume) property, but acts as a relative factor to it and character's scale if [`ScaleVolume`](Character#characterscalevolume) is also set. In other words the final frame sound's volume will be equal to `sound volume * AudioVolume % * scaled volume % * volume param %`.
 
 Example:
 
 ```ags
-cEgo.LockView(5);
+cEgo.LockView(VPICKUPITEM);
 cEgo.Animate(3, 1, 0, eBlock, eBackwards);
 cEgo.UnlockView();
 ```
 
-will animate the character once using loop number 3 of view 5 backwards,
+will animate the character once using loop number 3 of view VPICKUPITEM backwards,
 and wait until the animation finishes before returning.
 
 *Compatibility:* Optional *frame* parameter is supported only by **AGS 3.5.0** and later versions.<br>
@@ -251,10 +251,10 @@ the character's normal walking view.
 Example:
 
 ```ags
-cEgo.ChangeView(5);
+cEgo.ChangeView(VSTEALTH);
 ```
 
-will make the EGO character use view number 5 as his walking view.
+will make the EGO character use view VSTEALTH as his walking view.
 
 *See also:* [`Character.LockView`](Character#characterlockview),
 [`Character.NormalView`](Character#characternormalview)
@@ -520,12 +520,12 @@ near him and waiting for a while before he makes his move.
 ### `Character.GetAtRoomXY`
 
 ```ags
-static Character* Character.GetAtRoomXY(int x, int y)
+static Character* Character.GetAtRoomXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Checks if there is a character at ROOM co-ordinates (X,Y). Returns the character if there is, or null if there is not.
 
-**NOTE:** Any characters with the "Clickable" property set to false will not be seen by this function.
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
 
 **NOTE:** When looking up for an object under coordinates, GetAtRoomXY is affected by the game setting ["Pixel-perfect click detection"](GeneralSettings#visual). It's possible to change this behavior in script by changing OPT_PIXELPERFECT option (see [SetGameOption](Globalfunctions_General#setgameoption)).
 
@@ -540,7 +540,7 @@ if (target != null) {
 
 will display the message if the room object oBullet is over any character.
 
-*Compatibility:* Supported by **AGS 3.5.0** and later versions.
+*Compatibility:* Supported by **AGS 3.5.0** and later versions. HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Character.GetAtScreenXY`](Character#charactergetatscreenxy),
 [`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy),
@@ -556,15 +556,14 @@ will display the message if the room object oBullet is over any character.
 obsolete)*
 
 ```ags
-static Character* Character.GetAtScreenXY(int x, int y)
+static Character* Character.GetAtScreenXY(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Checks if there is a character at SCREEN co-ordinates (X,Y). Returns the
 character if there is, or null if there is not. See the description of
 GetLocationName for more on screen co-ordinates.
 
-**NOTE:** Any characters with the "Clickable" property set to false will not
-be seen by this function.
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
 
 **NOTE:** When looking up for an object under coordinates, GetAtScreenXY is affected by the game setting ["Pixel-perfect click detection"](GeneralSettings#visual). It's possible to change this behavior in script by changing OPT_PIXELPERFECT option (see [SetGameOption](Globalfunctions_General#setgameoption)).
 
@@ -576,7 +575,9 @@ if (Character.GetAtScreenXY(mouse.x, mouse.y) == cEgo) {
 }
 ```
 
-will display the message if the mouse cursor is over the EGO character
+will display the message if the mouse cursor is over the EGO character.
+
+*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Character.GetAtRoomXY`](Character#charactergetatroomxy),
 [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy),
@@ -791,12 +792,12 @@ to take control back.
 Example:
 
 ```ags
-cEgo.LockView(12);
+cEgo.LockView(VPUSHOBJECT);
 cEgo.Animate(0, 0, eOnce, eBlock, eForwards);
 cEgo.UnlockView();
 ```
 
-will change the character's EGO view to view 12, perform an animation
+will change the character's EGO view to view VPUSHOBJECT, perform an animation
 using loop 0, wait until the animation finishes and then return the
 character to his normal view.
 
@@ -846,12 +847,12 @@ allow the program to take control back.
 Example:
 
 ```ags
-cEgo.LockViewAligned(12, 1, eAlignLeft);
+cEgo.LockViewAligned(VTRIPANDFALL, 1, eAlignLeft);
 cEgo.Animate(1, 5, eOnce, eBlock, eForwards);
 cEgo.UnlockView();
 ```
 
-will change the character's EGO view to view 12, perform an animation
+will change the character's EGO view to view VTRIPANDFALL, perform an animation
 using loop 1, wait until the animation finishes and then return the
 character to his normal view.
 
@@ -990,12 +991,12 @@ to take control back.
 Example:
 
 ```ags
-cEgo.LockViewOffset(12, 1, -1);
+cEgo.LockViewOffset(VTRIPANDFALL, 1, -1);
 cEgo.Animate(1, 5, eOnce, eBlock, eForwards);
 cEgo.UnlockView();
 ```
 
-will change EGO's view to view 12 and animate using loop 1, meanwhile
+will change EGO's view to view VTRIPANDFALL and animate using loop 1, meanwhile
 all frames will be shifted 1 pixel right and 1 pixel up.
 
 *Compatibility:* Optional *StopMovementStyle* parameter is supported
@@ -1072,11 +1073,11 @@ his destination.
 *Compatibility:* Supported by **AGS 3.1.0** and later versions.
 
 *See also:* [`Character.AddWaypoint`](Character#characteraddwaypoint),
-[`Character.FaceCharacter`](Character#characterfacecharacter),
-[`Character.Walk`](Character#characterwalk),
-[`MoveCharacterToObject`](Globalfunctions_General#movecharactertoobject),
-[`Object.Move`](Object#objectmove),
-[`Character.StopMoving`](Character#characterstopmoving)
+ [`Character.MoveStraight`](Character#charactermovestraight),
+ [`Character.StopMoving`](Character#characterstopmoving),
+ [`Character.Walk`](Character#characterwalk),
+ [`Character.WalkStraight`](Character#characterwalkstraight),
+ [`Object.Move`](Object#objectmove)
 
 ---
 
@@ -1116,9 +1117,12 @@ will make the character move in a straight line 10 pixels towards bottom-right, 
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
-*See also:* [`Character.Move`](Character#charactermove),
+*See also:* [`Character.AddWaypoint`](Character#characteraddwaypoint),
+ [`Character.Move`](Character#charactermove),
+ [`Character.StopMoving`](Character#characterstopmoving)
  [`Character.Walk`](Character#characterwalk),
- [`Character.WalkStraight`](Character#characterwalkstraight)
+ [`Character.WalkStraight`](Character#characterwalkstraight),
+ [`Object.Move`](Object#objectmove)
 
 ---
 
@@ -1472,10 +1476,10 @@ Following actions are counted as character's "activity" and will reset idle time
 Example:
 
 ```ags
-cEgo.SetIdleView(12, 30);
+cEgo.SetIdleView(VIDLING, 30);
 ```
 
-will change/set the character EGO's idle view to 12. The idle view will
+will change/set the character EGO's idle view to VIDLING. The idle view will
 be played if the character is idle for 30 seconds.
 
 *See also:*
@@ -1565,8 +1569,8 @@ X_SPEED and Y_SPEED can be identical, in which case the character
 moves with the same speed in any direction (the editor calls this
 "Uniform movement speed").
 
-**NOTE:** This function CANNOT be called while the character is moving,
-so you must stop him first.
+**NOTE:** Prior to 3.6.1 this function could not be called while the character is moving (you had to stop him first).
+Starting with 3.6.1 and onwards you may change character's walking speed during movement too.
 
 Example:
 
@@ -1607,8 +1611,9 @@ if (cEgo.x > 299)
 
 will stop the character when he reaches the coordinate x=300.
 
-*See also:* [`Character.Walk`](Character#characterwalk),
-[`Object.StopMoving`](Object#objectstopmoving)
+*See also:* [`Character.Move`](Character#charactermove),
+ [`Character.Walk`](Character#characterwalk),
+ [`Object.StopMoving`](Object#objectstopmoving)
 
 ---
 
@@ -1730,12 +1735,12 @@ character will keep moving). The default is eStopMoving.
 Example:
 
 ```ags
-cEgo.LockView(12);
+cEgo.LockView(VPICKUPITEM);
 cEgo.Animate(0, 0, eOnce, eBlock, eForwards);
 cEgo.UnlockView();
 ```
 
-will play an animation using loop 0 of view 12, then return the
+will play an animation using loop 0 of view VPICKUPITEM, then return the
 character to its normal view.
 
 *Compatibility:* Optional *StopMovementStyle* parameter is supported
@@ -1792,11 +1797,11 @@ will make the character walk to 155,122. The script will not continue
 until the character has reached his destination.
 
 *See also:* [`Character.AddWaypoint`](Character#characteraddwaypoint),
-[`Character.FaceCharacter`](Character#characterfacecharacter),
-[`Character.Move`](Character#charactermove),
-[`MoveCharacterToObject`](Globalfunctions_General#movecharactertoobject),
-[`Object.Move`](Object#objectmove),
-[`Character.StopMoving`](Character#characterstopmoving)
+ [`Character.Move`](Character#charactermove),
+ [`Character.MoveStraight`](Character#charactermovestraight),
+ [`Character.StopMoving`](Character#characterstopmoving)
+ [`Character.WalkStraight`](Character#characterwalkstraight),
+ [`Object.Move`](Object#objectmove)
 
 ---
 
@@ -1838,9 +1843,12 @@ cEgo.WalkStraight(cEgo.x + 10, cEgo.y + 10, eBlock);
 
 will make the character walk in a straight line 10 pixels towards bottom-right, unless hitting a non-walkable area earlier.
 
-*See also:* [`Character.Move`](Character#charactermove),
+*See also:* [`Character.AddWaypoint`](Character#characteraddwaypoint),
+ [`Character.Move`](Character#charactermove),
  [`Character.MoveStraight`](Character#charactermovestraight)
+ [`Character.StopMoving`](Character#characterstopmoving)
  [`Character.Walk`](Character#characterwalk)
+ [`Object.Move`](Object#objectmove)
 
 ---
 
@@ -1931,20 +1939,71 @@ will change the player character's animation speed to 4.
 
 ### `Character.AnimationVolume`
 
+**This property was renamed since AGS 3.6.3. See [`Character.AudioVolume`](Character#characteraudiovolume).**
+
+*Compatibility:* Supported by **AGS 3.6.0** and later versions.
+
+---
+
+### `Character.AudioPanning`
+
 ```ags
-int Character.AnimationVolume
+int Character.AudioPanning
+```
+
+Gets/sets the character's animation sound panning, which is a panning (-100 - +100) of frame-linked sounds that play during character's animations.
+
+Currently the panning only works with mono sounds.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioChannel.Panning`](AudioChannel#audiochannelpanning),
+[`Character.Animate`](Character#characteranimate),
+[`Character.ChangeView`](Character#characterchangeview),
+[`Character.View`](Character#characterview),
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
+
+---
+
+### `Character.AudioSpeed`
+
+```ags
+int Character.AudioSpeed
+```
+
+Gets/sets the character's animation sound speed, which is a speed of frame-linked sounds that play during character's animations. The speed is defined in clip's milliseconds per second: 1000 is default, meaning 1000 of
+clip's ms in 1 real second (scale 1:1). Set < 1000 for slower play and > 1000 for faster play.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`AudioChannel.Speed`](AudioChannel#audiochannelspeed),
+[`Character.Animate`](Character#characteranimate),
+[`Character.ChangeView`](Character#characterchangeview),
+[`Character.View`](Character#characterview),
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
+
+---
+
+### `Character.AudioVolume`
+
+*(Formerly known as `Character.AnimationVolume`, which is now obsolete)*
+
+```ags
+int Character.AudioVolume
 ```
 
 Gets/sets the character's animation sound volume, which is a *relative* volume (0-100) of frame-linked sounds that play during character's animations.
 
-**NOTE:** all the volume properties in Character act as relative factors: these are `AnimationVolume`, "volume" parameter of [`Animate`](Character#characteranimate) function, and character's scale if [`ScaleVolume`](Character#characterscalevolume) is also set. The final frame sound's volume will be equal to `sound volume * AnimationVolume % * scaled volume %` in case of a normal view animation (walking, talking, etc), and `sound volume * AnimationVolume % * scaled volume % * Animate's volume param %` when `Animate` is called.
+**NOTE:** all the volume properties in Character act as relative factors: these are `AudioVolume`, "volume" parameter of [`Animate`](Character#characteranimate) function, and character's scale if [`ScaleVolume`](Character#characterscalevolume) is also set. The final frame sound's volume will be equal to `sound volume * AudioVolume % * scaled volume %` in case of a normal view animation (walking, talking, etc), and `sound volume * AudioVolume % * scaled volume % * Animate's volume param %` when `Animate` is called.
 
-*Compatibility:* Supported by **AGS 3.6.0** and later versions.
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
-*See also:* [`Character.Animate`](Character#characteranimate),
+*See also:* [`AudioChannel.Volume`](AudioChannel#audiochannelvolume),
+[`Character.Animate`](Character#characteranimate),
 [`Character.ChangeView`](Character#characterchangeview),
 [`Character.ScaleVolume`](Character#characterscalevolume),
-[`Character.View`](Character#characterview)
+[`Character.View`](Character#characterview),
+[`ViewFrame.LinkedAudio`](ViewFrame#viewframelinkedaudio)
 
 ---
 
@@ -2034,11 +2093,11 @@ This property has no effect if no
 Example:
 
 ```ags
-cEgo.BlinkView = 10;
+cEgo.BlinkView = VBLINKING;
 cEgo.BlinkInterval = 160;
 ```
 
-will change the character EGO's blink view to view 10, and play the
+will change the character EGO's blink view to view VBLINKING, and play the
 animation every 4 seconds.
 
 *See also:* [`Character.BlinkView`](Character#characterblinkview),
@@ -2065,11 +2124,11 @@ often the blinking animation is played.
 Example:
 
 ```ags
-cEgo.BlinkView = 10;
+cEgo.BlinkView = VBLINKING;
 cEgo.BlinkInterval = 160;
 ```
 
-will change the character EGO's blink view to view 10, and play the
+will change the character EGO's blink view to view VBLINKING, and play the
 animation every 4 seconds.
 
 *See also:*
@@ -2747,6 +2806,46 @@ character as an overlay to display rain or snow onto a scene.
 
 ---
 
+### `Character.Inventory`
+
+```ags
+readonly InventoryItem* Character.Inventory[]
+```
+
+Gets the inventory item in the particular position of the character's inventory. The array index has a valid range from 0 to (Character.InventoryCount - 1).
+
+This property lets you access and iterate all items that the character currently has, in the order of acquisition. If "Display multiple icons for multiple items" is disabled in General Settings, then each item will be present only once, regardless of the times it was added, and their actual quantity in inventory may be found using [`Character.InventoryQuantity`](Character#characterinventoryquantity). If duplicates are allowed, then inventory may contain multiple instances of the same item, exactly in the order they were added.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.AddInventory`](Character#characteraddinventory),
+[`Character.HasInventory`](Character#characterhasinventory),
+[`Character.LoseInventory`](Character#characterloseinventory)
+[`Character.InventoryCount`](Character#characterinventorycount)
+[`Character.InventoryQuantity`](Character#characterinventoryquantity)
+
+---
+
+### `Character.InventoryCount`
+
+```ags
+readonly int Character.InventoryCount
+```
+
+Gets total number of items in the character's inventory.
+
+If "Display multiple icons for multiple items" is disabled in General Settings, then each item will be present only once, regardless of the times it was added, and their actual quantity in inventory may be found using [`Character.InventoryQuantity`](Character#characterinventoryquantity). If duplicates are allowed, then inventory may contain multiple instances of the same item.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.AddInventory`](Character#characteraddinventory),
+[`Character.HasInventory`](Character#characterhasinventory),
+[`Character.LoseInventory`](Character#characterloseinventory)
+[`Character.Inventory`](Character#characterinventory)
+[`Character.InventoryQuantity`](Character#characterinventoryquantity)
+
+---
+
 ### `Character.InventoryQuantity`
 
 *(Formerly known as `character[].inv`, which is now obsolete)*
@@ -2764,9 +2863,10 @@ modify the character's inventory; however, if you need to add or remove
 a large number of items in one go, directly changing this array can be
 an easier method.
 
-If you change this array directly, the on-screen inventory will not be
-updated. In this case, you must call UpdateInventory to see any new or
-removed items.
+Prior to **AGS 3.6.3** if you change this array directly, the on-screen inventory will not be
+updated. In this case, you must call UpdateInventory to see any new or removed items.
+
+In **AGS 3.6.3** and higher adding new items or removing items by setting their quantity to zero will actually work similar to AddInventory and LoseInventory, so UpdateInventory is no longer necessary.
 
 If you just want to quickly check whether the character has a particular
 item or not, use the [`HasInventory`](Character#characterhasinventory)
@@ -3378,10 +3478,10 @@ You can set this to -1 to disable the character's speech view.
 Example:
 
 ```ags
-cEgo.SpeechView = 10;
+cEgo.SpeechView = VSPEAKANGRY;
 ```
 
-will change the character EGO's speech view to view 10.
+will change the character EGO's speech view to view VSPEAKANGRY.
 
 *See also:* [`Character.ChangeView`](Character#characterchangeview),
 [`Character.BlinkView`](Character#characterblinkview),
@@ -3484,10 +3584,10 @@ character when a thought is being displayed.
 Example:
 
 ```ags
-cEgo.ThinkView = 14;
+cEgo.ThinkView = VTHINKING;
 ```
 
-will change the character EGO's thinking view to 14.
+will change the character EGO's thinking view to VTHINKING.
 
 *See also:* [`Character.Think`](Character#characterthink)
 

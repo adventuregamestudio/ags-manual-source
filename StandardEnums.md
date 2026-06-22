@@ -22,16 +22,21 @@ enum Alignment {
     eAlignBottomLeft    = 64,
     eAlignBottomCenter  = 128,
     eAlignBottomRight   = 256,
+};
+```
+
+```ags
+enum AlignmentMask {
     eAlignHasLeft       = 73,
     eAlignHasRight      = 292,
     eAlignHasTop        = 7,
     eAlignHasBottom     = 448,
     eAlignHasHorCenter  = 146,
     eAlignHasVerCenter  = 56
-};
+} 
 ```
 
-The Alignment enumeration consists of values that could be summed up in one integer variable to form a more complex combination of alignments. Although that ability is not used anywhere in practice yet, but may be in future. Additionally, it provides a set of masks that could be applied bitwise to check if alignment variable contains one of the distinct directions, for example:
+The Alignment enumeration consists of values that could be summed up in one integer variable to form a more complex combination of alignments. Although that ability is not used anywhere in practice yet, but may be in future. Additionally, AlignmentMask enumeration provides a set of masks that could be applied bitwise to check if alignment variable contains one of the distinct directions, for example:
 
 ```ags
 if (align & eAlignHasLeft)
@@ -505,7 +510,13 @@ enum InputType
 };
 ```
 
-The InputType enumeration consists of values that could be summed up in one integer variable to form a combination of input types. This may be used to store several "types" in one integer, pass them into a function, or return from a function. You may use bitwise operation to check if a variable contains one of the distinct types, for example:
+The InputType enumeration consists of values that could be summed up in one integer variable to form a combination of input types using bitwise OR operator. This may be used to store several "types" in one integer, pass them into a function, or return from a function:
+
+```ags
+WaitInput(eInputKeyboard | eInputMouse);
+```
+
+You may use bitwise operation to check if a variable contains one of the distinct types, for example:
 
 ```ags
 if (type & eInputKeyboard)
@@ -614,7 +625,11 @@ The `RenderLayer` enum lets specify which elements should be rendered in a scree
 This allows you to, as an example, create a screenshot of only the room layer and not include any GUI or cursor on top.
 The Engine layer is for things like the in-engine FPS counter.
 
-The `RenderLayer` enum can be combined like flags, using bitwise operators.
+The `RenderLayer` constants can be combined using bitwise OR operator:
+
+```ags
+DynamicSprite.CreateFromScreenShot(320, 200, eRenderLayerRoom | eRenderLayerUI);
+```
 
 *Compatibility:* supported by **AGS 3.6.2** and higher.
 
@@ -635,28 +650,6 @@ enum RepeatStyle {
 *Used by:* [`Button.Animate`](Button#buttonanimate),
 [`Character.Animate`](Character#characteranimate),
 [`Object.Animate`](Object#objectanimate)
-
----
-
-### `RestoredSaveResult`
-
-```ags
-enum RestoredSaveResult
-{
-    eRestoredSave_ClearData   = 0x01,
-    eRestoredSave_MissingData = 0x08,
-    eRestoredSave_ExtraData   = 0x10,
-    eRestoredSave_Prescan     = 0x20
-};
-```
-
-The `RestoredSaveResult` enum is used to specify the result of reading a save.
-
-The `RestoredSaveResult` enum can be combined like flags, using bitwise operators.
-
-*Compatibility:* supported by **AGS 3.6.2** and higher.
-
-*Used by:* [`validate_restored_save`](ValidateRestoredSave)
 
 ---
 
@@ -714,7 +707,11 @@ enum SaveComponentSelection
 The `SaveComponentSelection` enum lets specify which parts of the save should be skipped when writing or restoring a game save.
 This allows you to, as an example, keep certain things persistent in your game, unaffected by player saving and loading their story progress.
 
-The `SaveComponentSelection` enum can be combined like flags, using bitwise operators.
+The `SaveComponentSelection` constants can be combined using bitwise OR operator:
+
+```ags
+SetGameOption(OPT_SAVECOMPONENTSIGNORE, eSaveCmp_Audio | eSaveCmp_DynamicSprites);
+```
 
 *Compatibility:* supported by **AGS 3.6.2** and higher.
 

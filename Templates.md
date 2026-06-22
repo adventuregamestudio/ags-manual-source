@@ -61,7 +61,7 @@ By default it takes following files from your game's folder:
 8. Translations (`*.trs`);
 9. Text files, in case you'd like to include a `README.TXT` or whatever (`*.txt`, `*.pdf`);
 10. Icons (`*.ico`);
-11. Preload image file (`preload.pcx`).
+11. Preload image file (`preload.ext`, where `ext` is one of the supported image formats, such as `bmp`, `pcx`, `png` etc).
 
 The second way is to use "template.files" file, as explained in [the section below](Templates#creating-template-with-the-use-of-the-patterns-file).
 

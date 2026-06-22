@@ -698,6 +698,8 @@ list.
 
 ### `ListBox.Translated`
 
+**This property is obsolete since AGS 3.6.3. It is replaced by [`GUIControl.Translated`](GUIControl#guicontroltranslated).**
+
 ```ags
 bool ListBox.Translated
 ```

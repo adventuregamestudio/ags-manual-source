@@ -84,7 +84,13 @@ folder.
 
 ### Splash screen
 
-You can make a "Loading..." style splash screen to be displayed while your game starts up. To do so, simply save the image as **preload.pcx** (must be the same resolution and color depth as the game) in the game project folder, and build the game. It should then display while the game is loading.
+You can make a "Loading..." style splash screen to be displayed while your game starts up. To do so, simply save the image as **preload.ext** (where "ext" is one of the supported image formats) in the game project folder, and build the game. The image must be the same resolution as the game. It should then display while the game is loading.
+
+The supported image formats are:
+
+    - BMP (1-bit, 4-bit, 8-bit, 16-bit, 24-bit and 32-bit)
+	- PCX
+	- PNG (indexed, 24-bit RGB and 32-bit ARGB), since **AGS 3.6.3**.
 
 ---
 

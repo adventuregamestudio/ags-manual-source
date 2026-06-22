@@ -217,7 +217,11 @@ Loads an external image FILENAME into memory as a sprite.
 Returns the DynamicSprite instance representing the sprite, or *null* if
 the image could not be loaded (file not found or unsupported format).
 
-Only BMP and PCX files can be loaded with this command.
+The supported image formats are:
+
+    - BMP (1-bit, 4-bit, 8-bit, 16-bit, 24-bit and 32-bit)
+	- PCX
+	- PNG (indexed, 24-bit RGB and 32-bit ARGB), since **AGS 3.6.3**.
 
 Use the [`Graphic`](DynamicSprite#dynamicspritegraphic) property of the
 DynamicSprite to interface with other commands and to use the new sprite
@@ -674,8 +678,11 @@ DynamicSprite.SaveToFile(string filename)
 
 Saves the dynamic sprite to the specified file.
 
-The filename you supply must have a .PCX or .BMP extension; they are the
-only two file types that the engine supports.
+The supported image formats are:
+
+    - BMP (1-bit, 4-bit, 8-bit, 16-bit, 24-bit and 32-bit)
+	- PCX
+	- PNG (indexed, 24-bit RGB and 32-bit ARGB), since **AGS 3.6.3**.
 
 Returns 1 if the sprite was saved successfully, or 0 if it failed.
 

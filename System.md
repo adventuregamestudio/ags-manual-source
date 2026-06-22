@@ -352,6 +352,22 @@ switches back to game.
 
 ---
 
+### `System.LocaleName`
+
+```ags
+readonly static String System.LocaleName;
+```
+
+Gets the name of the UTF-8 locale initialized for the game. The locale is set internally by the engine when loading game data, and updated whenever a new game translation is loaded. Returns an empty string if no UTF-8 locale is used.
+
+In practice, locale defines how locale-aware string comparisons work.
+
+This property exists mainly for diagnostic purposes.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `System.NumLock`
 
 ```ags

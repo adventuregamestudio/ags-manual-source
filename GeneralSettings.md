@@ -173,6 +173,13 @@ accessible in future versions.
     commands, they will visibly turn around using their available loops.
     If this option is not set, they will immediately appear facing their
     new direction.
+-   **Prioritize this turning direction** - tells which turning direction to prioritize when characters are making 180-degree turns. Available choices are:
+
+    - **Clockwise** - characters will always make clockwise turns.
+	- **CounterClockwise** - characters will always make counter-clockwise turns.
+	- **Random** - characters will take either clockwise or counter-clockwise turns, chosen at random.
+	- **Face Down** - characters will select the direction that lets them face "down" more often. This is a convenient choice in case of a classic side-view perspective.
+
 -   **Scale Character sprite offsets** - if set, then visual character's offsets will be scaled in proportion to the current character's scaling. This refers to values of [`Character.z`](Character#characterz) property and parameters of [`Character.LockViewOffset`](Character#characterlockviewoffset).
 -   **Scale movement speed with room's mask resolution** - Character walking
     and object movement speeds will scale inversely in proportion to the

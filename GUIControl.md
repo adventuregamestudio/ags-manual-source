@@ -555,6 +555,20 @@ Out of all the control types, only Buttons and Sliders have background color ena
 
 ---
 
+### `GUIControl.Translated`
+
+```ags
+bool GUIControl.Translated
+```
+
+Get/sets whether this control should have its text translated (when the game is using a translation). This applies only to controls that have text in them.
+
+**NOTE:** TextBoxes have a special behavior, where their text is not being translated per se, as it's meant for the player input, but the text's direction may be affected by the active translation's setting (OPT_RIGHTOTLEFT game option).
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `GUIControl.Transparency`
 
 ```ags

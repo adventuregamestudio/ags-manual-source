@@ -112,6 +112,24 @@ will give the player 5 points the first time this script is run.
 
 ---
 
+### `Game.GetAudioTypeVolume`
+
+```ags
+static int Game.GetAudioTypeVolume(AudioType)
+```
+
+Returns the default volume of the specified *AudioType*. This returns either a value in the range of 0 to 100, or -1 if this audio type does not impose any standard volume on its clips (in which case clips begin playing with their own individual default volumes).
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`SetSpeechVolume`](Multimedia#setspeechvolume),
+[`Game.SetAudioTypeSpeechVolumeDrop`](Game#gamesetaudiotypespeechvolumedrop),
+[`Game.SetAudioTypeVolume`](Game#gamesetaudiotypevolume),
+[`AudioClip.Play`](AudioClip#audioclipplay),
+[`System.Volume`](System#systemvolume)
+
+---
+
 ### `Game.GetColorFromRGB`
 
 *(Formerly known as `RawSetColorRGB`, which is now obsolete)*
@@ -851,7 +869,8 @@ will change the volume of all currently playing and future music to
 
 *Compatibility:* Supported by **AGS 3.2.0** and later versions.
 
-*See also:* [`SetSpeechVolume`](Multimedia#setspeechvolume),
+*See also:* [`Game.GetAudioTypeVolume`](Game#gamegetaudiotypevolume),
+[`SetSpeechVolume`](Multimedia#setspeechvolume),
 [`Game.SetAudioTypeSpeechVolumeDrop`](Game#gamesetaudiotypespeechvolumedrop),
 [`AudioClip.Play`](AudioClip#audioclipplay),
 [`System.Volume`](System#systemvolume)

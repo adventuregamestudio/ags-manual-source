@@ -723,7 +723,7 @@ The pixel data in array is supposed to match the DrawingSurface's color depth:
 
   - 8-bit: each byte corresponds to a pixel and contains a palette index. The total size of the array = number of pixels in the copied region.
   - 16-bit: each sequence of 2 bytes correspond to a pixel. The color is stored in R5G6B5 format, which means 5 bits for Red, 6 bits for Green and 5 bits for Blue color component. It is easier if you use [`DrawingSurface.SetPixels16`](DrawingSurface#drawingsurfacesetpixels16) function instead.
-  - 32-bit: each sequence of 4 bytes correspond to a pixel. The color is stored in A8R8G8B8 format, which means that first byte is Alpha, second is Red, third is Green and fourth is Blue. For 32-bit surfaces you should also consider using [`DrawingSurface.SetPixels32`](DrawingSurface#drawingsurfacegetpixels32) function instead.
+  - 32-bit: each sequence of 4 bytes correspond to a pixel. The color is stored in A8R8G8B8 format, which means that first byte is Alpha, second is Red, third is Green and fourth is Blue. For 32-bit surfaces you should also consider using [`DrawingSurface.SetPixels32`](DrawingSurface#drawingsurfacesetpixels32) function instead.
   
 If the data format does not match, there will be no error reported, but the looks of the image may become broken.
 

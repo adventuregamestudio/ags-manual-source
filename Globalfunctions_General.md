@@ -578,6 +578,36 @@ Display("The player character number is %d", player.ID);
 
 ---
 
+### `GetPressedKeys`
+
+```ags
+eKeyCode[] GetPressedKeys()
+```
+
+Returns a dynamic array containing list of the currently pressed keys. If no keys are pressed at the moment, then returns an empty array (check array's Length property to know how many elements does it have).
+
+Example:
+
+```ags
+eKeyCode[] keys = GetPressedKeys();
+for (int i = 0; i < keys.Length; i++)
+{
+    if (keys[i] == eKeyLeftArrow)
+        player.x--;
+    if (keys[i] == eKeyRightArrow)
+        player.x++;
+}
+```
+
+checks all the currently pressed keys. If one of them is "left arrow" then moves character to the left, if one of them is "right arrow" then moves character to the right.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`IsAnyKeyPressed`](Globalfunctions_General#isanykeypressed),
+[`IsKeyPressed`](Globalfunctions_General#iskeypressed)
+
+---
+
 ### `GetTextHeight`
 
 ```ags
@@ -1519,7 +1549,8 @@ OPT_GAMEFPS | Game speed, number of frames per second. This option is read from 
 OPT_GUICONTROLMOUSEBUT | Whether common gui controls should react only to left mouse button (0 - any button, 1 - LMB only).
 OPT_AUTOTRANSPARSERSAID | Automatically translates arguments to Parser functions, like Said(...).
 OPT_DISPLAYSINGLEDIALOGOPTION | Display dialog options even if only one is currently enabled. If disabled then the only enabled option will be chosen and run automatically.
-OPT_TURNORDERPRIORITY | Which turn order characters choose when making 180-degree turns. See [`TurnOrderPriority`](StandardEnums#turnorderpriority)
+OPT_TURNORDERPRIORITY | Which turn order characters choose when making 180-degree turns. See [`TurnOrderPriority`](StandardEnums#turnorderpriority).
+OPT_TEXTBOXCLAIMSKEYS | Which of the key and text input events are claimed by the active TextBox control. See [`TextBoxKeyClaimStyle`](StandardEnums#textboxkeyclaimstyle).
 
 The game settings which are not listed here either are read-only, deprecated and have a separate
 command to change them (such as Speech.Style), or unusable in the contemporary engine.

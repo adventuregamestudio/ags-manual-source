@@ -53,6 +53,29 @@ triggers OnClick event for gMainMenu.
 
 ---
 
+### `GUI.GetActiveTextInputControl`
+
+```ags
+static TextBox* GUI.GetActiveTextInputControl()
+```
+
+Returns the first found active (enabled and displayed) TextBox control that is currently receiving a keyboard input. Returns `null` if no active TextBox was found.
+
+Example:
+
+```ags
+if (GUI.GetActiveTextInputControl() != null)
+{
+    InfoLabel.Text = "Please start typing...";
+}
+```
+
+checks if there's any active TextBox on screen, and if there's one, then change the `InfoLabel` label's text to instruct player to type something.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `GUI.GetAtScreenXY`
 
 *(Formerly known as `GetGUIAt`, which is now obsolete)*

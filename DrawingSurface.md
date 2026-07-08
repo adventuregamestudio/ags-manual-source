@@ -570,6 +570,273 @@ displays the pixel color of the center pixel on the screen.
 
 ---
 
+### `DrawingSurface.GetPixelsCopy`
+
+```ags
+char[] DrawingSurface.GetPixelsCopy(optional int x, optional int y, optional int width, optional int height);
+```
+
+Returns a dynamic array of bytes, containing a copy of this surface's pixel data taken from the specified region. If no region parameters are provided, then the whole surface data is copied.
+The pixels are arranged in the horizontal order starting from the top-left corner of the image.
+
+The pixel data format depends on the surface's color depth:
+
+  - 8-bit: each byte corresponds to a pixel and contains a palette index. The total size of the array = number of pixels in the copied region.
+  - 16-bit: each sequence of 2 bytes correspond to a pixel. The color is stored in R5G6B5 format, which means 5 bits for Red, 6 bits for Green and 5 bits for Blue color component. In order to set or get individual components you should be using [bitwise operators](ScriptKeywords#operators), although it is easier to do if you use [`DrawingSurface.GetPixelsCopy16`](DrawingSurface#drawingsurfacegetpixelscopy16) function instead.
+  - 32-bit: each sequence of 4 bytes correspond to a pixel. The color is stored in A8R8G8B8 format, which means that first byte is Alpha, second is Red, third is Green and fourth is Blue. For 32-bit surfaces you should also consider using [`DrawingSurface.GetPixelsCopy32`](DrawingSurface#drawingsurfacegetpixelscopy32) function instead.
+
+Accessing specific pixel is done by converting image coordinates using this formula:
+
+```ags
+int index = y * (width * bpp) + x * bpp;
+```
+
+Where `bpp` is bytes per pixel, or surface's ColorDepth divided by 8 (1 for 8-bit, 2 for 16-bit and 4 for 32-bit surface).
+
+Because copying whole pixel data is a *relatively* slow operation, this function is worth using when you need to perform a large number of reads or changes over image's pixels. When you only need to read or set a few pixels, it's much better to use [`GetPixel`](DrawingSurface#drawingsurfacegetpixel) and [`DrawPixel`](DrawingSurface#drawingsurfacedrawpixel) instead.
+
+Example:
+
+```ags
+DrawingSurface* ds = GetDrawingSurfaceForWalkableArea();
+char[] pixels = ds.GetPixelsCopy();
+ds.Release();
+int x, y;
+for (int i = 0; i < pixels.Length; i++)
+{
+    if (pixels[i] == 10)
+	{
+	    x = i % ds.Width;
+		y = i / ds.Width;
+		break;
+	}
+}
+```
+
+will scan the walkable mask pixels until finding any pixel with color index 10 (belongs to walkable area 10), then save its coordinates in variables `x` and `y` for the further use.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`DrawingSurface.GetPixelsCopy16`](DrawingSurface#drawingsurfacegetpixelscopy16),
+[`DrawingSurface.GetPixelsCopy32`](DrawingSurface#drawingsurfacegetpixelscopy32),
+[`DrawingSurface.SetPixels`](DrawingSurface#drawingsurfacesetpixels),
+['DrawingSurface.ColorDepth'](DrawingSurface#drawingsurfacecolordepth),
+[`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight),
+[`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
+
+---
+
+### `DrawingSurface.GetPixelsCopy16`
+
+```ags
+short[] DrawingSurface.GetPixelsCopy16(optional int x, optional int y, optional int width, optional int height);
+```
+
+Returns a dynamic array of 16-bit integers (aka `short`), containing a copy of this surface's pixel data taken from the specified region. If no region parameters are provided, then the whole surface data is copied.
+The pixels are arranged in the horizontal order starting from the top-left corner of the image.
+
+This function is meant to be used with 16-bit drawing surfaces. Using it with surfaces of any other formats (8 or 32-bit) will not cause any errors, but may not be convenient in practice.
+
+With 16-bit surfaces the returned array contains direct pixel values (each element is a pixel). The color is stored in R5G6B5 format, which means 5 bits for Red, 6 bits for Green and 5 bits for Blue color component. In order to set or get individual components you should be using [bitwise operators](ScriptKeywords#operators), as demonstrated below:
+
+```ags
+char red = (pixel >> 11) & 0x1f;
+char green = (pixel >> 5) & 0x3f;
+char blue = (pixel) & 0x1f;
+```
+
+Because copying whole pixel data is a *relatively* slow operation, this function is worth using when you need to perform a large number of reads or changes over image's pixels at once. When you only need to read or set a few pixels, it's much better to use [`GetPixel`](DrawingSurface#drawingsurfacegetpixel) and [`DrawPixel`](DrawingSurface#drawingsurfacedrawpixel) instead.
+
+Example:
+
+```ags
+short[] pixels = ds.GetPixelsCopy16();
+short pixel = pixels[10];
+char blue = pixel & 0x1f;
+```
+
+will get the 10th pixel of this surface (counting from the top-left), and retrieve its Blue color component.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`DrawingSurface.GetPixelsCopy`](DrawingSurface#drawingsurfacegetpixelscopy),
+[`DrawingSurface.GetPixelsCopy32`](DrawingSurface#drawingsurfacegetpixelscopy32),
+[`DrawingSurface.SetPixels16`](DrawingSurface#drawingsurfacesetpixels16),
+['DrawingSurface.ColorDepth'](DrawingSurface#drawingsurfacecolordepth),
+[`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight),
+[`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
+
+---
+
+### `DrawingSurface.GetPixelsCopy32`
+
+```ags
+int[] DrawingSurface.GetPixelsCopy32(optional int x, optional int y, optional int width, optional int height);
+```
+
+Returns a dynamic array of integers, containing a copy of this surface's pixel data taken from the specified region. If no region parameters are provided, then the whole surface data is copied.
+The pixels are arranged in the horizontal order starting from the top-left corner of the image.
+
+This function is meant to be used with 32-bit drawing surfaces. Using it with surfaces of any other formats (8 or 16-bit) will not cause any errors, but may not be convenient in practice.
+
+With 32-bit surfaces the returned array contains direct pixel values (each element is a pixel). The color is stored in A8R8G8B8 format, which means 8 bits for Alpha, 8 bits for Red, 8 bits for Green and 8 bits for Blue color component. In order to set or get individual components you should be using [bitwise operators](ScriptKeywords#operators), as demonstrated below:
+
+```ags
+char alpha = (pixel >> 24) & 0xff;
+char red = (pixel >> 16) & 0xff;
+char green = (pixel >> 8) & 0xff;
+char blue = (pixel) & 0xff;
+```
+
+Because copying whole pixel data is a *relatively* slow operation, this function is worth using when you need to perform a large number of reads or changes over image's pixels. When you only need to read or set a few pixels, it's much better to use [`GetPixel`](DrawingSurface#drawingsurfacegetpixel) and [`DrawPixel`](DrawingSurface#drawingsurfacedrawpixel) instead.
+
+Example:
+
+```ags
+short[] pixels = ds.GetPixelsCopy32();
+int pixel = pixels[10];
+char red = (pixel >> 16) & 0xff;
+```
+
+will get the 10th pixel of this surface (counting from the top-left), and retrieve its Red color component.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`DrawingSurface.GetPixelsCopy`](DrawingSurface#drawingsurfacegetpixelscopy),
+[`DrawingSurface.GetPixelsCopy16`](DrawingSurface#drawingsurfacegetpixelscopy16),
+[`DrawingSurface.SetPixels32`](DrawingSurface#drawingsurfacesetpixels32),
+['DrawingSurface.ColorDepth'](DrawingSurface#drawingsurfacecolordepth),
+[`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight),
+[`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
+
+---
+
+### `DrawingSurface.SetPixels`
+
+```ags
+void DrawingSurface.SetPixels(char pixels[], optional int x, optional int y, optional int width, optional int height);
+```
+
+Copies the pixel data from the provided dynamic array of bytes onto the specified region of the drawing surface. Pixels are copied until reaching either the end of array or the region's boundaries. If no region parameters are provided, then will try to fill the whole surface, so long as the array has enough data.
+
+The pixel data in array is supposed to match the DrawingSurface's color depth:
+
+  - 8-bit: each byte corresponds to a pixel and contains a palette index. The total size of the array = number of pixels in the copied region.
+  - 16-bit: each sequence of 2 bytes correspond to a pixel. The color is stored in R5G6B5 format, which means 5 bits for Red, 6 bits for Green and 5 bits for Blue color component. It is easier if you use [`DrawingSurface.SetPixels16`](DrawingSurface#drawingsurfacesetpixels16) function instead.
+  - 32-bit: each sequence of 4 bytes correspond to a pixel. The color is stored in A8R8G8B8 format, which means that first byte is Alpha, second is Red, third is Green and fourth is Blue. For 32-bit surfaces you should also consider using [`DrawingSurface.SetPixels32`](DrawingSurface#drawingsurfacegetpixels32) function instead.
+  
+If the data format does not match, there will be no error reported, but the looks of the image may become broken.
+
+Because copying whole pixel data is a *relatively* slow operation, this function is worth using when you need to perform a large number of changes over image's pixels at once. When you only need to set a few pixels, it's much better to use [`DrawPixel`](DrawingSurface#drawingsurfacedrawpixel) instead.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`DrawingSurface.GetPixelsCopy`](DrawingSurface#drawingsurfacegetpixelscopy),
+[`DrawingSurface.SetPixels16`](DrawingSurface#drawingsurfacesetpixels16),
+[`DrawingSurface.SetPixels32`](DrawingSurface#drawingsurfacesetpixels32),
+['DrawingSurface.ColorDepth'](DrawingSurface#drawingsurfacecolordepth),
+[`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight),
+[`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
+
+---
+
+### `DrawingSurface.SetPixels16`
+
+```ags
+void DrawingSurface.SetPixels16(short pixels[], optional int x, optional int y, optional int width, optional int height);
+```
+
+Copies the pixel data from the provided dynamic array of 16-bit integers (aka `short`) onto the specified region of the drawing surface. Pixels are copied until reaching either the end of array or the region's boundaries. If no region parameters are provided, then will try to fill the whole surface, so long as the array has enough data.
+
+This function is meant to be used with 16-bit drawing surfaces. Using it with surfaces of any other formats (8 or 32-bit) will not cause any errors, but may not be convenient in practice.
+
+With 16-bit surfaces the array contains direct pixel values (each element is a pixel). The color is stored in R5G6B5 format, which means 5 bits for Red, 6 bits for Green and 5 bits for Blue color component. In order to set individual components you should be using [bitwise operators](ScriptKeywords#operators), as demonstrated below:
+
+```ags
+int pixel =
+    ((blue >> 3) & 0x1f) |
+    ((green >> 2) & 0x3f) << 5 |;
+    ((red >> 3) & 0x1f) << 11;
+```
+  
+If the data format does not match, there will be no error reported, but the looks of the image may become broken.
+
+Because copying whole pixel data is a *relatively* slow operation, this function is worth using when you need to perform a large number of changes over image's pixels at once. When you only need to set a few pixels, it's much better to use [`DrawPixel`](DrawingSurface#drawingsurfacedrawpixel) instead.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`DrawingSurface.GetPixelsCopy16`](DrawingSurface#drawingsurfacegetpixelscopy16),
+[`DrawingSurface.SetPixels`](DrawingSurface#drawingsurfacesetpixels),
+[`DrawingSurface.SetPixels32`](DrawingSurface#drawingsurfacesetpixels32),
+['DrawingSurface.ColorDepth'](DrawingSurface#drawingsurfacecolordepth),
+[`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight),
+[`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
+
+---
+
+### `DrawingSurface.SetPixels32`
+
+```ags
+void DrawingSurface.SetPixels32(int pixels[], optional int x, optional int y, optional int width, optional int height);
+```
+
+Copies the pixel data from the provided dynamic array of integers onto the specified region of the drawing surface. Pixels are copied until reaching either the end of array or the region's boundaries. If no region parameters are provided, then will try to fill the whole surface, so long as the array has enough data.
+
+This function is meant to be used with 32-bit drawing surfaces. Using it with surfaces of any other formats (8 or 16-bit) will not cause any errors, but may not be convenient in practice.
+
+With 32-bit surfaces the array contains direct pixel values (each element is a pixel). The color is stored in A8R8G8B8 format, which means 8 bits for Alpha, 8 bits for Red, 8 bits for Green and 8 bits for Blue color component. In order to set or get individual components you should be using [bitwise operators](ScriptKeywords#operators), as demonstrated below:
+
+```ags
+int pixel = 
+	(alpha & 0xff) << 24 |
+    (red & 0xff) << 16 |
+	(green & 0xff) << 8 |
+	(blue & 0xff);
+```
+
+If the data format does not match, there will be no error reported, but the looks of the image may become broken.
+
+Example:
+
+```ags
+DrawingSurface* ds = Room.GetDrawingSurfaceForBackground();
+int pixels[] = ds.GetPixelsCopy32(100, 100, 50, 50);
+for (int i = 0; i < pixels.Length; i++)
+{
+    pixels[i] = pixels[i] & 0x00FF0000;
+}
+ds.SetPixels32(pixels, 150, 100, 50);
+ds.Release();
+```
+
+will take a copy of the room background's pixels from the region starting at (100,100), 50 pixels wide and 50 pixels high, convert every pixel color to a hue of red, and apply the result back.
+
+Because copying whole pixel data is a *relatively* slow operation, this function is worth using when you need to perform a large number of changes over image's pixels at once. When you only need to set a few pixels, it's much better to use [`DrawPixel`](DrawingSurface#drawingsurfacedrawpixel) instead.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`DrawingSurface.GetPixelsCopy32`](DrawingSurface#drawingsurfacegetpixelscopy32),
+[`DrawingSurface.SetPixels`](DrawingSurface#drawingsurfacesetpixels),
+[`DrawingSurface.SetPixels16`](DrawingSurface#drawingsurfacesetpixels16),
+['DrawingSurface.ColorDepth'](DrawingSurface#drawingsurfacecolordepth),
+[`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight),
+[`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
+
+---
+
+### `DrawingSurface.ColorDepth`
+
+```ags
+readonly int DrawingSurface.ColorDepth
+```
+
+Gets the color depth of the surface, in bits per pixel (8, 16, or 32).
+
+*See also:* [`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight)
+[`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
+
+---
+
 ### `DrawingSurface.Height`
 
 ```ags
@@ -588,8 +855,7 @@ surface.Release();
 
 displays the size of the surface to the player
 
-*See also:*
-[`DrawingSurface.UseHighResCoordinates`](DrawingSurface#drawingsurfaceusehighrescoordinates),
+*See also:* [`DrawingSurface.ColorDepth`](DrawingSurface#drawingsurfacecolordepth)
 [`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
 
 ---
@@ -654,6 +920,6 @@ surface.Release();
 
 displays the size of the surface to the player
 
-*See also:* [`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight),
-[`DrawingSurface.UseHighResCoordinates`](DrawingSurface#drawingsurfaceusehighrescoordinates)
+*See also:* [`DrawingSurface.ColorDepth`](DrawingSurface#drawingsurfacecolordepth),
+[`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight)
 

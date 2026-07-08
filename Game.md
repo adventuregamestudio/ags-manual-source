@@ -112,6 +112,23 @@ will give the player 5 points the first time this script is run.
 
 ---
 
+### `Game.GetAudioTypeCrossfadeSpeed`
+
+```ags
+static int Game.GetAudioTypeCrossfadeSpeed(AudioType)
+```
+
+Returns the crossfade speed of the specified *AudioType*. This value is defined as volume units per game frame (how fast the clip's volume will fade or gain volume). Value 0 means that this audio type does not allow crossfade.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* 
+[`Game.SetAudioTypeCrossfadeSpeed`](Game#gamesetaudiotypecrossfadespeed),
+[`Game.GetAudioTypeVolume`](Game#gamegetaudiotypevolume),
+[`AudioClip.Play`](AudioClip#audioclipplay)
+
+---
+
 ### `Game.GetAudioTypeVolume`
 
 ```ags
@@ -794,6 +811,23 @@ will scan saves in range from 1 to 100, sort resulting saves list by time, and f
 [`ListBox.FillSaveGameList`](ListBox#listboxfillsavegamelist),
 [`ListBox.FillSaveGameSlots`](ListBox#listboxfillsavegameslots),
 [`validate_restored_save`](ValidateRestoredSave)
+
+---
+
+### `Game.SetAudioTypeCrossfadeSpeed`
+
+```ags
+static void Game.SetAudioTypeCrossfadeSpeed(AudioType, int speed)
+```
+
+Changes the crossfade speed of the specified *AudioType*. This value is defined as volume units per game frame (how fast the clip's volume will fade or gain volume). Setting this to 0 will disable crossfade for the audio type's clips.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* 
+[`Game.GetAudioTypeCrossfadeSpeed`](Game#gamegetaudiotypecrossfadespeed),
+[`Game.GetAudioTypeVolume`](Game#gamegetaudiotypevolume),
+[`AudioClip.Play`](AudioClip#audioclipplay)
 
 ---
 

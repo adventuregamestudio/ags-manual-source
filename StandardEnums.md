@@ -828,6 +828,22 @@ enum StringCompareStyle {
 
 ---
 
+### `TextBoxKeyClaimStyle`
+
+```ags
+enum TextBoxKeyClaimStyle {
+    eTextBoxKeyClaimAll,
+    eTextBoxKeyClaimHandled,
+    eTextBoxKeyClaimTextOnly
+};
+```
+
+*Compatibility:* supported by **AGS 3.6.3** and higher.
+
+*Used by:* [`SetGameOption`](Globalfunctions_General#setgameoption)
+
+---
+
 ### `TransitionStyle`
 
 ```ags

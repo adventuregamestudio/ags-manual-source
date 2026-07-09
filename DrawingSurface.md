@@ -832,7 +832,9 @@ readonly int DrawingSurface.ColorDepth
 
 Gets the color depth of the surface, in bits per pixel (8, 16, or 32).
 
-*See also:* [`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight)
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`DrawingSurface.Height`](DrawingSurface#drawingsurfaceheight),
 [`DrawingSurface.Width`](DrawingSurface#drawingsurfacewidth)
 
 ---

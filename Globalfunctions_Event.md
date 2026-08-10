@@ -4,7 +4,7 @@ In the AGS game there is a number of events, like starting the game, or pressing
 
 You may you add multiple functions of the same kind to multiple [script modules](ScriptModules), in which case they will be called in the order of modules in your game project. It's possible to stop propagating the event (skip remaining modules) by using [`ClaimEvent`](Globalfunctions_General#claimevent) function (refer to its article for explanation).
 
-Some of these functions may also be added to the room scripts. These are: `on_event`, `on_key_press`, `on_mouse_click`, `on_text_input`, `repeatedly_execute_always`, `late_repeatedly_execute_always`.
+Some of these functions may also be added to the room scripts. These are: `on_event`, `on_key_press`, `on_mouse_click`, `on_text_input`, `repeatedly_execute_always`, `late_repeatedly_execute_always`. These event functions in room scripts are called first, if they are present, and event functions in script modules are called after. This allows to override input handling in the chosen rooms, for example.
 
 Some functions will only work in the room script: `on_call`.
 

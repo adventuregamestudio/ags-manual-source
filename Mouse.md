@@ -542,6 +542,23 @@ Settable since **AGS 3.5.0**.
 
 ---
 
+### `Mouse.Enabled`
+
+```ags
+bool Mouse.Enabled
+```
+
+Gets/sets whether mouse input is enabled in your game. When the mouse input is disabled:
+ - mouse cursor is not drawn on screen;
+ - clicks are not registered by the game objects or script;
+ - mouse position is always reported as (-1,-1), and cannot be changed by a script command.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Mouse.Visible`](Mouse#mousevisible)
+
+---
+
 ### `Mouse.Mode`
 
 *(Formerly known as `GetCursorMode`, which is now obsolete)*<br>
@@ -636,6 +653,8 @@ during cutscenes then a much easier solution is simply to import a
 transparent graphic over the default wait cursor, so that the Wait
 cursor becomes invisible.
 
+**NOTE:** Mouse.Visible only makes the cursor invisible, but does NOT prevent mouse clicks. If you want to completely disable all mouse interactions, then use [Mouse.Enabled](Mouse#mouseenabled) instead.
+
 Example:
 
 ```ags
@@ -646,4 +665,5 @@ mouse.Visible = true;
 
 hides the mouse, waits for a second, then turns it back on again
 
-*See also:* [`Mouse.UseModeGraphic`](Mouse#mouseusemodegraphic)
+*See also:* [`Mouse.UseModeGraphic`](Mouse#mouseusemodegraphic),
+[`Mouse.Enabled`](Mouse#mouseenabled)

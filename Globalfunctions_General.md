@@ -523,10 +523,12 @@ will execute the code only if interaction variable \"climbed rock\" is
 ### `GetLocationType`
 
 ```ags
-LocationType GetLocationType(int x, int y)
+LocationType GetLocationType(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Returns what type of room thing is seen under the given screen coordinates (x, y): whether it is a character, object, hotspot or nothing at all. This may be useful, for example, if you want to process a mouse click differently depending on what the player clicks on.
+
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
 
 It's important to know that this will work only if there's a room viewport found on screen at that point, otherwise this function will fail and return "nothing".
 
@@ -551,6 +553,8 @@ if (GetLocationType(mouse.x,mouse.y) == eLocationCharacter)
 ```
 
 will set the cursor mode to talk if the cursor is over a character.
+
+*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy),
 [`Game.GetLocationName`](Game#gamegetlocationname),

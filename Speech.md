@@ -101,6 +101,22 @@ used instead.
 
 ---
 
+### `Speech.OverlayZOrder`
+
+```ags
+static int Speech.OverlayZOrder
+```
+
+Gets/sets the default z-order value that will be applied to any future blocking speech overlays (text and portrait) when they are displayed on screen.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:*
+[`Speech.TextOverlay`](Speech#speechtextoverlay),
+[`Speech.PortraitOverlay`](Speech#speechportraitoverlay)
+
+---
+
 ### `Speech.PortraitOverlay`
 
 ```ags
@@ -424,4 +440,3 @@ if (IsSpeechVoxAvailable()==1)
 
 will set the voice mode to voice and text if the voice pack is
 available.
-

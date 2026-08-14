@@ -5,6 +5,7 @@
   product of collaborative work of the following contributors (in alphabetical
   order):
 
+  adm244  
   Alan Van Drake  
   Benjamin Penney  
   Benoit Pierre  
@@ -25,7 +26,9 @@
   Janet Gilbert  
   Jochen Schleu  
   Joe Lee  
+  Johan Wigert  
   John Steele Scott  
+  latent-9  
   Martin Sedlak  
   Matthew Gambrell  
   mausimus  

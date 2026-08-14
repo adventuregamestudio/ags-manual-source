@@ -1,5 +1,24 @@
 ## `Speech` functions and properties
 
+### `Speech.AlwaysWaitForText`
+
+```ags
+static bool Speech.AlwaysWaitForText
+```
+
+Gets/sets whether game should always wait for the speech text's "reading time" before auto-skipping the speech.
+By default, when the voice-over is present and speech skipping by time is enabled, the speech text is skipped as soon as the voice has finished playing. This option lets you change that behavior and make it wait at least until the text's "reading time" has passed. This time depends on the length of the text and [`Game.TextReadingSpeed`](Game#gametextreadingspeed) value. This particularly makes sense when the game is using text translation while playing original voice, because in such case the length of the original voiced text and the displayed translated text may differ.
+
+This option does not make any difference in "text only" mode (because then there's only text anyway), or "voice only" mode (because then the text is not displayed at all). It also is ignored if the speech's skip style does not allow skipping by time.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Game.TextReadingSpeed`](Game#gametextreadingspeed),
+[`Speech.SkipStyle`](Speech#speechskipstyle),
+[`Speech.VoiceMode`](Speech#speechvoicemode)
+
+---
+
 ### `Speech.AnimationStopTimeMargin`
 
 *(Formerly known as `game.close_mouth_end_speech_time`, which is now

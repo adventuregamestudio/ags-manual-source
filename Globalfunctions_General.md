@@ -1555,6 +1555,7 @@ OPT_AUTOTRANSPARSERSAID | Automatically translates arguments to Parser functions
 OPT_DISPLAYSINGLEDIALOGOPTION | Display dialog options even if only one is currently enabled. If disabled then the only enabled option will be chosen and run automatically.
 OPT_TURNORDERPRIORITY | Which turn order characters choose when making 180-degree turns. See [`TurnOrderPriority`](StandardEnums#turnorderpriority).
 OPT_TEXTBOXCLAIMSKEYS | Which of the key and text input events are claimed by the active TextBox control. See [`TextBoxKeyClaimStyle`](StandardEnums#textboxkeyclaimstyle).
+OPT_DIALOGOPTIONSDRAWMODE | Which draw mode to use when displaying dialog options: default or custom rendering. See [`DialogOptionsDrawMode`](StandardEnums#dialogoptionsdrawmode).
 
 The game settings which are not listed here either are read-only, deprecated and have a separate
 command to change them (such as Speech.Style), or unusable in the contemporary engine.

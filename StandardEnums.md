@@ -202,6 +202,21 @@ enum CutsceneSkipType {
 
 ---
 
+### `DialogOptionsDrawMode`
+
+```ags
+enum DialogOptionsDrawMode {
+  eDialogOptDraw_Auto,
+  eDialogOptDraw_Default,
+  eDialogOptDraw_Custom
+};
+```
+
+*Used by:* [`DialogOptions.DrawMode`](DialogOptions#dialogoptionsdrawmode),
+[`SetGameOption`](Globalfunctions_General#setgameoption)
+
+---
+
 ### `DialogOptionsNumbering`
 
 ```ags

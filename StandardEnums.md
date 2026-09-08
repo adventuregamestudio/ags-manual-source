@@ -207,7 +207,7 @@ enum CutsceneSkipType {
 ```ags
 enum DialogOptionsDrawMode {
   eDialogOptDraw_Auto,
-  eDialogOptDraw_Default,
+  eDialogOptDraw_Standard,
   eDialogOptDraw_Custom
 };
 ```

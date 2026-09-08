@@ -1526,7 +1526,7 @@ OPT_ALWAYSSPEECH | Always display text as speech (0 or 1)
 OPT_ANTIALIASFONTS | Anti-alias rendering of TTF fonts (0 or 1)
 OPT_AUTOTRANSPARSERSAID | Automatically translates arguments to Parser functions, like Said(...).
 OPT_CROSSFADEMUSIC | Crossfade music tracks (0=no, 1=slow, 2=slow-ish, 3=medium, 4=fast). **OBSOLETE**, reliably affects only old-style audio functions, such as `PlayMusic`. Configure [Audio Types](MusicAndSound#audio-in-the-editor) instead.
-OPT_DIALOGOPTIONSDRAWMODE | Which draw mode to use when displaying dialog options: default or custom rendering. See [`DialogOptionsDrawMode`](StandardEnums#dialogoptionsdrawmode).
+OPT_DIALOGOPTIONSDRAWMODE | Which draw mode to use when displaying dialog options: standard or custom rendering. See [`DialogOptionsDrawMode`](StandardEnums#dialogoptionsdrawmode).
 OPT_DIALOGOPTIONSGUI | Dialog options on GUI (0=none, otherwise GUI name/number)
 OPT_DIALOGOPTIONSGAP | Pixel gap between options (0=none, otherwise num pixels)
 OPT_DIALOGNUMBERED | Number dialog options (-1=disabled, 0=shortcuts only, 1=drawn numbers)

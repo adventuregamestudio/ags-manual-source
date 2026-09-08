@@ -24,10 +24,10 @@ Gets/sets the sprite to use as a bullet point before each dialog option (0 for n
 static DialogOptionsDrawMode DialogOptions.DrawMode
 ```
 
-Gets/sets which draw mode to use when displaying dialog options, default or custom rendering. This property can have following values:
+Gets/sets which draw mode to use when displaying dialog options, standard or custom rendering. This property can have following values:
 
  - *eDialogOptDraw_Auto* - the draw mode will be chosen automatically, depending on whether [`dialog_options_get_dimensions`](CustomDialogOptions#dialog_options_get_dimensions) function is present in game script. This mode is set by default.
- - *eDialogOptDraw_Default* - default draw mode will be used: dialog options will be drawn either as a plain rectangle, or use GUI if one is assigned (see [`DialogOptions.TemplateGUI`](DialogOptions#dialogoptionstemplategui)).
+ - *eDialogOptDraw_Standard* - standard draw mode will be used: dialog options will be drawn either as a plain rectangle, or use GUI if one is assigned (see [`DialogOptions.TemplateGUI`](DialogOptions#dialogoptionstemplategui)).
  - *eDialogOptDraw_Custom* - custom rendering will be used, but only if necessary functions are present in game script.
 
 *See also:* [Custom dialog options rendering](CustomDialogOptions)

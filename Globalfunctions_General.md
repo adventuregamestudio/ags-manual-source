@@ -396,18 +396,18 @@ Following is the list of **READ-ONLY** options:
 
 Option | Values
 --- | ---
-OPT_DEBUGMODE | Tells if the game was compiled in Debug mode (0 or 1). See also: [`game.debug_mode`](Gamevariables).
-OPT_TWCUSTOM | Which GUI number to use when displaying text windows. For changing this option use [`SetTextWindowGUI`](Globalfunctions_General#settextwindowgui).
-OPT_LETTERBOX | Tells if the game is run in deprecated "letterbox" mode.
-OPT_GUIALPHABLEND | Tells which blending algorithm is used when drawing translucent GUI and controls over each other (0=classic, 1=additive, 2=proper).
-OPT_NATIVECOORDINATES | Tells if the game uses coordinates in its true resolution (1), or low-res coordinates (0). **OBSOLETE**, and for diagnostic purposes only.
-OPT_SPRITEALPHABLEND | Tells which blending algorithm is used when drawing images on DrawingSurface (0=classic, 1=proper).
-OPT_DIALOGOPTIONSAPI | Tells the API version of [Custom Dialog options Rendering](CustomDialogOptions).
 OPT_BASESCRIPTAPI | Tells the Script API version this game was compiled with.
-OPT_SCRIPTCOMPATLEV | Tells the Script Compatibility level this game was compiled with.
 OPT_CLIPGUICONTROLS | Tells if the GUI controls clip their contents when drawn.
+OPT_DEBUGMODE | Tells if the game was compiled in Debug mode (0 or 1). See also: [`game.debug_mode`](Gamevariables).
+OPT_DIALOGOPTIONSAPI | Tells the API version of [Custom Dialog options Rendering](CustomDialogOptions).
 OPT_GAMETEXTENCODING | Tells the text encoding the game was compiled in. Value corresponds to the code page number (65001=utf-8, other=ASCII or ANSI mode).
+OPT_GUIALPHABLEND | Tells which blending algorithm is used when drawing translucent GUI and controls over each other (0=classic, 1=additive, 2=proper).
 OPT_KEYHANDLEAPI | Tells the API version of the key handling this game was compiled with.
+OPT_LETTERBOX | Tells if the game is run in deprecated "letterbox" mode.
+OPT_NATIVECOORDINATES | Tells if the game uses coordinates in its true resolution (1), or low-res coordinates (0). **OBSOLETE**, and for diagnostic purposes only.
+OPT_SCRIPTCOMPATLEV | Tells the Script Compatibility level this game was compiled with.
+OPT_SPRITEALPHABLEND | Tells which blending algorithm is used when drawing images on DrawingSurface (0=classic, 1=proper).
+OPT_TWCUSTOM | Which GUI number to use when displaying text windows. For changing this option use [`SetTextWindowGUI`](Globalfunctions_General#settextwindowgui).
 
 Example:
 
@@ -1522,40 +1522,40 @@ Valid *modifiable* OPTIONs are listed below:
 
 Option | Values
 --- | ---
-OPT_WALKONLOOK | Walk to hotspot in look mode (0 or 1)
+OPT_ALWAYSSPEECH | Always display text as speech (0 or 1)
+OPT_ANTIALIASFONTS | Anti-alias rendering of TTF fonts (0 or 1)
+OPT_AUTOTRANSPARSERSAID | Automatically translates arguments to Parser functions, like Said(...).
+OPT_CROSSFADEMUSIC | Crossfade music tracks (0=no, 1=slow, 2=slow-ish, 3=medium, 4=fast). **OBSOLETE**, reliably affects only old-style audio functions, such as `PlayMusic`. Configure [Audio Types](MusicAndSound#audio-in-the-editor) instead.
+OPT_DIALOGOPTIONSDRAWMODE | Which draw mode to use when displaying dialog options: default or custom rendering. See [`DialogOptionsDrawMode`](StandardEnums#dialogoptionsdrawmode).
 OPT_DIALOGOPTIONSGUI | Dialog options on GUI (0=none, otherwise GUI name/number)
 OPT_DIALOGOPTIONSGAP | Pixel gap between options (0=none, otherwise num pixels)
-OPT_WHENGUIDISABLED | When GUI is disabled, 0=grey out, 1=go black, 2=unchanged, 3=turn off
-OPT_ALWAYSSPEECH | Always display text as speech (0 or 1)
-OPT_PIXELPERFECT | Pixel-perfect click detection (0 or 1)
-OPT_NOWALKMODE | Don't automatically move character in Walk mode (0 or 1)
-OPT_FIXEDINVCURSOR | Don't use inventory graphics as cursors (0 or 1)
-OPT_TURNBEFOREWALK | Characters turn before walking (0 or 1)
-OPT_HANDLEINVCLICKS | Handle inventory clicks in script (0 or 1)
-OPT_MOUSEWHEEL | Enable mouse wheel support (0 or 1)
 OPT_DIALOGNUMBERED | Number dialog options (-1=disabled, 0=shortcuts only, 1=drawn numbers)
 OPT_DIALOGUPWARDS | Dialog options go upwards on GUI (0 or 1)
-OPT_CROSSFADEMUSIC | Crossfade music tracks (0=no, 1=slow, 2=slow-ish, 3=medium, 4=fast). **OBSOLETE**, reliably affects only old-style audio functions, such as `PlayMusic`. Configure [Audio Types](MusicAndSound#audio-in-the-editor) instead.
-OPT_ANTIALIASFONTS | Anti-alias rendering of TTF fonts (0 or 1)
-OPT_THOUGHTGUI | Thought uses bubble GUI (GUI name/number)
-OPT_TURNWHENFACING | Characters turn to face direction (0 or 1)
-OPT_LIPSYNCTEXT | Whether lip-sync text reading is enabled (0 or 1)
-OPT_RIGHTTOLEFT | Right-to-left text writing (0 or 1)
-OPT_MULTIPLEINV | Display multiple inv items multiple times (0 or 1)
-OPT_SAVEGAMESCREENSHOTS | Save screenshots into save games (0 or 1)
-OPT_PORTRAITPOSITION | Speech portrait side (0=left, 1=right, 2=alternate, 3=xpos)
-OPT_RUNGAMEINDLGOPTS | Run game loops while dialog options are displayed  (0 or 1)
-OPT_WALKSPEEDABSOLUTE | Whether character and object moving speeds depend on relative walkable mask's resolution (0=scale with mask resolution, 1=always in room resolution).
-OPT_SCALECHAROFFSETS | Character's offset properties (such as [`Character.z`](Character#characterz)) are scaled with the character's Scaling (0 or 1).
-OPT_SAVEGAMESCREENSHOTLAYER | The layer to select when savingsave screenshots into game's save ([`RenderLayer`](StandardEnums#renderlayer)).
-OPT_SAVECOMPONENTSIGNORE | Types of data which to *skip* when writing or restoring game saves ([`SaveComponentSelection`](StandardEnums#savecomponentselection)).
+OPT_DISPLAYSINGLEDIALOGOPTION | Display dialog options even if only one is currently enabled. If disabled then the only enabled option will be chosen and run automatically.
+OPT_FIXEDINVCURSOR | Don't use inventory graphics as cursors (0 or 1)
 OPT_GAMEFPS | Game speed, number of frames per second. This option is read from game data at start. Use [`Game.Speed`](Game#gamespeed) instead.
 OPT_GUICONTROLMOUSEBUT | Whether common gui controls should react only to left mouse button (0 - any button, 1 - LMB only).
-OPT_AUTOTRANSPARSERSAID | Automatically translates arguments to Parser functions, like Said(...).
-OPT_DISPLAYSINGLEDIALOGOPTION | Display dialog options even if only one is currently enabled. If disabled then the only enabled option will be chosen and run automatically.
-OPT_TURNORDERPRIORITY | Which turn order characters choose when making 180-degree turns. See [`TurnOrderPriority`](StandardEnums#turnorderpriority).
+OPT_HANDLEINVCLICKS | Handle inventory clicks in script (0 or 1)
+OPT_LIPSYNCTEXT | Whether lip-sync text reading is enabled (0 or 1)
+OPT_MOUSEWHEEL | Enable mouse wheel support (0 or 1)
+OPT_MULTIPLEINV | Display multiple inv items multiple times (0 or 1)
+OPT_NOWALKMODE | Don't automatically move character in Walk mode (0 or 1)
+OPT_PIXELPERFECT | Pixel-perfect click detection (0 or 1)
+OPT_PORTRAITPOSITION | Speech portrait side (0=left, 1=right, 2=alternate, 3=xpos)
+OPT_RIGHTTOLEFT | Right-to-left text writing (0 or 1)
+OPT_RUNGAMEINDLGOPTS | Run game loops while dialog options are displayed  (0 or 1)
+OPT_SAVECOMPONENTSIGNORE | Types of data which to *skip* when writing or restoring game saves ([`SaveComponentSelection`](StandardEnums#savecomponentselection)).
+OPT_SAVEGAMESCREENSHOTLAYER | The layer to select when savingsave screenshots into game's save ([`RenderLayer`](StandardEnums#renderlayer)).
+OPT_SAVEGAMESCREENSHOTS | Save screenshots into save games (0 or 1)
+OPT_SCALECHAROFFSETS | Character's offset properties (such as [`Character.z`](Character#characterz)) are scaled with the character's Scaling (0 or 1).
 OPT_TEXTBOXCLAIMSKEYS | Which of the key and text input events are claimed by the active TextBox control. See [`TextBoxKeyClaimStyle`](StandardEnums#textboxkeyclaimstyle).
-OPT_DIALOGOPTIONSDRAWMODE | Which draw mode to use when displaying dialog options: default or custom rendering. See [`DialogOptionsDrawMode`](StandardEnums#dialogoptionsdrawmode).
+OPT_THOUGHTGUI | Thought uses bubble GUI (GUI name/number)
+OPT_TURNBEFOREWALK | Characters turn before walking (0 or 1)
+OPT_TURNORDERPRIORITY | Which turn order characters choose when making 180-degree turns. See [`TurnOrderPriority`](StandardEnums#turnorderpriority).
+OPT_TURNWHENFACING | Characters turn to face direction (0 or 1)
+OPT_WALKONLOOK | Walk to hotspot in look mode (0 or 1)
+OPT_WALKSPEEDABSOLUTE | Whether character and object moving speeds depend on relative walkable mask's resolution (0=scale with mask resolution, 1=always in room resolution).
+OPT_WHENGUIDISABLED | When GUI is disabled, 0=grey out, 1=go black, 2=unchanged, 3=turn off
 
 The game settings which are not listed here either are read-only, deprecated and have a separate
 command to change them (such as Speech.Style), or unusable in the contemporary engine.

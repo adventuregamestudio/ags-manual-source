@@ -30,6 +30,8 @@ Gets/sets which draw mode to use when displaying dialog options, standard or cus
  - *eDialogOptDraw_Standard* - standard draw mode will be used: dialog options will be drawn either as a plain rectangle, or use GUI if one is assigned (see [`DialogOptions.TemplateGUI`](DialogOptions#dialogoptionstemplategui)).
  - *eDialogOptDraw_Custom* - custom rendering will be used, but only if necessary functions are present in game script.
 
+DrawMode is initialized as "Auto" by default. This means that the engine will search the game scripts for the presence of custom rendering functions, and choose a drawing mode depending on whether they exist or not. Normally you do not need to change this value in your games at all. The original purpose this property was added for is to be able to test different draw modes within the same game without disabling a custom render script.
+
 *See also:* [Custom dialog options rendering](CustomDialogOptions)
 
 ---

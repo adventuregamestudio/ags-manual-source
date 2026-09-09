@@ -37,10 +37,12 @@ additional options depending on active layer or what is right clicked - like a c
 ### Background
 
 By selecting a background on the `Display Background` combo box, you can select
-which background of a room to display: Main Background, frame 2, 3, 4, 5. With
+which background of a room to display: Main Background, frame 2, 3, and so forth. With
 one background selected, click `Change...` button to replace the background
 image with a new image. If a room has more than one background, by default, they
 are animated. To prevent that assign "BackgroundAnimtionEnabled" to "False" in the room properties. Also, you may lock background to a particular frame in script using [`SetBackgroundFrame`](Globalfunctions_Room#setbackgroundframe) command.
+
+Historically AGS supported up to 5 background frames per room, but since **AGS 3.6.3** it supports up to 256 frames per room.
 
 **NOTE:** If the background images are replaced with ones of a different size
 this will clear all of the mask (hotspot, walkbehind, region, and walkable)

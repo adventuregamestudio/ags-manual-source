@@ -254,21 +254,40 @@ this to work)
 
 ---
 
+### `InventoryItem.CursorHotspotAlignment`
+
+```ags
+Alignment InventoryItem.CursorHotspotAlignment
+```
+
+Gets/sets the automatic alignment of the inventory cursor's hotspot relative to the current cursor graphic, which will be used when this inventory item is selected (see [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic).
+
+The hotspot is a pixel on the cursor graphic where the click takes effect. In practice the cursor's image is drawn with opposite, negative offset from the cursor position (which is usually defined by the mouse position).
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`InventoryItem.CursorHotspotX`](InventoryItem#inventoryitemcursorhotspotx),
+[`InventoryItem.CursorHotspotY`](InventoryItem#inventoryitemcursorhotspoty),
+[`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic),
+[`InventoryItem.Graphic`](InventoryItem#inventoryitemgraphic),
+[`Mouse.ChangeModeHotspot`](Mouse#mousechangemodehotspot)
+
+---
+
 ### `InventoryItem.CursorHotspotX`
 
 ```ags
 int InventoryItem.CursorHotspotX
 ```
 
-Gets/sets the X position of hotspot on the graphic, which will be used when this inventory item is selected (see [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic). The hotspot is a pixel on the cursor graphic where the click takes effect.
+Gets/sets the X offset of inventory cursor hotspot, which will be used when this inventory item is selected (see [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic). The X offset is counted from the position determined by [`InventoryItem.CursorHotspotAlignment`](InventoryItem#inventoryitemcursorhotspotalignment).
 
-This is the offset into the graphic .
-
-In practice the cursor's image is drawn with opposite, negative offset from the cursor position (which is usually defined by the mouse position).
+The hotspot is a pixel on the cursor graphic where the click takes effect. In practice the cursor's image is drawn with opposite, negative offset from the cursor position (which is usually defined by the mouse position).
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
-*See also:* [`InventoryItem.CursorHotspotY`](InventoryItem#inventoryitemcursorhotspoty),
+*See also:* [`InventoryItem.CursorHotspotAlignment`](InventoryItem#inventoryitemcursorhotspotalignment),
+[`InventoryItem.CursorHotspotY`](InventoryItem#inventoryitemcursorhotspoty),
 [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic),
 [`InventoryItem.Graphic`](InventoryItem#inventoryitemgraphic),
 [`Mouse.ChangeModeHotspot`](Mouse#mousechangemodehotspot)
@@ -281,13 +300,14 @@ In practice the cursor's image is drawn with opposite, negative offset from the 
 int InventoryItem.CursorHotspotY
 ```
 
-Gets/sets the Y position of hotspot on the graphic, which will be used when this inventory item is selected (see [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic). The hotspot is a pixel on the cursor graphic where the click takes effect.
+Gets/sets the Y offset of inventory cursor hotspot, which will be used when this inventory item is selected (see [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic). The Y offset is counted from the position determined by [`InventoryItem.CursorHotspotAlignment`](InventoryItem#inventoryitemcursorhotspotalignment).
 
-In practice the cursor's image is drawn with opposite, negative offset from the cursor position (which is usually defined by the mouse position).
+The hotspot is a pixel on the cursor graphic where the click takes effect. In practice the cursor's image is drawn with opposite, negative offset from the cursor position (which is usually defined by the mouse position).
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
-*See also:* [`InventoryItem.CursorHotspotX`](InventoryItem#inventoryitemcursorhotspotx),
+*See also:* [`InventoryItem.CursorHotspotAlignment`](InventoryItem#inventoryitemcursorhotspotalignment),
+[`InventoryItem.CursorHotspotX`](InventoryItem#inventoryitemcursorhotspotx),
 [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic),
 [`InventoryItem.Graphic`](InventoryItem#inventoryitemgraphic),
 [`Mouse.ChangeModeHotspot`](Mouse#mousechangemodehotspot)

@@ -18,13 +18,25 @@ The name of the item. This is also the value used by the `@OVERHOTSPOT@` token w
 
 The image displayed for the inventory item within the character's inventory. This is typically larger than the mouse cursor image of the inventory item, depending on how the GUI that is used for the inventory window has been configured.
 
+### HotspotAlignment.
+
+This property is available since **AGS 3.6.3**.
+
+Select the automatic alignment for the hotspot of the item's cursor image. The purpose of this setting is to keep the hotspot's relative position when the cursor image changes (whether when editing item in the Editor, or switching in script). HotspotX and HotspotY work as offsets from the aligned position.
+
+Note that prior to **AGS 3.6.3** the only supported alignment was "middle-centered" and it was achieved by setting both HotspotX and HotspotY to 0.
+
 ### HotspotX
 
-Select the X value for the hotspot of the active cursor image. It's the distance from the left edge of the sprite, measured in pixels. You can also set this value by clicking on the "Mouse cursor image" display.
+Select the X offset value for the hotspot of the active cursor image. It's the distance from the position defined by HotspotAlignment, measured in pixels. You can also set this value by clicking on the "Mouse cursor image" display.
+
+Note that prior to **AGS 3.6.3** the X offset was always counted from the left edge of the sprite.
 
 ### HotspotY
 
-Select the Y value for the hotspot of the active cursor image. It's the distance from the top edge of the sprite, measured in pixels. You can also set this value by clicking on the "Mouse cursor image" display.
+Select the Y offset value for the hotspot of the active cursor image. It's the distance from the position defined by HotspotAlignment, measured in pixels. You can also set this value by clicking on the "Mouse cursor image" display.
+
+Note that prior to **AGS 3.6.3** the Y offset was always counted from the top edge of the sprite.
 
 ### ID
 

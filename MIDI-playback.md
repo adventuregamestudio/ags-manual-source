@@ -32,7 +32,7 @@ It is also possible to indicate a specific configuration file to use by setting 
 When distributing a game with its own configuration and patch files it is likely preferable to have the Timidity configuration file in the top-level of the game directory (so that it is located automatically) and the referenced patch files located within a sub-directory. The `dir` directive within a Timidity configuration can be used to specify an additional search path for patch files. For example, if all patch files are located within a sub-directory named "my_patches" all that is needed is the relative path name:
 
 ```
-dir my_patches
+dir ./my_patches
 ```
 
 The path to a patch directory can also be absolute. An absolute path which is relative to the configuration file can be specified through the use of the special token `$basedir`, which expands to the path of the directory which contains the configuration file:

@@ -11,6 +11,7 @@
   Benoit Pierre  
   Bernhard Rosenkraenzer  
   Cameron Cawley  
+  Craig Harman  
   Cristian Morales Vega  
   Dominik Mierzejewski  
   Donovan Watteau  

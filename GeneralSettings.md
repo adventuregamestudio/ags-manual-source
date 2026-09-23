@@ -19,8 +19,6 @@ SetGameOption.
     precision. 8-bit color mode is a special feature for making
     palette-based games. See also: [Palette setup](Settingupthegame#palette-setup),
     [Palette functions](Globalfunctions_Palette)
--   **Developer name** - this will add the provided string to the game's
-    executable properties.
 -   **Game file name** - your game's executable and/or data filename. 
     This name will be used when creating game package files on disk.
 -   **Game name** - your game's title. This string will be displayed at
@@ -56,12 +54,13 @@ SetGameOption.
 Most of this information is not used right now by the engine, but may be made
 accessible in future versions.
 
+-   **Custom error text** - A fully custom text to display when the game quits with error message. If none set, then the default engine's error text will be used.
+-   **Developer name** - The name of this game's author, or the company. When building Windows version of the game this will be assigned to the game exe properties.
 -   **Developer website** - Your website.
 -   **Game description** - The game hook line.
 -   **Genre** - Your game genere.
 -   **Release date** - Date on which this game is first released.
--   **Version** - a 4-piece version string of your game, made of numbers 
-    separated by three dots.
+-   **Version** - a 4-piece version string of your game, made of numbers separated by dots.
 
 ### Android
 

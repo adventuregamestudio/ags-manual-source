@@ -106,8 +106,8 @@ GetBackgroundFrame()
 ```
 
 Returns the number of the current background being displayed. In a room
-without animating backgrounds, this will always return 0. Otherwise, the
-current frame number is returned from 0 to 4.
+without additional backgrounds, this will always return 0. Otherwise, the
+current frame number is returned from 0 to (`Room.BackgroundCount - 1`).
 
 Example:
 
@@ -118,7 +118,8 @@ if (GetBackgroundFrame()==4)
 
 will turn on object oMoon if the background frame of the room is frame 4.
 
-*See also:* [`SetBackgroundFrame`](Globalfunctions_Room#setbackgroundframe)
+*See also:* [`SetBackgroundFrame`](Globalfunctions_Room#setbackgroundframe),
+[Room.BackgroundCount](Room#roombackgroundcount)
 
 ---
 
@@ -476,7 +477,7 @@ SetBackgroundFrame (int frame)
 ```
 
 Locks the background to frame number FRAME of an animating-background
-screen. (Values for FRAME are from 0 to 4). This allows you to use the
+screen. (Values for FRAME are from 0 to (`Room.BackgroundCount - 1`). This allows you to use the
 animating backgrounds feature for another purpose - you can have two
 frames of the background, one for example with a spaceship crashed on
 it. Then, once the right event has happened, call SetBackgroundFrame in
@@ -496,7 +497,8 @@ SetBackgroundFrame(4);
 
 will change the current room's background frame to 4.
 
-*See also:* [`GetBackgroundFrame`](Globalfunctions_Room#getbackgroundframe)
+*See also:* [`GetBackgroundFrame`](Globalfunctions_Room#getbackgroundframe),
+[Room.BackgroundCount](Room#roombackgroundcount)
 
 ---
 

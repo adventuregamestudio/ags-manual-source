@@ -17,8 +17,6 @@ SetGameOption.
     devices support. 8-bit color mode is a special feature for making
     palette-based games. See also: [Palette setup](Settingupthegame#palette-setup),
     [Palette functions](Globalfunctions_Palette)
--   **Developer name** - this will add the provided string to the game's
-    executable properties.
 -   **Game file name** - your game's executable and/or data filename. 
     This name will be used when creating game package files on disk.
 -   **Game name** - your game's title. This string will be displayed at
@@ -51,12 +49,13 @@ SetGameOption.
 Most of this information is not used right now by the engine, but may be made
 accessible in future versions.
 
+-   **Custom error text** - A fully custom text to display when the game quits with error message. If none set, then the default engine's error text will be used.
+-   **Developer name** - The name of this game's author, or the company. When building Windows version of the game this will be assigned to the game exe properties.
 -   **Developer website** - Your website.
 -   **Game description** - The game hook line.
 -   **Genre** - Your game genere.
 -   **Release date** - Date on which this game is first released.
--   **Version** - a 4-piece version string of your game, made of numbers 
-    separated by three dots.
+-   **Version** - a 4-piece version string of your game, made of numbers separated by dots.
 
 ### Android
 
@@ -323,6 +322,15 @@ accessible in future versions.
     options will be displayed at the bottom of the screen. If you type
     in GUI's ID number, then instead the options will be displayed on
     the GUI you specify.
+
+### GUI Behavior
+
+-   **GUI common controls handle only left mouse button** - by default AGS treats click with any mouse button on most GUI controls similarly. That includes pressing Buttons, changing selection in ListBoxes and so forth. If you prefer them react only to the left mouse button, then enable this setting. InventoryWindow is an exception to this rule: when "Handle inventory window clicks in script" option is disabled, it will give different responses to LMB and RMB regardless of this setting.
+-   **TextBoxes claim key and text input events** - by default active TextBox control claims ("steals") every key press. If you want key input to pass further into the script when TextBox is displayed, change this option to a different choice:
+
+    - **Always** - the active TextBox will claim every key input event regardless of whether it's used by control or not.
+    - **Handled input events (key and text)** - the active TextBox will claim any key input event that has a meaning to it. This includes all the text input events, and Enter/Return and Backspace key press events.
+    - **Text input events only** - the active TextBox will claim only text input events. Any key presses will not be claimed and are passed further into the script. Note that TextBox will still react to standard keys, such as Backspace and Enter/Return.
 
 ### Inventory
 

@@ -231,6 +231,21 @@ enum CutsceneSkipType {
 
 ---
 
+### `DialogOptionsDrawMode`
+
+```ags
+enum DialogOptionsDrawMode {
+  eDialogOptDraw_Auto,
+  eDialogOptDraw_Standard,
+  eDialogOptDraw_Custom
+};
+```
+
+*Used by:* [`DialogOptions.DrawMode`](DialogOptions#dialogoptionsdrawmode),
+[`SetGameOption`](Globalfunctions_General#setgameoption)
+
+---
+
 ### `DialogOptionsNumbering`
 
 ```ags
@@ -999,6 +1014,22 @@ enum StringSplitOptions {
 *Compatibility:* supported by **AGS 4.0.0** and higher.
 
 *Used by:* [`String.Split`](String#stringsplit)
+
+---
+
+### `TextBoxKeyClaimStyle`
+
+```ags
+enum TextBoxKeyClaimStyle {
+    eTextBoxKeyClaimAll,
+    eTextBoxKeyClaimHandled,
+    eTextBoxKeyClaimTextOnly
+};
+```
+
+*Compatibility:* supported by **AGS 3.6.3** and higher.
+
+*Used by:* [`SetGameOption`](Globalfunctions_General#setgameoption)
 
 ---
 

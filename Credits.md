@@ -5,11 +5,13 @@
   product of collaborative work of the following contributors (in alphabetical
   order):
 
+  adm244  
   Alan Van Drake  
   Benjamin Penney  
   Benoit Pierre  
   Bernhard Rosenkraenzer  
   Cameron Cawley  
+  Craig Harman  
   Cristian Morales Vega  
   Dominik Mierzejewski  
   Donovan Watteau  
@@ -25,7 +27,9 @@
   Janet Gilbert  
   Jochen Schleu  
   Joe Lee  
+  Johan Wigert  
   John Steele Scott  
+  latent-9  
   Martin Sedlak  
   Matthew Gambrell  
   mausimus  
@@ -40,6 +44,7 @@
   Piotr Wieczorek  
   rofl0r  
   Ryan O'Connor  
+  Sa Meiers  
   Scott Baker  
   Shane Stevens  
   Shawn R. Walker  

@@ -15,3 +15,8 @@ Following is a sequence of actions which happen in a normal game loop:
 8. *Game is drawn on screen.*
 9. All the scheduled events are executed. Strictly speaking, the order of execution is undefined. Commonly [`repeatedly_execute`](Globalfunctions_Event#repeatedly_execute) goes first, but that's rather a coincidence and is not recommended to rely upon. Other events include: `on_key_press`, `on_mouse_click`, `on_event`, and so forth (see [their respective page](Globalfunctions_Event#global-event-handlers) for details).
 
+When a event is executed, the engine searches game scripts for the corresponding function, and runs that function in each script where it's found. This is done in the following order:
+ - room script first,
+ - script modules, starting from the topmost in the project's list of scripts, and going down to the last one.
+
+This sequence is repeated separately for each event, so first all functions in all scripts related to the first scheduled event are run, then all functions related to the second event are run, and so forth.

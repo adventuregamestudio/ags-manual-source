@@ -3940,6 +3940,21 @@ whenever he walks.
 
 ---
 
+### `Character.Turning`
+
+```ags
+bool Character.Turning
+```
+
+Gets whether the character is currently turning on spot. This may be when it either is command to face to a different direction, or is changing direction while walking along a path.
+
+*Compatibility*: Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.TurnBeforeWalking`](Character#characterturnbeforewalking),
+[`Character.TurnWhenFacing`](Character#characterturnwhenfacing)
+
+---
+
 ### `Character.TurnWhenFacing`
 
 ```ags
@@ -3954,7 +3969,7 @@ new direction. If you set this to `false`, the character will instantly face in 
 Example:
 
 ```ags
-cEgo.TurnWhenFacing= true;
+cEgo.TurnWhenFacing = true;
 cEgo.FaceDirection(eDirectionLeft, eBlock);
 cEgo.FaceDirection(eDirectionRight, eBlock);
 ```

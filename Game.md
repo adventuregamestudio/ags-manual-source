@@ -112,6 +112,23 @@ will give the player 5 points the first time this script is run.
 
 ---
 
+### `Game.GetAudioTypeCrossfadeSpeed`
+
+```ags
+static int Game.GetAudioTypeCrossfadeSpeed(AudioType)
+```
+
+Returns the crossfade speed of the specified *AudioType*. This value is defined as volume units per game frame (how fast the clip's volume will fade or gain volume). Value 0 means that this audio type does not allow crossfade.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* 
+[`Game.SetAudioTypeCrossfadeSpeed`](Game#gamesetaudiotypecrossfadespeed),
+[`Game.GetAudioTypeVolume`](Game#gamegetaudiotypevolume),
+[`AudioClip.Play`](AudioClip#audioclipplay)
+
+---
+
 ### `Game.GetAudioTypeVolume`
 
 ```ags
@@ -209,7 +226,7 @@ Display("Loop 2 in SWIMMING view has %d frames.", frameCount);
 *(Formerly known as global function `GetLocationName`, which is now obsolete)*
 
 ```ags
-static String Game.GetLocationName(int x, int y)
+static String Game.GetLocationName(int x, int y, optional HitTestOptions hitOptions)
 ```
 
 Returns the name of whatever is seen in the room under the given screen coordinates (x, y). This includes following:
@@ -220,6 +237,8 @@ Returns the name of whatever is seen in the room under the given screen coordina
 
 If there are multiple suitable objects under these coordinates, this function will select the one that is drawn topmost.
 If there is no suitable object, then function will return a blank string.
+
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
 
 **NOTE:** The co-ordinates are SCREEN co-ordinates, NOT ROOM co-ordinates. This means that this function is suitable
 for use with the mouse cursor position variables.
@@ -237,6 +256,8 @@ lblDescription.Text = location;
 ```
 
 will get the name of whatever the mouse is over into the string variable and then assign to a label lblDescription.
+
+*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Hotspot.Name`](Hotspot#hotspotname),
 [`InventoryItem.Name`](InventoryItem#inventoryitemname),
@@ -845,6 +866,23 @@ will scan saves in range from 1 to 100, sort resulting saves list by time, and f
 
 ---
 
+### `Game.SetAudioTypeCrossfadeSpeed`
+
+```ags
+static void Game.SetAudioTypeCrossfadeSpeed(AudioType, int speed)
+```
+
+Changes the crossfade speed of the specified *AudioType*. This value is defined as volume units per game frame (how fast the clip's volume will fade or gain volume). Setting this to 0 will disable crossfade for the audio type's clips.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* 
+[`Game.GetAudioTypeCrossfadeSpeed`](Game#gamegetaudiotypecrossfadespeed),
+[`Game.GetAudioTypeVolume`](Game#gamegetaudiotypevolume),
+[`AudioClip.Play`](AudioClip#audioclipplay)
+
+---
+
 ### `Game.SetAudioTypeSpeechVolumeDrop`
 
 *(Formerly known as `game.speech_music_drop`, which is now obsolete)*
@@ -978,22 +1016,30 @@ to do this in game_start).
 ### `Game.SimulateKeyPress`
 
 ```ags
-static Game.SimulateKeyPress(eKeyCode key)
+static Game.SimulateKeyPress(eKeyCode key, optional eKeyMod)
 ```
 
-Fires a keypress event. This is in all aspects identical to what would happen if a player pressed a key on keyboard. This function may be useful to simulate player actions in game, or create automatic demonstrations (like tutorials).
+Fires a keypress event. This is in all aspects identical to what would happen if a player pressed a key on keyboard. This function may be useful to simulate player actions in game, or create automatic demonstrations (like tutorials). The optional eKeyMod parameter lets you additionally specify a combination of [modifier keys](Keycodes#key-modifiers) which will be simulated as "pressed" at the same time. Note that the actually pressed mod keys also affect the simulated key press, and any simulated mod keys will be combined with real mod keys for the simulated key press event.
 
 **IMPORTANT:** because of how AGS engine and scripts work the game will react to this keypress not before current script function finishes. Any things that normally react to keys (such as skippable speech, cutscenes, and certain GUI controls) will be affected only at the following internal game update.
 
-Example:
+Example 1:
 
 ```ags
 Game.SimulateKeyPress(eKeySpace);
 ```
 
-This simulates a "space" key press.
+will simulate a "space" key press.
 
-*Compatibility:* Supported by **AGS 3.5.0** and later versions.
+Example 2:
+
+```ags
+Game.SimulateKeyPress(eKeyS, eKeyModCtrl);
+```
+
+will simulates a "Ctrl + S" key combination.
+
+*Compatibility:* Supported by **AGS 3.5.0** and later versions. eKeyMod parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Mouse.Click`](Mouse#mouseclick), [List of supported key codes](Keycodes#key-code-table)
 

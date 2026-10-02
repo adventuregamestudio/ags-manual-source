@@ -54,11 +54,13 @@ Besides their basic settings, rooms may have following contents in them:
 
 Backgrounds are images that are displayed at the back of the room. Room must have at least a single background (this is called "main background"), but it does not have to be an actual image, and may be just a bitmap filled with a black color, for instance. It's still necessary to have one, as main background defines the room's size: that is the area that will ever be visible on screen.
 
-It's possible to add up to 5 backgrounds total for a room. The extra backgrounds are commonly meant for two purposes:
+Historically AGS supported up to 5 backgrounds for a room. Starting with **AGS 3.6.3** it supports up to 256 backgrounds per room.
+
+The extra backgrounds are commonly meant for two purposes:
 1. Displaying different variants of the room. This may be used, for example, to have day and night versions of the same room.
 2. Animating room background. That is known as a full room animation, and usually used when the whole background must change as one piece.
 
-Backgrounds are limited in what you may achieve with them alone, not only because their max number is small (5), but also because they are just flat images.
+Backgrounds are limited in what you may achieve with them, because they are just flat images. Also, if you need to animate only a portion of the room, then it won't be optimal to use room backgrounds for that.
 For complex room transformations and visual effects (such as parallax, for instance) one would use a combination of background and multiple room objects, moving and animating simultaneously.
 
 ### Room Edges

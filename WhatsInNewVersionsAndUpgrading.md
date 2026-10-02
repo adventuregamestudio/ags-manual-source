@@ -7,6 +7,7 @@ What's new in each version of AGS.
 
 ### Older versions
 
+-   [What's new in AGS 3.6.3](WhatsNewIn363)
 -   [What's new in AGS 3.6.2](WhatsNewIn362)
 -   [What's new in AGS 3.6.1](WhatsNewIn361)
 -   [What's new in AGS 3.6](WhatsNewIn36)

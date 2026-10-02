@@ -1,4 +1,4 @@
-## Upgrading to AGS 3.6.3
+## What's new in AGS 3.6.3
 
 3.6.3 is the "quality of life" update for the 3.6 version, which adds small improvements to the Editor's interface, new means to customize some of the previously hardcoded object parameters, and more game translation options. There are no breaking changes to the game settings or script. Here we mention few most noteable additions.
 

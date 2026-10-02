@@ -19,6 +19,7 @@
 - [What's new in AGS 4.0](WhatsNewIn40)
 - [Upgrading To AGS 4.0](UpgradingTo40)
 - [What's in new versions and upgrading](WhatsInNewVersionsAndUpgrading)
+  - [What's new in AGS 3.6.3](WhatsNewIn363)
   - [What's new in AGS 3.6.2](WhatsNewIn362)
   - [What's new in AGS 3.6.1](WhatsNewIn361)
   - [What's new in AGS 3.6](WhatsNewIn36)

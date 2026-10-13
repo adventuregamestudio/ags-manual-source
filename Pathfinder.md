@@ -73,6 +73,28 @@ bool Pathfinder.IsWalkableAt(int x, int y)
 
 Gets whether given coordinates can be walked on.
 
+Example:
+
+```ags
+function on_mouse_click(MouseButton button, int mx, int my)
+{
+  if (button == eMouseLeft)
+  {
+    Point* p = Screen.ScreenToRoomPoint(mx, my);
+    if (mouse.Mode == eModeWalkto && !Room.PathFinder.IsWalkableAt(p.x, p.y))
+    {
+      player.Say("I can't get there.");
+    }
+    else
+    {
+      Room.ProcessClick(mx, my, mouse.Mode);
+    }
+  }
+}
+```
+
+will make the player comment when they click with the Walk cursor on a spot that cannot be walked on, instead of walking to the nearest possible place; all the other clicks are processed as usual. The pathfinder works in room coordinates, so the position of the click is converted from screen coordinates first.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:*
@@ -87,6 +109,19 @@ Point* Pathfinder.NearestWalkablePoint(int x, int y)
 ```
 
 Finds the nearest walkable position, close to the given coordinates. Returns null if no walkable position is found.
+
+Example:
+
+```ags
+Point* p = Room.PathFinder.NearestWalkablePoint(oBall.X, oBall.Y);
+if (p != null)
+{
+  cDog.x = p.x;
+  cDog.y = p.y;
+}
+```
+
+will place the character cDog on the walkable spot nearest to the ball, even if the ball itself lies outside of the walkable areas.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 

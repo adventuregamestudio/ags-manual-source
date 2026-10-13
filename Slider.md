@@ -40,6 +40,14 @@ int Slider.BorderShadeColor
 
 Gets/sets the alternate border color that will be used for 3D effect. It's used for both handle and the slider bar, but only if HandleGraphic and BackgroundGraphic are not set, respectively.
 
+Example:
+
+```ags
+sldVolume.BorderShadeColor = Game.GetColorFromRGB(64, 64, 64);
+```
+
+will set the alternate 3D border color of the slider's bar and handle to dark gray.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
@@ -55,6 +63,14 @@ int Slider.HandleColor
 ```
 
 Gets/sets the fill color of the handle. This setting will be ignored if HandleGraphic is set.
+
+Example:
+
+```ags
+sldVolume.HandleColor = Game.GetColorFromRGB(255, 200, 0);
+```
+
+will fill the slider's handle with orange-yellow (provided that no HandleGraphic is set).
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 

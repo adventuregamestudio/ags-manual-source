@@ -374,7 +374,7 @@ Tells whether the button is currently in "highlighted" state, which is when the 
 
 ---
 
-### `Button.IsPushed
+### `Button.IsPushed`
 
 ```ags
 readonly bool Button.IsPushed

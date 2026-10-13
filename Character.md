@@ -357,6 +357,14 @@ float Character.FaceDirectionRatio
 Gets/sets the optional y/x ratio of character's facing directions, determining
 directional loop selection while Character moves and turns.
 
+Example:
+
+```ags
+cEgo.FaceDirectionRatio = 2.0;
+```
+
+will set the y/x ratio that the character cEgo uses to select its directional loops to 2.0.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Game.FaceDirectionRatio`](Game#gamefacedirectionratio)
@@ -1141,6 +1149,19 @@ void MovePath(Point*[], optional BlockingStyle, optional RepeatStyle, optional D
 
 Moves the character along the path, ignoring walkable areas, without playing his walking animation.
 
+Example:
+
+```ags
+MaskPathfinder* sky = MaskPathfinder.Create(500);
+Point* route[] = sky.FindPath(cBird.x, cBird.y, 280, 40);
+if (route != null)
+{
+  cBird.MovePath(route, eNoBlock);
+}
+```
+
+will find a route on a separate 8-bit mask (the sprite 500, drawn the same size as the room), which has nothing to do with the room's walkable areas, and move the character cBird along it. MovePath does not play the walking animation, so you may set a flying animation yourself.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Character.WalkPath`](Character#characterwalkpath),
@@ -1250,6 +1271,15 @@ bool Character.RunFrameEvent(int view, int loop, int frame)
 If the specified view frame has a "EventName" property set, then triggers Character's OnFrameEvent event. If there is a script function bound to that event then it will be run, otherwise nothing happens.
 
 Returns TRUE if the view frame has an event name tag, and FALSE otherwise.
+
+Example:
+
+```ags
+cEgo.LockViewFrame(VEGO_KNOCK, 0, 3);
+cEgo.RunFrameEvent(VEGO_KNOCK, 0, 3);
+```
+
+will show the frame 3 of the loop 0 of the view VEGO_KNOCK on the character cEgo, and run the event set on that frame (for example, one that plays a knocking sound). Frame events are only triggered automatically while the character is animating, so a frame that you show yourself needs RunFrameEvent.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -1865,6 +1895,19 @@ void WalkPath(Point*[], optional BlockingStyle, optional RepeatStyle, optional D
 
 Moves the character along the path, ignoring walkable areas, automatically playing his walking animation.
 
+Example:
+
+```ags
+MaskPathfinder* roofs = MaskPathfinder.Create(501);
+Point* route[] = roofs.FindPath(cCat.x, cCat.y, 280, 60);
+if (route != null)
+{
+  cCat.WalkPath(route, eNoBlock);
+}
+```
+
+will find a route along the rooftops, which are marked on a separate 8-bit mask (the sprite 501, drawn the same size as the room), and make the character cCat walk along it with its walking animation, even though the rooftops are not a part of the room's walkable areas.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Character.MovePath`](Character#charactermovepath),
@@ -2007,6 +2050,14 @@ Gets/sets the character's animation sound panning, which is a panning (-100 - +1
 
 Currently the panning only works with mono sounds.
 
+Example:
+
+```ags
+cEgo.AudioPanning = -50;
+```
+
+will pan the character's frame-linked sounds halfway to the left.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`AudioChannel.Panning`](AudioChannel#audiochannelpanning),
@@ -2025,6 +2076,14 @@ int Character.AudioSpeed
 
 Gets/sets the character's animation sound speed, which is a speed of frame-linked sounds that play during character's animations. The speed is defined in clip's milliseconds per second: 1000 is default, meaning 1000 of
 clip's ms in 1 real second (scale 1:1). Set < 1000 for slower play and > 1000 for faster play.
+
+Example:
+
+```ags
+cEgo.AudioSpeed = 1500;
+```
+
+will play the character's frame-linked sounds one and a half times faster than normal.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -2047,6 +2106,14 @@ int Character.AudioVolume
 Gets/sets the character's animation sound volume, which is a *relative* volume (0-100) of frame-linked sounds that play during character's animations.
 
 **NOTE:** all the volume properties in Character act as relative factors: these are `AudioVolume`, "volume" parameter of [`Animate`](Character#characteranimate) function, and character's scale if [`ScaleVolume`](Character#characterscalevolume) is also set. The final frame sound's volume will be equal to `sound volume * AudioVolume % * scaled volume %` in case of a normal view animation (walking, talking, etc), and `sound volume * AudioVolume % * scaled volume % * Animate's volume param %` when `Animate` is called.
+
+Example:
+
+```ags
+cEgo.AudioVolume = 50;
+```
+
+will make the character's frame-linked sounds play at half of their normal volume.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -2263,6 +2330,14 @@ By default, the blocking rectangle is centered around character's position. This
 
 **NOTE:** This property has no effect unless the [`Solid`](Character#charactersolid) property is set to *true*.
 
+Example:
+
+```ags
+cHorse.BlockingRectX = 20;
+```
+
+will move the blocking rectangle of the character cHorse 20 pixels to the right of the character's position, to match a sprite whose body extends to one side. The blocking rectangle only matters while the character is Solid.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:*
@@ -2284,6 +2359,14 @@ Gets/sets the Y offset of the character's blocking rectangle.
 By default, the blocking rectangle is centered around character's position. This property specifies a *relative* offset either to up (negative value) or down (positive value) from character's center.
 
 **NOTE:** This property has no effect unless the [`Solid`](Character#charactersolid) property is set to *true*.
+
+Example:
+
+```ags
+cHorse.BlockingRectY = -5;
+```
+
+will move the blocking rectangle of the character cHorse 5 pixels up from the character's position, so that other characters can come a little closer to it from the front. The blocking rectangle only matters while the character is Solid.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -2373,6 +2456,26 @@ readonly int Character.DestinationX
 Gets the X coordinate of the character's final moving destination. If
 character is not walking or moving it is equal to its current position.
 
+Example:
+
+```ags
+function repeatedly_execute()
+{
+  if (player.Moving)
+  {
+    Point* p = Screen.RoomToScreenPoint(player.DestinationX, player.DestinationY);
+    gWalkMarker.SetPosition(p.x - gWalkMarker.Width / 2, p.y - gWalkMarker.Height / 2);
+    gWalkMarker.Visible = true;
+  }
+  else
+  {
+    gWalkMarker.Visible = false;
+  }
+}
+```
+
+will show the GUI gWalkMarker over the spot where the player character is going to stop, and hide it when the character gets there. This spot may differ from where the player clicked, if that place could not be reached.
+
 *Compatibility:* Supported by **AGS 3.4.0** and later versions.
 
 *See also:* [`Character.DestinationY`](Character#characterdestinationy),
@@ -2390,6 +2493,26 @@ readonly int Character.DestinationY
 
 Gets the Y coordinate of the character's final moving destination. If
 character is not walking or moving it is equal to its current position.
+
+Example:
+
+```ags
+function repeatedly_execute()
+{
+  if (player.Moving)
+  {
+    Point* p = Screen.RoomToScreenPoint(player.DestinationX, player.DestinationY);
+    gWalkMarker.SetPosition(p.x - gWalkMarker.Width / 2, p.y - gWalkMarker.Height / 2);
+    gWalkMarker.Visible = true;
+  }
+  else
+  {
+    gWalkMarker.Visible = false;
+  }
+}
+```
+
+will show the GUI gWalkMarker over the spot where the player character is going to stop, and hide it when the character gets there. This spot may differ from where the player clicked, if that place could not be reached.
 
 *Compatibility:* Supported by **AGS 3.4.0** and later versions.
 
@@ -2434,6 +2557,14 @@ bool Character.Enabled
 Gets/sets whether the character is enabled and visible. This lets you disable any character anytime, including player character. When disabled a character will not be drawn on screen and not updated (not animating, not moving, etc). Disabled characters may still be modified and have their coordinates changed by setting their corresponding properties directly, and also moved to another room with [ChangeRoom](Character#characterchangeroom) function.
 
 Rooms have a property called "ShowPlayerCharacter", which is enabled by default. If this property is disabled, then player character will have their `on` property set to 0 when such room is loaded, and restored it to 1 when leaving that room.
+
+Example:
+
+```ags
+cGuard.Enabled = false;
+```
+
+will disable the character cGuard, so it is no longer drawn or updated.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -2576,6 +2707,14 @@ Gets/sets the character's sprite relative offset on X axis, in pixels.
 
 **NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current offset, read [ViewOffsetX](Character#characterviewoffsetx), and [ViewOffsetY](Character#characterviewoffsety) properties instead.
 
+Example:
+
+```ags
+cEgo.GraphicOffsetX = 3.0;
+```
+
+will draw the character's sprite 3 pixels to the right of where it normally is.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
@@ -2599,6 +2738,14 @@ float Character.GraphicOffsetY
 Gets/sets the character's sprite relative offset on Y axis, in pixels.
 
 **NOTE:** [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions temporarily override character's graphic anchor and offset. If you need to know actual current offset, read [ViewOffsetX](Character#characterviewoffsetx), and [ViewOffsetY](Character#characterviewoffsety) properties instead.
+
+Example:
+
+```ags
+cEgo.GraphicOffsetY = -2.0;
+```
+
+will draw the character's sprite 2 pixels higher than where it normally is.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -2678,6 +2825,14 @@ float Character.GraphicPivotOffsetX
 
 Gets/sets the character's sprite pivot relative offset on X axis, in pixels. This offset is combined with the [GraphicPivotX](Character#charactergraphicpivotx) property.
 
+Example:
+
+```ags
+cEgo.GraphicPivotOffsetX = 5.0;
+```
+
+will move the character's sprite pivot point 5 pixels to the right, which affects where the sprite rotates and scales around.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Character.GraphicPivotX`](Character#charactergraphicpivotx),
@@ -2694,6 +2849,14 @@ float Character.GraphicPivotOffsetY
 ```
 
 Gets/sets the character's sprite pivot relative offset on Y axis, in pixels. This offset is combined with the [GraphicPivotY](Character#charactergraphicpivoty) property.
+
+Example:
+
+```ags
+cEgo.GraphicPivotOffsetY = -5.0;
+```
+
+will move the character's sprite pivot point 5 pixels up, which affects where the sprite rotates and scales around.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -2742,6 +2905,17 @@ Returns *false* if the character has no explicit light level, but it may
 still be lighted by
 [`SetAmbientLightLevel`](Globalfunctions_General#setambientlightlevel) or a region
 light.
+
+Example:
+
+```ags
+if (cEgo.HasExplicitLight)
+{
+  cEgoMirror.SetLightLevel(cEgo.LightLevel);
+}
+```
+
+will give the character cEgoMirror, which shows the player's reflection in a mirror, the same individual light level as cEgo, but only if cEgo has one set explicitly. Otherwise LightLevel would return 0, which is not the light that cEgo actually gets from the room or region.
 
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
@@ -2841,6 +3015,14 @@ int Character.IdleAnimationDelay
 
 Gets/sets the character's idle animation delay
 
+Example:
+
+```ags
+Display("The idle animation delay is %d.", cEgo.IdleAnimationDelay);
+```
+
+will display the delay used by the character's idle animation.
+
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
 *See also:* [`Character.IdleDelay`](Character#characteridledelay), [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
@@ -2857,6 +3039,14 @@ Gets the character's idle delay, which is a time in seconds between the moment w
 
 This property is read-only; to change the delay, use the [`SetIdleView`](Character#charactersetidleview) function.
 
+Example:
+
+```ags
+Display("The idle animation begins %d seconds after the last action.", cEgo.IdleDelay);
+```
+
+will display how long the character has to be idle before its idle animation begins.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`Character.IdleTime`](Character#characteridletime), [`Character.IdleView`](Character#characteridleview), [`Character.SetIdleView`](Character#charactersetidleview)
@@ -2872,6 +3062,14 @@ readonly int Character.IdleTime
 Gets the remaining time (in game ticks) until the idle animation begins.
 
 The idle delay is set using [`SetIdleView`](Character#charactersetidleview) function.
+
+Example:
+
+```ags
+Display("The idle animation begins in %d game ticks.", cEgo.IdleTime);
+```
+
+will display how many game ticks are left until the character's idle animation begins.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -2963,6 +3161,18 @@ Gets the inventory item in the particular position of the character's inventory.
 
 This property lets you access and iterate all items that the character currently has, in the order of acquisition. If "Display multiple icons for multiple items" is disabled in General Settings, then each item will be present only once, regardless of the times it was added, and their actual quantity in inventory may be found using [`Character.InventoryQuantity`](Character#characterinventoryquantity). If duplicates are allowed, then inventory may contain multiple instances of the same item, exactly in the order they were added.
 
+Example:
+
+```ags
+lstItems.Clear();
+for (int i = 0; i < player.InventoryCount; i++)
+{
+  lstItems.AddItem(player.Inventory[i].Name);
+}
+```
+
+will fill the list box lstItems with the names of all the items the player character has, in the order they were acquired.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`Character.AddInventory`](Character#characteraddinventory),
@@ -2982,6 +3192,25 @@ readonly int Character.InventoryCount
 Gets total number of items in the character's inventory.
 
 If "Display multiple icons for multiple items" is disabled in General Settings, then each item will be present only once, regardless of the times it was added, and their actual quantity in inventory may be found using [`Character.InventoryQuantity`](Character#characterinventoryquantity). If duplicates are allowed, then inventory may contain multiple instances of the same item.
+
+Example:
+
+```ags
+function oRock_PickUp(Object *theObject, CursorMode mode)
+{
+  if (player.InventoryCount >= 10)
+  {
+    player.Say("I can't carry any more.");
+  }
+  else
+  {
+    oRock.Visible = false;
+    player.AddInventory(iRock);
+  }
+}
+```
+
+will let the player pick up the rock only while they carry fewer than 10 items.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -3047,6 +3276,17 @@ this property returns the light level value. Otherwise it returns 0.
 **NOTE:** without individual light level set, Character.LightLevel
 returns 0 even if the character is affected by the ambient or region's
 light.
+
+Example:
+
+```ags
+if (cEgo.HasExplicitLight)
+{
+  cEgoMirror.SetLightLevel(cEgo.LightLevel);
+}
+```
+
+will give the character cEgoMirror, which shows the player's reflection in a mirror, the same individual light level as cEgo has.
 
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
@@ -3194,6 +3434,18 @@ Gets this character's current MotionPath, or null if it's not moving.
 This property is readonly; to manually assign a character walking path, use
 [`WalkPath`](Character#characterwalkpath) and [`MovePath`](Character#charactermovepath)
 commands.
+
+Example:
+
+```ags
+cEgo.Walk(250, 130, eNoBlock);
+if (cEgo.MotionPath != null)
+{
+  Display("The character is moving along a path of %d stages.", cEgo.MotionPath.StageCount);
+}
+```
+
+will start moving the character and then tell how many stages its path consists of.
 
 *See also:* [`MotionPath`](MotionPath),
 [`WalkPath`](Character#characterwalkpath),
@@ -3412,6 +3664,18 @@ readonly String Character.ScriptName
 Gets the script name of the character, which serves as a unique identifier, as set in the AGS Editor.
 
 This may be useful if you have a pointer to some character stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each character in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [Character.GetByName](Character#charactergetbyname) function to retrieve the character by the previously saved script name.
+
+Example:
+
+```ags
+Character *c = Character.GetAtScreenXY(mouse.x, mouse.y);
+if (c != null)
+{
+  System.Log(eLogDebug, "The mouse is over the character '%s'.", c.ScriptName);
+}
+```
+
+will write the script name of the character under the mouse cursor to the game log, which may be useful when debugging.
 
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
@@ -3755,6 +4019,17 @@ This property is read-only; to change it, use the
 [`Character.HasExplicitTint`](Character#characterhasexplicittint)
 property is false, then this value is meaningless.
 
+Example:
+
+```ags
+if (cEgo.HasExplicitTint)
+{
+  cEgoMirror.Tint(cEgo.TintRed, cEgo.TintGreen, cEgo.TintBlue, cEgo.TintSaturation, cEgo.TintLuminance);
+}
+```
+
+will tint the character cEgoMirror, which shows the player's reflection in a mirror, the same way as cEgo is tinted.
+
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
 *See also:* [`Character.Tint`](Character#charactertint),
@@ -3779,6 +4054,17 @@ This property is read-only; to change it, use the
 **NOTE:** If the
 [`Character.HasExplicitTint`](Character#characterhasexplicittint)
 property is false, then this value is meaningless.
+
+Example:
+
+```ags
+if (cEgo.HasExplicitTint)
+{
+  cEgoMirror.Tint(cEgo.TintRed, cEgo.TintGreen, cEgo.TintBlue, cEgo.TintSaturation, cEgo.TintLuminance);
+}
+```
+
+will tint the character cEgoMirror, which shows the player's reflection in a mirror, the same way as cEgo is tinted.
 
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
@@ -3805,6 +4091,17 @@ This property is read-only; to change it, use the
 [`Character.HasExplicitTint`](Character#characterhasexplicittint)
 property is false, then this value is meaningless.
 
+Example:
+
+```ags
+if (cEgo.HasExplicitTint)
+{
+  cEgoMirror.Tint(cEgo.TintRed, cEgo.TintGreen, cEgo.TintBlue, cEgo.TintSaturation, cEgo.TintLuminance);
+}
+```
+
+will tint the character cEgoMirror, which shows the player's reflection in a mirror, the same way as cEgo is tinted.
+
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
 *See also:* [`Character.Tint`](Character#charactertint),
@@ -3830,6 +4127,17 @@ This property is read-only; to change it, use the
 [`Character.HasExplicitTint`](Character#characterhasexplicittint)
 property is false, then this value is meaningless.
 
+Example:
+
+```ags
+if (cEgo.HasExplicitTint)
+{
+  cEgoMirror.Tint(cEgo.TintRed, cEgo.TintGreen, cEgo.TintBlue, cEgo.TintSaturation, cEgo.TintLuminance);
+}
+```
+
+will tint the character cEgoMirror, which shows the player's reflection in a mirror, the same way as cEgo is tinted.
+
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
 *See also:* [`Character.Tint`](Character#charactertint),
@@ -3854,6 +4162,17 @@ This property is read-only; to change it, use the
 **NOTE:** If the
 [`Character.HasExplicitTint`](Character#characterhasexplicittint)
 property is false, then this value is meaningless.
+
+Example:
+
+```ags
+if (cEgo.HasExplicitTint)
+{
+  cEgoMirror.Tint(cEgo.TintRed, cEgo.TintGreen, cEgo.TintBlue, cEgo.TintSaturation, cEgo.TintLuminance);
+}
+```
+
+will tint the character cEgoMirror, which shows the player's reflection in a mirror, the same way as cEgo is tinted.
 
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
@@ -3950,6 +4269,29 @@ Gets whether the character is currently turning on spot. This may be when it eit
 
 *Compatibility*: Supported by **AGS 3.6.3** and later versions.
 
+Example:
+
+```ags
+bool guardTurning;
+
+function hDoor_Interact(Hotspot *theHotspot, CursorMode mode)
+{
+  cGuard.FaceCharacter(player, eNoBlock);
+  guardTurning = true;
+}
+
+function room_RepExec()
+{
+  if (guardTurning && !cGuard.Turning)
+  {
+    guardTurning = false;
+    cGuard.SayBackground("Hey, you!");
+  }
+}
+```
+
+will make the guard turn to face the player without blocking the game, and shout only after he has finished turning.
+
 *See also:* [`Character.TurnBeforeWalking`](Character#characterturnbeforewalking),
 [`Character.TurnWhenFacing`](Character#characterturnwhenfacing)
 
@@ -4043,6 +4385,14 @@ For example, value of 0.3 means that a sprite is shifted by one third to the lef
 
 Normally the character's anchor is determined by [GraphicAnchorX](Character#charactergraphicanchorx) and [GraphicAnchorY](Character#charactergraphicanchory) properties, but [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions may temporarily override them. ViewAnchorX returns the actual anchor anytime.
 
+Example:
+
+```ags
+Display("The sprite anchor X is %.2f.", cEgo.ViewAnchorX);
+```
+
+will display the character's effective sprite anchor X position, which is a value between 0.0 and 1.0.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
@@ -4070,6 +4420,14 @@ For example, value of 0.3 means that a sprite is shifted by one third above from
 
 Normally the character's anchor is determined by [GraphicAnchorX](Character#charactergraphicanchorx) and [GraphicAnchorY](Character#charactergraphicanchory) properties, but [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions may temporarily override them. ViewAnchorY returns the actual anchor anytime.
 
+Example:
+
+```ags
+Display("The sprite anchor Y is %.2f.", cEgo.ViewAnchorY);
+```
+
+will display the character's effective sprite anchor Y position, which is a value between 0.0 and 1.0.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
@@ -4093,6 +4451,14 @@ readonly float Character.ViewOffsetX
 Gets the character's effective sprite relative offset on X axis, in pixels.
 
 Normally the character's anchor is determined by [GraphicOffsetX](Character#charactergraphicoffsetx) and [GraphicOffsetY](Character#charactergraphicoffsety) properties, but [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions may temporarily override them. ViewOffsetX returns the actual offset anytime.
+
+Example:
+
+```ags
+Display("The sprite offset X is %.1f.", cEgo.ViewOffsetX);
+```
+
+will display the character's effective sprite offset on the X axis, in pixels.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -4118,6 +4484,14 @@ Gets the character's effective sprite relative offset on Y axis, in pixels.
 
 Normally the character's anchor is determined by [GraphicOffsetX](Character#charactergraphicoffsetx) and [GraphicOffsetY](Character#charactergraphicoffsety) properties, but [LockViewAligned](Character#characterlockviewaligned) and [LockViewAnchored](Character#characterlockviewanchored) functions may temporarily override them. ViewOffsetY returns the actual offset anytime.
 
+Example:
+
+```ags
+Display("The sprite offset Y is %.1f.", cEgo.ViewOffsetY);
+```
+
+will display the character's effective sprite offset on the Y axis, in pixels.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Character.GraphicAnchorX`](Character#charactergraphicanchorx),
@@ -4139,6 +4513,18 @@ bool Character.Visible
 ```
 
 Gets/sets whether the character is currently visible.
+
+Example:
+
+```ags
+cWizard.Visible = false;
+Wait(20);
+cWizard.x = 250;
+cWizard.y = 140;
+cWizard.Visible = true;
+```
+
+will make the wizard vanish and, half a second later (at 40 game ticks per second), appear again at another spot.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 

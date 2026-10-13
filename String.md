@@ -287,6 +287,22 @@ Joins a dynamic array of strings using the separator in a single string
 **NOTE:** This function is static, which means you do not call it on an
 existing string variable, but use `String.Join()` instead. 
 
+Example:
+
+```ags
+if (player.InventoryCount > 0)
+{
+  String names[] = new String[player.InventoryCount];
+  for (int i = 0; i < player.InventoryCount; i++)
+  {
+    names[i] = player.Inventory[i].Name;
+  }
+  player.Say("I have: %s.", String.Join(names, ", "));
+}
+```
+
+will make the player list everything they carry in one sentence, such as "I have: a key, a rope, a lamp.".
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -394,6 +410,15 @@ String[] String.Split(string separator, optional StringSplitOptions options);
 
 Creates a dynamic array made of substrings of the string each time the separator occurred.
 
+Example:
+
+```ags
+// the hotspot's custom text property "Synonyms" is set to "statue, sculpture,, idol" in the editor
+String names[] = hStatue.GetTextProperty("Synonyms").Split(",", eStrSplit_RemoveEmpty | eStrSplit_Trim);
+```
+
+will split the text into the separate words "statue", "sculpture" and "idol": the empty item between the two commas is dropped, and the spaces around the words are removed. You could then compare these words with what the player has typed.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`StringSplitOptions`](StandardEnums#stringsplitoptions)
@@ -466,6 +491,18 @@ String.Trim()
 ```
 
 Returns a new string without any leading or trailing whitespace.
+
+Example:
+
+```ags
+String name = txtName.Text.Trim();
+if (name == "")
+{
+  lblError.Text = "Please type a name.";
+}
+```
+
+will remove the spaces that the player may have typed around their name in the text box txtName, so that a name made only of spaces counts as empty.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 

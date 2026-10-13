@@ -172,6 +172,18 @@ This array must be non-empty. By default the sorting order is unspecified.
 You can optionally use `saveSortStyle` and `sortDirection` to set how the list
 of save games set to the list box should be sorted. See their explanation in the description to [`ListBox.FillSaveGameList`](ListBox#listboxfillsavegamelist).
 
+Example:
+
+```ags
+int slots[3];
+slots[0] = 1;
+slots[1] = 2;
+slots[2] = 5;
+lstSaves.FillSaveGameSlots(slots, eSaveGameSort_Time, eSortDescending);
+```
+
+will fill the list box lstSaves only with the saved games in the slots 1, 2 and 5 (for example, the slots that your game uses for its automatic saves), with the most recent save listed first.
+
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
 *See also:* [`ListBox.FillDirList`](ListBox#listboxfilldirlist),
@@ -585,6 +597,14 @@ Border is drawn using color from TextColor property.
 
 Note that hiding the border will also implicitly hide the up/down scroll arrows for the list box.
 
+Example:
+
+```ags
+lstSaves.ShowBorder = false;
+```
+
+will hide the list box's border (and the scroll arrows with it).
+
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
 *See also:*
@@ -613,6 +633,14 @@ scroll arrows will also be hidden, since "Show Border" supersedes "Show
 Scroll Arrows". You only need to use this ShowScrollArrows property if
 you want the border to be shown but the arrows hidden.
 
+Example:
+
+```ags
+lstSaves.ShowScrollArrows = false;
+```
+
+will hide the built-in scroll arrows of the list box lstSaves, while keeping its border visible; for example, because you made your own arrow buttons, which call ScrollUp and ScrollDown.
+
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
 *See also:* [`ListBox.ShowBorder`](ListBox#listboxshowborder), [`ListBox.TextColor`](ListBox#listboxtextcolor)
@@ -626,6 +654,14 @@ HorizontalAlignment ListBox.TextAlignment
 ```
 
 Gets/sets the way a text is aligned inside an item's rectangle. Currently only horizontal alignment is supported, that is: eAlignLeft, eAlignCenter and eAlignRight.
+
+Example:
+
+```ags
+lstSaves.TextAlignment = eAlignCenter;
+```
+
+will center the text of the list box's items.
 
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
@@ -663,6 +699,14 @@ int ListBox.TextOutlineColor;
 ```
 
 Gets/sets the color used to display the text's outline, but only if the listbox's Font uses outline. If the font has no outline, then this property has no effect.
+
+Example:
+
+```ags
+lstSaves.TextOutlineColor = Game.GetColorFromRGB(0, 0, 0);
+```
+
+will draw the list box items' text outline in black (only if the list box's font has an outline).
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 

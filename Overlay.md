@@ -90,6 +90,16 @@ The room overlays are positioned in the room graphic layer, and are visually sor
 
 All the parameters and use are identical to [`Overlay.CreateTextual`](Overlay#overlaycreatetextual) function, please refer to its description for more details.
 
+Example:
+
+```ags
+Overlay* myOverlay = Overlay.CreateRoomTextual(50, 80, 120, Game.SpeechFont, Game.GetColorFromRGB(255, 255, 255), "This is a room text overlay");
+Wait(80);
+myOverlay.Remove();
+```
+
+will display white text at the position 50,80 in the room for two seconds (at 40 game ticks per second) and then remove it.
+
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
 *See also:* [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical),
@@ -253,6 +263,16 @@ Overlay.RemoveTint()
 
 Removes an existing colour tint or light level from this overlay.
 
+Example:
+
+```ags
+myOverlay.Tint(255, 0, 0, 50, 100);
+Wait(10);
+myOverlay.RemoveTint();
+```
+
+will make the overlay myOverlay flash red for a quarter of a second.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -265,6 +285,14 @@ Overlay.SetLightLevel(int light_level)
 
 Sets the light level for this overlay, from -100 to 100 (negative values darken the sprite, positive brighten the sprite).
 
+Example:
+
+```ags
+myOverlay.SetLightLevel(-50);
+```
+
+will make the overlay myOverlay darker.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -276,6 +304,14 @@ Overlay.SetPosition(int x, int y, int width = 0, int height = 0)
 ```
 
 Sets this overlay's position, and optionally its size.
+
+Example:
+
+```ags
+myOverlay.SetPosition(20, 30, 64, 64);
+```
+
+will move the overlay myOverlay to the position 20,30 and resize it to 64x64 pixels.
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
@@ -295,6 +331,14 @@ Overlay.SetSize(int width, int height)
 Changes the size of the overlay. Works with both graphical and textual overlays.
 
 When the size is set *will stretch or shrink* the overlay's image, both horizontally and vertically.
+
+Example:
+
+```ags
+myOverlay.SetSize(64, 64);
+```
+
+will stretch or shrink the image of the overlay myOverlay to 64x64 pixels.
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
@@ -344,6 +388,14 @@ Overlay.Tint(int red, int green, int blue, int saturation, int luminance)
 
 Tints the overlay to the specified colour. RGB values must be in 0-255 range, saturation and luminance in 0-100 range.
 
+Example:
+
+```ags
+myOverlay.Tint(0, 0, 255, 50, 100);
+```
+
+will tint the overlay myOverlay blue.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -355,6 +407,14 @@ BlendMode Overlay.BlendMode
 ```
 
 Gets/sets the blending mode for this overlay.
+
+Example:
+
+```ags
+myOverlay.BlendMode = eBlendAdd;
+```
+
+will draw the overlay myOverlay using the additive blending mode.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -369,6 +429,14 @@ eFlipDirection Overlay.Flip
 ```
 
 Gets/sets the flip direction of this overlay.
+
+Example:
+
+```ags
+myOverlay.Flip = eFlipLeftToRight;
+```
+
+will draw the overlay myOverlay mirrored horizontally.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -387,6 +455,14 @@ Gets/sets the sprite slot number that the overlay is currently using.
 Textual overlays return a number of a generated dynamic sprite that they have created for themselves. Setting `Graphic` of a textual overlay will effectively change them to a graphical overlay.
 
 **NOTE:** unlike [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical), where you may choose whether to make an image's copy or a shared reference, setting `Graphic` will always make a shared reference to the sprite. If this is a [DynamicSprite](DynamicSprite), you have to make sure it is not deleted so long as overlay stays on screen, or overlay will be displaying a dummy sprite 0 instead.
+
+Example:
+
+```ags
+myOverlay.Graphic = 301;
+```
+
+will change the image of the overlay myOverlay to the sprite 301.
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions. Prior to **AGS 3.6.1** textual overlays would return "-1", as back then their graphic was stored as a internal image unaccessible from script.
 
@@ -465,6 +541,14 @@ float Overlay.GraphicOffsetX
 
 Gets/sets the overlay's sprite relative offset on X axis, in pixels.
 
+Example:
+
+```ags
+myOverlay.GraphicOffsetX = 5.0;
+```
+
+will draw the sprite of the overlay myOverlay 5 pixels to the right of where it normally is.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Overlay.GraphicAnchorX`](Overlay#overlaygraphicanchorx),
@@ -480,6 +564,14 @@ float Overlay.GraphicOffsetY
 ```
 
 Gets/sets the overlay's sprite relative offset on Y axis, in pixels.
+
+Example:
+
+```ags
+myOverlay.GraphicOffsetY = -5.0;
+```
+
+will draw the sprite of the overlay myOverlay 5 pixels higher than where it normally is.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -553,6 +645,15 @@ float Overlay.GraphicPivotOffsetX
 
 Gets/sets the overlay's sprite pivot relative offset on X axis, in pixels. This offset is combined with the [GraphicPivotX](Overlay#overlaygraphicpivotx) property.
 
+Example:
+
+```ags
+myOverlay.GraphicPivotOffsetX = 5.0;
+myOverlay.Rotation = 30.0;
+```
+
+will move the pivot point of the overlay myOverlay 5 pixels to the right, and then rotate the overlay around that point.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Overlay.GraphicPivotX`](Overlay#overlaygraphicpivotx),
@@ -569,6 +670,15 @@ float Overlay.GraphicPivotOffsetY
 ```
 
 Gets/sets the overlay's sprite pivot relative offset on Y axis, in pixels. This offset is combined with the [GraphicPivotY](Overlay#overlaygraphicpivoty) property.
+
+Example:
+
+```ags
+myOverlay.GraphicPivotOffsetY = -5.0;
+myOverlay.Rotation = 30.0;
+```
+
+will move the pivot point of the overlay myOverlay 5 pixels up, and then rotate the overlay around that point.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -587,6 +697,14 @@ readonly int Overlay.GraphicHeight;
 
 Gets the original height of the overlay's image. This property may be used to know the unscaled image's size (as [`Height`](Overlay#overlayheight) property scales it), which is useful if the original sprite was disposed, or for textual overlays that generate its own internal image.
 
+Example:
+
+```ags
+myOverlay.Height = myOverlay.GraphicHeight * 2;
+```
+
+will make the overlay myOverlay twice as tall as its original image.
+
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
 *See also:* [`Overlay.X`](Overlay#overlayx), [`Overlay.Y`](Overlay#overlayy), [`Overlay.GraphicWidth`](Overlay#overlaygraphicwidth), [`Overlay.Height`](Overlay#overlayheight),
@@ -601,6 +719,14 @@ readonly int Overlay.GraphicWidth;
 ```
 
 Gets the original width of the overlay's image. This property may be used to know the unscaled image's size (as [`Width`](Overlay#overlaywidth) property scales it), which is useful if the original sprite was disposed, or for textual overlays that generate its own internal image.
+
+Example:
+
+```ags
+myOverlay.Width = myOverlay.GraphicWidth * 2;
+```
+
+will make the overlay myOverlay twice as wide as its original image.
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
@@ -618,6 +744,21 @@ readonly bool Overlay.HasLightLevel
 
 Gets whether the overlay has a light level set.
 
+Example:
+
+```ags
+if (lampOverlay.HasLightLevel)
+{
+  reflectionOverlay.SetLightLevel(lampOverlay.LightLevel);
+}
+else
+{
+  reflectionOverlay.RemoveTint();
+}
+```
+
+will give the overlay reflectionOverlay the same light level as the overlay lampOverlay, or remove its light level if lampOverlay has none.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -630,6 +771,22 @@ readonly bool Overlay.HasTint
 
 Gets whether the overlay has a tint set.
 
+Example:
+
+```ags
+if (lampOverlay.HasTint)
+{
+  reflectionOverlay.Tint(lampOverlay.TintRed, lampOverlay.TintGreen, lampOverlay.TintBlue,
+                         lampOverlay.TintSaturation, lampOverlay.TintLuminance);
+}
+else
+{
+  reflectionOverlay.RemoveTint();
+}
+```
+
+will copy the tint of the overlay lampOverlay to the overlay reflectionOverlay, or remove its tint if lampOverlay has none.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -641,6 +798,14 @@ int Overlay.Height;
 ```
 
 Gets/sets the height of this overlay. Changing this property *will stretch or shrink* the overlay's image vertically. Works with both graphical and textual overlays.
+
+Example:
+
+```ags
+myOverlay.Height = 32;
+```
+
+will stretch or shrink the image of the overlay myOverlay vertically to 32 pixels.
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
@@ -655,6 +820,31 @@ readonly bool Overlay.InRoom;
 ```
 
 Tells whether current overlay is a room (returns "true") or screen (if "false") overlay.
+
+Example:
+
+```ags
+function PlaceAbovePlayer(Overlay* ovr)
+{
+  // an overlay is placed by its top-left corner, so center it horizontally,
+  // and put its bottom edge 60 pixels above the player's feet
+  int x = player.x - ovr.Width / 2;
+  int y = player.y - 60 - ovr.Height;
+  if (ovr.InRoom)
+  {
+    ovr.X = x;
+    ovr.Y = y;
+  }
+  else
+  {
+    Point* p = Screen.RoomToScreenPoint(x, y);
+    ovr.X = p.x;
+    ovr.Y = p.y;
+  }
+}
+```
+
+will place any overlay above the player character's head. A room overlay is positioned in room coordinates, while a screen overlay needs the position converted to screen coordinates first.
 
 *See also:* [`Overlay.CreateGraphical`](Overlay#overlaycreategraphical),
 [`Overlay.CreateTextual`](Overlay#overlaycreatetextual),
@@ -671,6 +861,17 @@ readonly int Overlay.LightLevel
 
 Gets the individual light level for this character.
 
+Example:
+
+```ags
+if (lampOverlay.HasLightLevel)
+{
+  reflectionOverlay.SetLightLevel(lampOverlay.LightLevel);
+}
+```
+
+will give the overlay reflectionOverlay the same light level as the overlay lampOverlay.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -682,6 +883,14 @@ float Overlay.Rotation
 ```
 
 Gets/sets the overlay's image rotation in degrees, clockwise.
+
+Example:
+
+```ags
+myOverlay.Rotation = 45.0;
+```
+
+will rotate the image of the overlay myOverlay by 45 degrees clockwise.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -720,6 +929,18 @@ readonly int Overlay.TintBlue
 
 Gets the Blue component of this overlay's colour tint.
 
+Example:
+
+```ags
+if (lampOverlay.HasTint)
+{
+  reflectionOverlay.Tint(lampOverlay.TintRed, lampOverlay.TintGreen, lampOverlay.TintBlue,
+                         lampOverlay.TintSaturation, lampOverlay.TintLuminance);
+}
+```
+
+will copy the tint of the overlay lampOverlay to the overlay reflectionOverlay.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -731,6 +952,18 @@ readonly int Overlay.TintGreen
 ```
 
 Gets the Green component of this overlay's colour tint.
+
+Example:
+
+```ags
+if (lampOverlay.HasTint)
+{
+  reflectionOverlay.Tint(lampOverlay.TintRed, lampOverlay.TintGreen, lampOverlay.TintBlue,
+                         lampOverlay.TintSaturation, lampOverlay.TintLuminance);
+}
+```
+
+will copy the tint of the overlay lampOverlay to the overlay reflectionOverlay.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -744,6 +977,18 @@ readonly int Overlay.TintRed
 
 Gets the Red component of this overlay's colour tint.
 
+Example:
+
+```ags
+if (lampOverlay.HasTint)
+{
+  reflectionOverlay.Tint(lampOverlay.TintRed, lampOverlay.TintGreen, lampOverlay.TintBlue,
+                         lampOverlay.TintSaturation, lampOverlay.TintLuminance);
+}
+```
+
+will copy the tint of the overlay lampOverlay to the overlay reflectionOverlay.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -756,6 +1001,18 @@ readonly int Overlay.TintSaturation
 
 Gets the Saturation of this overlay's colour tint.
 
+Example:
+
+```ags
+if (lampOverlay.HasTint)
+{
+  reflectionOverlay.Tint(lampOverlay.TintRed, lampOverlay.TintGreen, lampOverlay.TintBlue,
+                         lampOverlay.TintSaturation, lampOverlay.TintLuminance);
+}
+```
+
+will copy the tint of the overlay lampOverlay to the overlay reflectionOverlay.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -767,6 +1024,18 @@ readonly int Overlay.TintLuminance
 ```
 
 Gets the Luminance of this overlay's colour tint.
+
+Example:
+
+```ags
+if (lampOverlay.HasTint)
+{
+  reflectionOverlay.Tint(lampOverlay.TintRed, lampOverlay.TintGreen, lampOverlay.TintBlue,
+                         lampOverlay.TintSaturation, lampOverlay.TintLuminance);
+}
+```
+
+will copy the tint of the overlay lampOverlay to the overlay reflectionOverlay.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -781,6 +1050,16 @@ String Overlay.Text;
 Gets/sets the textual description of this overlay.
 
 Overlay's Text property stores an arbitrary value, similar to the Character.RealName or Object.Name, that has purely informative purpose and does not affect the overlay itself in any way. If Overlay was created using Overlay.CreateTextual(), or modified using Overlay.SetText(), then the Text property will return a text used when generating the overlay's image. If it was created using Overlay.CreateGraphical(), then it will return empty string. But you also may assign a custom value to this property for your own purposes.
+
+Example:
+
+```ags
+signOverlay.Text = "A rusty warning sign";
+// ... later, for example when the player clicks on the overlay:
+player.Say(signOverlay.Text);
+```
+
+will store a description in the overlay signOverlay, which can be used later by your own script; the Text property does not change how the overlay looks.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -797,6 +1076,14 @@ int Overlay.Transparency;
 ```
 
 Gets/sets the transparency of this overlay.
+
+Example:
+
+```ags
+myOverlay.Transparency = 50;
+```
+
+will make the overlay myOverlay half transparent.
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
@@ -842,6 +1129,14 @@ readonly bool Overlay.Visible;
 
 Gets/sets whether the overlay is visible. This is *true* by default, but you can set it to *false* in order to temporarily hide the Overlay.
 
+Example:
+
+```ags
+myOverlay.Visible = false;
+```
+
+will hide the overlay myOverlay without removing it, so that it can be shown again later by setting Visible back to true.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`Overlay.Transparency`](Overlay#overlaytransparency)
@@ -855,6 +1150,14 @@ int Overlay.Width;
 ```
 
 Get/sets the width of this overlay. Changing this property *will stretch or shrink* the overlay's image horizontally. Works with both graphical and textual overlays.
+
+Example:
+
+```ags
+myOverlay.Width = 32;
+```
+
+will stretch or shrink the image of the overlay myOverlay horizontally to 32 pixels.
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
@@ -942,6 +1245,14 @@ The *screen* Overlays are sorted among themselves and GUI, and thus their ZOrder
 The *room* Overlays are sorted among themselves and other in-room elements, such as: room objects, characters and walk-behinds. Their ZOrder is relative to Character's and Object's Baseline setting (or Y coordinate, if Baseline is 0).
 
 **IMPORTANT:** If two or more Overlays (or other objects) have equal ZOrder, their draw order is **undefined**, and should not be relied upon. This is because of how sprite sorting is done in the engine.
+
+Example:
+
+```ags
+myOverlay.ZOrder = 100;
+```
+
+will draw the overlay myOverlay in front of other screen overlays and GUIs that have a lower z-order.
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 

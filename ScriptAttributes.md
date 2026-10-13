@@ -277,17 +277,17 @@ The variant with getter and setter declared as struct members:
 struct MyStruct
 {
     import attribute int IndexedAttr[];
-    import protected int  get_IndexedAttr(int index);
-    import protected void set_IndexedAttr(int index, int value);
+    import protected int  geti_IndexedAttr(int index);
+    import protected void seti_IndexedAttr(int index, int value);
 };
 ```
 ```ags
-int StoreItem::geti_IndexedAttr(int index)
+int MyStruct::geti_IndexedAttr(int index)
 {
     // return something for the given "index"
 }
 
-void StoreItem::seti_IndexedAttr(int index, int value)
+void MyStruct::seti_IndexedAttr(int index, int value)
 {
     // do something for the given "index"
 }
@@ -296,12 +296,12 @@ void StoreItem::seti_IndexedAttr(int index, int value)
 And the variant with getter and setter defined as extender functions:
 
 ```ags
-int geti_IndexedAttr(this StoreItem*, int index)
+int geti_IndexedAttr(this MyStruct*, int index)
 {
     // return something for the given "index"
 }
 
-void seti_IndexedAttr(this StoreItem*, int index, int value)
+void seti_IndexedAttr(this MyStruct*, int index, int value)
 {
     // do something for the given "index"
 }
@@ -391,3 +391,57 @@ void seti_Component(this Color*, int index, int value)
 Here the Color's components may be accessed either directly, or using an indexed attribute and passing index in range 0 to 3.
 
 Of course, in a similar scenario we could do an opposite approach: store components in an array, and have Red, Green etc attributes access particular elements of that array. But this example is here only to illustrate a possibility. In each particular case there's a choice between several solutions, and a solution working best in one case may not be optimal in another.
+
+### Extender attributes
+
+Similar to [extender functions](ExtenderFunctions), you may add attributes to existing types, including built-in types such as Character or Object. Such attributes are called *extender attributes*. They are declared outside of any struct, using `this` or `static` keyword followed by the name of the struct in brackets after the attribute's name:
+
+```ags
+attribute int AttrEx1(this T);
+readonly attribute float AttrEx2(this T);
+attribute float StaticAttrEx(static T);
+
+attribute float ArrayAttrEx1[](this T);
+readonly attribute float ArrayAttrEx2[](this T);
+attribute float StaticArrayAttrEx2[](static T);
+```
+
+where `T` is the name of a struct. Just like with regular attributes, extender attributes may be `readonly`, `static` and [indexed](ScriptAttributes#indexed-attributes).
+
+In all cases you still have to write the respective getter and setter functions (`get_` and `set_`, or `geti_` and `seti_` for indexed attributes), which are commonly written as extender functions too.
+
+For example, let's add a `Health` attribute to the built-in Character type, storing the actual values in a global array:
+
+```ags
+// Script.ash
+attribute int Health(this Character);
+```
+```ags
+// Script.asc
+int CharacterHealth[100];
+
+int get_Health(this Character*)
+{
+    return CharacterHealth[this.ID];
+}
+
+void set_Health(this Character*, int value)
+{
+    if (value < 0)
+        value = 0;
+    CharacterHealth[this.ID] = value;
+}
+```
+
+Now this attribute may be used with any character as if it were their own property:
+
+```ags
+player.Health = 100;
+cGuard.Health -= 10;
+if (cGuard.Health == 0)
+{
+    cGuard.Say("Ugh!");
+}
+```
+
+*Compatibility:* Extender attributes are supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.

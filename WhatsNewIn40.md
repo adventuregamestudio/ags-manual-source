@@ -23,6 +23,17 @@ If you're interested in advanced effects, check out the [`ShaderProgram` functio
 
 While the legacy script compiler is still present for now, a new compiler is available (and it is default in newly created games). This compiler packs new features like multidimensional arrays, nested structs, list initialization, and a multitude of script warnings to help you catch some common issues at compile time.
 
+The new script syntax features include:
+
+- Structs: [constructors in managed structs](ScriptManagedStructs#constructors), [nested structs](ScriptStructs#nested-structs), [implied `this`](ScriptStructs#member-functions) in member functions, and optional `*` when declaring [pointers to managed structs](ScriptManagedStructs).
+- [Extender attributes](ScriptAttributes#extender-attributes), which let you add attributes to existing types, including built-in ones.
+- Arrays: [multi-dimensional regular arrays](ScriptKeywords#multidimensional-arrays), [multi-dimensional and mixed dynamic arrays](DynamicArrays#multi-dimensional-dynamic-arrays), [zero-length dynamic arrays](DynamicArrays#empty-arrays), and dynamic arrays of regular structs.
+- Functions may be [defined in any order](ScriptFunctions#calling-a-function) within the same script, and called with [named parameters](ScriptFunctions#named-parameters).
+- Global variables may be declared right after a [struct](ScriptStructs) or [enum](ScriptKeywords#enum) declaration.
+- New keywords: [`const`](ScriptKeywords#const) for compile-time constants, extended use of [`readonly`](ScriptKeywords#readonly) for local variables and function parameters, and [`fallthrough`](ScriptKeywords#switch-case-statements) in `switch`.
+- New operators: [pointer cast `as`](ScriptManagedStructs#casting-pointers), pre-increment and pre-decrement (`++x`, `--x`), bitwise NOT `~`, and conditional `? :` (see [Operators](ScriptKeywords#operators)).
+- Compile-time evaluation of constant expressions, [accessing members of objects returned by functions](ScriptFunctions#returning-values) in the same expression, and joining adjacent string literals.
+
 ### Managed pointers in managed structs and RTTI
 
 This feature finally opens the full potential of structs referencing each other with pointers, and allows you to create virtually any kind of data storage in script.

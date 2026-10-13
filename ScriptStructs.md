@@ -46,6 +46,25 @@ You may also have arrays of struct instances:
 MyStruct lotsOfMyStructs[100];
 ```
 
+Since AGS 4.0.0 you may also have [dynamic arrays](DynamicArrays) of regular structs:
+
+```ags
+MyStruct manyStructs[];
+manyStructs = new MyStruct[100];
+manyStructs[0].Variable = 10;
+```
+
+With the new script compiler you may also declare global variables right after the struct's declaration, by listing their names between the closing brace and the semicolon:
+
+```ags
+struct Pair
+{
+    int X, Y;
+} pair1, pair2, pair3; // declares 3 global variables of type Pair
+```
+
+*Compatibility:* Dynamic arrays of regular structs and declaring variables after the struct's declaration are supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
+
 *See also:* [Managed structs](ScriptManagedStructs)
 
 ### Member functions
@@ -100,6 +119,21 @@ void MyStruct::MemberFunction()
 ```
 
 Notice how we're using "this" reference here, and this "this" will be propagated further into the called function, meaning that the called function will be accessing same struct instance.
+
+With the new script compiler you may omit `this.` when referring to the struct's own variables and functions inside a member function. The compiler will understand that you mean the members of the current struct instance. So the previous examples may be written as:
+
+```ags
+void MyStruct::MemberFunction()
+{
+    Variable += 2; // same as "this.Variable += 2;"
+    Display("My Variable is now: %d", Variable);
+    AnotherFunction(10, 20); // same as "this.AnotherFunction(10, 20);"
+}
+```
+
+You may still use `this` explicitly, and it is recommended to do so when a function's parameter or a local variable has the same name as a struct member, to avoid confusion (like in the `Rectangle::Init` function in the [examples](ScriptStructs#examples) below).
+
+*Compatibility:* Implied `this` is supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
 
 ### Static functions
 
@@ -206,6 +240,39 @@ Here struct Sibling will also have all the contents from struct Parent. But, whi
 There's no limit to how long the "chain" of extending structs can be. That is, you may have a struct GrandChild extending Child, a struct Descendant extending GrandChild, and so forth.
 
 Extending structs is useful when you need common data and functionality be shared among multiple subtypes.
+
+### Nested structs
+
+Since AGS 4.0.0 structs may contain other structs as members. This works with both regular and [managed structs](ScriptManagedStructs), in any combination:
+
+```ags
+struct Pair
+{
+    int X, Y;
+};
+
+struct TwoPairs
+{
+    Pair p1;
+    Pair p2;
+};
+
+managed struct ManagedStruct
+{
+    TwoPairs tp;            // nested regular struct
+    ManagedStruct* partner; // pointer to a managed struct
+};
+```
+
+Members of nested structs are accessed by chaining the dot operator:
+
+```ags
+TwoPairs tp;
+tp.p1.X = 10;
+tp.p2.Y = 20;
+```
+
+*Compatibility:* Nested structs are supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
 
 ### Built-in structs
 

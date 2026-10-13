@@ -47,6 +47,14 @@ stored as 6.000001 or 5.999999; this is a common gotcha to all
 programming languages so just be aware of it if you use any floating
 point arithmetic.
 
+**NOTE:** String literals that are placed next to each other, separated only by whitespace (including line breaks), are joined into one literal by the compiler. This is useful for splitting a long text over several lines:
+
+```ags
+player.Say("Hello" " world");  // same as "Hello world"
+```
+
+*Compatibility:* Joining string literals is supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
+
 ---
 
 ### Arrays
@@ -112,14 +120,69 @@ for (int i = 0; i < 50; i++) {
 
 Both examples reset every element of "health" array to a zero.
 
+The array's size must be a constant. With the new script compiler it may also be an expression, so long as the compiler can calculate it, for example when it consists only of literal numbers, [`const`](ScriptKeywords#const) values and macros:
+
+```ags
+#define MAX_PLAYERS 4
+const int ITEMS_PER_PLAYER = 10;
+int items[MAX_PLAYERS * ITEMS_PER_PLAYER + 1];
+```
+
 *See also:* [Dynamic arrays](DynamicArrays), [Structs](ScriptKeywords#struct), [while](ScriptKeywords#while), [for](ScriptKeywords#for)
 
 ---
 
 ### Multidimensional arrays
 
-AGS Script currently **DOESN'T** natively support multi-dimensional arrays (2D and higher).
+*data_type* *name* `[` *size1* `,` *size2* ... `];`<br>
+*data_type* *name* `[` *size1* `][` *size2* `]` ... `;`
 
+You may declare arrays with multiple dimensions (2D and higher). There are two ways of declaring them, but other than having slightly different syntax these are fully equivalent:
+
+```ags
+// Declare two-dimensional array of size 5x3
+int a[5, 3];
+int b[5][3];
+```
+
+You can have any positive number of dimensions, e.g. `int a[2][3][5][7][11];`
+
+Accessing elements is done similarly to declaration, and either syntax may be used regardless of how the array was declared:
+
+```ags
+int a[5, 3];
+int e11 = a[1, 1];
+int e21 = a[2][1];
+```
+
+For example, here's a map of tiles, where each value is accessed by its row and column:
+
+```ags
+#define MAP_WIDTH   50
+#define MAP_HEIGHT  20
+
+int map[MAP_HEIGHT, MAP_WIDTH];
+
+// Fill particular row with identical values
+void SetMapRow(int row, int value) {
+    for (int col = 0; col < MAP_WIDTH; col++) {
+        map[row, col] = value;
+    }
+}
+
+// Get a map value at particular row and column
+int GetMapValue(int col, int row)  {
+    return map[row, col];
+}
+```
+
+[Dynamic arrays](DynamicArrays) may also have multiple dimensions, but these work somewhat differently, see [Multi-dimensional dynamic arrays](DynamicArrays#multi-dimensional-dynamic-arrays).
+
+*Compatibility:* Multi-dimensional arrays are supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
+
+**Emulating multi-dimensional arrays**
+
+Older versions of AGS (and the legacy script compiler) do not support multi-dimensional arrays natively.
 There's, however, a classic method of emulating 2D array using a 1D array, if you create 1D array of size equal to "ARR_WIDTH * ARR_HEIGHT". You may then access its elements using following formula:
 
     value = array[row * ARR_WIDTH + col];
@@ -147,21 +210,21 @@ void InitRandomMap(int min_value, int max_value) {
 
 // Fill particular row with identical values
 void SetMapRow(int row, int value) {
-    for (int col = 0; col < ARR_WIDTH; col++) {
-        map[row * ARR_WIDTH + col] = value;
+    for (int col = 0; col < MAP_WIDTH; col++) {
+        map[row * MAP_WIDTH + col] = value;
     }
 }
 
 // Fill particular column with identical values
 void SetMapColumn(int col, int value) {
-    for (int row = 0; row < ARR_HEIGHT; row++) {
-        map[row * ARR_WIDTH + col] = value;
+    for (int row = 0; row < MAP_HEIGHT; row++) {
+        map[row * MAP_WIDTH + col] = value;
     }
 }
 
 // Get a map value at particular row and column
 int GetMapValue(int col, int row)  {
-    return map[row * ARR_WIDTH + col];
+    return map[row * MAP_WIDTH + col];
 }
 ```
 
@@ -176,13 +239,14 @@ tightly bound at the top of the list.
 Operator | Description | Example
 --- | --- | ---
 `!` | NOT | `if (!a)`
+`~` | Bitwise NOT | `a = ~b;`
 `*` | Multiply | `a = b * c;`
 `/` | Divide | `a = b / c;`
 `%` | Remainder | `a = b % c;`
 `+` | Add | `a = b + c;`
 `-` | Subtract | `a = b - c;`
-`++` | Increment by 1 | `a++;`
-`--` | Decrement by 1 | `a--;`
+`++` | Increment by 1 | `a++;` or `++a;`
+`--` | Decrement by 1 | `a--;` or `--a;`
 `<<` | Bitwise Left Shift | `a = b << c;`
 `>>` | Bitwise Right Shift | `a = b >> c;`
 `&` | Bitwise AND | `a = b & c;`
@@ -196,6 +260,7 @@ Operator | Description | Example
 `<=` | Is less than or equal | `if (a <= b)`
 `&&` | Logical AND | `if (a && b)`
 <code>&#124;&#124;</code> | Logical OR | <code>if (a &#124;&#124; b)</code>
+`? :` | Conditional (ternary) | `a = (b > 5) ? c : d;`
 
 This order of precedence allows expressions such as the following to
 evaluate as expected:
@@ -226,6 +291,72 @@ to "false".
 to fill the shifted spaces (1 for negative values, and 0 for positive ones).<br>
 For the purpose of logical bitwise manipulation, bit masking will need to be applied, 
 eg: `(0xFE223344 >> 24) & 0xFF` to return `0xFE`.
+
+**Pre- and post-increment**
+
+The increment and decrement operators may be placed either after the variable (`x++`, `x--`)
+or before it (`++x`, `--x`). The difference shows when this operation is used inside another expression:
+
+* With post-increment/decrement the *old* variable's value is used in the expression, and the variable is changed afterwards.
+* With pre-increment/decrement the variable is changed first, and its *new* value is used in the expression.
+
+```ags
+int x = 5;
+int a = x++; // a = 5, x becomes 6
+int b = ++x; // x becomes 7, b = 7
+```
+
+**Bitwise NOT**
+
+The `~` operator inverts each bit in the value: 1 becomes 0 and 0 becomes 1. For example,
+`~0` results in `0xFFFFFFFF` (which is `-1` for an `int`), and it may be used to clear particular bits:
+`flags = flags & ~0x04;` clears the third bit of `flags`.
+
+**Conditional operator**
+
+The conditional (also called "ternary") operator `? :` selects one of two values depending on a condition:
+
+```ags
+int foo = (x > 5) ? 1 : 2; // foo is set to 1 if x > 5, and to 2 otherwise
+```
+
+The middle part may be left out, so that `?` and `:` go right next to each other:
+
+```ags
+int foo = bar ?: 15;
+```
+
+This means that `foo` is normally set to `bar`, but if `bar` is 0 or null, then `foo` is set to 15 instead.
+This is particularly handy for specifying a default in case a pointer variable turns out to be null,
+for example: `String name = customName ?: "Unknown";`
+
+**Pointer cast operator**
+
+The `as` operator converts a pointer of one type to a pointer of a related type. This works in both
+directions: from a child type to a parent type, and from a parent type to a child type. In case of success
+it returns a valid pointer of the requested type, and if the object is not of that type it returns `null`:
+
+```ags
+GUIControl* someControl = gui[0].Controls[0];
+Button* aButton = someControl as Button;
+if (aButton != null) {
+    aButton.Text = "It's a button!";
+}
+```
+
+See also: [Casting pointers](ScriptManagedStructs#casting-pointers)
+
+*Compatibility:* Pre-increment and pre-decrement, `~`, `? :` and `as` operators are supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
+
+**Compile-time evaluation**
+
+The new script compiler calculates expressions of `int` and `float` types at compile time whenever their result
+is constant. This lets you use such expressions wherever the syntax requires a constant, such as the size of an
+array or the value of a [`const`](ScriptKeywords#const):
+
+```ags
+int arr[7 * 9 + 1]; // the size of array will be calculated by compiler
+```
 
 ---
 
@@ -381,6 +512,34 @@ say "I like oranges.". If the player is cEgo, he will say "I like
 apples." and then also "I would like some berries." If the player is any
 other character, only the default "I would like some berries." will be
 displayed.
+
+Such "fall through" from a non-empty case into the next one is often unintended
+(a `break` is missing), so the new script compiler warns when it detects this situation.
+To tell the compiler that falling through is *intended*, and suppress the warning,
+put a **fallthrough;** statement right in front of the next case:
+
+```ags
+switch (inventory_item)
+{
+case iBlueCup: // no statements inside, falling through, but is fine
+case iYellowCup:
+    player.Say("I fill the cup with water.");
+    break; // break present, all is good
+case iVase:
+    player.Say("I fill the vase with water.");
+    // missing break, will yield a warning
+case iBigTowel:
+    player.Say("That's my favourite towel. Oh well...");
+    fallthrough; // fallthrough keyword tells compiler that it's intended
+case iSmallTowel:
+    player.Say("The towel is now wet.");
+    break;
+default:
+    player.Say("I think this is useless.");
+}
+```
+
+*Compatibility:* The `fallthrough` keyword is supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
 
 A *match_expression* can be any valid AGS expression, including a
 function call. The following construction can be useful when implementing
@@ -697,6 +856,17 @@ weapons[1].name = "Poison dagger";
 structs are essential if you have complex data that you need to store in
 your scripts.
 
+With the new script compiler you may also declare global variables right
+after the struct's declaration:
+
+```ags
+struct Weapon {
+    int damage;
+    int price;
+    String name;
+} sword, dagger; // declares 2 global variables of type Weapon
+```
+
 *See also:* [Structs](ScriptStructs)
 
 ---
@@ -720,9 +890,11 @@ since you work with pointer to object instead of object itself, you may
 assign them to another variable without copying object itself, pass them
 to function as parameter, or return from the function.
 
-**IMPORTANT:** there is a big limitation for user-defined managed
-structs now, it is that they themselves cannot have members of pointer
-types (or dynamic arrays).
+**IMPORTANT:** in AGS 3.x versions there is a big limitation for
+user-defined managed structs, it is that they themselves cannot have
+members of pointer types (or dynamic arrays). Since AGS 4.0.0 this
+limitation is removed, and managed structs may contain pointers to other
+managed objects, dynamic arrays and Strings.
 
 Example:
 
@@ -741,6 +913,8 @@ Apple* my_apple;
 ```
 
 This creates a pointer variable `my_apple` of managed type `Apple`.
+With the new script compiler the `*` may be omitted, and `Apple my_apple;`
+will declare a pointer too.
 
 However, this does **not** create an object itself yet, and `my_apple`
 is assigned **null** value now. If you try to access struct members
@@ -808,16 +982,28 @@ function variable, and function ended), or is assigned another object,
 or simply assigned `null`, then the dynamic object is removed from your
 game forever.
 
+Since AGS 4.0.0 managed structs may also have a constructor, a function that
+is called automatically when the object is created with `new`. See
+[Constructors](ScriptManagedStructs#constructors).
+
 *See also:* [`new`](ScriptKeywords#new), [Managed Structs](ScriptManagedStructs), [Pointers in AGS](Pointers)
 
 ---
 
 ### new
 
-*pointer_variable* = **new** *managed_type*;
+*pointer_variable* = **new** *managed_type*;<br>
+*pointer_variable* = **new** *managed_type* `(` \[*param1*, *param2*, ... \] `)`;<br>
+*array_variable* = **new** *data_type* `[` *size* `]`;
 
 Creates a new dynamic (managed) object of *managed_type* and assigns it
-to *pointer_variable*.
+to *pointer_variable*. Also creates [dynamic arrays](DynamicArrays).
+
+If the managed struct has a [constructor](ScriptManagedStructs#constructors),
+then the type's name must be followed by brackets with parameters for the
+constructor, for example: `new Apple(red, 100)`. If there's no constructor,
+then you may either put empty brackets after the type's name, or no brackets at all.
+Constructors are supported since AGS 4.0.0, and only with the new script compiler.
 
 Example:
 
@@ -900,6 +1086,16 @@ Normally, you would put the enum definition into the script header.
 If you don't assign a value for the first enum item, it is assigned the value 1.
 Other enum items have the value of the enum before plus 1. Ex: `enum ABC { eA,eB, eC};` get's `eA`=1 `eB`=`eA+1`=2 `eC`=`eB+1`=3, by default.
 
+With the new script compiler you may also declare global variables right after the enum's declaration:
+
+```ags
+enum TrafficLightColour {
+    red,
+    amber,
+    green
+} col1, col2, col3; // declares 3 global variables of type TrafficLightColour
+```
+
 In summary, enums are not an essential part of scripting and you can get
 away perfectly well without using them, but in some specific situations
 they're very handy.
@@ -940,6 +1136,10 @@ means "belongs to").
 
 The code above will mean that when the MyMethod function is called, it
 sets the `myValue` variable to 5.
+
+With the new script compiler `this.` may be omitted, so you may simply write
+`myValue = 5;` inside the member function. See
+[Struct's member functions](ScriptStructs#member-functions).
 
 **2. Declaring extender functions**
 
@@ -1029,6 +1229,66 @@ For example:
 readonly int zero;
 readonly int months = 12;
 ```
+
+While [`const`](ScriptKeywords#const) defines a compile-time constant, `readonly`
+defines a *runtime constant*. This means that its value may be determined at runtime,
+and be different each time, but the variable that stores it cannot be modified after
+it's initialized. With the new script compiler you may have `readonly` global variables,
+local variables and function parameters.
+
+The common use of `readonly` is with function parameters and local variables, as a
+"failproof" method to ensure that they are only assigned once, and are never changed
+within the function by mistake. For example:
+
+```ags
+function MyFunc(readonly int param) {
+    readonly int game_speed = GetGameSpeed(); // notice you can assign, but not change later
+
+    param = 10; // compiler will error
+    game_speed = 100; // compiler will error
+}
+```
+
+**NOTE:** `readonly` only tags the variable as not writeable in the current script,
+but it does not prevent the engine or another script from modifying it behind the scenes.
+For example, you may import a variable as `readonly` in one script module and as not
+`readonly` in another.
+
+When applied to struct [attributes](ScriptAttributes#readonly-attributes), `readonly`
+means that the attribute can only be read (has a getter, but not a setter).
+
+*Compatibility:* `readonly` local variables and function parameters are supported by
+**AGS 4.0.0** and later versions, and only when using the new script compiler.
+
+---
+
+### const
+
+**const** *data_type* *name* = *value*;
+
+The *const* keyword defines a compile-time constant, that is a named value that
+always stays the same. Only types which values may be calculated at compile-time
+are allowed with `const`, that is: `int` and `float`. The value may be a literal,
+or any expression that the compiler can calculate, including other constants.
+
+```ags
+const int MainMenuRoom = 301; // main menu room number
+const float PI = 3.14159;
+const float TWO_PI = PI * 2.0;
+const int MAX_ITEMS = 20;
+int items[MAX_ITEMS];
+```
+
+Unlike macros declared with [`#define`](Preprocessor#define), constants have a type, which
+is checked by the compiler.
+
+**NOTE:** there is also a `const string` type, which is a special case: it defines
+an unmodifiable string pointer, which may point to any kind of strings: old-style
+`string`, new-style `String`, and a char array (e.g. `char text[100];`). This is
+mostly used for parameters of built-in functions.
+
+*Compatibility:* `const int` and `const float` are supported by **AGS 4.0.0** and later
+versions, and only when using the new script compiler.
 
 ---
 

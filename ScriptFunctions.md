@@ -169,7 +169,25 @@ function DoSomething()
 
 You may have realized this already, but standard script commands, such as Walk, Say, Display and so forth, are also functions. Their only difference is that they are defined not in game script, but by the AGS engine. Other than that, your own functions and these standard ones are used in exactly same way.
 
-**IMPORTANT:** in AGS script you can only call a function if it's declared earlier than you call it. That means: above in the same script, or in another script module placed higher in the list of scripts.
+**IMPORTANT:** in AGS script you can only call a function from another script if it's declared in a script module placed higher in the list of scripts.
+
+Within the same script, the new script compiler lets you define functions in any order, so you may call a function first and define it further below. This also makes recursive algorithms (where functions call each other) much easier to code:
+
+```ags
+int Func1(int a)
+{
+    return 2 * Func2(a);    // uses Func2(), which is defined below
+}
+
+int Func2(int a)
+{
+    // some code here
+}
+```
+
+You may still forward-declare a function, that is - declare it with `import` keyword above the place where it is first used, and write its body later.
+
+*Compatibility:* Defining functions in any order is supported by **AGS 4.0.0** and later versions, and only when using the new script compiler. With the legacy compiler you can only call a function if it's declared earlier than you call it, that is: above in the same script, or in another script module placed higher in the list of scripts.
 
 See also: [Importing functions in other scripts](ImportingFunctionsAndVariables)
 
@@ -270,6 +288,37 @@ DoSomething("text", 30);
 DoSomething("text", 30, 40);
 ```
 
+### Named parameters
+
+When calling a function, you may pass the parameters with their names explicitly specified, by writing the parameter's name followed by a colon before each value. This may make the code clearer, especially when a function has many parameters of the same type.
+
+For example:
+
+```ags
+import int Func(int param, float fparam, String str_param);
+
+void CallAnother()
+{
+    int result = Func(param: 10, fparam: 5.7, str_param: "text");
+}
+```
+
+Following rules apply:
+
+* A function call must have either all passed parameters named, or none named. These two styles cannot be mixed in the same function call.
+* When parameters are named, they may go in any order.
+* In any case, all non-optional parameters (ones without default value) must be passed.
+* If you are calling a function with a variable number of parameters (such as [`Display`](Globalfunctions_Message#display) or [`String.Format`](String#stringformat)) and pass the fixed parameters named, then you won't be able to pass any variable parameters at all (because they don't have names).
+
+Named parameters work well together with optional parameters, as they let you pass only the optional parameters that you need, and skip the rest. Using `DoSomething` function from the previous section:
+
+```ags
+// assumes a = 10, passes b = 40
+DoSomething(str_param: "text", b: 40);
+```
+
+*Compatibility:* Named parameters are supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
+
 ### Returning values
 
 A function can return a value. This may be a result of its calculation, retrieved data, or an indication of its success or failure to do something. The return value must have a *type*, but does not have a name. It can be of same range of types that function parameters can be, but also can be `void` if nothing is returned.
@@ -319,6 +368,16 @@ int sum2 = SumTwoNumbers(10, 20) * 2;
 // We can do any kind of calculative expression with the function calls
 int weird_number = (SumTwoNumbers(10, 20) * 2) + (SumTwoNumbers(30, 40) / 5) - 10;
 ```
+
+If a function returns a pointer to a managed object, you may access the returned object's properties and functions directly in the same expression, without saving it in a variable first. Such sequences may be of any length:
+
+```ags
+Character.GetAtScreenXY(mouse.x, mouse.y).Walk(100, 200);
+```
+
+**NOTE:** be careful that the function may return `null`, in which case accessing its members will cause an error. In the example above, if there's no character under the mouse cursor, the game will stop with "null pointer" error.
+
+*Compatibility:* Accessing members of a returned object directly is supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
 
 The `void` type is special, it means that function returns no value. This is a preferred contemporary way to declare a function that does not return any result, instead of a old classic `function`. Please note that even though the function is declared with `void` type, it may still use `return` command whenever necessary, just without any further expression.
 

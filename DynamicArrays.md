@@ -24,9 +24,36 @@ simply using another `new` command with a different size; but this will
 erase the contents of the array in the process.
 
 You may create dynamic arrays of basic types (int, char, etc), built-in types (String,
-Character, etc), and custom structs declared as `managed`. But currently you cannot have dynamic arrays of regular (non-managed) custom structs.
+Character, etc), custom structs declared as `managed`, and, since AGS 4.0.0, regular (non-managed) custom structs:
 
-On another hand, you cannot have dynamic arrays inside "managed" structs as their members, but can have them anywhere else.
+```ags
+struct Pair
+{
+    int X, Y;
+};
+
+Pair many_pairs[];
+
+many_pairs = new Pair[10];
+many_pairs[0].X = 50;
+many_pairs[0].Y = 60;
+```
+
+Since AGS 4.0.0 you may also have dynamic arrays as members of "managed" structs (see [Managed structs](ScriptManagedStructs#pointers-to-other-managed-objects)).
+
+*Compatibility:* In AGS 3.x versions you cannot have dynamic arrays of regular (non-managed) structs, and cannot have dynamic arrays inside "managed" structs. Dynamic arrays of regular structs also require the new script compiler.
+
+### Empty arrays
+
+You may create a dynamic array of zero length, by specifying 0 as its size:
+
+```ags
+int arr[] = new int[0];
+```
+
+Such array has nothing in it, but it is a valid array, and not a "null" pointer. This is useful when a function should return an array that may have no elements: then the script that uses it does not have to check for "null", and may simply iterate over the array, using its `Length` (which is 0).
+
+*Compatibility:* Zero-length dynamic arrays are supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
 
 ### Array's Length
 
@@ -141,4 +168,63 @@ int[] func_makearr(int size) {
 int arr[] = func_makearr(100); // the returned array will be assigned to `arr` pointer
 ```
 
-*See also:* [Arrays](ScriptKeywords#arrays), [Structs](ScriptKeywords#struct)
+### Multi-dimensional dynamic arrays
+
+Multi-dimensional dynamic arrays are also known as "jagged arrays". In these each element of all dimensions except the last one is a pointer to another dynamic array, and elements of the last dimension are values of the array's type.
+All sub-arrays must be created individually, but this also means that each of them may have an independent length.
+
+Jagged arrays must be declared with all dimension sizes undefined, like:
+
+```ags
+int dyn_arr[][][]; // a three-dimensional dynamic array
+```
+
+First you must create the "parent" array, then you may create sub-arrays for each of its elements. On each nesting level the sub-array has *one dimension less*. When you create actual arrays, only the *first* dimension must have a fixed size, and following dimensions still have undefined size:
+
+```ags
+int dyn_arr[][][];
+// create 3-dimensional array of size 10
+dyn_arr = new int[10][][];
+// for the 5th element of the first dimension,
+// create a 2-dimensional array of size 20
+dyn_arr[5] = new int[20][];
+// for the 6th element of the first dimension,
+// create a 2-dimensional array of size 25
+dyn_arr[6] = new int[25][];
+// for the 15th element of the 5th element,
+// create a 1-dimensional array of size 40
+dyn_arr[5][15] = new int[40];
+// finally we may access the actual integer values
+dyn_arr[5][15][35] = 100;
+```
+
+Elements which sub-arrays were not created are "null", same as with dynamic arrays of pointers. Each sub-array has its own `Length`, for example: `dyn_arr.Length` is 10, `dyn_arr[5].Length` is 20 and `dyn_arr[5][15].Length` is 40.
+
+*Compatibility:* Multi-dimensional dynamic arrays are supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
+
+### Mixed arrays
+
+You may also have regular (fixed-size) arrays of dynamic arrays. This is done by declaring an array which first dimensions have fixed size, and the last ones have undefined size. The regular dimensions "end" at the last fixed-sized dimension.
+
+Following is a regular array of 10 dynamic arrays of int:
+
+```ags
+int mixed_array[10][];
+```
+
+Following is a regular multi-dimensional array, which contains pointers to multi-dimensional dynamic arrays:
+
+```ags
+int overcomplicated_array[10][20][][];
+```
+
+Each element of such array is initially "null", and you must create dynamic arrays for them, like:
+
+```ags
+mixed_array[0] = new int[5];
+mixed_array[1] = new int[50];
+```
+
+*Compatibility:* Mixed arrays are supported by **AGS 4.0.0** and later versions, and only when using the new script compiler.
+
+*See also:* [Arrays](ScriptKeywords#arrays), [Multidimensional arrays](ScriptKeywords#multidimensional-arrays), [Structs](ScriptKeywords#struct)

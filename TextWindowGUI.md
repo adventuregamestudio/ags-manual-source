@@ -15,6 +15,18 @@ import readonly attribute int TextWindowGUI.LeftGraphic
 Gets the sprite number used for this TextWindow's left border.
 
 
+Example:
+
+```ags
+TextWindowGUI *tw = gMyTextGui.AsTextWindow;
+if (tw != null)
+{
+  Display("The left border uses the sprite %d.", tw.LeftGraphic);
+}
+```
+
+will display the sprite number used for the left border of the text window GUI gMyTextGui.
+
 *Compatibility:* supported by **AGS 3.6.3** and later versions.
 
 ---
@@ -27,6 +39,18 @@ import readonly attribute int TextWindowGUI.TopLeftGraphic
 
 Gets the sprite number used for this TextWindow's top-left corner.
 
+
+Example:
+
+```ags
+TextWindowGUI *tw = gMyTextGui.AsTextWindow;
+if (tw != null)
+{
+  Display("The top left corner uses the sprite %d.", tw.TopLeftGraphic);
+}
+```
+
+will display the sprite number used for the top left corner of the text window GUI gMyTextGui.
 
 *Compatibility:* supported by **AGS 3.6.3** and later versions.
 
@@ -41,6 +65,18 @@ import readonly attribute int TextWindowGUI.TopGraphic
 Gets the sprite number used for this TextWindow's top border.
 
 
+Example:
+
+```ags
+TextWindowGUI *tw = gMyTextGui.AsTextWindow;
+if (tw != null)
+{
+  Display("The top border uses the sprite %d.", tw.TopGraphic);
+}
+```
+
+will display the sprite number used for the top border of the text window GUI gMyTextGui.
+
 *Compatibility:* supported by **AGS 3.6.3** and later versions.
 
 ---
@@ -53,6 +89,18 @@ import readonly attribute int TextWindowGUI.TopRightGraphic
 
 Gets the sprite number used for this TextWindow's top-right corner.
 
+
+Example:
+
+```ags
+TextWindowGUI *tw = gMyTextGui.AsTextWindow;
+if (tw != null)
+{
+  Display("The top right corner uses the sprite %d.", tw.TopRightGraphic);
+}
+```
+
+will display the sprite number used for the top right corner of the text window GUI gMyTextGui.
 
 *Compatibility:* supported by **AGS 3.6.3** and later versions.
 
@@ -67,6 +115,18 @@ import readonly attribute int TextWindowGUI.RightGraphic
 Gets the sprite number used for this TextWindow's right border.
 
 
+Example:
+
+```ags
+TextWindowGUI *tw = gMyTextGui.AsTextWindow;
+if (tw != null)
+{
+  Display("The right border uses the sprite %d.", tw.RightGraphic);
+}
+```
+
+will display the sprite number used for the right border of the text window GUI gMyTextGui.
+
 *Compatibility:* supported by **AGS 3.6.3** and later versions.
 
 ---
@@ -79,6 +139,18 @@ import readonly attribute int TextWindowGUI.BottomRightGraphic
 
 Gets the sprite number used for this TextWindow's bottom-right corner.
 
+
+Example:
+
+```ags
+TextWindowGUI *tw = gMyTextGui.AsTextWindow;
+if (tw != null)
+{
+  Display("The bottom right corner uses the sprite %d.", tw.BottomRightGraphic);
+}
+```
+
+will display the sprite number used for the bottom right corner of the text window GUI gMyTextGui.
 
 *Compatibility:* supported by **AGS 3.6.3** and later versions.
 
@@ -93,6 +165,18 @@ import readonly attribute int TextWindowGUI.BottomGraphic
 Gets the sprite number used for this TextWindow's bottom border.
 
 
+Example:
+
+```ags
+TextWindowGUI *tw = gMyTextGui.AsTextWindow;
+if (tw != null)
+{
+  Display("The bottom border uses the sprite %d.", tw.BottomGraphic);
+}
+```
+
+will display the sprite number used for the bottom border of the text window GUI gMyTextGui.
+
 *Compatibility:* supported by **AGS 3.6.3** and later versions.
 
 ---
@@ -105,6 +189,18 @@ import readonly attribute int TextWindowGUI.BottomLeftGraphic
 
 Gets the sprite number used for this TextWindow's bottom-left corner.
 
+
+Example:
+
+```ags
+TextWindowGUI *tw = gMyTextGui.AsTextWindow;
+if (tw != null)
+{
+  Display("The bottom left corner uses the sprite %d.", tw.BottomLeftGraphic);
+}
+```
+
+will display the sprite number used for the bottom left corner of the text window GUI gMyTextGui.
 
 *Compatibility:* supported by **AGS 3.6.3** and later versions.
 
@@ -144,3 +240,15 @@ int TextWindowGUI.TextPadding
 ```
 
 Gets/sets the amount of padding, in pixels, surrounding the text in the TextWindow.
+
+Example:
+
+```ags
+TextWindowGUI *tw = gMyTextGui.AsTextWindow;
+if (tw != null)
+{
+  tw.TextPadding = 6;
+}
+```
+
+will keep the text 6 pixels away from the borders of the text window GUI gMyTextGui.

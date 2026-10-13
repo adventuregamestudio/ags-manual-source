@@ -69,6 +69,31 @@ Cancels current Wait function, regardless of its type, if one was active at the 
 
 Optionally lets provide a "result value" that will be returned by the Wait function, or by [Game.BlockingWaitSkipped](Game#gameblockingwaitskipped) property. Because of how Wait's return code is defined, this has to be a positive value not greater than 16777215.
 
+Example:
+
+```ags
+bool waitingForGuard;
+
+function oDoor_Interact(Object *theObject, CursorMode mode)
+{
+  cGuard.Walk(300, 120, eNoBlock);
+  waitingForGuard = true;
+  Wait(400); // wait at most 10 seconds
+  waitingForGuard = false;
+  cGuard.Say("Who's there?");
+}
+
+function repeatedly_execute_always()
+{
+  if (waitingForGuard && !cGuard.Moving)
+  {
+    SkipWait();
+  }
+}
+```
+
+will make the script wait until the guard has finished walking, but for no longer than 10 seconds: unlike a blocking Walk, the script goes on even if the guard gets stopped on his way. The check is done in `repeatedly_execute_always`, because it keeps running while the Wait is blocking the script.
+
 *Compatibility:* Supported by **AGS 3.6.0** and later versions. A "resultValue" argument is supported since **AGS 3.6.3**.
 
 *See also:* [`WaitKey`](Globalfunctions_Wait#waitkey),

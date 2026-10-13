@@ -178,6 +178,26 @@ int  GUIControl.GetProperty(const string property)
 
 Gets an integer custom property for this control.
 
+Example:
+
+```ags
+function btnBuySword_OnClick(GUIControl *control, MouseButton button)
+{
+  int price = control.GetProperty("Price");
+  if (playerGold >= price)
+  {
+    playerGold -= price;
+    player.AddInventory(iSword);
+  }
+  else
+  {
+    player.Say("I can't afford that.");
+  }
+}
+```
+
+will let the player buy a sword in a shop GUI, for the price stored in the button's custom property "Price". Here `playerGold` is a global int variable.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -189,6 +209,25 @@ String GUIControl.GetTextProperty(const string property)
 ```
 
 Gets a text custom property for this control.
+
+Example:
+
+```ags
+function repeatedly_execute()
+{
+  GUIControl* control = GUIControl.GetAtScreenXY(mouse.x, mouse.y);
+  if (control != null)
+  {
+    lblTooltip.Text = control.GetTextProperty("Tooltip");
+  }
+  else
+  {
+    lblTooltip.Text = "";
+  }
+}
+```
+
+will show the custom text property "Tooltip" of any GUI control under the mouse cursor in the label lblTooltip. The tooltip texts are then simply typed in for each control in the editor.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -266,6 +305,14 @@ bool GUIControl.SetProperty(const string property, int value)
 
 Sets an integer custom property for this control.
 
+Example:
+
+```ags
+btnBuySword.SetProperty("Price", 40); // the shop has a sale
+```
+
+will change the custom property "Price" of the button btnBuySword to 40.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -277,6 +324,14 @@ GUIControl.SetScale(float x, float y)
 ```
 
 Sets this control's horizontal and vertical scaling
+
+Example:
+
+```ags
+btnStart.SetScale(1.5, 1.5);
+```
+
+will draw the control btnStart at one and a half times its normal size.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -323,6 +378,14 @@ bool GUIControl.SetTextProperty(const string property, const string value)
 ```
 
 Sets a text custom property for this control.
+
+Example:
+
+```ags
+btnStart.SetTextProperty("Tooltip", "Continue your adventure");
+```
+
+will change the custom text property "Tooltip" of the button btnStart, for example after the player has started the game once.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -374,6 +437,15 @@ Out of all the control types, only Buttons and Sliders have background color ena
 
 **NOTE:** some control types may have alternate settings that override background and border colors. For example, Button has NormalGraphic, which replaces a colored box completely.
 
+Example:
+
+```ags
+lblTitle.SolidBackground = true;
+lblTitle.BackgroundColor = Game.GetColorFromRGB(0, 0, 128);
+```
+
+will fill the label's rectangle with dark blue.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor),
@@ -390,6 +462,14 @@ BlendMode GUIControl.BlendMode
 
 Gets an integer custom property for this control.
 
+Example:
+
+```ags
+btnStart.BlendMode = eBlendAdd;
+```
+
+will draw the control btnStart using the additive blending mode.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -405,6 +485,15 @@ Gets/sets control's border color. This color is only drawn if [`ShowBorder`](GUI
 Labels are the only controls that do not have a border enabled by default. For them you'll need to set ShowBorder first if you like to have one.
 
 **NOTE:** some control types may have alternate settings that override background and border colors. For example, Button has NormalGraphic, which replaces a colored box completely.
+
+Example:
+
+```ags
+lblTitle.ShowBorder = true;
+lblTitle.BorderColor = Game.GetColorFromRGB(255, 255, 255);
+```
+
+will draw a white border around the label.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -424,6 +513,15 @@ int GUIControl.BorderWidth
 Gets/sets control's border thickness. This property only has effect when [`ShowBorder`](GUIControl#guicontrolshowborder) is set to *true*.
 
 Labels are the only controls that do not have a border enabled by default. For them you'll need to set ShowBorder first.
+
+Example:
+
+```ags
+lblTitle.ShowBorder = true;
+lblTitle.BorderWidth = 3;
+```
+
+will draw a 3 pixel thick border around the label.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -620,6 +718,14 @@ Each control type decides what "inner content" is on its own.
 * Slider - not applicable, ignores padding property.
 * TextBox - position of text.
 
+Example:
+
+```ags
+lblTitle.PaddingX = 4;
+```
+
+will keep the label's text 4 pixels away from the label's left and right borders.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`GUIControl.BorderWidth`](GUIControl#guicontrolborderwidth),
@@ -638,6 +744,14 @@ Gets/sets the control's vertical padding, that is the distance between the contr
 
 Each control type decides what "inner content" is on its own. See [`GUIControl.PaddingX`](GUIControl#guicontrolpaddingx) for more details.
 
+Example:
+
+```ags
+lblTitle.PaddingY = 4;
+```
+
+will keep the label's text 4 pixels away from the label's top and bottom borders.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`GUIControl.BorderWidth`](GUIControl#guicontrolborderwidth),
@@ -654,6 +768,14 @@ float GUIControl.Rotation
 
 Gets/sets the control's rotation in degrees.
 
+Example:
+
+```ags
+btnStart.Rotation = 15.0;
+```
+
+will rotate the control btnStart by 15 degrees.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -666,6 +788,14 @@ float GUIControl.ScaleX
 
 Gets/sets this control's horizontal scaling.
 
+Example:
+
+```ags
+btnStart.ScaleX = 2.0;
+```
+
+will stretch the control btnStart to twice its normal width.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -677,6 +807,14 @@ float GUIControl.ScaleY
 ```
 
 Gets/sets this control's vertical scaling.
+
+Example:
+
+```ags
+btnStart.ScaleY = 0.5;
+```
+
+will squash the control btnStart to half of its normal height.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -721,6 +859,15 @@ ShaderInstance\* GUIControl.Shader
 
 Gets/sets the shader of this control.
 
+Example:
+
+```ags
+ShaderProgram* glow = ShaderProgram.CreateFromFile("$DATA$/Shaders/glow.glsl");
+btnStart.Shader = glow.Default;
+```
+
+will apply the default instance of the shader to the control btnStart.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -734,6 +881,14 @@ int GUIControl.ShowBorder
 Gets/sets whether control should have a border drawn. The border color is defined by [`GUIControl.BorderColor`](GUIControl#guicontrolbordercolor) property. The border's thickness is defined by [`BorderWidth`](GUIControl#guicontrolborderwidth) property.
 
 Labels are the only controls that do not have a border enabled by default. For them you'll need to set ShowBorder first if you like to have one.
+
+Example:
+
+```ags
+lblTitle.ShowBorder = true;
+```
+
+will draw a border around the label 'lblTitle', which does not have one by default.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -752,6 +907,14 @@ Gets/sets whether control's rectangle should be filled with color. The fill colo
 
 Out of all the control types, only Buttons and Sliders have background color enabled by default, others don't. For these you'll need to set SolidBackground first if you like to have one.
 
+Example:
+
+```ags
+lblTitle.SolidBackground = true;
+```
+
+will fill the label's rectangle with the color from its BackgroundColor property.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`GUIControl.BackgroundColor`](GUIControl#guicontrolbackgroundcolor)
@@ -767,6 +930,15 @@ bool GUIControl.Translated
 Get/sets whether this control should have its text translated (when the game is using a translation). This applies only to controls that have text in them.
 
 **NOTE:** TextBoxes have a special behavior, where their text is not being translated per se, as it's meant for the player input, but the text's direction may be affected by the active translation's setting (OPT_RIGHTOTLEFT game option).
+
+Example:
+
+```ags
+lblPlayerName.Translated = false;
+lblPlayerName.Text = playerName;
+```
+
+will show the name typed in by the player in the label lblPlayerName, without the engine trying to find it in the game's translation. Here `playerName` is a global String variable.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -791,6 +963,14 @@ therefore, if you get the transparency after setting it, the value you
 get back might be one out. Therefore, using a loop with
 `gInventory.Transparency++;` is not recommended as it will probably end
 too quickly.
+
+Example:
+
+```ags
+btnStart.Transparency = 50;
+```
+
+will make the control btnStart half translucent (only in 32-bit color games).
 
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
@@ -941,6 +1121,14 @@ be applied instead. This also means that two controls cannot have equal ZOrder.
 **Applies To**
 
 Inherited by the Button, InvWindow, Label, ListBox, Slider and TextBox.
+
+Example:
+
+```ags
+btnStart.ZOrder = 0;
+```
+
+will send the control btnStart to the back of its GUI, so that all other controls are drawn over it.
 
 *Compatibility:* Supported by **AGS 3.4.0** and later versions.
 

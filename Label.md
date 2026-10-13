@@ -94,6 +94,14 @@ Alignment Label.TextAlignment;
 
 Gets/sets how the text is aligned relative to the label's rectangle.
 
+Example:
+
+```ags
+lblTitle.TextAlignment = eAlignCenter;
+```
+
+will center the label's text inside the label's rectangle.
+
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 This property used to have the type HorizontalAlignment prior to **AGS 3.6.2**.
 
@@ -134,6 +142,14 @@ int Label.TextOutlineColor;
 ```
 
 Gets/sets the color used to display the text's outline, but only if the label's Font uses outline. If the font has no outline, then this property has no effect.
+
+Example:
+
+```ags
+lblTitle.TextOutlineColor = Game.GetColorFromRGB(0, 0, 0);
+```
+
+will draw the label's text outline in black (only if the label's font has an outline).
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 

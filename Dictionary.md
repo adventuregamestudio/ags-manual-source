@@ -45,6 +45,15 @@ void Dictionary.Clear()
 
 Removes all items from the dictionary.
 
+Example:
+
+```ags
+// a new chapter begins, and the old notes are no longer relevant
+notes.Clear();
+```
+
+will remove all the notes at once. Here `notes` is a global Dictionary* that holds the player's notes, created with Dictionary.Create.
+
 ---
 
 ### `Dictionary.Contains`
@@ -160,6 +169,18 @@ bool Dictionary.Remove(String key)
 
 Removes a key/value pair from the dictionary, returns true on success and false if there was no such key.
 
+Example:
+
+```ags
+// the lighthouse puzzle is solved, so the note about it is no longer needed
+if (notes.Remove("lighthouse"))
+{
+  player.Say("I can cross that one off my notes.");
+}
+```
+
+will remove the note stored under the key "lighthouse", and make the player comment on it only if there was such a note. Here `notes` is a global Dictionary* that holds the player's notes, created with Dictionary.Create.
+
 *See also:* [`Dictionary.Set`](Dictionary#dictionaryset)
 
 ---
@@ -171,6 +192,16 @@ bool Dictionary.Set(String key, String value)
 ```
 
 Assigns a value to the given key. If the key did not exist then it will be created, otherwise the old value for this key will be overwritten with a new one.
+
+Example:
+
+```ags
+notes.Set("lighthouse", "The keeper hides a key somewhere.");
+// ... later, after finding out more:
+notes.Set("lighthouse", "The key is under the doormat.");
+```
+
+will store a note under the key "lighthouse", and later replace it with a new one, since a dictionary keeps only one value for each key. Here `notes` is a global Dictionary* that holds the player's notes, created with Dictionary.Create.
 
 *See also:* [`Dictionary.Get`](Dictionary#dictionaryget),
 [`Dictionary.Remove`](Dictionary#dictionaryremove)
@@ -185,6 +216,21 @@ StringCompareStyle Dictionary.CompareStyle
 
 Returns the string comparison method for this dictionary, which determines whether its keys are case-sensitive.
 
+Example:
+
+```ags
+function SetFlag(Dictionary* flags, String key, String value)
+{
+  if (flags.CompareStyle == eCaseSensitive)
+  {
+    key = key.LowerCase(); // so that "Door" and "door" mean the same key
+  }
+  flags.Set(key, value);
+}
+```
+
+will store a value in any dictionary, converting the key to lowercase first if the dictionary would otherwise treat "Door" and "door" as different keys.
+
 *See also:* [`Dictionary.SortStyle`](Dictionary#dictionarysortstyle)
 
 ---
@@ -197,6 +243,14 @@ int Dictionary.ItemCount
 
 Gets the number of key/value pairs currently in the dictionary.
 
+Example:
+
+```ags
+btnNotes.Text = String.Format("Notes (%d)", notes.ItemCount);
+```
+
+will show on the button btnNotes how many notes the player has. Here `notes` is a global Dictionary* that holds the player's notes, created with Dictionary.Create.
+
 ---
 
 ### `Dictionary.SortStyle`
@@ -206,5 +260,25 @@ SortStyle Dictionary.SortStyle
 ```
 
 Returns the key sorting method for this dictionary.
+
+Example:
+
+```ags
+function FillListFromDictionary(ListBox* list, Dictionary* dict)
+{
+  list.Clear();
+  String keys[] = dict.GetKeysAsArray();
+  for (int i = 0; i < keys.Length; i++)
+  {
+    list.AddItem(keys[i]);
+  }
+  if (dict.SortStyle == eNonSorted)
+  {
+    list.SortItems(eCaseInsensitive, eSortAscending);
+  }
+}
+```
+
+will fill a list box with the keys of a dictionary, and sort the list only if the dictionary does not already keep its keys sorted.
 
 *See also:* [`Dictionary.CompareStyle`](Dictionary#dictionarycomparestyle)

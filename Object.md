@@ -76,6 +76,14 @@ BlendMode Object.BlendMode
 
 Gets/sets the blending mode for this object.
 
+Example:
+
+```ags
+oGlow.BlendMode = eBlendAdd;
+```
+
+will draw the object oGlow using the additive blending mode.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`BlendMode`](StandardEnums#blendmode)
@@ -491,6 +499,16 @@ If the specified view frame has a "EventName" property set, then triggers Object
 
 Returns TRUE if the view frame has an event name tag, and FALSE otherwise.
 
+Example:
+
+```ags
+// the player skipped the cutscene: show the door fully open and run the event of that frame
+oDoor.SetView(VDOOR, 0, 4);
+oDoor.RunFrameEvent(VDOOR, 0, 4);
+```
+
+will set the object oDoor to the last frame of its opening animation right away, and run the event set on that frame (for example, one that enables the walkable area behind the door). Frame events are only triggered automatically while the object is animating, so a frame that you set yourself needs RunFrameEvent.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Object.RunInteraction`](Object#objectruninteraction),
@@ -771,6 +789,14 @@ Gets/sets the object's animation sound panning, which is a panning (-100 - +100)
 
 Currently the panning only works with mono sounds.
 
+Example:
+
+```ags
+oFan.AudioPanning = 50;
+```
+
+will pan the object's frame-linked sounds halfway to the right.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`AudioChannel.Panning`](AudioChannel#audiochannelpanning),
@@ -789,6 +815,14 @@ int Object.AudioSpeed
 
 Gets/sets the object's animation sound speed, which is a speed of frame-linked sounds that play during object's animations. The speed is defined in clip's milliseconds per second: 1000 is default, meaning 1000 of
 clip's ms in 1 real second (scale 1:1). Set < 1000 for slower play and > 1000 for faster play.
+
+Example:
+
+```ags
+oFan.AudioSpeed = 500;
+```
+
+will play the object's frame-linked sounds at half speed.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -810,6 +844,14 @@ Gets/sets the object's animation sound volume, which is a *relative* volume (0-1
 
 **NOTE:** all the volume properties in Object act as relative factors: these are `AudioVolume`, "volume" parameter of [`Animate`](Object#objectanimate) function.
 The final frame sound's volume will be equal to `sound volume * AudioVolume % * Animate's volume param %` when `Animate` is called.
+
+Example:
+
+```ags
+oFan.AudioVolume = 50;
+```
+
+will make the object's frame-linked sounds play at half of their normal volume.
 
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
@@ -913,6 +955,14 @@ By default, the blocking rectangle is aligned to the object's position (left-bot
 
 **NOTE:** This property has no effect unless the [`Solid`](Object#objectsolid) property is set to *true*.
 
+Example:
+
+```ags
+oCrate.BlockingRectX = -4;
+```
+
+will move the blocking rectangle of the object oCrate 4 pixels to the left. The blocking rectangle only matters while the object is Solid.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:*
@@ -934,6 +984,14 @@ Gets/sets the Y offset of the object's blocking rectangle.
 By default, the blocking rectangle is centered around object's position (left-bottom corner). This property specifies a *relative* offset either to up (negative value) or down (positive value) from that position.
 
 **NOTE:** This property has no effect unless the [`Solid`](Object#objectsolid) property is set to *true*.
+
+Example:
+
+```ags
+oCrate.BlockingRectY = -4;
+```
+
+will move the blocking rectangle of the object oCrate 4 pixels up. The blocking rectangle only matters while the object is Solid.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -1023,6 +1081,14 @@ bool Object.Enabled
 ```
 
 Gets/sets whether the object will be drawn and updated during the game update.
+
+Example:
+
+```ags
+oCrate.Enabled = false;
+```
+
+will disable the object oCrate, so it is no longer drawn or updated.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -1148,6 +1214,14 @@ float Object.GraphicOffsetX
 
 Gets/sets the object's sprite relative offset on X axis, in pixels.
 
+Example:
+
+```ags
+oCrate.GraphicOffsetX = 3.0;
+```
+
+will draw the object's sprite 3 pixels to the right of where it normally is.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Object.GraphicAnchorX`](Object#objectgraphicanchorx),
@@ -1163,6 +1237,14 @@ float Object.GraphicOffsetY
 ```
 
 Gets/sets the object's sprite relative offset on Y axis, in pixels.
+
+Example:
+
+```ags
+oCrate.GraphicOffsetY = -2.0;
+```
+
+will draw the object's sprite 2 pixels higher than where it normally is.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -1236,6 +1318,14 @@ float Object.GraphicPivotOffsetX
 
 Gets/sets the object's sprite pivot relative offset on X axis, in pixels. This offset is combined with the [GraphicPivotX](Object#objectgraphicpivotx) property.
 
+Example:
+
+```ags
+oCrate.GraphicPivotOffsetX = 5.0;
+```
+
+will move the object's sprite pivot point 5 pixels to the right, which affects where the sprite rotates around.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Object.GraphicPivotX`](Object#objectgraphicpivotx),
@@ -1253,6 +1343,14 @@ float Object.GraphicPivotOffsetY
 
 Gets/sets the object's sprite pivot relative offset on Y axis, in pixels. This offset is combined with the [GraphicPivotY](Object#objectgraphicpivoty) property.
 
+Example:
+
+```ags
+oCrate.GraphicPivotOffsetY = -5.0;
+```
+
+will move the object's sprite pivot point 5 pixels up, which affects where the sprite rotates around.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Object.GraphicPivotX`](Object#objectgraphicpivotx),
@@ -1269,6 +1367,14 @@ float Object.GraphicRotation
 ```
 
 Gets/sets the object's sprite rotation in degrees, clockwise.
+
+Example:
+
+```ags
+oCrate.GraphicRotation = 45.0;
+```
+
+will rotate the object's sprite by 45 degrees clockwise.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -1294,6 +1400,17 @@ still be lighted by
 [`SetAmbientLightLevel`](Globalfunctions_General#setambientlightlevel) or a region
 light.
 
+Example:
+
+```ags
+if (oLamp.HasExplicitLight)
+{
+  oLampReflection.SetLightLevel(oLamp.LightLevel);
+}
+```
+
+will give the object oLampReflection the same individual light level as the object oLamp has, if it has one.
+
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
 *SeeAlso:* [`Object.SetLightLevel`](Object#objectsetlightlevel)
@@ -1311,6 +1428,21 @@ Returns *true* if the object has a tint set explicitly with the
 
 Returns *false* if the object has no explicit tint, but it may still be
 tinted by [`SetAmbientTint`](Globalfunctions_General#setambienttint) or a region tint.
+
+Example:
+
+```ags
+if (oLamp.HasExplicitTint)
+{
+  oLampReflection.Tint(oLamp.TintRed, oLamp.TintGreen, oLamp.TintBlue, oLamp.TintSaturation, oLamp.TintLuminance);
+}
+else
+{
+  oLampReflection.RemoveTint();
+}
+```
+
+will copy the tint of the object oLamp to the object oLampReflection, or remove the reflection's tint if the lamp has none.
 
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
@@ -1409,6 +1541,17 @@ property returns the light level value. Otherwise it returns 0.
 **NOTE:** without individual light level set, Object.LightLevel returns
 0 even if the object is affected by the ambient or region's light.
 
+Example:
+
+```ags
+if (oLamp.HasExplicitLight)
+{
+  oLampReflection.SetLightLevel(oLamp.LightLevel);
+}
+```
+
+will give the object oLampReflection the same individual light level as the object oLamp has.
+
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
 *SeeAlso:* [`Object.SetLightLevel`](Object#objectsetlightlevel),
@@ -1451,6 +1594,18 @@ readonly MotionPath* Object.MotionPath
 
 Gets this object's current MotionPath, or null if it's not moving.
 
+Example:
+
+```ags
+oCrate.Move(250, 130, 4, eNoBlock);
+if (oCrate.MotionPath != null)
+{
+  Display("The object is moving along a path of %d stages.", oCrate.MotionPath.StageCount);
+}
+```
+
+will start moving the object and then tell how many stages its path consists of.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -1462,6 +1617,19 @@ Object.MovePath(Point*[], int speed, optional BlockingStyle, optional RepeatStyl
 ```
 
 Moves the object along the path, ignoring walkable areas.
+
+Example:
+
+```ags
+MaskPathfinder* water = MaskPathfinder.Create(500);
+Point* route[] = water.FindPath(oBoat.X, oBoat.Y, 260, 150);
+if (route != null)
+{
+  oBoat.MovePath(route, 2, eNoBlock);
+}
+```
+
+will find a route across the lake, which is marked on a separate 8-bit mask (the sprite 500, drawn the same size as the room), and move the object oBoat along it at speed 2.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -1564,6 +1732,15 @@ on the walkable area that the object is on.
 
 This property returns the actual current scaling at any given moment, whether it was set by you or acquired from the walkable area.
 
+Example:
+
+```ags
+oCrate.ManualScaling = true;
+oCrate.Scaling = 150;
+```
+
+will enable manual scaling for the object oCrate and make it 150% of its normal size.
+
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
 *See also:* [`Object.ManualScaling`](Object#objectmanualscaling)
@@ -1577,6 +1754,15 @@ ShaderInstance* Object.Shader
 ```
 
 Gets/sets the shader of this object.
+
+Example:
+
+```ags
+ShaderProgram* glow = ShaderProgram.CreateFromFile("$DATA$/Shaders/glow.glsl");
+oCrystal.Shader = glow.Default;
+```
+
+will apply the default instance of the shader to the object oCrystal.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -1625,6 +1811,17 @@ This property is read-only; to change it, use the
 [`Object.HasExplicitTint`](Object#objecthasexplicittint) property is
 false, then this value is meaningless.
 
+Example:
+
+```ags
+if (oLamp.HasExplicitTint)
+{
+  oLampReflection.Tint(oLamp.TintRed, oLamp.TintGreen, oLamp.TintBlue, oLamp.TintSaturation, oLamp.TintLuminance);
+}
+```
+
+will copy the tint of the object oLamp to the object oLampReflection.
+
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
 *See also:* [`Object.Tint`](Object#objecttint),
@@ -1649,6 +1846,17 @@ This property is read-only; to change it, use the
 **NOTE:** If the
 [`Object.HasExplicitTint`](Object#objecthasexplicittint) property is
 false, then this value is meaningless.
+
+Example:
+
+```ags
+if (oLamp.HasExplicitTint)
+{
+  oLampReflection.Tint(oLamp.TintRed, oLamp.TintGreen, oLamp.TintBlue, oLamp.TintSaturation, oLamp.TintLuminance);
+}
+```
+
+will copy the tint of the object oLamp to the object oLampReflection.
 
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
@@ -1675,6 +1883,17 @@ This property is read-only; to change it, use the
 [`Object.HasExplicitTint`](Object#objecthasexplicittint) property is
 false, then this value is meaningless.
 
+Example:
+
+```ags
+if (oLamp.HasExplicitTint)
+{
+  oLampReflection.Tint(oLamp.TintRed, oLamp.TintGreen, oLamp.TintBlue, oLamp.TintSaturation, oLamp.TintLuminance);
+}
+```
+
+will copy the tint of the object oLamp to the object oLampReflection.
+
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
 *See also:* [`Object.Tint`](Object#objecttint),
@@ -1700,6 +1919,17 @@ This property is read-only; to change it, use the
 [`Object.HasExplicitTint`](Object#objecthasexplicittint) property is
 false, then this value is meaningless.
 
+Example:
+
+```ags
+if (oLamp.HasExplicitTint)
+{
+  oLampReflection.Tint(oLamp.TintRed, oLamp.TintGreen, oLamp.TintBlue, oLamp.TintSaturation, oLamp.TintLuminance);
+}
+```
+
+will copy the tint of the object oLamp to the object oLampReflection.
+
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
 *See also:* [`Object.Tint`](Object#objecttint),
@@ -1724,6 +1954,17 @@ This property is read-only; to change it, use the
 **NOTE:** If the
 [`Object.HasExplicitTint`](Object#objecthasexplicittint) property is
 false, then this value is meaningless.
+
+Example:
+
+```ags
+if (oLamp.HasExplicitTint)
+{
+  oLampReflection.Tint(oLamp.TintRed, oLamp.TintGreen, oLamp.TintBlue, oLamp.TintSaturation, oLamp.TintLuminance);
+}
+```
+
+will copy the tint of the object oLamp to the object oLampReflection.
 
 *Compatibility:* Supported by **AGS 3.4.1** and later versions.
 
@@ -1789,6 +2030,14 @@ bool Object.UseRegionTint
 ```
 
 Gets/sets whether the object uses region tinting.
+
+Example:
+
+```ags
+oCrate.UseRegionTint = false;
+```
+
+will stop the object oCrate from being tinted by the regions it stands on.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 

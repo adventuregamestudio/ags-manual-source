@@ -98,6 +98,22 @@ int  Region.GetProperty(const string property)
 
 Gets an integer custom property for this region.
 
+Example:
+
+```ags
+function region1_WalksOnto(Region *theRegion)
+{
+  int damage = theRegion.GetProperty("Damage");
+  if (damage > 0)
+  {
+    playerHealth -= damage;
+    player.Say("Ouch, that's hot!");
+  }
+}
+```
+
+will hurt the player when they step onto the region, by the amount set in the region's custom property "Damage". The same function may be connected to the events of several regions, such as many pools of lava, each with its own "Damage" value. Here `playerHealth` is a global int variable.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -109,6 +125,21 @@ String Region.GetTextProperty(const string property)
 ```
 
 Gets a text custom property for this region.
+
+Example:
+
+```ags
+function region2_WalksOnto(Region *theRegion)
+{
+  AudioClip* music = AudioClip.GetByName(theRegion.GetTextProperty("Music"));
+  if (music != null)
+  {
+    music.Play();
+  }
+}
+```
+
+will play the music track whose script name (such as "aTavernMusic") is stored in the region's custom text property "Music", when the player steps onto the region.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -122,6 +153,14 @@ bool Region.SetProperty(const string property, int value)
 
 Sets an integer custom property for this region.
 
+Example:
+
+```ags
+region[1].SetProperty("Damage", 0); // the lava has cooled down
+```
+
+will set the custom property "Damage" of the region 1 to 0, so that the function from the [`GetProperty`](Region#regiongetproperty) example no longer hurts the player there.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -133,6 +172,14 @@ bool Region.SetTextProperty(const string property, const string value)
 ```
 
 Sets a text custom property for this region.
+
+Example:
+
+```ags
+region[2].SetTextProperty("Music", "aQuietTavernMusic"); // the band has gone home
+```
+
+will change which music track the function from the [`GetTextProperty`](Region#regiongettextproperty) example plays when the player steps onto the region 2.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -492,6 +539,17 @@ This property is read-only; to change it, use the
 
 **NOTE:** If the [`Region.TintEnabled`](Region#regiontintenabled)
 property is false, then this value is meaningless.
+
+Example:
+
+```ags
+if (region[1].TintEnabled)
+{
+  Display("Region 1's tint luminance is %d.", region[1].TintLuminance);
+}
+```
+
+will display the luminance setting of region 1's tint, if the tint is enabled.
 
 *See also:* [`Region.Tint`](Region#regiontint),
 [`Region.TintEnabled`](Region#regiontintenabled),

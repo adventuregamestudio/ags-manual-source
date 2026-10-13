@@ -90,6 +90,16 @@ It's always *safe* to delete a camera. If this camera was linked to a Viewport o
 
 **IMPORTANT:** In the **Game.Cameras** array cameras are arranged in the order they were created. If you delete one from the middle all of the cameras with a higher index will be shifted towards the beginning of array.
 
+Example:
+
+```ags
+// the player has turned off the security monitor
+monitorView.Delete();
+monitorCam.Delete();
+```
+
+will remove the picture-in-picture view of a security camera. Here `monitorView` and `monitorCam` are global variables, holding the viewport and the camera that were created with Viewport.Create and Camera.Create when the player turned the monitor on.
+
 *See also:* [`Camera.Create`](Camera#cameracreate), [`Game.Camera`](Game#gamecamera), [`Game.Cameras`](Game#gamecameras)
 
 ---
@@ -184,6 +194,16 @@ bool Camera.AutoTracking;
 
 Gets/sets whether this camera will automatically follow the player character's position in the room. When disabled, the camera retains its position until you change it using script commands or turn auto-tracking back on.
 
+Example:
+
+```ags
+Game.Camera.SetAt(0, 0); // look at the left side of the room; this also stops tracking
+Wait(80);
+Game.Camera.AutoTracking = true;
+```
+
+will show the left side of the room for two seconds, and then let the camera follow the player character again. Commands that move the camera, such as SetAt, turn the auto-tracking off, so you need to turn it back on afterwards.
+
 *See also:* [`Camera.SetAt`](Camera#camerasetat), [`Camera.X`](Camera#camerax), [`Camera.Y`](Camera#cameray)
 
 ---
@@ -198,6 +218,15 @@ Gets/sets the camera's capture height in room coordinates.
 
 **NOTE:** Camera's size can never exceed current room's size, if you try to set a higher width or height then it will be clamped. If game transits from a large room to a smaller room, any active cameras that exceed the new room's size will be shrunk automatically.
 
+Example:
+
+```ags
+Game.Camera.Width = Screen.Viewport.Width / 2;
+Game.Camera.Height = Screen.Viewport.Height / 2;
+```
+
+will make the primary camera capture an area half the size of the viewport, so that the room appears zoomed in two times.
+
 *See also:* [`Camera.SetAt`](Camera#camerasetat), [`Camera.SetSize`](Camera#camerasetsize), [`Camera.X`](Camera#camerax), [`Camera.Y`](Camera#cameray), [`Camera.Width`](Camera#camerawidth), [`Screen.AutoSizeViewportOnRoomLoad`](Screen#screenautosizeviewportonroomload)
 
 ---
@@ -211,6 +240,15 @@ int Camera.Width;
 Gets/sets the camera's capture width in room coordinates.
 
 **NOTE:** Camera's size can never exceed current room's size, if you try to set a higher width or height then it will be clamped. If game transits from a large room to a smaller room, any active cameras that exceed the new room's size will be shrunk automatically.
+
+Example:
+
+```ags
+Game.Camera.Width = Screen.Viewport.Width / 2;
+Game.Camera.Height = Screen.Viewport.Height / 2;
+```
+
+will make the primary camera capture an area half the size of the viewport, so that the room appears zoomed in two times.
 
 *See also:* [`Camera.SetAt`](Camera#camerasetat), [`Camera.SetSize`](Camera#camerasetsize), [`Camera.X`](Camera#camerax), [`Camera.Y`](Camera#cameray), [`Camera.Height`](Camera#cameraheight), [`Screen.AutoSizeViewportOnRoomLoad`](Screen#screenautosizeviewportonroomload)
 
@@ -330,6 +368,15 @@ float Camera.PivotOffsetX
 
 Gets/sets the camera's pivot relative offset on X axis, in pixels. This offset is combined with the [PivotX](Camera#camerapivotx) property.
 
+Example:
+
+```ags
+Game.Camera.PivotOffsetX = 20.0;
+Game.Camera.Rotation = 15.0;
+```
+
+will move the primary camera's pivot point 20 pixels to the right, and then rotate the camera around that point.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Camera.PivotX`](Camera#camerapivotx),
@@ -346,6 +393,15 @@ float Camera.PivotOffsetY
 ```
 
 Gets/sets the camera's pivot relative offset on Y axis, in pixels. This offset is combined with the [PivotY](Camera#camerapivoty) property.
+
+Example:
+
+```ags
+Game.Camera.PivotOffsetY = -20.0;
+Game.Camera.Rotation = 15.0;
+```
+
+will move the primary camera's pivot point 20 pixels up, and then rotate the camera around that point.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -365,6 +421,14 @@ float Camera.Rotation;
 Gets/sets the camera rotation in degrees, clockwise.
 
 Note that what's seen inside the camera is rotated in the opposite direction, for example, if you rotate camera 90 degrees clockwise, the seen portion of the room will be rotated 90 degrees counter-clockwise.
+
+Example:
+
+```ags
+Game.Camera.Rotation = 10.0;
+```
+
+will rotate the primary camera by 10 degrees clockwise; the picture of the room will appear turned counter-clockwise.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 

@@ -26,6 +26,20 @@ functions.
 
 **NOTE:** if the player goes to a different room all active overlays are removed automatically.
 
+Example:
+
+```ags
+AnimatedOverlay* rain;
+
+function room_Load()
+{
+  rain = AnimatedOverlay.CreateAnimated(0, 0);
+  rain.Animate(VRAIN, 0, 2, eRepeat);
+}
+```
+
+will cover the screen with a looping rain animation for as long as the player stays in this room. The variable is declared outside of the function, so that the overlay is not removed when `room_Load` ends.
+
 ---
 
 ### `AnimatedOverlay.CreateRoomAnimated`
@@ -43,6 +57,20 @@ script function where it was created, the `AnimatedOverlay*` variable declaratio
 functions.
 
 **NOTE:** if the player goes to a different room all active overlays are removed automatically.
+
+Example:
+
+```ags
+AnimatedOverlay* torchFire;
+
+function room_Load()
+{
+  torchFire = AnimatedOverlay.CreateRoomAnimated(120, 80);
+  torchFire.Animate(VFIRE, 0, 4, eRepeat);
+}
+```
+
+will place a looping fire animation at the room position 120,80, where it is sorted among characters and objects just like any other room element. The variable is declared outside of the function, so that the overlay is not removed when `room_Load` ends.
 
 ---
 
@@ -68,6 +96,18 @@ Note that for compatibility reasons if direction is eBackwards the animation act
 
 *Volume* lets you specify the relative volume in percents (0-100) of the frame-linked sounds for the duration of this animation. It's 100 by default (which means - unchanged).
 
+Example:
+
+```ags
+function oChimney_Interact(Object *theObject, CursorMode mode)
+{
+  AnimatedOverlay* puff = AnimatedOverlay.CreateRoomAnimated(150, 40); // just above the chimney
+  puff.Animate(VSMOKE, 0, 4, eOnce, eBlock);
+}
+```
+
+will play a puff of smoke above the chimney once, and wait until it's over. Here the overlay is only needed for the duration of the blocking animation, so it is kept in a local variable, and removed automatically when the function ends.
+
 ---
 
 ### `AnimatedOverlay.Animating`
@@ -77,6 +117,29 @@ bool AnimatedOverlay.Animating
 ```
 
 Tells whether the overlay is currently animating.
+
+Example:
+
+```ags
+AnimatedOverlay* explosion;
+
+function oBarrel_Interact(Object *theObject, CursorMode mode)
+{
+  explosion = AnimatedOverlay.CreateRoomAnimated(180, 70); // over the barrel
+  explosion.Animate(VEXPLOSION, 0, 3, eOnce, eNoBlock);
+}
+
+function room_RepExec()
+{
+  if (explosion != null && !explosion.Animating)
+  {
+    explosion.Remove();
+    explosion = null;
+  }
+}
+```
+
+will play an explosion without blocking, so that the player keeps control during the animation, and remove the overlay as soon as the animation is over.
 
 ---
 
@@ -88,6 +151,15 @@ int AnimatedOverlay.Animating
 
 Gets the current frame number during an animation.
 
+Example:
+
+```ags
+// make the reflection in the water play the same animation as the fire, in sync
+fireReflection.Animate(fire.View, fire.Loop, 4, eRepeat, eNoBlock, eForwards, fire.Frame);
+```
+
+will start an animation on the overlay `fireReflection` using the same view and loop that the overlay `fire` is showing, beginning from its current frame. If the fire was started with the same delay of 4, both overlays will animate in sync.
+
 ---
 
 ### `AnimatedOverlay.Loop`
@@ -97,6 +169,15 @@ int AnimatedOverlay.Loop
 ```
 
 Gets the current loop number during an animation.
+
+Example:
+
+```ags
+// make the reflection in the water play the same animation as the fire, in sync
+fireReflection.Animate(fire.View, fire.Loop, 4, eRepeat, eNoBlock, eForwards, fire.Frame);
+```
+
+will start an animation on the overlay `fireReflection` using the same view and loop that the overlay `fire` is showing, beginning from its current frame. If the fire was started with the same delay of 4, both overlays will animate in sync.
 
 ---
 
@@ -108,6 +189,24 @@ bool AnimatedOverlay.PauseWithGame
 
 Gets whether the overlay's animation is paused when the game is paused.
 
+Example:
+
+```ags
+function DescribeOverlay(AnimatedOverlay* ovl)
+{
+  if (ovl.PauseWithGame)
+  {
+    System.Log(eLogDebug, "This overlay stops animating while the game is paused.");
+  }
+  else
+  {
+    System.Log(eLogDebug, "This overlay keeps animating while the game is paused.");
+  }
+}
+```
+
+will write to the game log whether the given overlay's animation stops when the game is paused. Overlays that are a part of the user interface, such as an animated icon on a pause menu, are usually created with *pauseWithGame* set to false.
+
 ---
 
 ### `AnimatedOverlay.View`
@@ -117,3 +216,12 @@ int AnimatedOverlay.View
 ```
 
 Gets the current view number during an animation.
+
+Example:
+
+```ags
+// make the reflection in the water play the same animation as the fire, in sync
+fireReflection.Animate(fire.View, fire.Loop, 4, eRepeat, eNoBlock, eForwards, fire.Frame);
+```
+
+will start an animation on the overlay `fireReflection` using the same view and loop that the overlay `fire` is showing, beginning from its current frame. If the fire was started with the same delay of 4, both overlays will animate in sync.

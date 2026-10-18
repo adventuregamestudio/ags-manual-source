@@ -273,6 +273,23 @@ int AudioClip.GetProperty(const string property)
 
 Gets an integer custom property for this item.
 
+Example:
+
+```ags
+// play the first music track that has its "Calm" property checked in the editor
+for (int i = 0; i < Game.AudioClipCount; i++)
+{
+  AudioClip* clip = Game.AudioClips[i];
+  if (clip.Type == eAudioTypeMusic && clip.GetProperty("Calm") == 1)
+  {
+    clip.Play();
+    break;
+  }
+}
+```
+
+will look through all the audio clips and play the first music track that has its boolean custom property "Calm" checked. This way the script does not need to know which clips are calm, as you mark them in the editor.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`AudioClip.SetProperty`](AudioClip#audioclipsetproperty),
@@ -288,6 +305,14 @@ int AudioClip.GetTextProperty(const string property)
 ```
 
 Gets a text custom property for this item.
+
+Example:
+
+```ags
+lblNowPlaying.Text = String.Format("Composed by %s", aMusic1.GetTextProperty("Author"));
+```
+
+will show the value of the "Author" text property of the audio clip aMusic1 in the label lblNowPlaying, for example on a jukebox menu.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -305,6 +330,14 @@ bool AudioClip.SetProperty(const string property, int value)
 
 Sets an integer custom property for this item.
 
+Example:
+
+```ags
+aMusic1.SetProperty("Calm", 1);
+```
+
+will check the boolean custom property "Calm" of the audio clip aMusic1 (boolean properties are set with 1 for true and 0 for false).
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`AudioClip.GetProperty`](AudioClip#audioclipgetproperty),
@@ -320,6 +353,14 @@ bool AudioClip.SetTextProperty(const string property, const string value)
 ```
 
 Sets a text custom property for this item.
+
+Example:
+
+```ags
+aMusic1.SetTextProperty("Author", "J. Smith");
+```
+
+will set the "Author" text property of the audio clip aMusic1 to "J. Smith".
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -337,6 +378,17 @@ readonly AudioPriority AudioClip.DefaultPriority
 
 Gets the default priority of the audio clip.
 
+Example:
+
+```ags
+if (aExplosion.DefaultPriority >= eAudioPriorityHigh)
+{
+  Display("The explosion sound is important.");
+}
+```
+
+will print the message if the audio clip aExplosion has a high default priority.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`AudioClip.Play`](AudioClip#audioclipplay)
@@ -351,6 +403,17 @@ readonly RepeatStyle AudioClip.DefaultRepeat
 
 Gets the default repeat style of the audio clip.
 
+Example:
+
+```ags
+if (aMusic1.DefaultRepeat == eRepeat)
+{
+  Display("This track loops by default.");
+}
+```
+
+will print the message if the audio clip aMusic1 is set to repeat by default.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`AudioClip.Play`](AudioClip#audioclipplay)
@@ -364,6 +427,14 @@ readonly int AudioClip.DefaultVolume
 ```
 
 Gets the default volume of the audio clip.
+
+Example:
+
+```ags
+Display("The default volume of this track is %d.", aMusic1.DefaultVolume);
+```
+
+will display the default volume of the audio clip aMusic1.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 

@@ -15,6 +15,17 @@ Returns false in any failure and true if it succeeds.
 so `new_filename` parameter must start with one of those.
 See `File.Open` documentation for more information.
 
+Example:
+
+```ags
+if (File.Copy("$SAVEGAMEDIR$/profile.dat", "$SAVEGAMEDIR$/profile.bak"))
+{
+  Display("A backup copy was made.");
+}
+```
+
+will make a backup copy of the file 'profile.dat' in the save game directory, and tell if it succeeded.
+
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
 *See also:* [`File.Open`](File#fileopen), 
@@ -212,6 +223,14 @@ This will process all tokens and all rules described in `File.Open` and return t
 which can be helpful when debugging or when you want to present this information somewhere to help
 debugging some problem in the game. This resolved path should not be re-used in subsequent `File.Open`
 calls.
+
+Example:
+
+```ags
+System.Log(eLogInfo, "The profile is stored at: %s", File.ResolvePath("$SAVEGAMEDIR$/profile.dat"));
+```
+
+will write the actual system path of the file "$SAVEGAMEDIR$/profile.dat" to the game log, which may help when a player reports a problem with their files.
 
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
@@ -456,6 +475,19 @@ float File.ReadRawFloat()
 ```
 
 Reads the next raw 32-bit float from the file.
+
+Example:
+
+```ags
+File *file = File.Open("$SAVEGAMEDIR$/settings.dat", eFileRead);
+if (file != null)
+{
+  mouseSensitivity = file.ReadRawFloat();
+  file.Close();
+}
+```
+
+will load the mouse sensitivity setting from the file 'settings.dat' in the save game directory. If the file does not exist yet, File.Open returns null and the variable keeps its default value. Here `mouseSensitivity` is a global float variable, written to the file with WriteRawFloat.
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
@@ -727,6 +759,19 @@ void File.WriteRawFloat(float value)
 ```
 
 Writes a raw 32-bit float to the file.
+
+Example:
+
+```ags
+File *file = File.Open("$SAVEGAMEDIR$/settings.dat", eFileWrite);
+if (file != null)
+{
+  file.WriteRawFloat(mouseSensitivity);
+  file.Close();
+}
+```
+
+will save the mouse sensitivity setting to the file 'settings.dat' in the save game directory, so that it can be loaded back with ReadRawFloat the next time the game runs. Here `mouseSensitivity` is a global float variable.
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 

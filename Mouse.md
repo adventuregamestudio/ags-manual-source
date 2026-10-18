@@ -126,6 +126,15 @@ static ShaderInstance* Mouse.CursorShader
 
 Gets/sets the shader applied to the mouse cursor.
 
+Example:
+
+```ags
+ShaderProgram* glow = ShaderProgram.CreateFromFile("$DATA$/Shaders/glow.glsl");
+Mouse.CursorShader = glow.Default;
+```
+
+will apply the default instance of the shader to the mouse cursor.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -239,6 +248,24 @@ static bool Mouse.IsAnyButtonDown()
 ```
 
 Returns whether ANY of the mouse button's is currently pressed down.
+
+Example:
+
+```ags
+function repeatedly_execute()
+{
+  if (Mouse.IsAnyButtonDown())
+  {
+    lblLocation.Text = "";
+  }
+  else
+  {
+    lblLocation.Text = Game.GetLocationName(mouse.x, mouse.y);
+  }
+}
+```
+
+will show the name of the thing under the mouse cursor in the label lblLocation, but hide it while the player holds down any of the mouse buttons.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -360,6 +387,20 @@ Sierra-style right-click cycling through modes. This function will
 choose the next mode marked as a Standard Mode, and will also use the
 Use Inventory mode if the player has an active inventory item.
 
+Example:
+
+```ags
+function on_mouse_click(MouseButton button, int mx, int my)
+{
+  if (button == eMouseRight)
+  {
+    Mouse.SelectNextMode();
+  }
+}
+```
+
+will cycle forward through the cursor modes whenever the player right-clicks.
+
 *See also:* [`Mouse.Mode`](Mouse#mousemode)
 
 ---
@@ -374,6 +415,24 @@ Selects the previous enabled mouse cursor mode. This is useful for
 Sierra-style right-click cycling through modes. This function will
 choose the previous mode marked as a Standard Mode, and will also use
 the Use Inventory mode if the player has an active inventory item.
+
+Example:
+
+```ags
+function on_mouse_click(MouseButton button, int mx, int my)
+{
+  if (button == eMouseWheelNorth)
+  {
+    Mouse.SelectPreviousMode();
+  }
+  else if (button == eMouseWheelSouth)
+  {
+    Mouse.SelectNextMode();
+  }
+}
+```
+
+will let the player cycle through the cursor modes using the mouse wheel (this requires the "Enable mouse wheel support" option in the General Settings).
 
 *See also:* [`Mouse.Mode`](Mouse#mousemode)
 
@@ -477,6 +536,24 @@ Changes the appearance of the mouse cursor to the default for the
 current cursor mode. Use this to restore the cursor picture after you
 changed it with the UseModeGraphic function.
 
+Example:
+
+```ags
+function repeatedly_execute()
+{
+  if (GetLocationType(mouse.x, mouse.y) == eLocationHotspot)
+  {
+    Mouse.UseModeGraphic(eModeInteract);
+  }
+  else
+  {
+    Mouse.UseDefaultGraphic();
+  }
+}
+```
+
+will make the cursor look like the Interact cursor while it is over a hotspot, and restore the regular look of the current mode elsewhere. The cursor mode itself does not change.
+
 *See also:* [`Mouse.UseModeGraphic`](Mouse#mouseusemodegraphic)
 
 ---
@@ -522,6 +599,25 @@ Gets/sets if the system mouse cursor is automatically locked in the game window 
 
 **NOTE:** the player may toggle mouse lock on and off anytime using **Ctrl + Alt** key combination; but that does not disable autolock on click.
 
+Example:
+
+```ags
+function btnMouseLock_OnClick(GUIControl *control, MouseButton button)
+{
+  Mouse.AutoLock = !Mouse.AutoLock;
+  if (Mouse.AutoLock)
+  {
+    btnMouseLock.Text = "Lock mouse in window: On";
+  }
+  else
+  {
+    btnMouseLock.Text = "Lock mouse in window: Off";
+  }
+}
+```
+
+will let the player switch the mouse lock on and off from an options menu.
+
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
 ---
@@ -564,6 +660,20 @@ Gets/sets whether mouse input is enabled in your game. When the mouse input is d
  - mouse cursor is not drawn on screen;
  - clicks are not registered by the game objects or script;
  - mouse position is always reported as (-1,-1), and cannot be changed by a script command.
+
+Example:
+
+```ags
+function on_key_press(eKeyCode keycode, int mod)
+{
+  if (keycode == eKeyF9)
+  {
+    Mouse.Enabled = !Mouse.Enabled;
+  }
+}
+```
+
+will let the player turn the mouse input off and on with the F9 key, for example when playing with a gamepad.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 

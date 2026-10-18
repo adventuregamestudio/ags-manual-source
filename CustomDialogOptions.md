@@ -43,6 +43,21 @@ This is the first function that will be called before dialog options are shown. 
 
 **NOTE:** you may also use this function to set other things up, not only `DialogOptionsRenderingInfo`.
 
+Example:
+
+```ags
+function dialog_options_get_dimensions(DialogOptionsRenderingInfo *info)
+{
+  // Create a 200x100 dialog options area at (50,100)
+  info.X = 50;
+  info.Y = 100;
+  info.Width = 200;
+  info.Height = 100;
+}
+```
+
+will tell the engine to reserve the area of 200x100 pixels at the screen position 50,100 for the dialog options.
+
 ---
 
 ### `dialog_options_render`
@@ -52,6 +67,34 @@ dialog_options_render(DialogOptionsRenderingInfo *info)
 ```
 
 This function is called right before the dialog options are shown or updated on screen. The `info` struct will supply a [`DrawingSurface`](DrawingSurface) which may be accessed using `info.Surface` property, and which you may draw upon.
+
+Example:
+
+```ags
+function dialog_options_render(DialogOptionsRenderingInfo *info)
+{
+  info.Surface.Clear(Game.GetColorFromRGB(0, 0, 0));
+  int y = 0;
+  for (int i = 1; i <= info.DialogToRender.OptionCount; i++)
+  {
+    if (info.DialogToRender.GetOptionState(i) == eOptionOn)
+    {
+      if (info.ActiveOptionID == i)
+      {
+        info.Surface.DrawingColor = Game.GetColorFromRGB(255, 255, 0);
+      }
+      else
+      {
+        info.Surface.DrawingColor = Game.GetColorFromRGB(255, 255, 255);
+      }
+      info.Surface.DrawString(5, y, eFontNormal, info.DialogToRender.GetOptionText(i));
+      y += 10;
+    }
+  }
+}
+```
+
+will draw every enabled option on a black background, one option in each row 10 pixels high (make the rows taller if your font is bigger), with the active option in yellow and the others in white.
 
 ---
 
@@ -66,6 +109,20 @@ This function is called if the player clicks the mouse anywhere on dialog option
 The `mx` and `my` parameters contain mouse's position at the time of click. They are more reliable than using global variables `mouse.x` and `mouse.y`, because this function may be called with a small delay when the mouse have already moved away a bit.
 These parameters contain position in *screen coordinates*, as sometimes it may be necessary to know if player clicked outside of the dialog options bounds. Subtract [DialogOptionsRenderInfo.X](DialogOptionsRenderingInfo#dialogoptionsrenderinginfox) and Y property values from these to tell the relative position.
 
+Example:
+
+```ags
+function dialog_options_mouse_click(DialogOptionsRenderingInfo *info, MouseButton button, int mx, int my)
+{
+  if (button == eMouseLeft && info.ActiveOptionID > 0)
+  {
+    info.RunActiveOption();
+  }
+}
+```
+
+will run the option that is currently active when the player clicks the left mouse button.
+
 ---
 
 ### `dialog_options_key_press`
@@ -77,6 +134,20 @@ dialog_options_key_press(DialogOptionsRenderingInfo *info, eKeyCode keycode, int
 This function is called if the player presses any key while custom dialog options are shown on screen. It corresponds to the regular [`on_key_press`](Globalfunctions_Event#on_key_press), and you can use this to implement key-controlled selection of dialog option, for example.
 
 **Compatibility:** the optional `mod` argument is supported since **AGS 3.6.0**. Please refer to the [`on_key_press`](Globalfunctions_Event#on_key_press) description for details.
+
+Example:
+
+```ags
+function dialog_options_key_press(DialogOptionsRenderingInfo *info, eKeyCode keycode, int mod)
+{
+  if ((keycode == eKeyReturn || keycode == eKeySpace) && info.ActiveOptionID > 0)
+  {
+    info.RunActiveOption();
+  }
+}
+```
+
+will run the currently active option when the player presses Enter or Space, if there is an active option.
 
 ---
 
@@ -90,6 +161,35 @@ This function is called if the player's key presses form a printable character. 
 
 **Compatibility:** Supported by AGS 3.6.0 and above. `dialog_options_text_input` will only work if you have "Use old-style key handling" option disabled in the "General Settings".
 
+Example:
+
+```ags
+function dialog_options_text_input(DialogOptionsRenderingInfo *info, int ch)
+{
+  if (ch < '1' || ch > '9')
+  {
+    return;
+  }
+  int number = ch - '0';
+  // count only the enabled options, because the disabled ones are not shown
+  for (int i = 1; i <= info.DialogToRender.OptionCount; i++)
+  {
+    if (info.DialogToRender.GetOptionState(i) == eOptionOn)
+    {
+      number--;
+      if (number == 0)
+      {
+        info.ActiveOptionID = i;
+        info.RunActiveOption();
+        return;
+      }
+    }
+  }
+}
+```
+
+will let the player choose an option by typing its number, where 1 is the first option shown on screen, 2 is the second one, and so on.
+
 ---
 
 ### `dialog_options_repexec`
@@ -99,6 +199,35 @@ dialog_options_repexec(DialogOptionsRenderingInfo *info)
 ```
 
 This function works similar to a general [`repeatedly_execute`](Globalfunctions_Event#repeatedly_execute) function, but is called only while the dialog options are shown on the screen. You may use this to update the dialog options state, for example, for determining which option the mouse is currently hovering over, or scripting timed actions.
+
+Example:
+
+```ags
+function dialog_options_repexec(DialogOptionsRenderingInfo *info)
+{
+  info.ActiveOptionID = 0;
+  if (mouse.x < info.X || mouse.x >= info.X + info.Width || mouse.y < info.Y)
+  {
+    return;
+  }
+  int row = (mouse.y - info.Y) / 10;
+  // count only the enabled options, because the disabled ones are not drawn
+  for (int i = 1; i <= info.DialogToRender.OptionCount; i++)
+  {
+    if (info.DialogToRender.GetOptionState(i) == eOptionOn)
+    {
+      if (row == 0)
+      {
+        info.ActiveOptionID = i;
+        return;
+      }
+      row--;
+    }
+  }
+}
+```
+
+will make the option under the mouse cursor the active one, and clear the active option when the cursor is not over any option. It matches the layout drawn by the [`dialog_options_render`](CustomDialogOptions#dialog_options_render) example: one enabled option in each row 10 pixels high.
 
 ---
 
@@ -113,6 +242,23 @@ This function will be called right before the dialog options are removed from th
 **NOTE:** this is not the same as the end of the current dialog. Dialog options may be shown and hidden multiple times during the dialog, every time the game lets player to choose a dialog option.
 
 **Compatibility:** Supported by AGS 3.6.0 and above.
+
+Example:
+
+```ags
+DynamicSprite *bgSprite;
+
+function dialog_options_close(DialogOptionsRenderingInfo *info)
+{
+  if (bgSprite != null)
+  {
+    bgSprite.Delete();
+    bgSprite = null;
+  }
+}
+```
+
+will delete a dynamic sprite that was created for drawing the dialog options, when the options are removed from the screen.
 
 ---
 

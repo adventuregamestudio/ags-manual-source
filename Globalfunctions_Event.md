@@ -22,6 +22,20 @@ Called when a dialog script line "run-script" is processed. PARAMETER
 is the value of the number following the "run-script" on that line of
 the dialog script.
 
+Example:
+
+```ags
+function dialog_request(int parameter)
+{
+  if (parameter == 1)
+  {
+    player.AddInventory(iKey);
+  }
+}
+```
+
+will give the player the item iKey when a dialog script line "run-script 1" is processed.
+
 ---
 
 ### `game_start`
@@ -37,6 +51,18 @@ characters, and to modify initial visibility of GUIs.
 **Note:** When this function is called it is too early to run
 animations or do anything else which relies on a room being loaded
 
+Example:
+
+```ags
+function game_start()
+{
+  cEgo.AddInventory(iKnife);
+  gInventory.Visible = false;
+}
+```
+
+will give the character cEgo the item iKnife and hide the GUI gInventory when the game starts.
+
 ---
 
 ### `interface_click`
@@ -49,6 +75,20 @@ Called when the player clicks on a button on a GUI which has its
 action set as "Run script". INTERFACE is the number of the GUI which
 they clicked on. BUTTON is the object number of the button within this
 GUI.
+
+Example:
+
+```ags
+function interface_click(int interface, int button)
+{
+  if (interface == gPanel.ID && button == btnQuit.ID)
+  {
+    QuitGame(1);
+  }
+}
+```
+
+will ask the player to confirm quitting when the button 'btnQuit' on the GUI 'gPanel' is clicked.
 
 ---
 
@@ -230,6 +270,28 @@ and then decide whether to pass it on to the global script or not. See
 the [`ClaimEvent`](Globalfunctions_General#claimevent) function for
 more details.
 
+Example:
+
+```ags
+function on_mouse_click(MouseButton button, int mx, int my)
+{
+  if (Game.IsPaused)
+  {
+    return; // ignore the clicks while a menu has paused the game
+  }
+  if (button == eMouseLeft)
+  {
+    Room.ProcessClick(mx, my, mouse.Mode);
+  }
+  else if (button == eMouseRight)
+  {
+    Mouse.SelectNextMode();
+  }
+}
+```
+
+will make a left click use the current cursor mode on whatever is under the cursor (walk there, look at it, and so on), and a right click switch to the next cursor mode, which is how a typical game handles the mouse clicks.
+
 *Compatibility:* The `mx` and `my` arguments are only supported since AGS 3.6.2.
 
 ---
@@ -267,6 +329,17 @@ repeatedly_execute()
 Called every game cycle (normally 40 times per second). Additional
 information is [available here](RepExec).
 
+Example:
+
+```ags
+function repeatedly_execute()
+{
+  lblLocation.Text = Game.GetLocationName(mouse.x, mouse.y);
+}
+```
+
+will keep the label lblLocation showing the name of the hotspot, object or character under the mouse cursor. repeatedly_execute does not run while a blocking action is going on, so during, for example, a blocking speech the label keeps its last text.
+
 ---
 
 ### `repeatedly_execute_always`
@@ -280,6 +353,23 @@ cutscene) is in progress. You **cannot** call any blocking functions
 from this event handler. `repeatedly_execute_always` is called
 **before** the game entities (characters, rooms, etc) get updated.
 Additional information is [available here](RepExec).
+
+Example:
+
+```ags
+int timeLeft = 2400; // 60 seconds at the default game speed of 40
+
+function repeatedly_execute_always()
+{
+  if (timeLeft > 0)
+  {
+    timeLeft--;
+    lblTimer.Text = String.Format("%d", timeLeft / Game.Speed);
+  }
+}
+```
+
+will count down a timer and show the remaining seconds in the label lblTimer. Because this is done in repeatedly_execute_always, the countdown goes on even while the player character talks or walks in a blocking way. What happens when the time runs out should be scripted in repeatedly_execute (for example, with `if (timeLeft == 0)`), because no blocking functions may be called here.
 
 ---
 
@@ -295,6 +385,19 @@ from this event handler. `late_repeatedly_execute_always` is called
 **after** the game entities (characters, rooms, etc) have been
 updated, but before the game screen is redrawn.
 
+Example:
+
+```ags
+function late_repeatedly_execute_always()
+{
+  // keep the name tag above the guard's head
+  Point* p = Screen.RoomToScreenPoint(cGuard.x, cGuard.y - 60);
+  gNameTag.SetPosition(p.x - gNameTag.Width / 2, p.y - gNameTag.Height);
+}
+```
+
+will keep the GUI gNameTag above the character cGuard. Because this runs after the characters have moved in the current game cycle, the GUI follows the character without lagging one frame behind, as it might if the same was done in repeatedly_execute_always.
+
 ---
 
 ### `unhandled_event`
@@ -304,6 +407,20 @@ unhandled_event(LocationType what, CursorMode mode)
 ```
 
 Called when an interaction event occurs for an object, but no corresponding event handler has been set. This is typically used to display a default "I can't do that" type response in-order to avoid having to add unique messages for all in-game interactions. The values of WHAT and MODE tell you what the player did. The possible values for WHAT are defined by [LocationType](StandardEnums#locationtype) enum, and MODE is one of the cursor modes.
+
+Example:
+
+```ags
+function unhandled_event(LocationType what, CursorMode mode)
+{
+  if (what == eLocationHotspot && mode == eModeTalkto)
+  {
+    player.Say("I can't talk to that.");
+  }
+}
+```
+
+will make the player say a default response when the "Talk to" mode is used on a hotspot that has no event handler for it.
 
 ---
 
@@ -318,3 +435,18 @@ This callback can only be declared on Room Script.
 It's called after the function `CallRoomScript(value)` is executed,
 but not immediately. You can read an arbitrary integer value passed
 from `CallRoomScript`. Additional information is [available here](Globalfunctions_General#callroomscript).
+
+Example:
+
+```ags
+// in the room script
+function on_call(int value)
+{
+  if (value == 1)
+  {
+    oLamp.Visible = false; // the power has gone out
+  }
+}
+```
+
+will turn off the lamp of this room when the global script calls `CallRoomScript(1)`, for example when a power cut happens in the story. Every room may react to the same value in its own way, or not at all.

@@ -246,6 +246,26 @@ readonly bool AudioChannel.IsPaused
 Gets whether this audio channel is currently paused. Returns
 *true* if it is, or *false* if it is not.
 
+Example:
+
+```ags
+function btnMusic_OnClick(GUIControl *control, MouseButton button)
+{
+  if (music.IsPaused)
+  {
+    music.Resume();
+    btnMusic.Text = "Pause music";
+  }
+  else
+  {
+    music.Pause();
+    btnMusic.Text = "Resume music";
+  }
+}
+```
+
+will let the player pause and resume the music by clicking the button btnMusic. Here `music` is a global AudioChannel* variable that received the result of a command such as `aMusic1.Play()`.
+
 *Compatibility:* Supported by **AGS 3.6.0** and later versions.
 
 *See also:* [`AudioChannel.Pause`](AudioChannel#audiochannelpause), [`AudioChannel.Resume`](AudioChannel#audiochannelresume)

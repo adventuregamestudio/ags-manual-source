@@ -68,6 +68,14 @@ For example, if game is 320x200 and room is also 320x200, then both viewport and
 If game is 320x200 and room is 160x160, then both viewport and camera will be resized to 160x160 and viewport positioned in the center of screen (at 80, 20).
 If game is 320x200 and room is 400x200, then both viewport and camera will be resized to 320x200 again, and you'll have a scrolling room (one that is only partially seen at any time).
 
+Example:
+
+```ags
+Screen.AutoSizeViewportOnRoomLoad = false;
+```
+
+will stop the engine from resizing the primary viewport and camera each time a new room is loaded; you will have to set them up yourself.
+
 *See also:* [`Viewport.SetPosition`](Viewport#viewportsetposition), [`Camera.SetSize`](Camera#camerasetsize)
 
 ---
@@ -85,6 +93,14 @@ Gets the native height of the game screen in pixels, which matches game resoluti
 
 **NOTE:** this is the game screen's logical size before any additional scaling is applied by the graphics renderer. It may or not be equal to the dimension of the final game image on player's display.
 
+Example:
+
+```ags
+gMenu.SetPosition((Screen.Width - gMenu.Width) / 2, (Screen.Height - gMenu.Height) / 2);
+```
+
+will place the GUI gMenu in the middle of the screen, whatever the game's resolution is.
+
 ---
 
 ### `Screen.Shader`
@@ -94,6 +110,15 @@ static ShaderInstance* Screen.Shader
 ```
 
 Gets/sets the shader applied to the whole game screen.
+
+Example:
+
+```ags
+ShaderProgram* grayscale = ShaderProgram.CreateFromFile("$DATA$/Shaders/grayscale.glsl");
+Screen.Shader = grayscale.Default;
+```
+
+will apply the default instance of the shader to the whole game screen.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -112,6 +137,14 @@ Gets the native width of the game screen in pixels, which matches game resolutio
 
 **NOTE:** this is the game screen's logical size before any additional scaling is applied by the graphics renderer. It may or not be equal to the dimension of the final game image on player's display.
 
+Example:
+
+```ags
+gMenu.SetPosition((Screen.Width - gMenu.Width) / 2, (Screen.Height - gMenu.Height) / 2);
+```
+
+will place the GUI gMenu in the middle of the screen, whatever the game's resolution is.
+
 ---
 
 ### `Screen.Viewport`
@@ -121,6 +154,15 @@ static readonly Viewport *Screen.Viewport;
 ```
 
 Gets the primary room viewport. This is the default viewport that is created automatically at the start of the game and cannot be deleted.
+
+Example:
+
+```ags
+Screen.Viewport.SetPosition(0, 0, Screen.Width / 2, Screen.Height);
+Game.Camera.SetSize(Screen.Width / 2, Screen.Height);
+```
+
+will make the primary viewport cover only the left half of the screen, and resize the camera to match it, so that the room is not squashed.
 
 *See also:* [`Screen.Viewports`](Screen#screenviewports), [`Viewport`](Viewport), [`Viewport.Create`](Viewport#viewportcreate), [`Viewport.Delete`](Viewport#viewportdelete), [`Game.Camera`](Game#gamecamera)
 
@@ -133,6 +175,14 @@ static readonly int Screen.ViewportCount;
 ```
 
 Gets the number of viewports.
+
+Example:
+
+```ags
+Display("There are %d viewports.", Screen.ViewportCount);
+```
+
+will display the number of viewports currently existing in the game.
 
 *See also:* [`Screen.Viewports`](Screen#screenviewports)
 

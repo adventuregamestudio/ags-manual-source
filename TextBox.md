@@ -39,6 +39,14 @@ Gets/sets whether the text box's border is shown.
 
 Border is drawn using color from TextColor property.
 
+Example:
+
+```ags
+txtUserInput.ShowBorder = false;
+```
+
+will hide the border of the 'txtUserInput' text box.
+
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
 ---
@@ -80,6 +88,14 @@ Alignment TextBox.TextAlignment;
 
 Gets/sets how the text is aligned relative to the textbox's rectangle.
 
+Example:
+
+```ags
+txtUserInput.TextAlignment = eAlignRight;
+```
+
+will align the text box's text to its right edge.
+
 *See also:* [Alignment enum](StandardEnums#alignment)
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
@@ -116,6 +132,14 @@ int TextBox.TextOutlineColor;
 ```
 
 Gets/sets the color used to display the text's outline, but only if the textbox's Font uses outline. If the font has no outline, then this property has no effect.
+
+Example:
+
+```ags
+txtUserInput.TextOutlineColor = Game.GetColorFromRGB(0, 0, 0);
+```
+
+will draw the text box's text outline in black (only if the text box's font has an outline).
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 

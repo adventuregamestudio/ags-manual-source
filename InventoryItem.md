@@ -264,6 +264,14 @@ Gets/sets the automatic alignment of the inventory cursor's hotspot relative to 
 
 The hotspot is a pixel on the cursor graphic where the click takes effect. In practice the cursor's image is drawn with opposite, negative offset from the cursor position (which is usually defined by the mouse position).
 
+Example:
+
+```ags
+iKey.CursorHotspotAlignment = eAlignTopLeft;
+```
+
+will make the click point of the cursor be the top left corner of the 'iKey' item's cursor image.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`InventoryItem.CursorHotspotX`](InventoryItem#inventoryitemcursorhotspotx),
@@ -284,6 +292,15 @@ Gets/sets the X offset of inventory cursor hotspot, which will be used when this
 
 The hotspot is a pixel on the cursor graphic where the click takes effect. In practice the cursor's image is drawn with opposite, negative offset from the cursor position (which is usually defined by the mouse position).
 
+Example:
+
+```ags
+iKey.CursorHotspotX = 4;
+iKey.CursorHotspotY = 2;
+```
+
+will make the click point of the cursor be 4 pixels right and 2 pixels down from the top left corner of the 'iKey' item's cursor image.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`InventoryItem.CursorHotspotAlignment`](InventoryItem#inventoryitemcursorhotspotalignment),
@@ -303,6 +320,15 @@ int InventoryItem.CursorHotspotY
 Gets/sets the Y offset of inventory cursor hotspot, which will be used when this inventory item is selected (see [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic). The Y offset is counted from the position determined by [`InventoryItem.CursorHotspotAlignment`](InventoryItem#inventoryitemcursorhotspotalignment).
 
 The hotspot is a pixel on the cursor graphic where the click takes effect. In practice the cursor's image is drawn with opposite, negative offset from the cursor position (which is usually defined by the mouse position).
+
+Example:
+
+```ags
+iKey.CursorHotspotX = 4;
+iKey.CursorHotspotY = 2;
+```
+
+will make the click point of the cursor be 4 pixels right and 2 pixels down from the top left corner of the 'iKey' item's cursor image.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 

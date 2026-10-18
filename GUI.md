@@ -8,6 +8,14 @@ BlendMode GUI.BlendMode
 
 Gets/sets the blending mode for this GUI.
 
+Example:
+
+```ags
+gHud.BlendMode = eBlendAdd;
+```
+
+will draw the GUI gHud using the additive blending mode.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`BlendMode`](StandardEnums#blendmode)
@@ -350,6 +358,14 @@ Setting BackgroundColor to 0 will make GUI background fully transparent.
 
 This property is ignored if the GUI.BackgroundGraphic is assigned a sprite number (other than 0).
 
+Example:
+
+```ags
+gInventory.BackgroundColor = Game.GetColorFromRGB(0, 0, 64);
+```
+
+will fill the background of the GUI gInventory with dark blue (unless the GUI has a BackgroundGraphic).
+
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
 *See also:* [`GUI.BackgroundGraphic`](GUI#guibackgroundgraphic), [`GUI.BorderColor`](GUI#guibordercolor)
@@ -370,6 +386,14 @@ You can set this to 0 to remove the background image from the GUI.
 
 When this property is assigned a sprite number other than 0 GUI.BackgroundColor and GUI.BorderColor are ignored.
 
+Example:
+
+```ags
+gInventory.BackgroundGraphic = 120;
+```
+
+will use the sprite 120 as the background of the GUI gInventory.
+
 *See also:* [`GUI.SetPosition`](GUI#guisetposition),
 [`Button.NormalGraphic`](Button#buttonnormalgraphic)
 
@@ -386,6 +410,14 @@ Gets/sets the border color.
 Setting BorderColor to 0 will make GUI border fully transparent.
 
 Not applicable to TextWindow GUIs. This property is ignored if the GUI.BackgroundGraphic is assigned a sprite number (other than 0).
+
+Example:
+
+```ags
+gInventory.BorderColor = Game.GetColorFromRGB(255, 255, 255);
+```
+
+will draw the border of the GUI gInventory in white (unless the GUI has a BackgroundGraphic).
 
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
@@ -489,6 +521,21 @@ int  GUI.GetProperty(const string property)
 
 Gets an integer custom property for this GUI.
 
+Example:
+
+```ags
+function OpenMenu(GUI* menu)
+{
+  menu.Visible = true;
+  if (menu.GetProperty("PausesGame") == 1)
+  {
+    Game.Pause();
+  }
+}
+```
+
+will show any menu GUI, and also pause the game if that GUI has its boolean custom property "PausesGame" checked in the editor. Keeping such settings in custom properties lets one function handle all the menus.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -500,6 +547,18 @@ String GUI.GetTextProperty(const string property)
 ```
 
 Gets a text custom property for this GUI.
+
+Example:
+
+```ags
+function OpenMenu(GUI* menu)
+{
+  lblHelp.Text = menu.GetTextProperty("HelpText");
+  menu.Visible = true;
+}
+```
+
+will show any menu GUI, and put the text from that GUI's custom text property "HelpText" into the label lblHelp, which is on a help bar at the bottom of the screen.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -513,6 +572,14 @@ bool GUI.SetProperty(const string property, int value)
 
 Sets an integer custom property for this GUI.
 
+Example:
+
+```ags
+gOptions.SetProperty("PausesGame", 0);
+```
+
+will uncheck the boolean custom property "PausesGame" of the GUI gOptions, so that the OpenMenu function from the [`GetProperty`](GUI#guigetproperty) example no longer pauses the game when it shows this GUI.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -524,6 +591,14 @@ bool GUI.SetTextProperty(const string property, const string value)
 ```
 
 Sets a text custom property for this GUI.
+
+Example:
+
+```ags
+gOptions.SetTextProperty("HelpText", "Adjust the sound and the text speed.");
+```
+
+will change the custom text property "HelpText" of the GUI gOptions, which the OpenMenu function from the [`GetTextProperty`](GUI#guigettextproperty) example shows when it opens this GUI.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -537,6 +612,17 @@ Point \*GUI.GUIToScreenPoint(int guix, int guiy, bool clipToGUI = true)
 
 Returns the point on screen corresponding to the given GUI coordinates.
 
+Example:
+
+```ags
+// show the tooltip right below the button btnHelp, even if the GUI gPanel is scaled or rotated
+Point* p = gPanel.GUIToScreenPoint(btnHelp.X, btnHelp.Y + btnHelp.Height);
+gTooltip.SetPosition(p.x, p.y);
+gTooltip.Visible = true;
+```
+
+will place the GUI gTooltip on screen right below the button btnHelp. The button's position is given in the coordinates of its GUI, so it is converted to screen coordinates first.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -548,6 +634,26 @@ Point \*GUI.ScreenToGUIPoint(int screenx, int screeny, bool clipToGUI = true)
 ```
 
 Returns the point on GUI corresponding to the given screen coordinates.
+
+Example:
+
+```ags
+function repeatedly_execute()
+{
+  lblMapHint.Text = "";
+  if (GUI.GetAtScreenXY(mouse.x, mouse.y) == gMap)
+  {
+    // the map GUI may be scaled or rotated, so convert the mouse position into its own coordinates
+    Point* p = gMap.ScreenToGUIPoint(mouse.x, mouse.y);
+    if (p.x < 40 && p.y < 30)
+    {
+      lblMapHint.Text = "The harbour";
+    }
+  }
+}
+```
+
+will show the name of the harbour in the label lblMapHint while the mouse cursor is over the top left corner of the map GUI gMap, where the harbour is drawn.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -610,6 +716,14 @@ float GUI.Rotation
 
 Gets/sets the GUI's image rotation in degrees.
 
+Example:
+
+```ags
+gInventory.Rotation = 10.0;
+```
+
+will rotate the image of the GUI gInventory by 10 degrees.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -637,6 +751,15 @@ Gets/sets the style of GUI behavior on screen. Possible values are:
 General Settings option `When player interface is disabled, GUIs should` needs
 to be set as `Be hidden`.
 
+Example:
+
+```ags
+gStatusline.PopupStyle = eGUIPopupMouseYPos;
+gStatusline.PopupYPos = 10;
+```
+
+will make the GUI gStatusline show up only when the mouse cursor moves to the top 10 pixels of the screen.
+
 *Compatibility:* Supported by **AGS 3.5.0** and later versions. The property is settable since **AGS 3.6.3**.
 
 *See also:* [`GUI.PopupYPos`](GUI#guipopupypos), [`GUI.Shown`](GUI#guishown), [`GUI.Visible`](GUI#guivisible)
@@ -653,6 +776,15 @@ Gets/sets the Y co-ordinate at which the GUI will appear when using MouseYPos po
 
 This property is ignored if GUI has a different style.
 
+Example:
+
+```ags
+gStatusline.PopupStyle = eGUIPopupMouseYPos;
+gStatusline.PopupYPos = 10;
+```
+
+will make the GUI gStatusline show up only when the mouse cursor moves to the top 10 pixels of the screen.
+
 *Compatibility:* Supported by **AGS 3.5.0** and later versions.
 
 *See also:* [`GUI.PopupStyle`](GUI#guipopupstyle), [`GUI.Shown`](GUI#guishown), [`GUI.Visible`](GUI#guivisible)
@@ -667,6 +799,14 @@ float GUI.ScaleX
 
 Gets/sets this GUI horizontal scaling.
 
+Example:
+
+```ags
+gInventory.ScaleX = 2.0;
+```
+
+will stretch the GUI gInventory to twice its normal width.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -678,6 +818,14 @@ float GUI.ScaleY
 ```
 
 Gets/sets this GUI vertical scaling.
+
+Example:
+
+```ags
+gInventory.ScaleY = 0.5;
+```
+
+will squash the GUI gInventory to half of its normal height.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -691,6 +839,14 @@ GUI.SetScale(float x, float y)
 
 Sets this GUI horizontal and vertical scaling
 
+Example:
+
+```ags
+gInventory.SetScale(2.0, 2.0);
+```
+
+will draw the GUI gInventory at twice its normal size.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -702,6 +858,15 @@ ShaderInstance* GUI.Shader
 ```
 
 Gets/sets the shader of this GUI.
+
+Example:
+
+```ags
+ShaderProgram* wave = ShaderProgram.CreateFromFile("$DATA$/Shaders/wave.glsl");
+gInventory.Shader = wave.Default;
+```
+
+will apply the default instance of the shader to the GUI gInventory.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -719,6 +884,18 @@ In the common circumstances this property's value is equivalent to checking [`GU
 
 **NOTE:** Shown property only reports a logical state, it does not test whether GUI may be seen by the player or not (overlapped by other objects, moved offscreen or fully transparent).
 
+Example:
+
+```ags
+function repeatedly_execute()
+{
+  // the icon bar pops up when the mouse cursor is at the top of the screen
+  lblLocation.Visible = !gIconbar.Shown;
+}
+```
+
+will hide the label lblLocation while the icon bar is on screen. The icon bar uses the "Mouse YPos" popup style, so its Visible property stays true even while it is hidden, and Shown has to be checked instead.
+
 *Compatibility:* Supported by **AGS 3.5.1** and later versions.
 
 *See also:* [`GUI.PopupStyle`](GUI#guipopupstyle), [`GUI.Visible`](GUI#guivisible)
@@ -734,6 +911,18 @@ readonly String GUI.ScriptName;
 Gets the script name of the gui, which serves as a unique identifier, as set in the AGS Editor.
 
 This may be useful if you have a pointer to some gui stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each gui in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [GUI.GetByName](GUI#guigetbyname) function to retrieve the gui by the previously saved script name.
+
+Example:
+
+```ags
+GUI *g = GUI.GetAtScreenXY(mouse.x, mouse.y);
+if (g != null)
+{
+  System.Log(eLogDebug, "The mouse is over the GUI '%s'.", g.ScriptName);
+}
+```
+
+will write the script name of the GUI under the mouse cursor to the game log, which may be useful when debugging.
 
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 

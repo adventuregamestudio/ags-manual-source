@@ -9,6 +9,15 @@ String ViewFrame.EventName
 
 Gets/sets a custom frame event tag. If set, this tag will be used as a parameter to the animating object's OnFrameEvent event, whenever this frame is displayed.
 
+Example:
+
+```ags
+ViewFrame *frame = Game.GetViewFrame(VPLAYERWALK, 0, 1);
+frame.EventName = "footstep";
+```
+
+will set the event name "footstep" on the second frame of the first loop of view VPLAYERWALK; it will be passed to OnFrameEvent whenever that frame is shown.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Button.RunFrameEvent`](Button#buttonrunframeevent),
@@ -210,6 +219,15 @@ int ViewFrame.XOffset
 
 Gets/sets the relative x offset applied to this frame.
 
+Example:
+
+```ags
+ViewFrame *frame = Game.GetViewFrame(VPLAYERWALK, 0, 1);
+frame.XOffset = 2;
+```
+
+will draw the second frame of the first loop of view VPLAYERWALK shifted 2 pixels to the right.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
@@ -221,5 +239,14 @@ int ViewFrame.YOffset
 ```
 
 Gets/sets the relative y offset applied to this frame.
+
+Example:
+
+```ags
+ViewFrame *frame = Game.GetViewFrame(VPLAYERWALK, 0, 1);
+frame.YOffset = -2;
+```
+
+will draw the second frame of the first loop of view VPLAYERWALK shifted 2 pixels up.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.

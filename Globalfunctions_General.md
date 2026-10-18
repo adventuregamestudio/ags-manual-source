@@ -188,6 +188,14 @@ with what they do:
 
 _Compatibility:_ Using Debug(2,n) for different masks and Debug(5,n) as toggle is only supported by **AGS 3.6.0** and later versions.
 
+Example:
+
+```ags
+Debug(4, 1);
+```
+
+will turn the on-screen FPS counter on (when the game is running in debug mode).
+
 *See also:* [Debugging features](Debuggingfeatures),
 [`System.RuntimeInfo`](System#systemruntimeinfo),
 [`System.DisplayFPS`](System#systemdisplayfps)
@@ -313,6 +321,20 @@ EndCutscene()
 Marks the end of a cutscene. If the player skips the cutscene, the game
 will fast-forward to this point. This function returns 0 if the player
 watched the cutscene, or 1 if they skipped it.
+
+Example:
+
+```ags
+StartCutscene(eSkipESCOnly);
+cEgo.Say("This part can be skipped.");
+cEgo.Walk(200, 100, eBlock);
+if (EndCutscene() == 1)
+{
+  Display("You skipped the cutscene.");
+}
+```
+
+will let the player skip the cutscene by pressing ESC, and tell whether they did.
 
 *See also:* [`SkipCutscene`](Globalfunctions_General#skipcutscene), [`StartCutscene`](Globalfunctions_General#startcutscene),
 [`Game.InSkippableCutscene`](Game#gameinskippablecutscene),
@@ -854,6 +876,20 @@ bool IsAnyKeyPressed()
 
 Returns whether ANY key on the keyboard is currently pressed down.
 
+Example:
+
+```ags
+function repeatedly_execute()
+{
+  if (gTitle.Visible && IsAnyKeyPressed())
+  {
+    gTitle.Visible = false;
+  }
+}
+```
+
+will close the title screen GUI gTitle as soon as the player presses any key.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`IsKeyPressed`](Globalfunctions_General#iskeypressed)
@@ -939,6 +975,14 @@ IsTranslationAvailable ()
 Finds out whether the player is using a game translation or not.
 
 Returns 1 if a translation is in use, 0 if not.
+
+Example:
+
+```ags
+lblTranslator.Visible = (IsTranslationAvailable() == 1);
+```
+
+will show the label lblTranslator, with the translator's credits, only when the player is using a translation. The label's text itself can then be translated as "Translated by ..." in each translation.
 
 *See also:*
 [`Game.ChangeTranslation`](Game#gamechangetranslation),
@@ -1621,6 +1665,21 @@ background.
 
 *SeeAlso:* [`RestartGame`](Globalfunctions_General#restartgame)
 
+Example:
+
+```ags
+function room_FirstLoad()
+{
+  StartCutscene(eSkipESCOnly);
+  cEgo.Say("Where am I?");
+  // ... the rest of the intro ...
+  EndCutscene();
+  SetRestartPoint();
+}
+```
+
+will set the restart point right after the intro, so that RestartGame brings the player back to this moment, and they do not have to watch the intro again.
+
 ---
 
 ### `SetTextWindowGUI`
@@ -1782,6 +1841,18 @@ Be **very careful** with where you place the corresponding EndCutscene
 command. The script **must** pass through EndCutscene in its normal run
 in order for the skipping to work - otherwise, when the player presses
 ESC the game could appear to hang.
+
+Example:
+
+```ags
+StartCutscene(eSkipAnyKeyOrMouseClick);
+cEgo.Say("Once upon a time...");
+cEgo.Walk(200, 100, eBlock);
+cEgo.Say("...in a land far away.");
+EndCutscene();
+```
+
+will let the player skip the sequence by pressing any key or clicking the mouse.
 
 *Compatibility:* eSkipScriptOnly cutscene mode is supported by **AGS 3.5.0** and later versions.
 

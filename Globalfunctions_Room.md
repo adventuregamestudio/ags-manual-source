@@ -306,6 +306,17 @@ int GetWalkBehindBase(int area)
 
 Returns the baseline of the requested walk-behind area. If return value is 0 - that means that the walk-behind is disabled.
 
+Example:
+
+```ags
+if (GetWalkBehindBase(1) == 0)
+{
+  Display("Walk-behind 1 is disabled.");
+}
+```
+
+will print the message if the walk-behind area 1 is disabled, which is the case when its baseline is 0.
+
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
 *See also:* [`SetWalkBehindBase`(Globalfunctions_Room#setwalkbehindbase)], [`Object.Baseline`](Object#objectbaseline)

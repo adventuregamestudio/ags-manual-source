@@ -43,4 +43,13 @@ MaskPathfinder.SetMask(int mask_sprite)
 
 Assigns a new mask to this MaskPathfinder. This has to be a 8-bit sprite to work correctly. The new mask does not have to be the same size as a previous one.
 
+Example:
+
+```ags
+// the drawbridge has been raised, so boats can now pass where it used to block the way
+waterPath.SetMask(501);
+```
+
+will make the pathfinder use the mask in the sprite 501 (also an 8-bit image) instead of its old one, so the paths found from now on take the new way into account. Here `waterPath` is a global MaskPathfinder* variable, created earlier with MaskPathfinder.Create.
+
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.

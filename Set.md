@@ -64,6 +64,15 @@ void Set.Clear()
 
 Removes all items from the Set.
 
+Example:
+
+```ags
+// a new case begins, so forget the clues found in the previous one
+clues.Clear();
+```
+
+will remove all the clues at once. Here `clues` is a global Set* that holds the names of the clues the player has found, created with Set.Create.
+
 ---
 
 ### `Set.Contains`
@@ -123,6 +132,17 @@ bool Set.Remove(String item)
 
 Removes an item from the Set. Returns false if there was no such item, otherwise returns true.
 
+Example:
+
+```ags
+if (activeQuests.Remove("Find the key"))
+{
+  lblQuestLog.Text = "Quest completed: Find the key";
+}
+```
+
+will remove the quest from the set of active quests, and report its completion only if the quest was active. Here `activeQuests` is a global Set*, created with Set.Create.
+
 *See also:* [`Add`](Set#setadd), [`Contains`](Set#setcontains)
 
 ---
@@ -134,6 +154,21 @@ StringCompareStyle Set.CompareStyle
 ```
 
 Returns the string comparison method for this Set.
+
+Example:
+
+```ags
+function AddName(Set* names, String name)
+{
+  if (names.CompareStyle == eCaseSensitive)
+  {
+    name = name.LowerCase(); // so that "Bob" and "bob" count as the same name
+  }
+  names.Add(name);
+}
+```
+
+will add a name to any set, converting it to lowercase first if the set would otherwise treat "Bob" and "bob" as different items.
 
 *See also:* [`SortStyle`](Set#setsortstyle)
 
@@ -147,6 +182,14 @@ int Set.ItemCount
 
 Returns the number of items currently in the Set.
 
+Example:
+
+```ags
+lblClues.Text = String.Format("Clues found: %d of 10", clues.ItemCount);
+```
+
+will show how many clues the player has found. Because a set never contains the same item twice, finding a clue for the second time does not increase the count. Here `clues` is a global Set*, created with Set.Create.
+
 ---
 
 ### `Set.SortStyle`
@@ -156,5 +199,25 @@ SortStyle Set.SortStyle
 ```
 
 Returns the sorting method for this Set.
+
+Example:
+
+```ags
+function FillListFromSet(ListBox* list, Set* items)
+{
+  list.Clear();
+  String names[] = items.GetItemsAsArray();
+  for (int i = 0; i < names.Length; i++)
+  {
+    list.AddItem(names[i]);
+  }
+  if (items.SortStyle == eNonSorted)
+  {
+    list.SortItems(eCaseInsensitive, eSortAscending);
+  }
+}
+```
+
+will fill a list box with the items of a set, and sort the list only if the set does not already keep its items sorted.
 
 *See also:* [`CompareStyle`](Set#setcomparestyle)

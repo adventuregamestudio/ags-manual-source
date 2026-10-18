@@ -70,6 +70,16 @@ It's always safe to delete a viewport, even if it's the last viewport remaining:
 
 **IMPORTANT:** in **Screen.Viewports** array viewports are arranged in the order they were created. When you delete one in the middle all the following viewports will be shifted towards beginning of array.
 
+Example:
+
+```ags
+// the player has turned off the security monitor
+monitorView.Delete();
+monitorCam.Delete();
+```
+
+will remove the picture-in-picture view of a security camera. Here `monitorView` and `monitorCam` are global variables, holding the viewport and the camera that were created with Viewport.Create and Camera.Create when the player turned the monitor on.
+
 *See also:* [`Viewport.Create`](Viewport#viewportcreate), [`Screen.Viewport`](Screen#screenviewport), [`Screen.Viewports`](Screen#screenviewports)
 
 ---
@@ -228,6 +238,15 @@ int Viewport.Height;
 
 Gets/sets the viewport's height in screen coordinates.
 
+Example:
+
+```ags
+Screen.Viewport.Height = Screen.Height / 2;
+Game.Camera.Height = Screen.Height / 2;
+```
+
+will make the primary viewport cover only the upper half of the screen, and resize the camera to match it, so that the room is not squashed.
+
 *See also:* [`Viewport.SetPosition`](Viewport#viewportsetposition), [`Viewport.X`](Viewport#viewportx), [`Viewport.Y`](Viewport#viewporty), [`Viewport.Width`](Viewport#viewportwidth), [`Viewport.ZOrder`](Viewport#viewportzorder), [`Screen.AutoSizeViewportOnRoomLoad`](Screen#screenautosizeviewportonroomload)
 
 ---
@@ -239,6 +258,15 @@ ShaderInstance* Viewport.Shader
 ```
 
 Gets/sets the shader of this viewport.
+
+Example:
+
+```ags
+ShaderProgram* wave = ShaderProgram.CreateFromFile("$DATA$/Shaders/wave.glsl");
+Screen.Viewport.Shader = wave.Default;
+```
+
+will apply the default instance of the shader to the primary viewport.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -252,6 +280,14 @@ bool Viewport.Visible;
 
 Gets/sets whether the viewport is enabled and drawn on screen.
 
+Example:
+
+```ags
+Screen.Viewport.Visible = false;
+```
+
+will hide the primary viewport, so the room is no longer drawn on screen.
+
 ---
 
 ### `Viewport.Width`
@@ -261,6 +297,15 @@ int Viewport.Width;
 ```
 
 Gets/sets the viewport's width in screen coordinates.
+
+Example:
+
+```ags
+Screen.Viewport.Width = Screen.Width / 2;
+Game.Camera.Width = Screen.Width / 2;
+```
+
+will make the primary viewport cover only the left half of the screen, and resize the camera to match it, so that the room is not squashed.
 
 *See also:* [`Viewport.SetPosition`](Viewport#viewportsetposition), [`Viewport.X`](Viewport#viewportx), [`Viewport.Y`](Viewport#viewporty), [`Viewport.Height`](Viewport#viewportheight), [`Viewport.ZOrder`](Viewport#viewportzorder), [`Screen.AutoSizeViewportOnRoomLoad`](Screen#screenautosizeviewportonroomload)
 

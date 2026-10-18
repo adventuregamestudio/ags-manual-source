@@ -11,6 +11,14 @@ By default, when the voice-over is present and speech skipping by time is enable
 
 This option does not make any difference in "text only" mode (because then there's only text anyway), or "voice only" mode (because then the text is not displayed at all). It also is ignored if the speech's skip style does not allow skipping by time.
 
+Example:
+
+```ags
+Speech.AlwaysWaitForText = true;
+```
+
+will make the game wait for the speech text's reading time even when the voice-over has finished playing earlier.
+
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
 *See also:* [`Game.TextReadingSpeed`](Game#gametextreadingspeed),
@@ -64,6 +72,16 @@ and [`Speech.PortraitY`](Speech#speechportraity). When set to
 **NOTE:** This property has no effect if the Lucas-Arts speech style is
 used.
 
+Example:
+
+```ags
+Speech.CustomPortraitPlacement = true;
+Speech.PortraitXOffset = 10;
+Speech.PortraitY = 20;
+```
+
+will place the speech portraits 10 pixels from the screen side and 20 pixels from the top of the screen.
+
 *Compatibility:* Supported by **AGS 3.3.0** and later versions.
 
 *See also:* [`Speech.PortraitXOffset`](Speech#speechportraitxoffset),
@@ -86,6 +104,14 @@ does not interfere with speech skipping by key or mouse click: players
 will still be able to skip speech any time they want (if appropriate
 skip mode is enabled). This property is specified in **milliseconds**
 and is set to zero by default.
+
+Example:
+
+```ags
+Speech.DisplayPostTimeMs = 500;
+```
+
+will keep every speech line on screen for an extra half a second after its normal time has run out.
 
 *Compatibility:* Supported by **AGS 3.3.0** and later versions.
 
@@ -114,6 +140,15 @@ property **cannot** be used if the global speech animation delay is
 disabled. In that case, the individual character's animation delay is
 used instead.
 
+Example:
+
+```ags
+Speech.UseGlobalSpeechAnimationDelay = true;
+Speech.GlobalSpeechAnimationDelay = 8;
+```
+
+will make the speaking animation of every character advance every 8 game loops.
+
 *See also:*
 [`Character.SpeechAnimationDelay`](Character#characterspeechanimationdelay),
 [`Speech.UseGlobalSpeechAnimationDelay`](Speech#speechuseglobalspeechanimationdelay)
@@ -127,6 +162,14 @@ static int Speech.OverlayZOrder
 ```
 
 Gets/sets the default z-order value that will be applied to any future blocking speech overlays (text and portrait) when they are displayed on screen.
+
+Example:
+
+```ags
+Speech.OverlayZOrder = 200;
+```
+
+will draw all further blocking speech overlays in front of anything with a lower z-order.
 
 *Compatibility:* Supported by **AGS 3.6.3** and later versions.
 
@@ -188,6 +231,15 @@ side and respected portrait's border.
 **NOTE:** The property is only used when the
 **Speech.CustomPortraitPlacement** is set to **true**.
 
+Example:
+
+```ags
+Speech.CustomPortraitPlacement = true;
+Speech.PortraitXOffset = 10;
+```
+
+will place the speech portraits 10 pixels away from the side of the screen.
+
 *Compatibility:* Supported by **AGS 3.3.0** and later versions.
 
 *See also:*
@@ -206,6 +258,15 @@ Gets/sets the character's speech portrait **y** coordinate on screen.
 
 **NOTE:** The property is only used when the
 **Speech.CustomPortraitPlacement** is set to **true**.
+
+Example:
+
+```ags
+Speech.CustomPortraitPlacement = true;
+Speech.PortraitY = 20;
+```
+
+will place the speech portraits 20 pixels from the top of the screen.
 
 *Compatibility:* Supported by **AGS 3.3.0** and later versions.
 
@@ -290,6 +351,24 @@ It returns null if no character is speaking in a blocking speech.
 
 Differently from checking any character speaking using `Speech.TextOverlay`,
 this also works for a blocking voice only speech, and it tells which character is speaking.
+
+Example:
+
+```ags
+function repeatedly_execute_always()
+{
+  if (Speech.SpeakingCharacter != null)
+  {
+    lblSpeaker.Text = Speech.SpeakingCharacter.Name;
+  }
+  else
+  {
+    lblSpeaker.Text = "";
+  }
+}
+```
+
+will show the name of the character who is currently speaking in the label lblSpeaker, and clear the label when nobody speaks. `repeatedly_execute_always` is used because the blocking speech stops `repeatedly_execute` from running.
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 

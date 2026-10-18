@@ -50,6 +50,17 @@ Returns a DateTime set as created.
 Because of how DateTime is implemented in AGS engine, it only supports a range of dates between January 1970 to January 2038 (inclusive).
 It returns invalid object if year is below 1970 or above 2038, or if any other value is invalid.
 
+Example:
+
+```ags
+DateTime* now = DateTime.Now;
+DateTime* newYear = DateTime.CreateFromDate(now.Year + 1, 1, 1);
+int daysLeft = (newYear.RawTime - now.RawTime) / 86400; // there are 86400 seconds in a day
+lblCountdown.Text = String.Format("%d days until the New Year", daysLeft);
+```
+
+will calculate how many days are left until the next New Year's Day, and show it in the label lblCountdown.
+
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 
 *See also:* [`DateTime.Now`](DateTime#datetimenow),
@@ -69,6 +80,20 @@ It returns invalid object if rawTime is negative.
 This function may be useful, for example, if you write "raw time" from a DateTime.Now in a file, and load it back later.
 
 **NOTE:** the raw time mentioned here is sometimes also known as UNIX time, stored as a 32-bit signed integer.
+
+Example:
+
+```ags
+File* file = File.Open("$SAVEGAMEDIR$/lastplayed.dat", eFileRead);
+if (file != null)
+{
+  DateTime* lastPlayed = DateTime.CreateFromRawTime(file.ReadInt());
+  file.Close();
+  Display("Welcome back! You last played on %d/%d/%d.", lastPlayed.DayOfMonth, lastPlayed.Month, lastPlayed.Year);
+}
+```
+
+will read the time that the game stored in a file when it was last played (with `file.WriteInt(DateTime.Now.RawTime)`), and greet the player with that date.
 
 *Compatibility:* Supported by **AGS 3.6.2** and later versions.
 

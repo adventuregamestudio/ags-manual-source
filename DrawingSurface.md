@@ -97,18 +97,6 @@ in the middle of it.
 
 ---
 
-### `DrawingSurface.ColorDepth`
-
-```ags
-readonly int DrawingSurface.ColorDepth
-```
-
-Gets the colour depth of this surface.
-
-*Compatibility:* Supported by **AGS 4.0.0** and later versions.
-
----
-
 ### `DrawingSurface.CreateCopy`
 
 *(Formerly known as `RawSaveScreen`, which is now obsolete)*

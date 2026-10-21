@@ -249,17 +249,23 @@ Function's parameters cannot be:
 
 Sometimes you may want to give function's parameter a *default value*, which is used if no value is passed for that parameter. Such parameters are known as *optional parameters*. They are "optional" in the sense that you may skip them when calling a function, but they will still always exist inside the function's body. There's a important restriction: only *latest parameters* in the function's parameter list can be made optional. Multiple parameters can be optional, but only if there's no non-optional parameter between them or after them.
 
-The parameter is made optional by assigning a default value to them right in the function's declaration.
+The parameter is made optional by assigning a default value to them in the function's declaration, using assignment syntax, similar to variable initialization: `type param = value`. However, there are two major restrictions.
+
+First of all, default parameter values may be only defined in the pure function's declaration which begins with the `import` keyword and does not have a body. That's how functions are usually declared in the script headers. But you have to do this even if you dont need to declare it in the script header, and you are using this function only in the same script. In this case the `import` declaration may be immediately followed by the full function, with a body.
 
 For example:
 
 ```ags
-function DoSomething(String str_param, int a = 10, int b = 20)
+import function DoSomething(String str_param, int a = 10, int b = 20);
+
+function DoSomething(String str_param, int a, int b)
 {
 }
 ```
 
-This function has a obligatory parameter `str_param`, and two optional parameters `a` and `b`. This function may be called by passing either 1, 2 or all 3 of its parameter values. Each optional parameter, which value was not passed, will assume its default value instead:
+Here we declare the function DoSomething which has one obligatory parameter `str_param` and two optional parameters `a` and `b`. Notice that first we have a `import` declaration which ends up with a semi-colon, and then have the same function declared again but this time with its body.
+
+This function may be called by passing either 1, 2 or all 3 of its parameter values. Each optional parameter, which value was not passed, will assume its default value instead:
 
 ```ags
 // assumes a = 10, b = 20
@@ -269,6 +275,16 @@ DoSomething("text", 30);
 // all parameters are passed explicitly
 DoSomething("text", 30, 40);
 ```
+
+The second restriction is that only literal integer numbers can be used as default values. In case you want to have a optional parameter which is a String or a pointer to object (like `Character*`), then you are only allowed to use value '0', which will be interpreted as `null` in this circumstance. For example:
+
+```
+import void PassCharacterOrNot(Character *thisChar = 0);
+```
+
+Both of these restrictions are the limitations of the script compiler, and may in theory be removed in the future versions.
+
+See also: [Importing functions in other scripts](ImportingFunctionsAndVariables)
 
 ### Returning values
 

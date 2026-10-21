@@ -122,7 +122,7 @@ This is another variant of the previously demonstrated scenario, where character
 
 ### Calling a function
 
-Some functions are run by the engine on certain events, such as entering a new room or a key press. Engine does this by searching for functions with predefined names in your script. More about this can be learnt in ["Global event handlers"](Globalfunctions_event).
+Some functions are run by the engine on certain events, such as entering a new room or a key press. Engine does this by searching for functions with predefined names in your script. More about this can be learnt in ["Global event handlers"](Globalfunctions_Event).
 
 But what if you want to run a function from another function in script? This is called "calling a function", and is done using following syntax:
 

@@ -471,6 +471,22 @@ will display the number of rows that the listbox can display.
 
 ---
 
+### `ListBox.RowHeight`
+
+```ags
+readonly int ListBox.RowHeight
+```
+
+Gets the height of a single row of this list box, in pixels. The row height defines how many items can be visible at the same time. It depends primarily on the listbox's Font.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`ListBox.Font`](ListBox#listboxfont),
+[`ListBox.ItemCount`](ListBox#listboxitemcount),
+[`ListBox.RowCount`](ListBox#listboxrowcount)
+
+---
+
 ### `ListBox.SaveGameSlots`
 
 *(Formerly known as global array `savegameindex`, which is now obsolete)*

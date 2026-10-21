@@ -6,6 +6,7 @@
   order):
 
   adm244  
+  Adrian Feld  
   Alan Van Drake  
   Benjamin Penney  
   Benoit Pierre  
@@ -20,6 +21,7 @@
   Erico Vieira Porto  
   Ferdinand Thiessen  
   Francesco Ariis  
+  Gal Shemesh  
   Gilad Shaham  
   HomeLight Games  
   Ivan Mogilko  

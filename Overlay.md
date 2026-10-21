@@ -124,6 +124,10 @@ the speech font). COLOR is the text color. Finally, TEXT is obviously the text t
 
 If a *negative* value is passed as either X or Y coordinate, then the text will be instead centered on screen along the respective axis.
 
+Since **AGS 3.6.3**, if a *negative* value is passed as width, then the overlay's width will be automatically adjusted to the widest line of wrapped text, or the 3/4 of the screen, whatever is *smaller*.
+
+If current speech style is "Sierra with background", and a "text window" GUI is assigned as a speech's GUI, then overlay will be copy the looks of that text window (has tiled borders and background). Historically, such overlay would use text window's own text color, overriding color parameter which was passed into CreateTextual function. Since **AGS 3.6.3** it will always use "color" parameter.
+
 The function returns the Overlay, which you use later to reposition and
 remove the overlay.
 
@@ -315,6 +319,10 @@ Overlay.SetText(int width, FontType font, int color, string text, ...)
 
 Replaces the specified overlay with a new one, at the same co-ordinates
 but with the new specified text, width, font and color.
+
+Since **AGS 3.6.3**, if a *negative* value is passed as width, then the overlay's width will be automatically adjusted to the widest line of wrapped text, or the 3/4 of the screen, whatever is *smaller*.
+
+If current speech style is "Sierra with background", and a "text window" GUI is assigned as a speech's GUI, then overlay will be copy the looks of that text window (has tiled borders and background). Historically, such overlay would use text window's own text color, overriding color parameter which was passed into CreateTextual function. Since **AGS 3.6.3** it will always use "color" parameter.
 
 You can insert the value of variables into the message. For more
 information, see the [string formatting](StringFormats)

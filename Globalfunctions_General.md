@@ -1105,7 +1105,7 @@ will quit the game without asking the player to confirm.
 Random (int max)
 ```
 
-Returns a random number between 0 and MAX. This could be useful to do
+Returns a random number between 0 and MAX (inclusive). This could be useful to do
 various effects in your game. MAX must be a positive value in range
 0-32767.
 

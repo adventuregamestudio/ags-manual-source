@@ -1090,7 +1090,47 @@ inventory tab.
 
 
 *See also:* [`Character.AddInventory`](Character#characteraddinventory),
-[`Character.InventoryQuantity`](Character#characterinventoryquantity)
+[`Character.InventoryQuantity`](Character#characterinventoryquantity),
+[`Character.LoseInventoryAt`](Character#characterloseinventoryat)
+
+---
+
+### `Character.LoseInventoryAt`
+
+```ags
+Character.LoseInventoryAt(int inventoryIndex)
+```
+
+Removes an item at the given index of this [character's inventory](Character#characterinventory). The index must be in the range from 0 to (Character.InventoryCount - 1) (if this character has any items in its inventory).
+
+This function can be used to remove an item by its storage index, rather than the kind. This also lets remove particular instance in case character owns duplicates of the same inventory item (and item duplicates are enabled in the game settings). Because standard [Inventory Window](InvWindow) displays items in the same order as they are stored in `Character.Inventory[]`(Character#characterinventory) array, this function will also accept indexes of displayed items from Inventory Window.
+
+Besides that, it has same effect as [`LoseInventory`](Character#characterloseinventory).
+
+Example 1:
+
+```ags
+if (cEgo.InventoryCount > 0)
+    cEgo.LoseInventoryAt(Random(cEgo.InventoryCount - 1));
+```
+
+will make the character EGO lose a random inventory item.
+
+Example 2:
+
+```ags
+if (invWindow.ItemCount > 0)
+    cEgo.LoseInventoryAt(invWindow.TopItem);
+```
+
+will make the character EGO lose an item which is currently displayed in the first cell of the inventory window.
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+*See also:* [`Character.AddInventory`](Character#characteraddinventory),
+[`Character.Inventory`](Character#characterinventory),
+[`Character.InventoryQuantity`](Character#characterinventoryquantity),
+[`Character.LoseInventory`](Character#characterloseinventory),
 
 ---
 

@@ -368,6 +368,30 @@ will display "Old: Hello, new: Hemlo".
 
 ---
 
+### `String.Reverse`
+
+```ags
+String.Reverse()
+```
+
+Creates a copy of this string, with all characters positioned in reverse order.
+
+**NOTE:** This function performs a plain order reversal of characters, one by one, and does not care about characters or combinations of characters which may have a meaning in certain context only when they maintain their relative order. For example, punctuation chars will appear at the "wrong" side of the word; "\r\n" CRLF line ending sequence will become "\n\r", and so forth. If you need to keep certain sequences un-reversed, then you would have to script an additional processing either prior or after calling Reverse() function.
+
+Example:
+
+```ags
+String original = "Hello from the script!";
+String reversed = original.Reverse();
+Display("Old: %s, new: %s", original, reversed);
+```
+
+will display "Old: Hello from the script!, new: !tpircs eht morf olleH".
+
+*Compatibility:* Supported by **AGS 3.6.3** and later versions.
+
+---
+
 ### `String.StartsWith`
 
 ```ags

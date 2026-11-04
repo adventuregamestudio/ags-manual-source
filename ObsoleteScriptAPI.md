@@ -121,7 +121,7 @@ As new versions of AGS are released this sometimes bring changes to the script c
 | `GetInvName` | [`InventoryItem.Name`](InventoryItem#inventoryitemname) | |
 | `GetInvProperty` | [`InventoryItem.GetProperty`](InventoryItem#inventoryitemgetproperty) | |
 | `GetInvPropertyText` | [`InventoryItem.GetTextProperty`](InventoryItem#inventoryitemgettextproperty) | |
-| `GetLocationName` | [`Game.GetLocationName`](Game#gamegetlocationname) | |
+| `GetLocationName` | [`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat) | |
 | `GetMessageText` | Create a [global](ScriptKeywords#export) [array](ScriptKeywords#arrays) of [strings](String). | 3.X |
 | `GetMIDIPosition` | [`AudioChannel.Position`](AudioChannel#audiochannelposition) | |
 | `GetMODPattern` | [`AudioChannel.Position`](AudioChannel#audiochannelposition) | |

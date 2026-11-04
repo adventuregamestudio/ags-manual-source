@@ -641,7 +641,7 @@ For example:
 ```ags
 for (int i = 0; i < Game.CharacterCount; i++)
 {
-    Display("My name is %s", character[i].Name);
+    Display("My name is %s", character[i].DisplayName);
 }
 ```
 

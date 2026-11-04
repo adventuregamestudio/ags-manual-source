@@ -188,14 +188,22 @@ will create a half-transparent overlay covering the gui.
 
 ### `GUI.GetByName`
 
+**This function was renamed since AGS 4.0.0. See [`GUI.GetByScriptName`](GUI#guigetbyscriptname).**
+
+*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+
+---
+
+### `GUI.GetByScriptName`
+
 ```ags
-static GUI* GUI.GetByName(string scriptName)
+static GUI* GUI.GetByScriptName(string scriptName)
 ```
 
 Returns a pointer to the GUI with the specified script name, or null if it does not exist.
 
 Normally you do not need to use this, as there will be a automatically created global script variable for each GUI which got a script name.
-Where GetByName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
+Where GetByScriptName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
 
 Example:
 
@@ -211,7 +219,7 @@ void ReadGUIConfig() {
         int x = file.ReadInt();
         int y = file.ReadInt();
 
-        GUI *gui = GUI.GetByName(name);
+        GUI *gui = GUI.GetByScriptName(name);
         if (gui != null)
         {
             gui.X = x;
@@ -225,7 +233,7 @@ void ReadGUIConfig() {
 
 Above function opens a custom file called "guiconfig.dat" for reading, reads gui positions, and tries to move game guis to these.
 
-*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`GUI.ScriptName`](GUI#guiscriptname)
 
@@ -733,11 +741,11 @@ readonly String GUI.ScriptName;
 
 Gets the script name of the gui, which serves as a unique identifier, as set in the AGS Editor.
 
-This may be useful if you have a pointer to some gui stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each gui in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [GUI.GetByName](GUI#guigetbyname) function to retrieve the gui by the previously saved script name.
+This may be useful if you have a pointer to some gui stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each gui in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [GUI.GetByScriptName](GUI#guigetbyscriptname) function to retrieve the gui by the previously saved script name.
 
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
-*See also:* [`GUI.GetByName`](GUI#guigetbyname)
+*See also:* [`GUI.GetByScriptName`](GUI#guigetbyscriptname)
 
 ---
 

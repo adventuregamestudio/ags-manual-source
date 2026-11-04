@@ -57,7 +57,7 @@ lblGameChapter.Text = "Chapter 2";
 will display "Chapter 2" text on label 'lblGameChapter'.
 
 ```ags
-lblHotspotName.Text = Game.GetLocationName(mouse.x, mouse.y);
+lblHotspotName.Text = Game.GetDisplayNameAt(mouse.x, mouse.y);
 ```
 will display the name of the location the cursor is over on label 'lblHotspotName'
 

@@ -34,27 +34,35 @@ will display the number of the inv item that the mouse is over.
 
 *Compatibility:* HitTestOptions parameters are supported since **AGS 3.6.3**.
 
-*See also:* [`InventoryItem.Name`](InventoryItem#inventoryitemname),
-[`Game.GetLocationName`](Game#gamegetlocationname)
+*See also:* [`InventoryItem.DisplayName`](InventoryItem#inventoryitemdisplayname),
+[`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat)
 
 ---
 
 ### `InventoryItem.GetByName`
 
+**This function was renamed since AGS 4.0.0. See [`InventoryItem.GetByScriptName`](InventoryItem#inventoryitemgetbyscriptname).**
+
+*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+
+---
+
+### `InventoryItem.GetByScriptName`
+
 ```ags
-static InventoryItem* InventoryItem.GetByName(string scriptName)
+static InventoryItem* InventoryItem.GetByScriptName(string scriptName)
 ```
 
 Returns a pointer to the InventoryItem with the specified script name, or null if it does not exist.
 
 Normally you do not need to use this, as there will be a automatically created global script variable for each InventoryItem which got a script name.
-Where GetByName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
+Where GetByScriptName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
 
 Example:
 
 ```ags
 String invItemName = Game.InputBox("Script Name of the item");
-InventoryItem* item = InventoryItem.GetByName(invItemName);
+InventoryItem* item = InventoryItem.GetByScriptName(invItemName);
 if (item != null) {
     // If invItemName is an item that exists like "iKey"
     player.AddInventory(item);
@@ -63,7 +71,7 @@ if (item != null) {
 
 In the example, we have some elements that can be used to build a debug functionality, so the player gets the wanted item by it's script name.
 
-*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`InventoryItem.ScriptName`](InventoryItem#inventoryitemscriptname),
 [`InventoryItem.GetAtScreenXY`](InventoryItem#inventoryitemgetatscreenxy)
@@ -190,6 +198,34 @@ will change key's "Description" property.
 
 *See also:*
 [`InventoryItem.SetProperty`](InventoryItem#inventoryitemsetproperty)
+
+---
+
+### `InventoryItem.DisplayName`
+
+```ags
+String InventoryItem.DisplayName;
+```
+
+Gets/sets the name of the inventory item. This is the name which is
+initially set in Inventory item's properties in the AGS Editor.
+
+You can change this property if for example you want to change a 'bowl'
+to a 'bowl with water in' but want to use the same inventory item for
+it.
+
+Example:
+
+```ags
+Display("Active inventory: %s", player.ActiveInventory.DisplayName);
+```
+
+will display the name of the player's current inventory item.
+
+*See also:*
+[`InventoryItem.GetAtScreenXY`](InventoryItem#inventoryitemgetatscreenxy),
+[`InventoryItem.Graphic`](InventoryItem#inventoryitemgraphic),
+[`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat)
 
 ---
 
@@ -374,7 +410,7 @@ slot.
 *See also:*
 [`InventoryItem.CursorGraphic`](InventoryItem#inventoryitemcursorgraphic),
 [`InventoryItem.GetAtScreenXY`](InventoryItem#inventoryitemgetatscreenxy),
-[`InventoryItem.Name`](InventoryItem#inventoryitemname)
+[`InventoryItem.DisplayName`](InventoryItem#inventoryitemdisplayname)
 
 ---
 
@@ -404,36 +440,7 @@ inventory
 
 ### `InventoryItem.Name`
 
-*(Formerly known as `GetInvName`, which is now obsolete)*<br>
-*(Formerly known as `SetInvItemName`, which is now obsolete)*<br>
-*(Formerly known as `InventoryItem.GetName`, which is now obsolete)*<br>
-*(Formerly known as `InventoryItem.SetName`, which is now obsolete)*
-
-```ags
-String InventoryItem.Name;
-```
-
-Gets/sets the name of the inventory item. This is the name which is
-initially set in Inventory item's properties in the AGS Editor.
-
-You can change this property if for example you want to change a 'bowl'
-to a 'bowl with water in' but want to use the same inventory item for
-it.
-
-Example:
-
-```ags
-Display("Active inventory: %s", player.ActiveInventory.Name);
-```
-
-will display the name of the player's current inventory item.
-
-*Compatibility:* inventory item's name was limited to 24 characters prior to **AGS 3.6.1**.
-
-*See also:*
-[`InventoryItem.GetAtScreenXY`](InventoryItem#inventoryitemgetatscreenxy),
-[`InventoryItem.Graphic`](InventoryItem#inventoryitemgraphic),
-[`Game.GetLocationName`](Game#gamegetlocationname)
+**This property was renamed since AGS 4.0.0. See [`InventoryItem.DisplayName`](InventoryItem#inventoryitemname).**
 
 ---
 
@@ -445,7 +452,7 @@ readonly String InventoryItem.ScriptName;
 
 Gets the script name of the inventory item, which serves as a unique identifier, as set in the AGS Editor.
 
-This may be useful if you have a pointer to some item stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each item in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [InventoryItem.GetByName](InventoryItem#inventoryitemgetbyname) function to retrieve the item by the previously saved script name.
+This may be useful if you have a pointer to some item stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each item in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [InventoryItem.GetByScriptName](InventoryItem#inventoryitemgetbyscriptname) function to retrieve the item by the previously saved script name.
 
 Example:
 
@@ -461,4 +468,4 @@ Displays the script name of the player's current inventory item.
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
 *See also:*
-[`InventoryItem.GetByName`](InventoryItem#inventoryitemgetbyname)
+[`InventoryItem.GetByScriptName`](InventoryItem#inventoryitemgetbyscriptname)

@@ -30,7 +30,19 @@ Gets a connected joystick by index or null on invalid index.
 readonly String Joystick.Name
 ```
 
-Gets joystick name
+Gets joystick name.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `Joystick.IsAnyButtonDown`
+
+```ags
+bool Joystick.IsAnyButtonDown
+```
+
+Gets if any of the joystick's buttons is currently down.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -42,7 +54,7 @@ Gets joystick name
 readonly bool Joystick.IsConnected
 ```
 
-Checks if joystick is really connected
+Checks if joystick is really connected.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
@@ -54,7 +66,7 @@ Checks if joystick is really connected
 readonly bool Joystick.IsGamepad
 ```
 
-Checks if joystick is a valid gamepad
+Checks if joystick is a valid gamepad.
 
 *Compatibility:* Supported by **AGS 4.0.0** and later versions.
 

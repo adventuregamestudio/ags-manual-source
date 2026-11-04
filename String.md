@@ -193,7 +193,7 @@ int health, max_health;
 String text = String.Format("Health: %d / %d", health, max_health);
 
 // create a text string with character's name
-String text = String.Format("Hello, my name is %s", player.Name);
+String text = String.Format("Hello, my name is %s", player.DisplayName);
 ```
 
 *See also:* [`Display`](Globalfunctions_Message#display)

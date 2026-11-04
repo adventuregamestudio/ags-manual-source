@@ -534,7 +534,7 @@ Example:
 ```ags
 Character* target = Character.GetAtRoomXY(oBullet.x, oBullet.y);
 if (target != null) {
-    Display("Character %s is hit by a bullet", target.Name);
+    Display("Character %s is hit by a bullet", target.DisplayName);
 }
 ```
 
@@ -546,7 +546,7 @@ will display the message if the room object oBullet is over any character.
 [`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy),
 [`Object.GetAtRoomXY`](Object#objectgetatroomxy),
 [`Region.GetAtRoomXY`](Region#regiongetatroomxy),
-[`Game.GetLocationName`](Game#gamegetlocationname)
+[`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat)
 
 ---
 
@@ -583,26 +583,35 @@ will display the message if the mouse cursor is over the EGO character.
 [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy),
 [`Object.GetAtScreenXY`](Object#objectgetatscreenxy),
 [`Region.GetAtScreenXY`](Region#regiongetatscreenxy),
-[`Game.GetLocationName`](Game#gamegetlocationname)
+[`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat)
 
 ---
 
 ### `Character.GetByName`
 
+
+**This function was renamed since AGS 4.0.0. See [`Character.GetByScriptName`](Character#charactergetbyscriptname).**
+
+*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+
+---
+
+### `Character.GetByScriptName`
+
 ```ags
-static Character* Character.GetByName(string scriptName)
+static Character* Character.GetByScriptName(string scriptName)
 ```
 
 Returns a pointer to the Character with the specified script name, or null if it does not exist.
 
 Normally you do not need to use this, as there will be a automatically created global script variable for each Character which got a script name.
-Where GetByName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
+Where GetByScriptName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
 
 Example:
 
 ```ags
 String companionName = player.GetTextProperty("Companion");
-Character *companion = Character.GetByName(companionName);
+Character *companion = Character.GetByScriptName(companionName);
 ```
 
 Retrieves the player's companion name from its custom property, and gets a pointer to an actual Character using that name.
@@ -2463,6 +2472,29 @@ will enable diagonal walking loops for character EGO.
 
 ---
 
+### `Character.DisplayName`
+
+```ags
+String Character.DisplayName
+```
+
+Gets/sets the name of the character, as set in the AGS Editor. This is
+the full name, not the script name.
+
+Example:
+
+```ags
+Display("You are controlling %s.", player.DisplayName);
+```
+
+will display the name of the player character.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Character.ScriptName`](Character#characterscriptname)
+
+---
+
 ### `Character.Enabled`
 
 *(Formerly known as `Character.on`, which is now obsolete)*
@@ -2495,7 +2527,7 @@ Example:
 void room_AfterFadeIn()
 {
   cAlter.FollowCharacter(cEgo);
-  cAlter.Say("I am following %s!", cAlter.Following.Name);
+  cAlter.Say("I am following %s!", cAlter.Following.DisplayName);
 }
 ```
 
@@ -3235,6 +3267,8 @@ This property is readonly; to manually assign a character walking path, use
 [`WalkPath`](Character#characterwalkpath) and [`MovePath`](Character#charactermovepath)
 commands.
 
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
 *See also:* [`MotionPath`](MotionPath),
 [`WalkPath`](Character#characterwalkpath),
 [`MovePath`](Character#charactermovepath)
@@ -3243,26 +3277,7 @@ commands.
 
 ### `Character.Name`
 
-*(Formerly known as `character[].name`, which is now obsolete)*
-
-```ags
-String Character.Name
-```
-
-Gets/sets the name of the character, as set in the AGS Editor. This is
-the full name, not the script name.
-
-Example:
-
-```ags
-Display("You are controlling %s.", player.Name);
-```
-
-will display the name of the player character.
-
-*Compatibility:* character's name was limited to 40 characters prior to **AGS 3.6.1**.
-
-*See also:* [`Character.ScriptName`](Character#characterscriptname)
+**This property was renamed since AGS 4.0.0. See [`Character.DisplayName`](Character#charactername).**
 
 ---
 
@@ -3451,12 +3466,12 @@ readonly String Character.ScriptName
 
 Gets the script name of the character, which serves as a unique identifier, as set in the AGS Editor.
 
-This may be useful if you have a pointer to some character stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each character in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [Character.GetByName](Character#charactergetbyname) function to retrieve the character by the previously saved script name.
+This may be useful if you have a pointer to some character stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each character in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [Character.GetByScriptName](Character#charactergetbyscriptname) function to retrieve the character by the previously saved script name.
 
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
-*See also:* [`Character.Name`](Character#charactername),
-[`Character.GetByName`](Character#charactergetbyname)
+*See also:* [`Character.DisplayName`](Character#charactername),
+[`Character.GetByScriptName`](Character#charactergetbyscriptname)
 
 ---
 

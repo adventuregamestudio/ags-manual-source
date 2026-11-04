@@ -55,7 +55,7 @@ will display the message if there is any region under the mouse cursor.
 
 *Compatibility:* Supported by **AGS 3.5.0** and later versions. HitTestOptions parameter is supported since **AGS 3.6.3**.
 
-*See also:* [`Region.GetAtRoomXY`](Region#regiongetatroomxy), [`Character.GetAtScreenXY`](Character#charactergetatscreenxy), [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy), [`Object.GetAtScreenXY`](Object#objectgetatscreenxy), [`Game.GetLocationName`](Game#gamegetlocationname), [`GetLocationType`](Globalfunctions_General#getlocationtype)
+*See also:* [`Region.GetAtRoomXY`](Region#regiongetatroomxy), [`Character.GetAtScreenXY`](Character#charactergetatscreenxy), [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy), [`Object.GetAtScreenXY`](Object#objectgetatscreenxy), [`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat), [`GetLocationType`](Globalfunctions_General#getlocationtype)
 
 ---
 

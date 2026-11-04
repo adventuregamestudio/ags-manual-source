@@ -38,10 +38,7 @@ SetGameOption.
     runs in may still be larger or smaller, depending on choices player
     made in setup program, and in that case game's image will be
     stretched or shrunk accordingly.
--   **Text format** - the format your game texts will be in. The contemporary default is "Unicode", which lets you have practically any language in the game. Another choice is "ASCII / ANSI" mode, but this is left strictly for backwards compatibility, e.g. for when upgrading old projects, and not recommended to be used in new projects at all, as that will make multi-language support in your game much more complicated.
-
-    **NOTE:** please be aware that when switching **Text format** the Editor will convert all the game files (scripts, etc) to a new text encoding and re-save them. Normally this should be safe, but probably a good idea to make a project backup before doing this.
-	
+-   **Text format** - the format your game texts will be in. In AGS 4.0 this is fixed at "Unicode (UTF-8)" now.
 -   **Text language** - lets specify a base game language. This setting is used whenever engine needs to identify the game text as being of a particular language or using particular alphabet. For example: alphabetic string comparison and sort. In particular, this setting affects "locale aware" string compare styles in script. You may leave this option as "undefined" if you don't want to use related features.
     
 ### Information
@@ -77,42 +74,6 @@ accessible in future versions.
 
 ### Backwards compatibility
 
--   **Allow relative asset resolutions** - if enabled then your game will scale 
-    sprites according to their resolution tags: sprites tagged as "low-res"
-    will be scaled up in a "high-res" game (640x400 and higher), sprites tagged
-    as "high-res" will be scaled down in a "low-res" game (less than 640x400).
-    When disabled resolution tags will be ignored as all sprites displayed with
-    their real size (this is default).
--   **Enable mouse wheel support** - if enabled, on_mouse_click can be
-    called with the values eMouseWheelNorth and eMouseWheelSouth, which
-    signify the user scrolling their mouse wheel north or
-    south, respectively.
-    
-    **NOTE:** Not all mice have mouse wheels, therefore its suggested
-    that your game should never require the mouse wheel in order to be
-    playable - it should only be used as a handy extra.
--   **Enforce new-style audio scripting** - Puts the script compiler
-    into strict mode, where it will not accept the old-style
-    (pre-AGS 3.2) audio-related script commands.
--   **Enforce new style strings** - Puts the script compiler into strict
-    mode, where it will not accept the old-style (pre-AGS 2.7)
-    fixed-length strings.
--   **Enforce post-2.62 scripting** - Puts the script compiler into
-    strict mode, where it will not accept the old-style (pre-AGS 2.7)
-    script commands. This should preferably be ticked, since you should
-    no longer be using the old commands.
--   **Left-to-right operator precedence** - if this is enabled, then
-    operators of equal precedence in the script will be evaluated left
-    to right. For example, 5 - 4 - 3 could be interpreted as (5 - 4) - 3
-    or as 5 - (4 - 3), thus giving different results. You should always
-    use parenthesis to clarify expressions like this, so that the
-    operator precedence doesn't affect the result.
--   **Old-style letterbox mode** - only available if your game's resolution
-    is 320x200 or 640x400. If you enable it, your game will run as
-    320x240 and 640x480 game correspondingly, while keeping room
-    viewport size at 320x200 or 640x400, and adding black horizontal
-    borders above and below. Today this is strictly a compatibility option
-    for importing old projects, because since v3.5.0 AGS supports custom room viewports in script.
 -   **Script API version** - defines the topmost level of built-in
     script content that you want to enable for your project. It is
     suggested to leave this at the "Highest" value, unless you are
@@ -127,22 +88,6 @@ accessible in future versions.
     old functions that were declared obsolete by newer version of AGS.
     You do so by setting this switch to version that still had those
     functions non-deprecated.
--   **Use low-resolution coordinates in script** - always use 320x200
-    coordinate space when scripting your game, regardless of its actual
-    resolution. Basically, your game will be treated as if it were
-    320x200, but pixels are of larger size. Normally this option should
-    be off; it may only be useful when importing really old game project
-    where such setting was a norm.
--   **Use old-style custom dialog options API** - switch to using
-    pre-AGS 3.4.0 custom dialog options callbacks. The differences
-    between old and new APIs [are explained in this topic](WhatsNewIn34).
--   **Use old-style keyboard handling** - Uses pre-unicode mode key codes in
-    `on_key_press` function, where regular keys were merged with Ctrl and Alt
-    modifiers. In newer games, it's recommended to leave this as false, and
-    either handle the additional 'mod' parameter or rely on `on_text_input`
-    function for properly handled characters when building text input
-    interfaces.
--   **Use old-style voice clip naming rule** - switch to using pre-AGS 3.6.2 rule for naming voice-over files. See [Voice Speech](VoiceSpeech) section for more details on this.
 
 ### Character behavior
 

@@ -30,7 +30,7 @@ Naturally, when you know the array's size it's possible to iterate over it, for 
 ```ags
 for (int i = 0; i < Game.CharacterCount; i++) {
     Character* c = character[i];
-    Display("Character number %d got name %s", i, c.Name);
+    Display("Character number %d got name %s", i, c.DisplayName);
 }
 ```
 

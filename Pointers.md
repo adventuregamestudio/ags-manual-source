@@ -100,7 +100,7 @@ Suppose you want to find a character under a mouse and display their name on a G
 
 ```ags
 Character* chUnderMouse = Character.GetAtScreenXY(mouse.x, mouse.y);
-lblCharacterName.Text = chUnderMouse.Name;
+lblCharacterName.Text = chUnderMouse.DisplayName;
 ```
 
 What would happen if there's no character under mouse? Character.GetAtScreenXY will return "null" value, it gets assigned to chUnderMouse, and as soon as program tries to get character's name, it will throw an error, because it cannot get Name from "nothing". This is how we prevent this:
@@ -108,7 +108,7 @@ What would happen if there's no character under mouse? Character.GetAtScreenXY w
 ```ags
 Character* chUnderMouse = Character.GetAtScreenXY(mouse.x, mouse.y);
 if (chUnderMouse != null) {
-    lblCharacterName.Text = chUnderMouse.Name;
+    lblCharacterName.Text = chUnderMouse.DisplayName;
 }
 ```
 

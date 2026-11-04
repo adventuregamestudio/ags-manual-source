@@ -193,6 +193,49 @@ static int Game.GetColorFromRGBA(int red, int green, int blue, int alpha)
 
 ---
 
+### `Game.GetDisplayNameAt`
+
+```ags
+static String Game.GetDisplayNameAt(int x, int y, optional HitTestOptions hitOptions)
+```
+
+Returns the human-readable name of whatever is seen in the room under the given screen coordinates (x, y). This includes following:
+- Characters,
+- Hotspots,
+- Room Objects,
+- Inventory Items.
+
+If there are multiple suitable objects under these coordinates, this function will select the one that is drawn topmost.
+If there is no suitable object, then function will return a blank string.
+
+An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
+
+**NOTE:** The co-ordinates are SCREEN co-ordinates, NOT ROOM co-ordinates. This means that this function is suitable
+for use with the mouse cursor position variables.
+
+This function may allow you, for instance, to create the LucasArts-style status lines reading \"Look at xxx\" as
+the player moves the cursor over them.
+
+**NOTE:** When looking up for an object under coordinates, GetDisplayNameAt is affected by the game setting ["Pixel-perfect click detection"](GeneralSettings#visual). It's possible to change this behavior in script by changing OPT_PIXELPERFECT option (see [SetGameOption](Globalfunctions_General#setgameoption)).
+
+Example:
+
+```ags
+String location = Game.GetDisplayNameAt(mouse.x, mouse.y);
+lblDescription.Text = location;
+```
+
+will get the name of whatever the mouse is over into the string variable and then assign to a label lblDescription.
+
+*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
+
+*See also:* [`Hotspot.DisplayName`](Hotspot#hotspotdisplayname),
+[`InventoryItem.DisplayName`](InventoryItem#inventoryitemdisplayname),
+[`GetLocationType`](Globalfunctions_General#getlocationtype),
+[`Object.DisplayName`](Object#objectdisplayname)
+
+---
+
 ### `Game.GetFrameCountForLoop`
 
 *(Formerly part of `GetGameParameter`, which is now obsolete)*
@@ -223,46 +266,7 @@ Display("Loop 2 in SWIMMING view has %d frames.", frameCount);
 
 ### `Game.GetLocationName`
 
-*(Formerly known as global function `GetLocationName`, which is now obsolete)*
-
-```ags
-static String Game.GetLocationName(int x, int y, optional HitTestOptions hitOptions)
-```
-
-Returns the name of whatever is seen in the room under the given screen coordinates (x, y). This includes following:
-- Characters,
-- Hotspots,
-- Room Objects,
-- Inventory Items.
-
-If there are multiple suitable objects under these coordinates, this function will select the one that is drawn topmost.
-If there is no suitable object, then function will return a blank string.
-
-An optional HitOptions parameter defines an additional object filter (supported since **AGS 3.6.3**). It's equal to `eHit_Interactable` by default, which means that only interactable (enabled + clickable) objects will be found. Pass `eHit_Any` instead, if you like even non-clickable objects to be found.
-
-**NOTE:** The co-ordinates are SCREEN co-ordinates, NOT ROOM co-ordinates. This means that this function is suitable
-for use with the mouse cursor position variables.
-
-This function may allow you, for instance, to create the LucasArts-style status lines reading \"Look at xxx\" as
-the player moves the cursor over them.
-
-**NOTE:** When looking up for an object under coordinates, GetLocationName is affected by the game setting ["Pixel-perfect click detection"](GeneralSettings#visual). It's possible to change this behavior in script by changing OPT_PIXELPERFECT option (see [SetGameOption](Globalfunctions_General#setgameoption)).
-
-Example:
-
-```ags
-String location = Game.GetLocationName(mouse.x, mouse.y);
-lblDescription.Text = location;
-```
-
-will get the name of whatever the mouse is over into the string variable and then assign to a label lblDescription.
-
-*Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
-
-*See also:* [`Hotspot.Name`](Hotspot#hotspotname),
-[`InventoryItem.Name`](InventoryItem#inventoryitemname),
-[`GetLocationType`](Globalfunctions_General#getlocationtype),
-[`Object.Name`](Object#objectname)
+**This function was renamed since AGS 4.0.0. See [`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat).**
 
 ---
 

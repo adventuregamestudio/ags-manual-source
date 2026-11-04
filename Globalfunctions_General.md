@@ -533,10 +533,11 @@ Also, this function is "blocked" by any interactable non-room object, such as GU
 
 The value returned is one of the following:
 
-    eLocationNothing    nothing, GUI or inventory
+    eLocationNothing    nothing or GUI
     eLocationHotspot    a hotspot
     eLocationCharacter  a character
     eLocationObject     an object
+	eLocationInvItem    an inventory item
 
 **NOTE:** The co-ordinates are SCREEN co-ordinates, NOT ROOM co-ordinates. This means that this function is suitable for use with the mouse cursor position variables.
 
@@ -554,7 +555,7 @@ will set the cursor mode to talk if the cursor is over a character.
 *Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
 *See also:* [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy),
-[`Game.GetLocationName`](Game#gamegetlocationname),
+[`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat),
 [`Object.GetAtScreenXY`](Object#objectgetatscreenxy)
 
 ---

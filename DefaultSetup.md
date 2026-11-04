@@ -69,6 +69,7 @@ top & bottom sides of the screen.
 -   **Graphics driver** - lets choose a graphics driver. Currently supported are:
     - **Software**. The classic and slower option, but the only driver that fully supports 8-bit games with palette effects.
     - **Direct3D 9**.
+    - **Direct3D 11**.
     - **OpenGL**.
 
 -   **Render sprites at screen resolution** - when enabled, any scaled game objects will be scaled in screen pixels rather than game pixels. What this means is that when a low-resolution game is run in a larger window, the sprites will take advantage of this higher resolution and look less pixelated when scaled up or down, especially when scaled to a non-round multiplier.

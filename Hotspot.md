@@ -28,7 +28,7 @@ will display the message if the player character is over the hPressurePlate hots
 [`Character.GetAtRoomXY`](Character#charactergetatroomxy),
 [`Object.GetAtRoomXY`](Object#objectgetatroomxy),
 [`Region.GetAtRoomXY`](Region#regiongetatroomxy),
-[`Game.GetLocationName`](Game#gamegetlocationname), [`GetLocationType`](Globalfunctions_General#getlocationtype)
+[`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat), [`GetLocationType`](Globalfunctions_General#getlocationtype)
 
 ---
 
@@ -62,20 +62,28 @@ will display a message depending on what the mouse is on.
 
 *Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
-*See also:* [`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy), [`Character.GetAtScreenXY`](Character#charactergetatscreenxy), [`Object.GetAtScreenXY`](Object#objectgetatscreenxy), [`Region.GetAtScreenXY`](Region#regiongetatscreenxy), [`Game.GetLocationName`](Game#gamegetlocationname), [`GetLocationType`](Globalfunctions_General#getlocationtype)
+*See also:* [`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy), [`Character.GetAtScreenXY`](Character#charactergetatscreenxy), [`Object.GetAtScreenXY`](Object#objectgetatscreenxy), [`Region.GetAtScreenXY`](Region#regiongetatscreenxy), [`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat), [`GetLocationType`](Globalfunctions_General#getlocationtype)
 
 ---
 
 ### `Hotspot.GetByName`
 
+**This function was renamed since AGS 4.0.0. See [`Hotspot.GetByScriptName`](Hotspot#hotspotgetbyscriptname).**
+
+*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+
+---
+
+### `Hotspot.GetByScriptName`
+
 ```ags
-static Hotspot* Hotspot.GetByName(string scriptName)
+static Hotspot* Hotspot.GetByScriptName(string scriptName)
 ```
 
 Returns a pointer to the Hotspot with the specified script name, or null if it does not exist.
 
 Normally you do not need to use this, as there will be a automatically created global script variable for each Hotspot which got a script name.
-Where GetByName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
+Where GetByScriptName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
 
 Example:
 
@@ -84,7 +92,7 @@ void OpenDoor(Object *obj) {
     obj.SetView(VDOORANIMATION);
     obj.Animate(1, 4, eOnce, eBlock);
     String exitName = obj.GetTextProperty("LinkedExit");
-    Hotspot* exitHotspot = Hotspot.GetByName(exitName);
+    Hotspot* exitHotspot = Hotspot.GetByScriptName(exitName);
     if (exitHotspot != null) {
         exitHotspot.Enabled = true;
     }
@@ -93,7 +101,7 @@ void OpenDoor(Object *obj) {
 
 Animates a "door" object, retrieves "exit" hotspot related to that door, and enables it.
 
-*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Hotspot.ScriptName`](Hotspot#hotspotscriptname)
 
@@ -301,6 +309,26 @@ hDoor.
 
 ---
 
+### `Hotspot.DisplayName`
+
+```ags
+String Hotspot.DisplayName;
+```
+
+Gets/sets the name of the hotspot. This is a human-readable name (description), not a script name.
+
+Example:
+
+```ags
+Display("Hotspot %s's name is %s.", hDoorway.ScriptName, hDoorway.DisplayName);
+```
+
+will retrieve and then display hotspot 3's name.
+
+*See also:* [`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat)
+
+---
+
 ### `Hotspot.Enabled`
 
 *(Formerly known as `DisableHotspot`, which is now obsolete)*<br>
@@ -359,26 +387,7 @@ displays hDoor's hotspot number, and then displays hotspot 3's number
 
 ### `Hotspot.Name`
 
-*(Formerly known as `GetHotspotName`, which is now obsolete)*<br>
-*(Formerly known as `Hotspot.GetName`, which is now obsolete)*
-
-```ags
-String Hotspot.Name;
-```
-
-Gets/sets the name of the hotspot. This is a human-readable name (description), not a script name.
-
-**NOTE:** This property may be changed only in AGS versions 3.6.0 or higher. It is read-only in earlier versions.
-
-Example:
-
-```ags
-Display("Hotspot %s's name is %s.", hDoorway.ScriptName, hDoorway.Name);
-```
-
-will retrieve and then display hotspot 3's name.
-
-*See also:* [`Game.GetLocationName`](Game#gamegetlocationname)
+**This property was renamed since AGS 4.0.0. See [`Hotspot.DisplayName`](Hotspot#hotspotname).**
 
 ---
 
@@ -390,7 +399,7 @@ readonly String Hotspot.ScriptName
 
 Gets the script name of the hotspot, which serves as a unique identifier, as set in the AGS Editor.
 
-This may be useful if you have a pointer to some hotspot stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each hotspot in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [Hotspot.GetByName](Hotspot#hotspotgetbyname) function to retrieve the hotspot by the previously saved script name.
+This may be useful if you have a pointer to some hotspot stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each hotspot in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [Hotspot.GetByScriptName](Hotspot#hotspotgetbyscriptname) function to retrieve the hotspot by the previously saved script name.
 
 Example:
 
@@ -403,7 +412,7 @@ void InteractHotspot(Hotspot *h) {
 
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
-*See also:* [`Hotspot.GetByName`](Hotspot#hotspotgetbyname)
+*See also:* [`Hotspot.GetByScriptName`](Hotspot#hotspotgetbyscriptname)
 
 ---
 

@@ -111,7 +111,7 @@ will display the message if the object oBullet is over the object oWall.
 [`Character.GetAtRoomXY`](Character#charactergetatroomxy),
 [`Hotspot.GetAtRoomXY`](Hotspot#hotspotgetatroomxy),
 [`Region.GetAtRoomXY`](Region#regiongetatroomxy),
-[`Game.GetLocationName`](Game#gamegetlocationname), [`GetLocationType`](Globalfunctions_General#getlocationtype)
+[`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat), [`GetLocationType`](Globalfunctions_General#getlocationtype)
 
 ---
 
@@ -142,20 +142,28 @@ will display the message if there is the object oRock under the mouse cursor.
 
 *Compatibility:* HitTestOptions parameter is supported since **AGS 3.6.3**.
 
-*See also:* [`Object.GetAtRoomXY`](Object#objectgetatroomxy), [`Character.GetAtScreenXY`](Character#charactergetatscreenxy), [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy), [`Region.GetAtScreenXY`](Region#regiongetatscreenxy), [`Game.GetLocationName`](Game#gamegetlocationname), [`GetLocationType`](Globalfunctions_General#getlocationtype)
+*See also:* [`Object.GetAtRoomXY`](Object#objectgetatroomxy), [`Character.GetAtScreenXY`](Character#charactergetatscreenxy), [`Hotspot.GetAtScreenXY`](Hotspot#hotspotgetatscreenxy), [`Region.GetAtScreenXY`](Region#regiongetatscreenxy), [`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat), [`GetLocationType`](Globalfunctions_General#getlocationtype)
 
 ---
 
 ### `Object.GetByName`
 
+**This function was renamed since AGS 4.0.0. See [`Object.GetByScriptName`](Object#objectgetbyscriptname).**
+
+*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+
+---
+
+### `Object.GetByScriptName`
+
 ```ags
-static Object* Object.GetByName(string scriptName)
+static Object* Object.GetByScriptName(string scriptName)
 ```
 
 Returns a pointer to the Object with the specified script name, or null if it does not exist.
 
 Normally you do not need to use this, as there will be a automatically created global script variable for each Object which got a script name.
-Where GetByName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
+Where GetByScriptName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
 
 Example:
 
@@ -165,7 +173,7 @@ void on_event(EventType event, int data) {
 
     String hauntedObjectName = player.GetTextProperty("haunted-object");
 
-    Object* hauntedObject = Object.GetByName(hauntedObjectName);
+    Object* hauntedObject = Object.GetByScriptName(hauntedObjectName);
     if (hauntedObject != null) {
       // Do something special if the room has an object the player haunts
       hauntedObject.Transparency = 50;
@@ -178,7 +186,7 @@ void on_event(EventType event, int data) {
 In this example, the player has a custom property that stores the script name of room objects it's haunted by,
 and if a room has said object, that object becomes haunted - in the example it just becomes "ghostly": non-clickable and transparent.
 
-*Compatibility:* Supported by **AGS 3.6.1** and later versions.
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 *See also:* [`Object.ScriptName`](Object#objectscriptname), [`Object.GetAtRoomXY`](Object#objectgetatroomxy), [`Object.GetAtScreenXY`](Object#objectgetatscreenxy)
 
@@ -1016,6 +1024,26 @@ will make object oDoor ignore clicks from the player.
 
 ---
 
+### `Object.DisplayName`
+
+```ags
+String Object.DisplayName;
+```
+
+Gets/sets the name of the object. This is a human-readable name (description), not a script name.
+
+Example:
+
+```ags
+Display("oDoor's name is %s.", oDoor.DisplayName);
+```
+
+will retrieve and then display object oDoor's description.
+
+*See also:* [`Game.GetDisplayNameAt`](Game#gamegetdisplaynameat)
+
+---
+
 ### `Object.Enabled`
 
 ```ags
@@ -1498,26 +1526,7 @@ object gets there.
 
 ### `Object.Name`
 
-*(Formerly known as `GetObjectName`, which is now obsolete)*<br>
-*(Formerly known as `Object.GetName`, which is now obsolete)*
-
-```ags
-String Object.Name;
-```
-
-Gets/sets the name of the object. This is a human-readable name (description), not a script name.
-
-**NOTE:** This property may be changed only in AGS versions 3.6.0 or higher. It is read-only in earlier versions.
-
-Example:
-
-```ags
-Display("oDoor's name is %s.", oDoor.Name);
-```
-
-will retrieve and then display object oDoor's description.
-
-*See also:* [`Game.GetLocationName`](Game#gamegetlocationname)
+**This property was renamed since AGS 4.0.0. See [`Object.DisplayName`](Object#objectdisplayname).**
 
 ---
 
@@ -1529,7 +1538,7 @@ readonly String Object.ScriptName;
 
 Gets the script name of the Object, which serves as a unique identifier, as set in the AGS Editor.
 
-This may be useful if you have a pointer to some object stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each object in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [Object.GetByName](Object#objectgetbyname) function to retrieve the object by the previously saved script name.
+This may be useful if you have a pointer to some object stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each object in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [Object.GetByScriptName](Object#objectgetbyscriptname) function to retrieve the object by the previously saved script name.
 
 Example:
 
@@ -1545,7 +1554,7 @@ In this example all objects gain a new method `Touch`, that can be called using 
 
 *Compatibility:* Supported by **AGS 3.6.1** and later versions.
 
-*See also:* [`Object.GetByName`](Object#objectgetbyname),  [`Object.Name`](Object#objectname)
+*See also:* [`Object.GetByScriptName`](Object#objectgetbyscriptname),  [`Object.DisplayName`](Object#objectdisplayname)
 
 ---
 

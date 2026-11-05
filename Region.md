@@ -59,6 +59,37 @@ will display the message if there is any region under the mouse cursor.
 
 ---
 
+### `Region.GetByScriptName`
+
+```ags
+static Region* Region.GetByScriptName(string scriptName)
+```
+
+Returns a pointer to the Region with the specified script name, or null if it does not exist.
+
+Normally you do not need to use this, as there will be a automatically created global script variable for each Region which got a script name.
+Where GetByScriptName() function may come useful is situation in which you a) do not know exact name, b) had to store region's reference in a string for some reason. Good examples of this are saving region's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
+
+Example:
+
+```ags
+void PressButton(Object *obj) {
+    String regionName = obj.GetTextProperty("ColorPad");
+    Region* colorPad = Region.GetByScriptName(regionName);
+    if (colorPad != null) {
+        colorPad.Tint(255, 0, 0, 100);
+    }
+}
+```
+
+Retrieves "color pad" region associated with an object, and adds red tint to it.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Region.ScriptName`](Region#regionscriptname)
+
+---
+
 ### `Region.GetDrawingSurface`
 
 ```ags
@@ -309,6 +340,30 @@ will set region 2's level light to 100.
 [`SetAmbientLightLevel`](Globalfunctions_General#setambientlightlevel),
 [`Character.SetLightLevel`](Character#charactersetlightlevel),
 [`Object.SetLightLevel`](Object#objectsetlightlevel)
+
+---
+
+### `Region.ScriptName`
+
+```ags
+readonly String Region.ScriptName
+```
+
+Gets the script name of the region, which serves as a unique identifier, as set in the AGS Editor.
+
+This may be useful if you have a pointer to some region stored in your variable, and want to know what it actually is. Normally you don't need a script name, as you have an automatic global variable for each region in the game, but sometimes you may want to save its script name as a text either to display it somewhere for testing purposes, or keep as a reference. You may later use [Region.GetByScriptName](Region#regiongetbyscriptname) function to retrieve the region by the previously saved script name.
+
+Example:
+
+```
+void Region_WalkOn(Region* r) {
+    System.Log(eLogInfo, "Player walked on region %s", r.ScriptName);
+}
+```
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+*See also:* [`Region.GetByScriptName`](Region#regiongetbyscriptname)
 
 ---
 

@@ -13,7 +13,6 @@ and you can then use the following methods to draw onto the surface.
 finished drawing onto the surface. This allows AGS to update its cached
 copies of the image and upload it to video memory if appropriate.
 
-
 ---
 
 ### `DrawingSurface.BlendImage`
@@ -140,6 +139,31 @@ for a while and then restore the original background.
 
 ---
 
+### `DrawingSurface.DrawArc`
+
+```ags
+DrawingSurface.DrawArc(int x, int y, int radius, int angle1, int angle2)
+```
+
+Draws an arc (a segment of a circle's boundary) of radius RADIUS with its center at (X,Y), from ANGLE1 to ANGLE2 using the current drawing color.
+
+Angles are measured in degrees.
+
+Example:
+
+```ags
+DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
+surface.DrawingColor = 0xFFFF0000;
+surface.DrawArc(160, 100, 50, 0, 270);
+surface.Release();
+```
+
+will draw an arc of 50 pixels radius, around 3/4 of the circle, in the center of the screen.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `DrawingSurface.DrawCircle`
 
 *(Formerly known as `RawDrawCircle`, which is now obsolete)*
@@ -160,11 +184,80 @@ surface.DrawCircle(160,100,50);
 surface.Release();
 ```
 
-will draw a circle in the center of the screen, of 50 pixels radius.
+will draw a filled circle in the center of the screen, of 50 pixels radius.
 
 *See also:*
 [`DrawingSurface.DrawLine`](DrawingSurface#drawingsurfacedrawline),
 [`DrawingSurface.DrawingColor`](DrawingSurface#drawingsurfacedrawingcolor)
+
+---
+
+### `DrawingSurface.DrawCircleOutline`
+
+```ags
+DrawingSurface.DrawCircleOutline(int x, int y, int radius);
+```
+
+Draws a circle's outline of radius RADIUS with its center at (X,Y) in the current drawing color.
+
+Example:
+
+```ags
+DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
+surface.DrawingColor = 0xFF00FF00;
+surface.DrawCircleOutline(160, 100, 50);
+surface.Release();
+```
+
+will draw a circle in the center of the screen, of 50 pixels radius.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `DrawingSurface.DrawEllipse`
+
+```ags
+DrawingSurface.DrawEllipse(int x, int y, int rx, int ry);
+```
+
+Draws a filled ellipse of radiuses RX and RY with its center at (X,Y) in the current drawing color.
+
+Example:
+
+```ags
+DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
+surface.DrawingColor = 0xFF00FF00;
+surface.DrawEllipse(160, 100, 100, 50);
+surface.Release();
+```
+
+will draw a filled ellipse in the center of the screen, of 100 pixels horizontal radius and 50 pixels vertical radius.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `DrawingSurface.DrawEllipseOutline`
+
+```ags
+DrawingSurface.DrawEllipseOutline(int x, int y, int rx, int ry);
+```
+
+Draws a ellipse's outline of radiuses RX and RY with its center at (X,Y) in the current drawing color.
+
+Example:
+
+```ags
+DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
+surface.DrawingColor = 0xFF00FF00;
+surface.DrawEllipseOutline(160, 100, 100, 50);
+surface.Release();
+```
+
+will draw a ellipse in the center of the screen, of 100 pixels horizontal radius and 50 pixels vertical radius.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -293,6 +386,52 @@ will display message 10 in the center of the screen, starting from Y =
 
 ---
 
+### `DrawingSurface.DrawPie`
+
+```ags
+DrawingSurface.DrawPie(int x, int y, int radius, int angle1, int angle2);
+```
+
+Draws a filled pie, which is a shape defined by an arc from ANGLE1 to ANGLE2 and two radius lines of length RADIUS with a center at (X,Y).
+
+Example:
+
+```ags
+DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
+surface.DrawingColor = 0xFF0000FF;
+surface.DrawPie(160, 100, 50, 0, 270);
+surface.Release();
+```
+
+will draw a filled pie in the center of the screen, of 50 pixels radius, filling 3/4 of the circle.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `DrawingSurface.DrawPieOutline`
+
+```ags
+DrawingSurface.DrawPieOutline(int x, int y, int radius, int angle1, int angle2);
+```
+
+Draws a pie's outline, defined by an arc from ANGLE1 to ANGLE2 and two radius lines of length RADIUS with a center at (X,Y).
+
+Example:
+
+```ags
+DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
+surface.DrawingColor = 0xFF0000FF;
+surface.DrawPieOutline(160, 100, 50, 0, 270);
+surface.Release();
+```
+
+will draw a pie's outline in the center of the screen, of 50 pixels radius, around 3/4 of the circle.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
 ### `DrawingSurface.DrawPixel`
 
 ```ags
@@ -352,6 +491,30 @@ will draw a rectangle over the top left hand quarter of the screen.
 *See also:*
 [`DrawingSurface.DrawImage`](DrawingSurface#drawingsurfacedrawimage),
 [`DrawingSurface.DrawLine`](DrawingSurface#drawingsurfacedrawline)
+
+---
+
+### `DrawingSurface.DrawRectangleOutline`
+
+```ags
+DrawingSurface.DrawRectangleOutline(int x1, int y1, int x2, int y2)
+```
+
+Draws a rectangle outline in the current color with its top-left corner
+at (x1,y1) and its bottom right corner at (x2, y2)
+
+Example:
+
+```ags
+DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
+surface.DrawingColor = 0xFFFF0000;
+surface.DrawRectangle(0, 0, 160, 100);
+surface.Release();
+```
+
+will draw a rectangle over the top left hand quarter of the screen.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 
@@ -498,12 +661,59 @@ surface.DrawTriangle(0,0,160,100,0,200);
 surface.Release();
 ```
 
-will draw a triangle with corners at the points (0,0),(160,100),(0,200).
+will draw a filled triangle with corners at the points (0,0),(160,100),(0,200).
 
 *See also:*
 [`DrawingSurface.DrawImage`](DrawingSurface#drawingsurfacedrawimage),
 [`DrawingSurface.DrawLine`](DrawingSurface#drawingsurfacedrawline),
 [`DrawingSurface.DrawRectangle`](DrawingSurface#drawingsurfacedrawrectangle)
+
+---
+
+### `DrawingSurface.DrawTriangleOutline`
+
+```ags
+DrawingSurface.DrawTriangleOutline(int x1, int y1, int x2, int y2, int x3, int y3)
+```
+
+Draws a triangle in the current color with corners at the points
+(x1,y1), (x2,y2) and (x3,y3).
+
+Example:
+
+```ags
+DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
+surface.DrawingColor = 0xFFFF0000;
+surface.DrawTriangle(0,0,160,100,0,200);
+surface.Release();
+```
+
+will draw a triangle with corners at the points (0,0),(160,100),(0,200).
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
+
+---
+
+### `DrawingSurface.FloodFill`
+
+```ags
+DrawingSurface.FloodFill(int x, int y)
+```
+
+Flood-fills the continuous area of the same color, starting at the given coordinates, using the current drawing color as a replacement. This fills the chosen pixel, every neighbour pixel of the same color, and every neighbour of these pixels of the same color recursively until there's no more pixels of the same color are found.
+
+Example:
+
+```ags
+DrawingSurface *surface = Room.GetDrawingSurfaceForBackground();
+surface.DrawingColor = 0xFFFFFFFF;
+surface.FloodFill(160, 100);
+surface.Release();
+```
+
+will fill an area of same color starting at position 160,100.
+
+*Compatibility:* Supported by **AGS 4.0.0** and later versions.
 
 ---
 

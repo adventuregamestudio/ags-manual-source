@@ -83,7 +83,7 @@ static Hotspot* Hotspot.GetByScriptName(string scriptName)
 Returns a pointer to the Hotspot with the specified script name, or null if it does not exist.
 
 Normally you do not need to use this, as there will be a automatically created global script variable for each Hotspot which got a script name.
-Where GetByScriptName() function may come useful is situation in which you a) do not know exact name, b) had to store object's reference in a string for some reason. Good examples of this are saving object's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
+Where GetByScriptName() function may come useful is situation in which you a) do not know exact name, b) had to store hotspot's reference in a string for some reason. Good examples of this are saving hotspot's name in a [custom property](CustomProperties), or a [file](File), then reading it back.
 
 Example:
 
